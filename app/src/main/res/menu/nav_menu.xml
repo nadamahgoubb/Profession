@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/profileFragment"
+        android:title="@string/profile"
+        android:icon="@drawable/ic_profile"/>
+
+    <item
+        android:id="@+id/contactUsFragment"
+        android:title="@string/contact_us"
+        android:icon="@drawable/ic_call_"/>
+
+    <item
+        android:id="@+id/orderFragment"
+        android:title="@string/orders"
+        android:icon="@drawable/ic_orders"/>
+
+    <item
+        android:id="@+id/customerServiceFragment"
+        android:title="@string/complains"
+        android:icon="@drawable/ic_customer_service"/>
+
+    <item
+        android:id="@+id/notifactionFragment"
+        android:title="@string/notifactions"
+        android:icon="@drawable/ic_noti"/>
+    <item
+        android:id="@+id/rights_and_terms"
+        android:title="@string/rights_and_terms"
+        android:icon="@drawable/ic_terms"/>
+    <item
+        android:id="@+id/settingsFragment"
+        android:title="@string/settings"
+        android:icon="@drawable/ic_settings"/>
+</menu>

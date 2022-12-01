@@ -1,0 +1,12 @@
+<resources>
+<string name="app_name">Profession</string>
+<!-- TODO: Remove or change this placeholder text -->
+<string name="hello_blank_fragment">Hello blank fragment</string>
+<string name="ok">Ok</string>
+<string name="error">Error</string>
+<string name="no">No</string>
+<string name="yes">Yes</string>
+<string name="next">Next</string>
+<string name="skip">skip</string>
+<string name="services">services</string>
+</resources>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_slider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_300sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:src="@drawable/walkthrought_0" />
+
+        <TextView
+            android:id="@+id/tv_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/img_slider"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/_23sdp"
+            android:gravity="center"
+            android:text="@string/skip"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sdp" />
+
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_skip"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/_23sdp"
+            android:gravity="center"
+            android:text="@string/services"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_17sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_slider"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:minLines="2"
+            android:singleLine="false"
+            android:layout_centerHorizontal="true"
+            android:text="@string/alot_of_workers_are_available"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp" />
+
+    </RelativeLayout>
+</layout>

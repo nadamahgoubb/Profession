@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_navigation.xml"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.profession.ui.fragments.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_walkThrougthFragment"
+            app:destination="@id/walkThrougthFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/walkThrougthFragment"
+        tools:layout="@layout/fragment_walk_througth"
+        android:name="com.example.profession.ui.fragments.walkThrough.WalkThrougthFragment"
+        android:label="WalkThrougthFragment" >
+        <action
+            android:id="@+id/action_walkThrougthFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.profession.ui.fragments.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.profession.ui.fragments.LoginFragment"
+        android:label="LoginFragment" />
+    <fragment
+        android:id="@+id/forgetPasswordFragment"
+        android:name="com.example.profession.ui.fragments.ForgetPasswordFragment"
+        android:label="ForgetPasswordFragment" />
+</navigation>

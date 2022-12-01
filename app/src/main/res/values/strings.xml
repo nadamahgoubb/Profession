@@ -1,0 +1,89 @@
+<resources>
+    <string name="app_name">مهن</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ok">تم</string>
+    <string name="error">خطأ</string>
+    <string name="no">لا </string>
+    <string name="yes">نعم</string>
+    <string name="next">التالى</string>
+    <string name="skip">تخطى</string>
+    <string name="services">خدمات متنوعه</string>
+    <string name="with_simple_steps">بخطوات بسيطة</string>
+    <string name="you_can_have_aprovider">يمكنك الحصول على مقدم الخدمة \n   الأنسب لك بكل سهوله</string>
+    <string name="alot_of_workers_are_available">العديد من مقدمى الخدمات بخبرات عالية \n   الان بين يديك</string>
+    <string name="start">ابدأ</string>
+    <string name="password">كلمه مرور</string>
+    <string name="don_t_have_account"> ليس لديك حساب؟</string>
+    <string name="_have_account"> لديك حساب؟</string>
+    <string name="signin">تسجيل الدخول</string>
+    <string name="register_new_request">تسجيل طالب خدمة جديد </string>
+    <string name="user_name">اسم المستخدم</string>
+    <string name="email">البريد الالكترونى</string>
+    <string name="phone_number">رقم الجوال</string>
+    <string name="country">البلد</string>
+    <string name="city">المدينه</string>
+    <string name="location">الموقع</string>
+    <string name="by_signing_in_you_agreed_to"></string>
+    <string name="terms">الشروط والاحكام</string>
+    <string name="by_signing_in_you_agreed_to_terms"><![CDATA[<font color=#FF000000> بالقيام بالتسجيل لدينا فأنت تقم بالموافقه على  </font>
+     <font color=#dd9c40>    الشروط والاحكام</font>
+     <font color=#FF000000>    الخاصه بنا </font>
+
+]]>
+    </string>
+
+    <string name="some_text">
+<![CDATA[
+بالقيام بالتسجيل لدينا فأنت تقم بالموافقه على <font color=\'#dd9c40\'>الشروط والاحكام</font> الخاصه بنا ]]>
+    </string>
+
+
+    <string name="save">
+<![CDATA[
+بالقيام بالتسجيل لدينا فأنت تقم بالموافقه على <font color=\'#dd9c40\'>الشروط والاحكام</font>]]>
+    </string>
+
+    <string name="register">تسجيل</string>
+    <string name="signin_now">الدخول الان</string>
+    <string name="forget_password">نسيت كلمة المرور؟</string>
+    <string name="sign">دخول</string>
+    <string name="register_new_account">تسجيل جديد</string>
+    <string name="enter_your_email">قم يادخال بريد الكترونى الخاص بك</string>
+    <string name="change_password">تغيير كلمة المرور</string>
+    <string name="if_you_cant_have_acode">اذا لم يمكنك الحصول على الرمز</string>
+    <string name="resend">اعاده الارسال</string>
+    <string name="new_password">كلمه المرور الجديدة</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="contact_us">اتصل بنا</string>
+    <string name="orders">الطلبات</string>
+    <string name="complains">الشكاوى</string>
+    <string name="notifactions">الاشعارات</string>
+    <string name="rights_and_terms">الشروط والاحكام</string>
+    <string name="settings">الاعدادت</string>
+    <string name="all_services">جميع الخدمات</string>
+    <string name="mainpage">الرئيسيه</string>
+    <string name="nav_open">open</string>
+    <string name="nav_close">close</string>
+    <string name="order_num">طلب رقم</string>
+    <string name="chat_with_app">مع التطبيق</string>
+    <string name="with_provider">مع المزود</string>
+    <string name="orders_details">تفاصيل الطلب</string>
+    <string name="waiting_approval">بانتظار الموافقه عليها</string>
+    <string name="on_hold_msg">تم ارسال طلبك بنجاح الى مزود الخدمة .سيتم مراجعه طلبك قبل الموافقه عليه ثم سيتواصل معك مزود خدمه لاعلام سيادتكم باى تفاصيل اخري</string>
+    <string name="order_id">رقم الطلب</string>
+    <string name="payment_meyhod">طرق الدفع</string>
+    <string name="cash">نقدى</string>
+    <string name="service_provider">مزود الخدمة</string>
+    <string name="total">اجمالي التكلفه</string>
+    <string name="cancel">الغاء الطلب</string>
+    <string name="inprogress_order">طلب قيد التنفيذ</string>
+    <string name="compelted_order">طلب سابق</string>
+    <string name="our_goal">هدفنا</string>
+    <string name="goal_msg">إن الخدمات عبر الإنترنت غير مقصود منها أن تستعمل بواسطة شخص يقل عمره عن 18 سنة. وفي حالة كان عمركم 18 سنة على الأقل،، حينئذ، يتعين عليكم الاطلاع على هذه الشروط بمساعدة أحد والديكم ويتعين عليهم فهم والموافقة على تلك الشروط حتى يتسنى لكم استخدام تلك الخدمات</string>
+    <string name="msg_content">محتوي التواصل</string>
+    <string name="wite_contact_msg">اكتب المحتوى</string>
+    <string name="send">ارسال</string>
+    <string name="terms_txt">كي تصبح عضواً في التطبيق ، يجب عليك أولا أن تقوم بتعبئة استمارة التسجيل، ثم الموافقة والتعهد على الالتزام بأحكام الاستخدام، وعند اعتماد التسجيل؛ فإنك توافق على الشروط و الاحكام الخاصة بنا \n \n يحتفظ التطبيق بحق تعديل شروط الاستخدام الماثلة في أي وقت وبدون اشعار مسبق، وأنك توافق على أن كل زيارة تقوم بها للتطبيق سوف تخضع إلى شروط الاستخدام المفعلة في هذا الوقت، وأن إستخدامك للتطبيق في أي وقت يؤكد على أنك قمت بالقراءة و الموافقة على هذه الاحكام و الشروط \n \n إن الخدمات عبر الإنترنت غير مقصود منها أن تستعمل بواسطة شخص يقل عمره عن 18 سنة. وفي حالة كان عمركم 18 سنة على الأقل،، حينئذ، يتعين عليكم الاطلاع على هذه الشروط بمساعدة أحد والديكم ويتعين عليهم فهم والموافقة على تلك الشروط حتى يتسنى لكم استخدام تلك الخدمات \n \n  هذه الشروط والأحكام تطبق على التطبيق على أجهزة الآيفون، الآيباد، الأندرويد</string>
+
+</resources>
