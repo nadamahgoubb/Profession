@@ -59,7 +59,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:gravity="center_vertical"
-                                android:text="@string/orders"
+                                android:text="@string/notifactions"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp"
                                 android:textStyle="bold"
@@ -89,7 +89,7 @@
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:background="@color/white"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
@@ -113,7 +113,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:itemCount="4"
-                        tools:listitem="@layout/item_orders" />
+                        tools:listitem="@layout/item_notifaction" />
 
                     <LinearLayout
                         android:id="@+id/lin_offers"
@@ -136,25 +136,25 @@
 
                         <include
                             android:id="@+id/item2"
-                            layout="@layout/item_orders"
+                            layout="@layout/item_notifaction"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp" />
                         <include
                             android:id="@+id/item3"
-                            layout="@layout/item_orders"
+                            layout="@layout/item_notifaction"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp" />
                         <include
                             android:id="@+id/item4"
-                            layout="@layout/item_orders"
+                            layout="@layout/item_notifaction"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp" />
                         <include
                             android:id="@+id/item5"
-                            layout="@layout/item_orders"
+                            layout="@layout/item_notifaction"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp" />

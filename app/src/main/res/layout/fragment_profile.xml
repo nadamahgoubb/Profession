@@ -1,14 +1,272 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragments.profile.ProfileFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/white"
+        android:fillViewport="true">
 
-</FrameLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/_20sdp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/lyt_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RelativeLayout
+
+                    android:id="@+id/lyt_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_140sdp"
+                    android:paddingBottom="@dimen/_50sdp"
+                    android:background="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+
+                        android:id="@+id/img"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_180sdp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/header_black_profile"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:background="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/_10sdp"
+                        android:text="تغيير كلمه المرور"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold"
+
+                        />
+                </RelativeLayout>
+
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:padding="@dimen/_6sdp"
+                    android:src="@drawable/ic_back_"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/iv_profile"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:src="@drawable/user1"
+                    app:layout_constraintBottom_toBottomOf="@id/lyt_img"
+                    app:layout_constraintStart_toStartOf="parent"
+
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/lyt_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lyt_header">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="محمد محمود "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold"
+
+                    />
+
+
+                <EditText
+                    android:id="@+id/et_user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/bg_rounded"
+                    android:hint="@string/user_name"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+
+                    <com.hbb20.CountryCodePicker
+                        android:id="@+id/country_code_picker"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1.25"
+                        android:background="@drawable/bg_rounded_grey"
+                        android:clickable="true"
+                        android:gravity="center"
+                        app:ccp_defaultNameCode="SA"
+                        app:ccp_showFlag="true"
+                        app:ccp_showNameCode="false"
+                        app:ccp_showPhoneCode="true"
+                        app:ccp_textSize="@dimen/_10sdp" />
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_weight="4.75"
+                        android:gravity="center"
+                        android:hint=""
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_rounded"
+                            android:hint="@string/phone_number"
+                            android:inputType="phone"
+                            android:paddingStart="@dimen/_5sdp"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+
+                <EditText
+                    android:id="@+id/et_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/bg_rounded"
+                    android:hint="@string/email"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <!--   <Spinner
+                    android:id="@+id/spinner_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    style="@style/SpinnerTheme"
+                    android:pointerIcon="none"
+
+                    android:spinnerMode="dialog"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />-->
+
+
+                <EditText
+                    android:id="@+id/et_coutry"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/bg_rounded"
+                    android:drawableEnd="@drawable/spinner_drop_dawn"
+                    android:enabled="false"
+                    android:hint="@string/country"
+                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <EditText
+                    android:id="@+id/et_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/bg_rounded"
+                    android:drawableEnd="@drawable/spinner_drop_dawn"
+                    android:enabled="false"
+                    android:hint="@string/city"
+                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <EditText
+                    android:id="@+id/et_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/bg_rounded"
+                    android:drawableEnd="@drawable/location"
+                    android:enabled="false"
+                    android:hint="@string/location"
+                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/edit_account"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold"
+                    app:cornerRadius="@dimen/_8sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/delet_account"
+                    android:textColor="@color/gold"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold"
+android:shadowColor="@color/gold"
+                    android:textColorHint="@color/gold"
+                    />
+
+            </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView></layout>
