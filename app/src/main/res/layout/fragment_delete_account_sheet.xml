@@ -94,7 +94,7 @@
                         android:textSize="@dimen/_13sdp"
                         android:textStyle="bold"
                         app:cornerRadius="@dimen/_8sdp"
-                        app:sta="parent" />
+                       />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_no"

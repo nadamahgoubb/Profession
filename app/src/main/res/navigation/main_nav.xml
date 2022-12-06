@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.profession.ui.fragments.HomeFragment"
+        android:name="com.example.profession.ui.fragments.home.HomeFragment"
         android:label="HomeFragment" />
     <fragment
         android:id="@+id/orderFragment"
@@ -42,4 +42,8 @@
         android:id="@+id/orderInfoFragment"
         android:name="com.example.profession.ui.fragments.orderInfo.OrderInfoFragment"
         android:label="OrderInfoFragment" />
+    <fragment
+        android:id="@+id/subServiceFragment"
+        android:name="com.example.profession.ui.fragments.subService.SubServiceFragment"
+        android:label="SubServiceFragment" />
 </navigation>

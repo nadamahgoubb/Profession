@@ -53,6 +53,7 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
+            android:background="@color/white"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/_10sdp"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
@@ -72,37 +73,12 @@
                     android:layout_marginTop="@dimen/_12sdp"
                     android:clipToPadding="false"
                     android:orientation="horizontal"
-android:visibility="gone"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:spanCount="2"
                     tools:listitem="@layout/item_home_offers" />
-                <LinearLayout
-                    android:id="@+id/lin_offers"
-                    android:layout_width="match_parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:spanCount="2"           android:layout_height="@dimen/_110sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:clipToPadding="false"
-                    android:orientation="horizontal">
-
-
-
-                <include
-                    layout="@layout/item_home_offers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_4sdp" />
-                    <include
-                        layout="@layout/item_home_offers"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/_4sdp" />
-                </LinearLayout>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -113,7 +89,7 @@ android:visibility="gone"
                     android:textSize="@dimen/_14sdp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/lin_offers" />
+                    app:layout_constraintTop_toBottomOf="@id/rv_offers_home" />
                 <ScrollView
                     android:id="@+id/lyt_offers"
                     android:layout_width="match_parent"
@@ -129,7 +105,7 @@ android:visibility="gone"
                         android:orientation="vertical">
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rec_offers"
+                            android:id="@+id/rec_services"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
@@ -137,13 +113,13 @@ android:visibility="gone"
                             android:orientation="vertical"
                             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                             app:spanCount="2"
-                            android:visibility="gone"
                             tools:itemCount="5"
                             tools:listitem="@layout/item_home_service" />
                         <LinearLayout
                             android:id="@+id/lin_service"
                             android:layout_width="match_parent"
                             app:layout_constraintEnd_toEndOf="parent"
+                            android:visibility="gone"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:spanCount="2"           android:layout_height="@dimen/_110sdp"

@@ -93,5 +93,12 @@
     <string name="language">اللغه</string>
     <string name="english">English</string>
     <string name="delete">حذف</string>
+    <string name="choose_service_type">اختر نوع الخدمة</string>
+    <string name="continuee" translatable="false">متابعة</string>
+    <string name="graunte_customer_service">ضمان الخدمة للعملاء</string>
+    <string name="pull_up">اسحب لاعلي</string>
+    <string name="thanks_for_order">شكرا لطلب خدمتك</string>
+    <string name="continuee_shopping">متابعه الخدمات</string>
+    <string name="provider">مزودى الخدمات</string>
 
 </resources>

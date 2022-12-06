@@ -1,4 +1,4 @@
-package com.example.profession.ui.fragments
+package com.example.profession.ui.fragments.auth
 
 
 import androidx.activity.OnBackPressedCallback

@@ -1,7 +1,6 @@
-package com.example.profession.ui.fragments
+package com.example.profession.ui.fragments.auth
 
 import android.content.Intent
-import android.text.Html
 import androidx.core.text.HtmlCompat
 import androidx.navigation.fragment.findNavController
 import com.example.profession.R

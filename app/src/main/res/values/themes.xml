@@ -12,21 +12,17 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-<!--
-    <style name="SpinnerTheme" parent="android:Widget.Spinner">
--->
+
         <style name="SpinnerTheme">
             <item name="android:background">@drawable/spinner_drop_dawn</item>
-            <!--  <item name="android:paddingLeft">0dp</item>
-                     <item name="android:dropDownWidth">533dp</item>
-                     <item name="android:showDividers">none</item>
-                     <item name="android:dividerHeight">0dp</item>
-                     <item name="android:popupBackground">@drawable/ic_dropdown</item>
-                     <item name="android:dropDownHeight">70dp</item>
-                     <item name="android:background">@drawable/ic_dropdown</item>
-                     <item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
-                     <item name="android:dropDownSelector">@android:color/white</item>-->
+
         </style>
-       <!--
-    </style>-->
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
 </resources>

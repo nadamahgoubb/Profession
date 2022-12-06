@@ -48,15 +48,7 @@ object Extension {
             .into(this)
     }
 
-    fun RecyclerView.init(
-        context: Context?,
-        adapter: RecyclerView.Adapter<*>?,
-    ) {
-        val layoutManager = LinearLayoutManager(context)
-        this.layoutManager = layoutManager
-        this.setHasFixedSize(true)
-        this.adapter = adapter
-    }
+
     fun isEmailValid(email: String?): Boolean =
         !email.isNullOrEmpty() &&
                 Patterns.EMAIL_ADDRESS.matcher(email).matches()

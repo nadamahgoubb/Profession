@@ -1,4 +1,4 @@
-package com.example.profession.ui.fragments
+package com.example.profession.ui.fragments.auth
 
 import android.content.Intent
 import androidx.navigation.fragment.findNavController
