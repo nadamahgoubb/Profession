@@ -160,5 +160,7 @@ dependencies {
      mapsKtx                 : "com.google.maps.android:maps-ktx:${mapUtilVersion}",
      mapUtilsKtx             : "com.google.maps.android:maps-utils-ktx:${mapUtilVersion}",*/
     implementation 'com.github.aabhasr1:OtpView:v1.1.2-ktx' // kotlin
+    implementation 'me.zhanghai.android.materialratingbar:library:1.4.0'
+    implementation 'com.github.aids61517:EasyRatingView:1.1.1'
 
 }

@@ -15,7 +15,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-android:paddingBottom="@dimen/_20sdp"            android:layout_height="match_parent">
+android:paddingBottom="@dimen/_20sdp"
+            android:background="@color/white"
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/lyt_header"
@@ -99,7 +101,7 @@ android:paddingBottom="@dimen/_20sdp"            android:layout_height="match_pa
                     android:layout_marginTop="@dimen/_20sdp"
                     android:background="@drawable/bg_rounded"
                     android:hint="@string/user_name"
-                    android:paddingStart="@dimen/_5sdp"
+                    android:paddingStart="@dimen/_10sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp" />
 
@@ -117,6 +119,7 @@ android:paddingBottom="@dimen/_20sdp"            android:layout_height="match_pa
                         android:layout_height="wrap_content"
                         android:gravity="start"
                         android:text="@string/password"
+                        android:foregroundGravity="right"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12ssp"
                         app:endIconDrawable="@drawable/ic_eye"

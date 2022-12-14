@@ -10,7 +10,12 @@
         <item name="fontFamily">@font/almarai_regular</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+    <!--    <item name="android:windowTranslucentStatus">true</item>
+
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:fitsSystemWindows">false</item>-->
     </style>
 
         <style name="SpinnerTheme">
@@ -24,5 +29,11 @@
     <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@android:color/transparent</item>
     </style>
+    <style name="foodRatingBar" parent="@android:style/Widget.RatingBar">
+    <item name="android:progressDrawable">@drawable/rating_bar_full</item>
+        <item name="android:minHeight">18dp</item>
+        <item name="android:numStars">5</item>
 
+        <item name="android:maxHeight">@dimen/_40sdp</item>
+    </style>
 </resources>

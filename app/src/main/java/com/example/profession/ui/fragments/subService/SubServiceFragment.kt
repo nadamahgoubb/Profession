@@ -2,12 +2,24 @@ package com.example.profession.ui.fragments.subService
 
 
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
+import com.example.profession.R
 import com.example.profession.databinding.FragmentSubServiceBinding
 import com.example.profession.ui.base.BaseFragment
-import com.example.profession.util.ExpandAnimation
+import com.example.profession.util.*
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>() {
+
+    @Inject
+    lateinit var permissionManager: PermissionManager
+
+    @Inject
+    lateinit var locationManager: WWLocationManager
     override fun onFragmentReady() {
         setupBottomCard()
         binding.ivBack.setOnClickListener {
@@ -28,6 +40,47 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>() {
             up()
 
         }
+        binding.btnDone.setOnClickListener {
+            checkLocation()
+        }
+        binding.ivBack.setOnClickListener {
+            activity?.onBackPressed()
+        }
+    }
+
+    private fun checkLocation() {
+        if (permissionManager.hasAllLocationPermissions()) {
+            checkIfLocationEnabled()
+        } else {
+            permissionsLauncher?.launch(permissionManager.getAllLocationPermissions())
+        }
+    }
+
+    private fun checkIfLocationEnabled() {
+        if (locationManager.isLocationEnabled()) {
+            openMaps()
+        } else {
+            activity?.let { locationManager.buildAlertMessageNoGps(it, locationSettingLauncher) }
+        }
+    }
+
+    private fun openMaps() {
+        findNavController().navigate(R.id.mapFragment)
+    }
+
+
+    private val permissionsLauncher = requestAppPermissions { allIsGranted, _ ->
+        if (allIsGranted) {
+            checkIfLocationEnabled()
+        } else {
+            Toast.makeText(
+                activity, getString(R.string.not_all_permissions_accepted), Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
+    private val locationSettingLauncher = openLocationSettingsResultLauncher {
+        checkIfLocationEnabled()
     }
 
     fun up() {
@@ -36,7 +89,7 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>() {
             ExpandAnimation.expand(binding.lytCustomerService)
             binding.ivUp.visibility = View.GONE
             binding.tvUp.visibility = View.GONE
-binding.ivDawn.rotation=90F
+            binding.ivDawn.rotation = 90F
         }
     }
 
@@ -46,7 +99,7 @@ binding.ivDawn.rotation=90F
             ExpandAnimation.collapse(binding.lytCustomerService)
             binding.ivUp.visibility = View.VISIBLE
             binding.tvUp.visibility = View.VISIBLE
-            binding.ivDawn.rotation=270F
+            binding.ivDawn.rotation = 270F
 
         }
     }

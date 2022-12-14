@@ -4,6 +4,7 @@ package com.example.profession.ui.fragments.home
 import androidx.navigation.fragment.findNavController
 import com.example.profession.R
 import com.example.profession.databinding.FragmentHomeBinding
+import com.example.profession.ui.activity.MainActivity
 import com.example.profession.ui.adapter.OffersHomeAdapter
 import com.example.profession.ui.adapter.ServicesHomeAdapter
 import com.example.profession.ui.base.BaseFragment
@@ -14,12 +15,14 @@ import com.example.profession.util.ext.init
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), ServiceOnClickListener {
     lateinit var adapterServices: ServicesHomeAdapter
     lateinit var adapterOffers: OffersHomeAdapter
+    private lateinit var parent: MainActivity
 
     override fun onFragmentReady() {
         initAdapters()
     }
 
     private fun initAdapters() {
+        parent = requireActivity() as MainActivity
         adapterServices = ServicesHomeAdapter(this, requireContext())
         binding.recServices.init(requireContext(), adapterServices, 3)
 
@@ -28,7 +31,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), ServiceOnClickListener
     }
 
     override fun onServiceClickListener() {
+
         findNavController().navigate(R.id.subServiceFragment)
+      //  findNavController().navigate(R.id.reviewsFragment)
     }
 
 }

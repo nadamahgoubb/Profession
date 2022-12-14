@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:background="@drawable/bg_rounded"
+        android:paddingBottom="@dimen/_10sdp">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/lyt_expand2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_alert"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     android:gravity="center"
+                    android:src="@drawable/ic_alert"
+                      app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_dawn" />
+
+                <ImageView
+                    android:id="@+id/iv_dawn"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:rotation="90"
+                    android:src="@drawable/ic_arraw"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/almarai_bold"
+                    android:gravity="center"
+                    android:minLines="2"
+
+
+                    android:singleLine="false"
+android:text="@string/sorry_youcant_order_login_first"                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_alert" />
+
+                <LinearLayout
+                    android:id="@+id/lyt_recived_money"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txt2">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_ok"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_45sdp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/gold"
+                        android:text="@string/sign"
+                        android:textAllCaps="false"
+
+                    android:layout_marginEnd="@dimen/_10sdp"    android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        android:textStyle="bold"
+                        app:cornerRadius="@dimen/_8sdp"
+                       />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_no"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_45sdp"
+                     android:layout_marginStart="@dimen/_10sdp"    android:layout_weight="1"
+                        android:backgroundTint="@color/orange_50"
+                        android:text="@string/no_thanks"
+                        android:textAllCaps="false"
+                         android:textColor="@color/gold"
+                        android:textSize="@dimen/_14sdp"
+                        android:textStyle="bold"
+                        app:cornerRadius="@dimen/_8sdp"
+                      />
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

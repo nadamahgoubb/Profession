@@ -1,31 +1,26 @@
 package com.example.profession.util
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import androidx.core.content.ContextCompat
+import com.example.profession.R
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 
 
 object MapUtil {
 
-  /*  fun addMarker(googleMap: GoogleMap, pos: LatLng, title: String? = null): Marker? {
-        val marker = googleMap.addMarker()
+    fun addMarker(googleMap: GoogleMap, pos: LatLng, title: String? = null,bitmap: BitmapDescriptor): Marker? {
+        val marker = googleMap.addMarker(MarkerOptions()
+            .position(pos)
+            .icon( bitmap)
+            .flat(true))
 
-       val markerOptions: MarkerOptions=
-
-
-           {
-            position(pos)
-            icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-            flat(true)
-            if (title != null)
-                title(title)
-        }
         return marker
-    }*/
+    }
 
     fun moveCameraAt(googleMap: GoogleMap, pos: LatLng, animate: Boolean = false) {
         val factory = CameraUpdateFactory.newLatLngZoom(pos, 16f)
@@ -42,5 +37,12 @@ object MapUtil {
         if (disable)
             googleMap.setOnMarkerClickListener { true }
     }
-
+     fun  bitmapDescriptorFromVector(context: Context, vectorResId:Int): BitmapDescriptor {
+        val vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
+        vectorDrawable!!.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
+        val bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        val canvas =  Canvas(bitmap);
+        vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
 }

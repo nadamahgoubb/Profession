@@ -50,6 +50,7 @@
                         tools:background="@color/white" />
 
                     <TextView
+                        android:id="@+id/btn_change_pass"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -253,6 +254,7 @@
                     app:cornerRadius="@dimen/_8sdp" />
 
                 <TextView
+                    android:id="@+id/btn_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

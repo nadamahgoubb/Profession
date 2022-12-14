@@ -100,5 +100,23 @@
     <string name="thanks_for_order">شكرا لطلب خدمتك</string>
     <string name="continuee_shopping">متابعه الخدمات</string>
     <string name="provider">مزودى الخدمات</string>
-
+    <string name="service_details">تفاصيل الخدمه</string>
+    <string name="order_servie">طلب الخدمة</string>
+    <string name="are_you_sure_want_to_delete_this_account">هل انت متاكد انك تريد حذف الحساب الخاص بك</string>
+    <string name="sorry_youcant_order_login_first">عفوا لا يمكنك طلب الخدمه يجب عليك تسجيل الدخول اولا</string>
+    <string name="no_thanks">لا شكرا</string>
+    <string name="write_your_comment">اكتب تعليقك هنا</string>
+    <string name="add_comment">اضافه التقييم</string>
+    <string name="orders_summry">ملخص الطلب</string>
+    <string name="expected_time">وقت الوصول المتوقع</string>
+    <string name="comment">تعليقات اضافيه</string>
+    <string name="order">تنفيذ الطلب</string>
+    <string name="empty_address">Please Enter Your Address</string>
+    <string name="location_is_off">location_is_off</string>
+    <string name="location_off_body_message">location_off_body_message</string>
+    <string name="not_all_permissions_accepted">Not All Permission Granted</string>
+    <string name="reject">رفض</string>
+    <string name="accept">قبول</string>
+    <string name="order_has_been_done">تم تقديم الخدمة</string>
+    <string name="provider_review">تقييمات مزود الخدمة</string>
 </resources>

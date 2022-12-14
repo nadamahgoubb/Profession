@@ -46,4 +46,37 @@
         android:id="@+id/subServiceFragment"
         android:name="com.example.profession.ui.fragments.subService.SubServiceFragment"
         android:label="SubServiceFragment" />
+    <fragment
+        android:id="@+id/providersFragment"
+        android:name="com.example.profession.ui.fragments.providers.ProvidersFragment"
+        android:label="ProvidersFragment" />
+    <fragment
+        android:id="@+id/providerProfileFragment"
+        android:name="com.example.profession.ui.fragments.providers.ProviderProfileFragment"
+        android:label="fragment_provider_profile"
+        tools:layout="@layout/fragment_provider_profile" />
+    <fragment
+        android:id="@+id/reviewsFragment"
+        android:name="com.example.profession.ui.fragments.reviews.ReviewsFragment"
+        android:label="ReviewsFragment" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.profession.ui.fragments.map.MapFragment"
+        android:label="MapBottomSheet" />
+    <fragment
+        android:id="@+id/chooseTimeFragment"
+        android:name="com.example.profession.ui.fragments.ChooseTimeFragment"
+        android:label="ChooseTimeFragment" />
+    <fragment
+        android:id="@+id/checkOutFragment"
+        android:name="com.example.profession.ui.fragments.checkout.CheckOutFragment"
+        android:label="CheckOutFragment" />
+    <fragment
+        android:id="@+id/orderSucessFragment"
+        android:name="com.example.profession.ui.fragments.order.OrderSucessFragment"
+        android:label="OrderSucessFragment" />
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.profession.ui.fragments.auth.ChangePasswordFragment"
+        android:label="ChangePasswordFragment" />
 </navigation>

@@ -3,6 +3,7 @@ package com.example.profession.ui.activity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -81,5 +82,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     //open drawer when drawer icon clicked and back btn presse
     override fun onSupportNavigateUp(): Boolean {
         return findNavController(R.id.nav_host_fragment).navigateUp(appBarConfiguration)
+    }
+    fun openDrawer(){
+        binding.drawerLayout.openDrawer(GravityCompat.END)
+    }
+    fun closeDrawer(){
+        binding.drawerLayout.closeDrawer(GravityCompat.END)
+
     }
 }
