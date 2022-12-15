@@ -10,11 +10,12 @@
     <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:openDrawer="start"
+        tools:openDrawer="right"
         android:id="@+id/drawerLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:layoutDirection="rtl"
             android:layout_height="match_parent">
 
 
@@ -53,7 +54,7 @@
             android:layout_height="match_parent"
             app:menu="@menu/nav_menu"
             app:headerLayout="@layout/nav_header"
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true" />
+            android:layout_gravity="right"
+            />
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

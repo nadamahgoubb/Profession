@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.profession.R
 import com.example.profession.databinding.FragmentProviderProfileBinding
 import com.example.profession.ui.activity.AuthActivity
+import com.example.profession.ui.activity.MainActivity
 import com.example.profession.ui.base.BaseFragment
 import com.example.profession.ui.dialog.LoginFirstBotomSheetFragment
 import com.example.profession.ui.dialog.OnClickLoginFirst
@@ -13,6 +14,7 @@ import com.example.profession.util.Constants
 import com.example.profession.util.ExpandAnimation
 
 class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
+    private lateinit var parent: MainActivity
     override fun onFragmentReady() {
         binding.ivBack.setOnClickListener {
             activity?.onBackPressed()
@@ -28,7 +30,18 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
         binding.btnOrder.setOnClickListener {
             showLoginFirstBotomSheetFragment()
         }
+        binding.lytRate.setOnClickListener {
+            findNavController().navigate(R.id.reviewsFragment)
+        }
+        setupUi()
     }
+
+    private fun setupUi() {
+        parent = requireActivity() as MainActivity
+        parent.showBottomNav(false)
+        parent.showSideNav(false)
+    }
+
 
     private fun showLoginFirstBotomSheetFragment() {
         LoginFirstBotomSheetFragment.newInstance(object : OnClickLoginFirst {
@@ -40,7 +53,7 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
                     activity?.finish()
                 }
                 else{
-                    findNavController().navigate(R.id.reviewsFragment)
+                    findNavController().navigate(R.id.chooseTimeFragment)
                 }
              }
 

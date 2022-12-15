@@ -26,7 +26,7 @@
         android:title="@string/notifactions"
         android:icon="@drawable/ic_noti"/>
     <item
-        android:id="@+id/rights_and_terms"
+        android:id="@+id/rightsAndTermsFragment"
         android:title="@string/rights_and_terms"
         android:icon="@drawable/ic_terms"/>
     <item

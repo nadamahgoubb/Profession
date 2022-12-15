@@ -19,10 +19,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), ServiceOnClickListener
 
     override fun onFragmentReady() {
         initAdapters()
+        setupUi()
+    }
+
+    private fun setupUi() {
+        parent = requireActivity() as MainActivity
+parent.showBottomNav(true)
+        parent.showSideNav(true)
+        binding.ivMenu.setOnClickListener {
+            parent.openDrawer()
+        }
     }
 
     private fun initAdapters() {
-        parent = requireActivity() as MainActivity
         adapterServices = ServicesHomeAdapter(this, requireContext())
         binding.recServices.init(requireContext(), adapterServices, 3)
 
@@ -33,7 +42,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), ServiceOnClickListener
     override fun onServiceClickListener() {
 
         findNavController().navigate(R.id.subServiceFragment)
-      //  findNavController().navigate(R.id.reviewsFragment)
-    }
+     }
 
 }

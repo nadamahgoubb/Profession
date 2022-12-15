@@ -6,6 +6,10 @@
     <data>
 
     </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -61,10 +65,58 @@
                         android:textColor="@color/white"
                         android:textSize="@dimen/_13sdp"
                         android:textStyle="bold"
-
                         />
                 </RelativeLayout>
+                <Toolbar
+                    android:id="@+id/toolBarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:contentInsetStart="0dp"
+                    android:contentInsetStartWithNavigation="0dp"
+                    android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+                    app:layout_collapseMode="pin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/_10sdp">
+
+
+                        <ImageView
+                            android:id="@+id/iv_back"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
+                            android:layout_gravity="start"
+                            android:contentDescription="@string/app_name"
+                            android:padding="@dimen/_2sdp"
+                            android:src="@drawable/ic_back_"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iv_menu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_2sdp"
+                            android:src="@drawable/ic_menu"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/iv_back"
+                            app:tint="@color/white" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </Toolbar>
+            <!--    <ImageView
+                    android:id="@+id/iv_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_menu"
+                    android:tint="@color/white"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"/>
 
                 <ImageView
                     android:id="@+id/iv_back"
@@ -73,7 +125,7 @@
                     android:padding="@dimen/_6sdp"
                     android:src="@drawable/ic_back_"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent" />-->
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/iv_profile"
@@ -263,12 +315,14 @@
                     android:textColor="@color/gold"
                     android:textSize="@dimen/_14sdp"
                     android:textStyle="bold"
-android:shadowColor="@color/gold"
+                    android:shadowColor="@color/gold"
                     android:textColorHint="@color/gold"
                     />
 
             </LinearLayout>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView></layout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

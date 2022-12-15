@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.profession.R
 import com.example.profession.databinding.FragmentProfileBinding
 import com.example.profession.ui.activity.AuthActivity
+import com.example.profession.ui.activity.MainActivity
 import com.example.profession.ui.base.BaseFragment
 import com.example.profession.ui.dialog.DeleteAccountSheetFragment
 import com.example.profession.ui.dialog.LoginFirstBotomSheetFragment
@@ -15,6 +16,7 @@ import com.example.profession.util.Constants
 
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
+    private lateinit var parent: MainActivity
     override fun onFragmentReady() {
         binding.btnDelete.setOnClickListener {
             showDeletBotttomSheetFragment()
@@ -26,7 +28,16 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         binding.ivBack.setOnClickListener {
             activity?.onBackPressed()
         }
-    }
+
+    setupUi()
+}
+
+private fun setupUi() {
+    parent = requireActivity() as MainActivity
+    parent.showBottomNav(true)
+    parent.showSideNav(true)
+
+}
 
     private fun showDeletBotttomSheetFragment() {
         DeleteAccountSheetFragment.newInstance(object : OnClick {

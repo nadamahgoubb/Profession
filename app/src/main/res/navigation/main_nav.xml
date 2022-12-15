@@ -79,4 +79,8 @@
         android:id="@+id/changePasswordFragment"
         android:name="com.example.profession.ui.fragments.auth.ChangePasswordFragment"
         android:label="ChangePasswordFragment" />
+    <fragment
+        android:id="@+id/rightsAndTermsFragment"
+        android:name="com.example.profession.ui.fragments.terms.RightsAndTermsFragment"
+        android:label="RightsAndTermsFragment" />
 </navigation>

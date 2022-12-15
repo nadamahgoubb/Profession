@@ -11,10 +11,10 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appBarLayout"
@@ -51,7 +51,7 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_70sdp"
+                            android:layout_height="match_parent"
                             android:layout_marginTop="@dimen/_10sdp">
 
                             <TextView
@@ -74,10 +74,20 @@
                                 android:layout_height="@dimen/_35sdp"
                                 android:layout_gravity="start"
                                 android:contentDescription="@string/app_name"
+                                android:padding="@dimen/_2sdp"
                                 android:src="@drawable/ic_back_"
-
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/iv_menu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_menu"
+                                android:layout_marginHorizontal="@dimen/_3sdp"
+                                app:layout_constraintBottom_toBottomOf="@id/iv_back"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/iv_back" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </Toolbar>
 
@@ -90,9 +100,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/_10sdp"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -100,13 +110,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="@dimen/_10sdp"
-                        android:textSize="@dimen/_12sdp"
+                        android:text="@string/terms_txt"
                         android:textColor="@color/grey_800"
-                        android:text="@string/terms_txt" />
+                        android:textSize="@dimen/_12sdp" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

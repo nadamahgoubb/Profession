@@ -9,10 +9,14 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.profession.R
 import com.example.profession.databinding.FragmentOrderBinding
+import com.example.profession.ui.activity.MainActivity
 import com.example.profession.ui.base.BaseFragment
 
 class OrderFragment : BaseFragment<FragmentOrderBinding>() {
+    private lateinit var parent: MainActivity
     override fun onFragmentReady() {
+
+        setupUi()
         binding.item1.tvStatusCompelted.isVisible = true
         binding.item2.tvStatusInProgress.isVisible = true
         binding.item3.tvStatusInProgress.isVisible = true
@@ -41,5 +45,13 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>() {
             findNavController().navigate(R.id.contactUsFragment)
         }
     }
+    private fun setupUi() {
+        parent = requireActivity() as MainActivity
+        parent.showBottomNav(true)
+        parent.showSideNav(true)
+        binding.ivMenu.setOnClickListener {
+            parent.openDrawer()
+        }
 
+    }
 }

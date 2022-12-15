@@ -7,8 +7,10 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.profession.R
 import com.example.profession.databinding.FragmentSubServiceBinding
+import com.example.profession.ui.activity.MainActivity
 import com.example.profession.ui.base.BaseFragment
 import com.example.profession.util.*
+import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -17,15 +19,44 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>() {
 
     @Inject
     lateinit var permissionManager: PermissionManager
+    private lateinit var parent: MainActivity
 
     @Inject
     lateinit var locationManager: WWLocationManager
     override fun onFragmentReady() {
         setupBottomCard()
+        setupUi()
         binding.ivBack.setOnClickListener {
             activity?.onBackPressed()
         }
     }
+        private fun setupUi() {
+                parent = requireActivity() as MainActivity
+                parent.showBottomNav(false)
+                parent.showSideNav(false)
+
+            binding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+                if (Math.abs(verticalOffset) ==   binding.appBarLayout.getTotalScrollRange()) {
+                    // If collapsed, then do this
+                    binding.ivProfile.setVisibility(View.GONE);
+                    //         imageViewSmallLogo.setVisibility(View.VISIBLE);
+                } else if (verticalOffset == 0) {
+                    // If expanded, then do this
+                    binding.ivProfile.setVisibility(View.VISIBLE);
+                 } else {
+                    // Somewhere in between
+                    // Do according to your requirement
+                }
+
+                   })
+
+             /*   binding.appBarLayout.addOnOffsetChangedListener(  AppBarLayout.OnOffsetChangedListener() {
+
+
+                })*/
+         //   }););*/
+        }
+
 
     private fun setupBottomCard() {
         binding.ivUp.setOnClickListener {

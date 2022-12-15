@@ -78,6 +78,17 @@
 
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
+                            <ImageView
+                                android:id="@+id/iv_menu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_2sdp"
+                                android:src="@drawable/ic_menu"
+                                app:layout_constraintBottom_toBottomOf="@id/iv_back"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/iv_back"
+                        />
+
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </Toolbar>
 

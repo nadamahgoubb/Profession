@@ -75,7 +75,7 @@
                                 android:layout_gravity="start"
                                 android:contentDescription="@string/app_name"
                                 android:src="@drawable/ic_back_"
-
+android:padding="@dimen/_2sdp"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
