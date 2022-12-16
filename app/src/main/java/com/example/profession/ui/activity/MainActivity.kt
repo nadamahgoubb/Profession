@@ -2,8 +2,10 @@ package com.example.profession.ui.activity
 
 import android.os.Bundle
 import android.view.Gravity
+import android.view.Gravity.LEFT
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -64,12 +66,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     fun openDrawer() {
         //    if(!binding.drawerLayout.isVisible)
         //    binding.drawerLayout.openDrawer(GravityCompat.END)
-        binding.drawerLayout.openDrawer(Gravity.RIGHT);
+        binding.drawerLayout.openDrawer(Gravity.LEFT);
 
     }
 
     fun closeDrawer() {
-             binding.drawerLayout.closeDrawer(Gravity.RIGHT)
+             binding.drawerLayout.closeDrawer(Gravity.LEFT)
     }
 
     fun showBottomNav(isVisible: Boolean) {

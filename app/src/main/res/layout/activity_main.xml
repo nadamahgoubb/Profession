@@ -10,10 +10,12 @@
     <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:openDrawer="right"
+        android:layoutDirection="ltr"
+        android:fitsSystemWindows="true"
+    tools:openDrawer="left"
         android:id="@+id/drawerLayout">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+      <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layoutDirection="rtl"
             android:layout_height="match_parent">
@@ -37,7 +39,7 @@
                 android:id="@+id/nav_view_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+                 android:layout_alignParentBottom="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,9 +54,10 @@
             android:id="@+id/navView_side_nav"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layoutDirection="ltr"
             app:menu="@menu/nav_menu"
             app:headerLayout="@layout/nav_header"
-            android:layout_gravity="right"
+            android:layout_gravity="left"
             />
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

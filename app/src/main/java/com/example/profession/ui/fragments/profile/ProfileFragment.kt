@@ -28,7 +28,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         binding.ivBack.setOnClickListener {
             activity?.onBackPressed()
         }
-
+        binding.ivMenu.setOnClickListener {
+            parent.openDrawer()
+        }
     setupUi()
 }
 
