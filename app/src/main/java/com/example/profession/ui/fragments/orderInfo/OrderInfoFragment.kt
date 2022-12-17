@@ -33,9 +33,7 @@ class OrderInfoFragment : BaseFragment<FragmentOrderInfoBinding>() {
         parent = requireActivity() as MainActivity
         parent.showBottomNav(false)
         parent.showSideNav(false)
-        binding.ivMenu.setOnClickListener {
-            parent.openDrawer()
-        }
+
 
     }
 }

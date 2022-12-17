@@ -44,14 +44,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="?actionBarSize"
                         android:contentInsetStart="0dp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
                         android:contentInsetStartWithNavigation="0dp"
                         android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
                         app:layout_collapseMode="pin">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_70sdp"
-                            android:layout_marginTop="@dimen/_10sdp">
+                            android:paddingHorizontal="@dimen/_8sdp"             android:layout_height="match_parent"
+                            >
 
                             <TextView
                                 android:layout_width="wrap_content"

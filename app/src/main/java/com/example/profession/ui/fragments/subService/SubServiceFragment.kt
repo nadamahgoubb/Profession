@@ -39,9 +39,9 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>() {
                 if (Math.abs(verticalOffset) ==   binding.appBarLayout.getTotalScrollRange()) {
                     // If collapsed, then do this
                     binding.ivProfile.setVisibility(View.GONE);
-                    //         imageViewSmallLogo.setVisibility(View.VISIBLE);
-                } else if (verticalOffset == 0) {
-                    // If expanded, then do this
+               binding.lytImg.setVisibility(View.GONE);
+                 } else if (verticalOffset == 0) {
+                 binding.lytImg.setVisibility(View.VISIBLE);
                     binding.ivProfile.setVisibility(View.VISIBLE);
                  } else {
                     // Somewhere in between
@@ -50,11 +50,6 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>() {
 
                    })
 
-             /*   binding.appBarLayout.addOnOffsetChangedListener(  AppBarLayout.OnOffsetChangedListener() {
-
-
-                })*/
-         //   }););*/
         }
 
 

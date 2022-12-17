@@ -1,6 +1,7 @@
 package com.example.profession.ui.fragments.providers
 
 import android.content.Intent
+import android.view.View
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.profession.R
@@ -12,6 +13,7 @@ import com.example.profession.ui.dialog.LoginFirstBotomSheetFragment
 import com.example.profession.ui.dialog.OnClickLoginFirst
 import com.example.profession.util.Constants
 import com.example.profession.util.ExpandAnimation
+import com.google.android.material.appbar.AppBarLayout
 
 class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
     private lateinit var parent: MainActivity
@@ -40,7 +42,22 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
         parent = requireActivity() as MainActivity
         parent.showBottomNav(false)
         parent.showSideNav(false)
-    }
+        binding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            if (Math.abs(verticalOffset) ==   binding.appBarLayout.getTotalScrollRange()) {
+                // If collapsed, then do this
+                binding.lytImg.setVisibility(View.GONE);
+                binding.ivProfile.setVisibility(View.GONE);
+                binding.ivCall.setVisibility(View.GONE);
+            } else if (verticalOffset == 0) {
+                binding.lytImg.setVisibility(View.VISIBLE);
+                binding.ivProfile.setVisibility(View.VISIBLE);
+                binding.ivCall.setVisibility(View.VISIBLE);
+            } else {
+                // Somewhere in between
+                // Do according to your requirement
+            }
+
+        })  }
 
 
     private fun showLoginFirstBotomSheetFragment() {

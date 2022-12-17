@@ -11,10 +11,10 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appBarLayout"
@@ -46,13 +46,14 @@
                         android:layout_height="?actionBarSize"
                         android:contentInsetStart="0dp"
                         android:contentInsetStartWithNavigation="0dp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp"
                         android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
                         app:layout_collapseMode="pin">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_70sdp"
-                            android:layout_marginTop="@dimen/_10sdp">
+                            android:paddingHorizontal="@dimen/_8sdp"           android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -74,8 +75,9 @@
                                 android:layout_height="@dimen/_35sdp"
                                 android:layout_gravity="start"
                                 android:contentDescription="@string/app_name"
+                                android:padding="@dimen/_2sdp"
                                 android:src="@drawable/ic_back_"
-android:padding="@dimen/_2sdp"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -90,9 +92,9 @@ android:padding="@dimen/_2sdp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/grey_50"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -106,9 +108,9 @@ android:padding="@dimen/_2sdp"
                         android:id="@+id/rv_offers_home"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:visibility="gone"
                         android:clipToPadding="false"
                         android:orientation="vertical"
+                        android:visibility="gone"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -124,8 +126,7 @@ android:padding="@dimen/_2sdp"
                         android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        >
+                        app:layout_constraintTop_toTopOf="parent">
 
 
                         <include
@@ -141,18 +142,21 @@ android:padding="@dimen/_2sdp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp" />
+
                         <include
                             android:id="@+id/item3"
                             layout="@layout/item_provider"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp" />
+
                         <include
                             android:id="@+id/item4"
                             layout="@layout/item_provider"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp" />
+
                         <include
                             android:id="@+id/item5"
                             layout="@layout/item_provider"

@@ -9,15 +9,14 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layoutDirection="rtl"
         android:layout_height="match_parent"
         android:fitsSystemWindows="false"
-        tools:context=".MainActivity">
+        android:layoutDirection="rtl">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_200sdp"
+            android:layout_height="@dimen/_150sdp"
             android:fitsSystemWindows="false"
             android:theme="@style/ThemeOverlay.MaterialComponents.Dark">
 
@@ -31,65 +30,58 @@
                 app:expandedTitleMarginStart="15dp"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-           <!--    <androidx.constraintlayout.widget.ConstraintLayout
+                <Toolbar
+                    android:id="@+id/toolBarLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/header_black_profile"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
--->
+                    android:layout_height="?actionBarSize"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:contentInsetStart="0dp"
+                    android:contentInsetStartWithNavigation="0dp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+                    app:layout_collapseMode="pin"
+                    app:layout_scrollFlags="scroll">
 
-                    <Toolbar
-                        android:id="@+id/toolBarLayout"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="?actionBarSize"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:contentInsetStart="0dp"
-                        android:contentInsetStartWithNavigation="0dp"
-                        android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
-                        app:layout_collapseMode="pin"
-                        app:layout_scrollFlags="scroll|enterAlways"
-                        app:layout_constraintTop_toTopOf="parent">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-    <ImageView
-        android:id="@+id/iv_menu"
-        android:layout_width="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:src="@drawable/ic_menu"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="@dimen/_8sdp">
 
-        app:tint="@color/white" />
-    <ImageView
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_gravity="center_horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_centerInParent="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/logo_home" />
+                        <ImageView
+                            android:id="@+id/iv_menu"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:padding="@dimen/_6sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:src="@drawable/ic_menu"
+                            app:tint="@color/white" />
 
-</RelativeLayout>
-                      <!--  <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/header_black_profile"
+                        <ImageView
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/logo_home"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
--->
+                            app:layout_constraintTop_toTopOf="parent" />
 
+                    </RelativeLayout>
 
-<!--
-                        </androidx.constraintlayout.widget.ConstraintLayout>
--->
-                    </Toolbar>
+                </Toolbar>
+
+                <RelativeLayout
+                    android:id="@+id/lyt_header_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="?attr/actionBarSize"
+                    android:fitsSystemWindows="true"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:layout_collapseMode="parallax"
+                    app:layout_scrollFlags="exitUntilCollapsed">
 
                     <TextView
                         android:id="@+id/tv1"
@@ -98,54 +90,55 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_30sdp"
                         android:layout_marginTop="@dimen/_20sdp"
-
                         android:text="مرحبا "
                         android:textColor="@color/white"
                         android:textSize="@dimen/_16sdp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/toolBarLayout" />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/tv1"
                         android:layout_marginStart="@dimen/_2sdp"
+                        android:layout_toEndOf="@+id/tv1"
                         android:text="محمد "
                         android:textColor="@color/gold"
                         android:textSize="@dimen/_16sdp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toEndOf="@id/tv1"
-                        app:layout_constraintTop_toTopOf="@id/tv1" />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/tv_name"
+
                         android:layout_marginStart="@dimen/_2sdp"
+                        android:layout_toEndOf="@+id/tv_name"
                         android:text="!"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_16sdp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toEndOf="@id/tv_name"
-                        app:layout_constraintTop_toTopOf="@id/tv1" />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/tv1"
+                        android:layout_alignStart="@+id/tv1"
                         android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_12sdp"
+
+                        android:layout_marginTop="@dimen/_6sdp"
                         android:text="ماذا تريد من خدمات اليوم  "
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_16sdp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@id/tv1"
-                        app:layout_constraintTop_toBottomOf="@id/tv1" />
+                        android:textSize="@dimen/_14sdp"
+                        android:textStyle="bold" />
 
-<!--
-                </androidx.constraintlayout.widget.ConstraintLayout>
--->
+                </RelativeLayout>
+
+                <!--
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                -->
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>

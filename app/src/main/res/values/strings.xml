@@ -119,4 +119,7 @@
     <string name="accept">قبول</string>
     <string name="order_has_been_done">تم تقديم الخدمة</string>
     <string name="provider_review">تقييمات مزود الخدمة</string>
+    <string name="change_pass">تغيير كلمه المرور</string>
+
+
 </resources>

@@ -13,6 +13,9 @@ class CheckOutFragment : BaseFragment<FragmentCheckOutBinding>() {
         binding.btnDone.setOnClickListener {
             findNavController().navigate(R.id.orderSucessFragment)
         }
+        binding.ivBack.setOnClickListener {
+            activity?.onBackPressed()
+        }
         setupUi()
     }
 

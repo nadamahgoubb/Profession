@@ -17,7 +17,8 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_120sdp"
+            android:background="@drawable/header_black_profile"
             android:fitsSystemWindows="true"
             android:theme="@style/ThemeOverlay.MaterialComponents.Dark">
 
@@ -28,13 +29,46 @@
                 android:fitsSystemWindows="true"
                 app:expandedTitleMarginBottom="25dp"
                 app:expandedTitleMarginStart="15dp"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/lyt_header"
-                    android:background="@drawable/header_black_profile"
+                <Toolbar
+                    android:id="@+id/toolBarLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_150sdp"
+                    android:layout_height="?actionBarSize"
+                    android:contentInsetStart="0dp"
+                    android:contentInsetStartWithNavigation="0dp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:popupTheme="@style/ThemeOverlay.MaterialComponents.Dark"
+                    app:layout_collapseMode="pin">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="@dimen/_8sdp">
+
+                        <ImageView
+                            android:id="@+id/iv_back"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                             android:padding="@dimen/_2sdp"
+
+                            android:src="@drawable/ic_back_"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </RelativeLayout>
+
+
+                </Toolbar>
+
+                <RelativeLayout
+                    android:id="@+id/lyt_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="?attr/actionBarSize"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -46,37 +80,15 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_12sdp"
                         android:padding="@dimen/_10sdp"
                         android:text="طلب ناجح"
-                        app:layout_constraintTop_toBottomOf="@id/iv_back"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginTop="@dimen/_12sdp"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_15sdp"
                         android:textStyle="bold" />
 
 
-                    <ImageView
-                        android:id="@+id/iv_back"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:padding="@dimen/_6sdp"
-                        android:src="@drawable/ic_back_"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <Toolbar
-                    android:id="@+id/toolBarLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="?actionBarSize"
-                    android:contentInsetStart="0dp"
-                    android:contentInsetStartWithNavigation="0dp"
-                    android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
-                    app:layout_collapseMode="pin" />
+                </RelativeLayout>
 
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
