@@ -2,7 +2,7 @@ package com.example.profession.ui.fragments.walkThrough
 
 import com.example.profession.R
 import com.example.profession.databinding.ItemWalkthrougthBinding
-import com.example.profession.ui.base.BaseFragment
+import com.example.profession.base.BaseFragment
 import com.example.profession.util.ext.loadImage
 
 

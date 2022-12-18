@@ -45,8 +45,10 @@
             app:layout_constraintEnd_toStartOf="@id/btn_next"
 app:layout_constraintTop_toTopOf="@id/btn_next"
             app:tabBackground="@drawable/tab_selector"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+
             app:tabMaxWidth="0dp"
-            app:tabGravity="center"
             app:tabIndicatorFullWidth="true"
 
             app:tabIndicatorHeight="0dp"

@@ -7,7 +7,7 @@ import com.example.profession.R
 import com.example.profession.data.PrefsHelper
 import com.example.profession.databinding.FragmentSplashBinding
 import com.example.profession.ui.activity.MainActivity
-import com.example.profession.ui.base.BaseFragment
+import com.example.profession.base.BaseFragment
 import com.example.profession.util.ext.showActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay

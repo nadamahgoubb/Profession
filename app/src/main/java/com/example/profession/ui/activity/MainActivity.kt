@@ -12,7 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
 import com.example.profession.databinding.ActivityMainBinding
-import com.example.profession.ui.base.BaseActivity
+import com.example.profession.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.nav_header.view.*
 import com.example.profession.R

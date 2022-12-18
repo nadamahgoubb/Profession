@@ -6,7 +6,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.profession.R
 import com.example.profession.databinding.FragmentForgetPasswordBinding
-import com.example.profession.ui.base.BaseFragment
+import com.example.profession.base.BaseFragment
 
 class ForgetPasswordFragment : BaseFragment<FragmentForgetPasswordBinding>() {
    var state= 1

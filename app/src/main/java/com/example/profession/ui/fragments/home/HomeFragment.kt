@@ -8,7 +8,7 @@ import com.example.profession.databinding.FragmentHomeBinding
 import com.example.profession.ui.activity.MainActivity
 import com.example.profession.ui.adapter.OffersHomeAdapter
 import com.example.profession.ui.adapter.ServicesHomeAdapter
-import com.example.profession.ui.base.BaseFragment
+import com.example.profession.base.BaseFragment
 import com.example.profession.ui.listener.ServiceOnClickListener
 import com.example.profession.util.ext.init
 import com.google.android.material.appbar.AppBarLayout

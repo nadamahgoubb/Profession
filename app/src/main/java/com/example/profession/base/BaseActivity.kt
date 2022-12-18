@@ -1,4 +1,4 @@
-package com.example.profession.ui.base
+package com.example.profession.base
 
 import android.content.Context
 import android.content.ContextWrapper

@@ -7,7 +7,7 @@ import com.example.profession.R
 import com.example.profession.databinding.FragmentChooseTimeBinding
 import com.example.profession.ui.activity.MainActivity
 import com.example.profession.ui.adapter.ChooseTimeAdapter
-import com.example.profession.ui.base.BaseFragment
+import com.example.profession.base.BaseFragment
 import com.example.profession.ui.listener.ChooseTimeOnClickListener
 import com.example.profession.util.ext.init
 import com.google.android.material.appbar.AppBarLayout

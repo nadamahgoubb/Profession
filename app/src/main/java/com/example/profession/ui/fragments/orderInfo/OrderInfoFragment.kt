@@ -4,7 +4,7 @@ package com.example.profession.ui.fragments.orderInfo
 import androidx.core.view.isVisible
  import com.example.profession.databinding.FragmentOrderInfoBinding
 import com.example.profession.ui.activity.MainActivity
-import com.example.profession.ui.base.BaseFragment
+import com.example.profession.base.BaseFragment
  import com.example.profession.util.ExpandAnimation.collapse
 
 class OrderInfoFragment : BaseFragment<FragmentOrderInfoBinding>() {

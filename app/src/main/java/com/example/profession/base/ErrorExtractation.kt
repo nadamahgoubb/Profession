@@ -1,4 +1,4 @@
-package com.example.profession.ui.base
+package com.example.profession.base
 
 import okhttp3.ResponseBody
 import retrofit2.Converter

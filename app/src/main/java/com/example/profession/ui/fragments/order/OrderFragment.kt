@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.profession.R
 import com.example.profession.databinding.FragmentOrderBinding
 import com.example.profession.ui.activity.MainActivity
-import com.example.profession.ui.base.BaseFragment
+import com.example.profession.base.BaseFragment
 
 class OrderFragment : BaseFragment<FragmentOrderBinding>() {
     private lateinit var parent: MainActivity

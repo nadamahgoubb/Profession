@@ -8,7 +8,7 @@ import com.example.profession.R
 import com.example.profession.databinding.FragmentProviderProfileBinding
 import com.example.profession.ui.activity.AuthActivity
 import com.example.profession.ui.activity.MainActivity
-import com.example.profession.ui.base.BaseFragment
+import com.example.profession.base.BaseFragment
 import com.example.profession.ui.dialog.LoginFirstBotomSheetFragment
 import com.example.profession.ui.dialog.OnClickLoginFirst
 import com.example.profession.util.Constants

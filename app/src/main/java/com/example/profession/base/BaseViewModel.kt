@@ -1,4 +1,4 @@
-package com.example.profession.ui.base
+package com.example.profession.base
 import android.app.Application
 import androidx.annotation.StringRes
 import androidx.lifecycle.AndroidViewModel

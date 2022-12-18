@@ -2,10 +2,10 @@ package com.example.profession.di
 
 
 
+import com.example.profession.base.NetworkResponseAdapterFactory
 import com.example.profession.data.dataSource.remote.ApiBase
 import com.example.profession.data.dataSource.remote.ApiInterface
-import com.example.profession.ui.base.NetworkResponseAdapterFactory
-import com.google.gson.GsonBuilder
+ import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,4 +1,4 @@
-package com.example.profession.ui.base
+package com.example.profession.base
 
 
 import kotlinx.coroutines.CompletableDeferred

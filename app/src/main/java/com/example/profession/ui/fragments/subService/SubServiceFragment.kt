@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.profession.R
 import com.example.profession.databinding.FragmentSubServiceBinding
 import com.example.profession.ui.activity.MainActivity
-import com.example.profession.ui.base.BaseFragment
+import com.example.profession.base.BaseFragment
 import com.example.profession.util.*
 import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint

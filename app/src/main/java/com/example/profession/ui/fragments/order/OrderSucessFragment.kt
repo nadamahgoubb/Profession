@@ -7,7 +7,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.profession.R
 import com.example.profession.databinding.FragmentOrderSucessBinding
 import com.example.profession.ui.activity.MainActivity
-import com.example.profession.ui.base.BaseFragment
+import com.example.profession.base.BaseFragment
 import com.example.profession.util.ext.showActivity
 import com.google.android.material.appbar.AppBarLayout
 

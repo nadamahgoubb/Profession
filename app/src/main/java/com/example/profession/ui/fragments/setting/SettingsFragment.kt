@@ -3,7 +3,7 @@ package com.example.profession.ui.fragments.setting
 
 import com.example.profession.databinding.FragmentSettingsBinding
 import com.example.profession.ui.activity.MainActivity
-import com.example.profession.ui.base.BaseFragment
+import com.example.profession.base.BaseFragment
 
 class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
     private lateinit var parent: MainActivity

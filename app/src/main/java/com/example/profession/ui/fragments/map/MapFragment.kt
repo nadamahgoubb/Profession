@@ -10,7 +10,7 @@ import androidx.core.app.ActivityCompat
 import androidx.navigation.fragment.findNavController
 import com.example.profession.R
 import com.example.profession.databinding.FragmentMapBinding
-import com.example.profession.ui.base.BaseFragment
+import com.example.profession.base.BaseFragment
 import com.example.profession.util.ExpandAnimation.collapse
 import com.example.profession.util.ExpandAnimation.expand
 import com.example.profession.util.MapUtil

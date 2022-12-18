@@ -6,7 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.profession.R
 import com.example.profession.databinding.FragmentReviewsBinding
 import com.example.profession.ui.activity.MainActivity
-import com.example.profession.ui.base.BaseFragment
+import com.example.profession.base.BaseFragment
 
 
 class ReviewsFragment : BaseFragment<FragmentReviewsBinding>() {

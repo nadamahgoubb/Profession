@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.profession.R
 import com.example.profession.databinding.FragmentCustomerServiceBinding
 import com.example.profession.ui.activity.MainActivity
-import com.example.profession.ui.base.BaseFragment
+import com.example.profession.base.BaseFragment
 import org.jsoup.Connection.Base
 
 class CustomerServiceFragment : BaseFragment<FragmentCustomerServiceBinding>() {

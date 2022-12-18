@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import com.example.profession.R
 import com.example.profession.databinding.ActivityAuthBinding
-import com.example.profession.ui.base.BaseActivity
+import com.example.profession.base.BaseActivity
 import com.example.profession.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
