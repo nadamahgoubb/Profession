@@ -137,6 +137,7 @@ android:paddingBottom="@dimen/_20sdp"
                             android:autofillHints="password"
                             android:background="@drawable/bg_rounded"
                             android:gravity="start"
+                            android:textAlignment="viewStart"
                             android:hint="@string/password"
                             android:inputType="textPassword" />
                     </com.google.android.material.textfield.TextInputLayout>

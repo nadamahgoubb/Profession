@@ -22,13 +22,13 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
             activity?.onBackPressed()
         }
     binding.ivDawn.setOnClickListener {
-        ExpandAnimation.expand(binding.cardUp)
-        ExpandAnimation.collapse(binding.cardDawn)
+       // ExpandAnimation.expand(binding.cardUp)
+      //  ExpandAnimation.collapse(binding.cardDawn)
     }
-        binding.ivUp.setOnClickListener {
+       /* binding.ivUp.setOnClickListener {
             ExpandAnimation.expand(binding.cardDawn)
             ExpandAnimation.collapse(binding.cardUp)
-        }
+        }*/
         binding.btnOrder.setOnClickListener {
             showLoginFirstBotomSheetFragment()
         }

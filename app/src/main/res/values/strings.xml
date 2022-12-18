@@ -13,7 +13,7 @@
     <string name="you_can_have_aprovider">يمكنك الحصول على مقدم الخدمة \n   الأنسب لك بكل سهوله</string>
     <string name="alot_of_workers_are_available">العديد من مقدمى الخدمات بخبرات عالية \n   الان بين يديك</string>
     <string name="start">ابدأ</string>
-    <string name="password">كلمه مرور</string>
+    <string name="password">كلمه المرور</string>
     <string name="don_t_have_account"> ليس لديك حساب؟</string>
     <string name="_have_account"> لديك حساب؟</string>
     <string name="signin">تسجيل الدخول</string>
@@ -54,6 +54,8 @@
     <string name="if_you_cant_have_acode">اذا لم يمكنك الحصول على الرمز</string>
     <string name="resend">اعاده الارسال</string>
     <string name="new_password">كلمه المرور الجديدة</string>
+    <string name="new_password_">كلمه  مرور جديدة</string>
+
     <string name="profile">الملف الشخصي</string>
     <string name="contact_us">اتصل بنا</string>
     <string name="orders">الطلبات</string>
@@ -120,6 +122,10 @@
     <string name="order_has_been_done">تم تقديم الخدمة</string>
     <string name="provider_review">تقييمات مزود الخدمة</string>
     <string name="change_pass">تغيير كلمه المرور</string>
+    <string name="enter_pin_code">ادخل رمز التاكيد</string>
+    <string name="pincode_has_been_ent_to_your_phone">لقد تم ارسال رمز التعريف الى هاتفك</string>
+    <string name="please_enter_your_pass">من قضلك قم بادخال كلمه المرور</string>
+    <string name="tax_not_included">ضريبه القيمه المضافه غير مشموله</string>
 
 
 </resources>

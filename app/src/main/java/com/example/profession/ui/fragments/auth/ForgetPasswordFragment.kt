@@ -48,17 +48,25 @@ class ForgetPasswordFragment : BaseFragment<FragmentForgetPasswordBinding>() {
     state= 2
       binding.lytFirst.isVisible=false
         binding.lytOtp.isVisible = true
+        binding.tv1.text=resources.getString(R.string.enter_pin_code)
+        binding.tv2.text=resources.getString(R.string.pincode_has_been_ent_to_your_phone)
     }
 
     private fun state1() {
       state=1
         binding.lytFirst.isVisible=true
         binding.lytOtp.isVisible = false
-    binding.lytPass.isVisible=false}
+    binding.lytPass.isVisible=false
+        binding.tv1.text=resources.getString(R.string.change_password)
+        binding.tv2.text=resources.getString(R.string.enter_your_email)
+    }
 
     private fun state3() {
     state=3
         binding.lytFirst.isVisible=false
         binding.lytOtp.isVisible = false
-        binding.lytChangePass.isVisible=true    }
+        binding.lytChangePass.isVisible=true
+
+        binding.tv1.text=resources.getString(R.string.new_password_)
+        binding.tv2.text=resources.getString(R.string.please_enter_your_pass)}
 }

@@ -69,7 +69,7 @@
                 <RelativeLayout
 
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_180sdp"
+                    android:layout_height="@dimen/_160sdp"
                     android:layout_marginTop="?actionBarSize"
                     android:fitsSystemWindows="true"
                     android:paddingBottom="@dimen/_50sdp"
@@ -82,7 +82,7 @@
 
                         android:id="@+id/lyt_img"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_180sdp"
+                        android:layout_height="@dimen/_160sdp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/header_black_profile"
                         app:layout_constraintStart_toStartOf="parent"
@@ -124,174 +124,173 @@
             android:background="@color/white"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-            <LinearLayout
-                android:id="@+id/lyt_login"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lyt_header">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:text="@string/choose_service_type"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14sdp"
-                    android:textStyle="bold"
-
-                    />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rec_services"
+                <LinearLayout
+                    android:id="@+id/lyt_data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clipToPadding="false"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
                     android:orientation="vertical"
-                    android:visibility="gone"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:itemCount="5"
-                    tools:listitem="@layout/item_sub_service" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <include layout="@layout/item_sub_service" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:text="@string/choose_service_type"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        android:textStyle="bold"
 
-                <include layout="@layout/item_sub_service" />
+                        />
 
-                <include layout="@layout/item_sub_service" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rec_services"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="5"
+                        tools:listitem="@layout/item_sub_service" />
 
-                <include layout="@layout/item_sub_service" />
+                    <include layout="@layout/item_sub_service" />
 
-                <include layout="@layout/item_sub_service" />
+                    <include layout="@layout/item_sub_service" />
 
-                <include layout="@layout/item_sub_service" />
+                    <include layout="@layout/item_sub_service" />
 
-                <include layout="@layout/item_sub_service" />
+                    <include layout="@layout/item_sub_service" />
 
+                    <include layout="@layout/item_sub_service" />
 
+                    <include layout="@layout/item_sub_service" />
 
-                <androidx.cardview.widget.CardView
+                    <include layout="@layout/item_sub_service" />
+
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/card_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:strokeWidth="3dp"
-                    android:layout_marginHorizontal="@dimen/_3sdp"
-                      android:layout_marginTop="@dimen/_40sdp"
+                    android:layout_below="@id/lyt_data"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="@dimen/_40sdp"
                     android:background="@drawable/bg_rounded_top"
+                    app:cardUseCompatPadding="true"
 
                     >
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+
+                    <ImageView
+                        android:id="@+id/iv_dawn"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:rotation="270"
+                        android:src="@drawable/ic_arraw"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/graunte_customer_service"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/iv_dawn"
+
+                        />
+
+                    <ImageView
+                        android:id="@+id/iv_up"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_gravity="center_horizontal"
+                        android:padding="@dimen/_12sdp"
+                        android:rotation="270"
+                        android:src="@drawable/ic_up"
+                        app:layout_constraintStart_toStartOf="@id/tv2"
+                        app:layout_constraintTop_toBottomOf="@id/tv2"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_up"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/pull_up"
+                        android:textColor="@color/grey_400"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_up"
+                        app:layout_constraintStart_toEndOf="@id/iv_up"
+                        app:layout_constraintTop_toTopOf="@id/iv_up"
+
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/lyt_customer_service"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:orientation="vertical"
-                        android:padding="@dimen/_4sdp"
-                        tools:ignore="UseCompoundDrawables">
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/iv_up">
+
+                        <include
+                            android:id="@+id/item1"
+                            layout="@layout/item_subservice_customer_service" />
+
+                        <include
+                            android:id="@+id/item2"
+                            layout="@layout/item_subservice_customer_service" />
+
+                        <include
+                            android:id="@+id/item3"
+                            layout="@layout/item_subservice_customer_service" />
+
+                        <include layout="@layout/item_subservice_customer_service" />
 
 
-                        <ImageView
-                            android:id="@+id/iv_dawn"
-                            android:layout_width="@dimen/_35sdp"
-                            android:layout_height="@dimen/_35sdp"
-                            android:paddingHorizontal="@dimen/_10sdp"
-                            android:rotation="270"
-                            android:src="@drawable/ic_arraw"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    </LinearLayout>
 
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_done"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_45sdp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:backgroundTint="@color/gold"
+                        android:text="@string/continuee"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold"
+                        app:cornerRadius="@dimen/_8sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/lyt_customer_service" />
 
-                        <TextView
-                            android:id="@+id/tv2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/graunte_customer_service"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_11sdp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/iv_dawn"
-
-                            />
-
-                        <ImageView
-                            android:id="@+id/iv_up"
-                            android:layout_width="@dimen/_35sdp"
-                            android:layout_height="@dimen/_35sdp"
-                            android:layout_gravity="center_horizontal"
-                            android:padding="@dimen/_12sdp"
-                            android:rotation="270"
-                            android:src="@drawable/ic_up"
-                            app:layout_constraintStart_toStartOf="@id/tv2"
-                            app:layout_constraintTop_toBottomOf="@id/tv2"
-
-                            />
-
-                        <TextView
-                            android:id="@+id/tv_up"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text="@string/pull_up"
-                            android:textColor="@color/grey_400"
-                            android:textSize="@dimen/_11sdp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@id/iv_up"
-                            app:layout_constraintStart_toEndOf="@id/iv_up"
-                            app:layout_constraintTop_toTopOf="@id/iv_up"
-
-                            />
-
-                        <LinearLayout
-                            android:id="@+id/lyt_customer_service"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical"
-                            android:visibility="gone"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/iv_up">
-
-                            <include
-                                android:id="@+id/item1"
-                                layout="@layout/item_subservice_customer_service" />
-
-                            <include
-                                android:id="@+id/item2"
-                                layout="@layout/item_subservice_customer_service" />
-
-                            <include
-                                android:id="@+id/item3"
-                                layout="@layout/item_subservice_customer_service" />
-
-                            <include layout="@layout/item_subservice_customer_service" />
-
-
-                        </LinearLayout>
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btn_done"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_45sdp"
-                            android:layout_marginHorizontal="@dimen/_10sdp"
-                            android:backgroundTint="@color/gold"
-                            android:text="@string/continuee"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_13sdp"
-                            android:textStyle="bold"
-                            app:cornerRadius="@dimen/_8sdp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/lyt_customer_service" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </RelativeLayout>
 
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

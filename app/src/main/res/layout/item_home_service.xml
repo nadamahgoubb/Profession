@@ -7,45 +7,46 @@
     </data>
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_columnWeight="1"
+         android:layout_width="match_parent"
+        android:layout_height="@dimen/_140sdp"
+        android:layout_margin="@dimen/_1sdp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+
+        <ImageView
+
+            android:id="@+id/iv_service"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_140sdp"
-            >
+            android:layout_height="match_parent"
 
+            android:src="@drawable/gr2"
+           app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginHorizontal="@dimen/_40sdp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:paddingStart="@dimen/_40sdp"
 
-android:id="@+id/iv_service"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:src="@drawable/gr2" />
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <RelativeLayout
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_40sdp"
-    android:visibility="gone"            android:layout_marginHorizontal="@dimen/_40sdp"
-                android:background="@color/white"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:gravity="center"
+                android:text="سباكه "
 
-                android:paddingStart="@dimen/_40sdp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+                android:textSize="@dimen/_14sdp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:textSize="@dimen/_14sdp"
-
-                    android:text="سباكه " />
-
-            </RelativeLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
