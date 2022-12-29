@@ -7,14 +7,14 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.createDataStore
-import com.example.profession.data.PrefsHelper
+import com.example.nadifalaundries.data.repositoy.PrefsHelper
 import com.example.profession.util.Constants
 import com.example.profession.util.ContextUtils
-  import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.android.HiltAndroidApp
 import java.util.*
 
 @HiltAndroidApp
-class MyApp: Application() {
+class MyApp : Application() {
 
     companion object CompanionObject {
 
@@ -26,7 +26,7 @@ class MyApp: Application() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         dataStore = createDataStore(name = "settings")
-     PrefsHelper.init(applicationContext)
+        PrefsHelper.init(applicationContext)
 
 
     }

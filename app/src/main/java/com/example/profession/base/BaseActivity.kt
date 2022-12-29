@@ -9,7 +9,6 @@ import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
-import com.example.profession.data.PrefsHelper
 import com.example.profession.util.LanguageUtils
 import com.example.profession.util.ext.bindView
 import java.util.*

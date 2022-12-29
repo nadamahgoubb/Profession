@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     android:layoutDirection="rtl"
-    android:textDirection="rtl"
+    android:textDirection="inherit"
     android:layout_gravity="end"
     android:gravity="end"
     >
 
-    <item
-        android:id="@+id/profileFragment"
-        android:title="@string/profile"
-        android:icon="@drawable/ic_profile"/>
 
     <item
         android:id="@+id/contactUsFragment"
@@ -18,19 +14,14 @@
 
     <item
         android:id="@+id/orderFragment"
-        android:title="@string/orders"
+     android:visible="false"   android:title="@string/orders"
         android:icon="@drawable/ic_orders"/>
 
     <item
         android:id="@+id/customerServiceFragment"
         android:title="@string/complains"
         android:icon="@drawable/ic_customer_service"/>
-
-    <item
-        android:id="@+id/notifactionFragment"
-        android:title="@string/notifactions"
-        android:icon="@drawable/ic_noti"/>
-    <item
+ <item
         android:id="@+id/rightsAndTermsFragment"
         android:title="@string/rights_and_terms"
         android:icon="@drawable/ic_terms"/>
@@ -38,4 +29,9 @@
         android:id="@+id/settingsFragment"
         android:title="@string/settings"
         android:icon="@drawable/ic_settings"/>
+    <item
+        android:id="@+id/logout"
+        android:title="@string/logout"
+
+        android:icon="@drawable/ic_logout"/>
 </menu>

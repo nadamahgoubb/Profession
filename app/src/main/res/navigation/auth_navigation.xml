@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.profession.ui.fragments.auth.SplashFragment"
+        android:name="com.example.profession.ui.fragments.splash.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash">
         <action
@@ -25,15 +25,15 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.profession.ui.fragments.auth.RegisterFragment"
+        android:name="com.example.profession.ui.fragments.auth.Register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.profession.ui.fragments.auth.LoginFragment"
+        android:name="com.example.profession.ui.fragments.auth.login.LoginFragment"
         android:label="LoginFragment" />
     <fragment
         android:id="@+id/forgetPasswordFragment"
-        android:name="com.example.profession.ui.fragments.auth.ForgetPasswordFragment"
+        android:name="com.example.profession.ui.fragments.auth.ForgetPassword.ForgetPasswordFragment"
         android:label="ForgetPasswordFragment" />
 </navigation>

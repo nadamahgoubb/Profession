@@ -1,6 +1,7 @@
 package com.example.profession.ui.fragments.walkThrough
 
 import android.content.Intent
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.profession.R
@@ -13,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.NonCancellable.start
 
 @AndroidEntryPoint
-class WalkThrougthFragment() : BaseFragment<FragmentWalkThrougthBinding>() {
+class WalkThrougthFragment() : BaseFragment<FragmentWalkThrougthBinding>(), OnClickSkipListener {
 
     private var pos = 0
     override fun onFragmentReady() {
@@ -25,7 +26,7 @@ class WalkThrougthFragment() : BaseFragment<FragmentWalkThrougthBinding>() {
 
     private fun setupViewPager() {
     binding.btnNext.setText(R.string.next)
-        val adapter = SectionsPagerAdapter(this)
+        val adapter = SectionsPagerAdapter(this,this)
         binding.viewPager.adapter = adapter
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { _, _ ->
             binding.viewPager.currentItem = 0
@@ -60,8 +61,10 @@ class WalkThrougthFragment() : BaseFragment<FragmentWalkThrougthBinding>() {
                 binding.viewPager.currentItem = binding.viewPager.currentItem + 1
             }
            else
-               findNavController().navigate(R.id.registerFragment)
-               // gotoLMain()
+                findNavController().navigate(R.id.loginFragment,null,
+                    NavOptions.Builder().setPopUpTo(R.id.loginFragment, true).build())
+
+
         }
 
 
@@ -78,6 +81,10 @@ class WalkThrougthFragment() : BaseFragment<FragmentWalkThrougthBinding>() {
     private fun gotoLMain() {
         startActivity(Intent(activity, MainActivity::class.java))
         activity?.finish()
+    }
+
+    override fun onSkipClickListener() {
+        findNavController().navigate(R.id.loginFragment)
     }
 
 

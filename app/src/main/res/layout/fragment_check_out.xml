@@ -107,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:elevation="@dimen/_8sdp"
-                        android:visibility="gone"
+                android:visibility="gone"
                         app:cardCornerRadius="@dimen/_8sdp"
                         app:strokeWidth="1dp">
 
@@ -148,6 +148,20 @@
 
 
                     </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:id="@+id/tv_tax_not_included"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:text="@string/tax_not_included"
+                        android:textColor="@color/black"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:drawableStart="@drawable/ic_info"
+                        android:drawablePadding="@dimen/_4sdp"
+
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_payment"
@@ -155,7 +169,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
-                        android:visibility="gone"
+                       
                         app:cardCornerRadius="@dimen/_8sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -232,7 +246,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
-                        android:visibility="gone"
+                       
                         app:cardCornerRadius="@dimen/_8sdp"
                         app:strokeWidth="3dp">
 
@@ -319,7 +333,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
-                        android:visibility="gone"
+                       
                         app:cardCornerRadius="@dimen/_8sdp"
                         app:strokeWidth="3dp">
 
@@ -396,7 +410,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
-                        android:visibility="gone"
+                       
                         app:cardCornerRadius="@dimen/_8sdp"
                         app:strokeWidth="3dp">
 
@@ -493,7 +507,7 @@
                             android:layout_height="match_parent"
                             android:animateLayoutChanges="true"
                             android:padding="@dimen/_10sdp"
-                            android:visibility="gone">
+                           >
 
 
                             <TextView

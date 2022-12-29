@@ -44,8 +44,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:background="@color/white"
-                app:itemTextColor="@drawable/text_nav_bg"
-                app:labelVisibilityMode="labeled"
+                 app:labelVisibilityMode="labeled"
                 app:menu="@menu/bottom_menu" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

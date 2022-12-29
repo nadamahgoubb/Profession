@@ -9,9 +9,10 @@ import kotlinx.android.parcel.RawValue
 
 data class BasePagingResponse<T> (
 
-    @SerializedName("page") var page: Int? = null,
-    @SerializedName("total_pages") var totalPages: Int? = null,
-    @SerializedName("orders") var listOfData: ArrayList<T>? = arrayListOf()
+    @SerializedName("current_page") var current_page: Int? = null,
+    @SerializedName("total") var totalPages: Int? = null,
+    @SerializedName("per_page") var per_page: Int? = null,
+    @SerializedName("data") var listOfData: ArrayList<T>? = arrayListOf()
 
 
     ) : BaseResponse(){

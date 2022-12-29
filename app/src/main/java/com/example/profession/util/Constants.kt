@@ -11,12 +11,11 @@ object Constants {
     const val inprogress="inprogress"
 
     const val TOKEN = "token"
-    const val NAME = "name"
+    const val LOGGED_IN = "LOGGED_IN"
     const val LANG = "lang"
     const  val STATUS: String="status"
     const  val PHONE: String="phone"
-    const val ONLINE: String ="online"
-    const val OFFLINE: String ="offline"
+    const  val USER: String="user"
 
     const val DATA_STORE_NAME = "my_datastore"
     const val ROOM_DATA_BASE_NAME = "my_datastore"

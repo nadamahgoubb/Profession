@@ -126,6 +126,18 @@
     <string name="pincode_has_been_ent_to_your_phone">لقد تم ارسال رمز التعريف الى هاتفك</string>
     <string name="please_enter_your_pass">من قضلك قم بادخال كلمه المرور</string>
     <string name="tax_not_included">ضريبه القيمه المضافه غير مشموله</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="please_enter_your_phone">برجاء إدخال رقم الهاتف</string>
+    <string name="msg_empty_password">برجاء إدخال كلمة المرور</string>
+    <string name="no_internet">لا يوجد إتصال بالانترنت</string>
+    <string name="empty_user_name">برجاء إدخال اسم المستخدم</string>
+    <string name="empty_num">برجاء إدخال رقم الجوال</string>
+    <string name="msg_empty_email">برجاء إدخال البريد الإلكترونى</string>
+    <string name="msg_invalide_email">البريد الإلكترونى غير صالح</string>
+    <string name="empty_num_code">برجاء إدخال كود البلد</string>
+    <string name="empty_country_id">برجاء اختيار البلد</string>
+    <string name="empty_cityid">برجاء اختيار المدينة</string>
+    <string name="enter_your_location">برجاء إدخال الموقع</string>
 
 
 </resources>

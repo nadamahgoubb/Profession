@@ -1,24 +1,28 @@
 package com.example.profession.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
-import android.view.Gravity.LEFT
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
-import com.example.profession.databinding.ActivityMainBinding
 import com.example.profession.base.BaseActivity
+import com.example.profession.databinding.ActivityMainBinding
+import com.example.profession.util.Constants
+import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.nav_header.view.*
-import com.example.profession.R
+ import  com.example.profession.R
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity<ActivityMainBinding>() {
+class MainActivity : BaseActivity<ActivityMainBinding>() , NavigationView.OnNavigationItemSelectedListener {
+
 
     lateinit var navController: NavController
     lateinit var appBarConfiguration: AppBarConfiguration
@@ -28,6 +32,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
         setupNavController()
     }
+
 
     private fun setupNavController() {
         val navHostFragment =
@@ -51,8 +56,26 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             closeDrawer()
 
         }
+        binding.navViewSideNav.setNavigationItemSelectedListener(this)
+
     }
 
+
+    override  fun onNavigationItemSelected(item: MenuItem): Boolean {
+        // Handle navigation view item clicks here.
+        val id = item.itemId
+        var fragment: Fragment? = null
+        val fragmentManager: FragmentManager = supportFragmentManager
+        if (id == R.id.logout) {
+            var intent = Intent(this, AuthActivity::class.java)
+            intent.putExtra(Constants.Start, Constants.login)
+            startActivity(intent)
+            this?.finish()
+        }
+
+       // drawer.closeDrawer(GravityCompat.START)
+        return true
+    }
     //bottom nav
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)

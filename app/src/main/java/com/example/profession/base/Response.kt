@@ -11,7 +11,10 @@ open class BaseResponse(
 
     @SerializedName("message")
     val message: String = "",
-    @SerializedName("status")
+
+    @SerializedName("errNum")
+val errNum: String = "",
+    @SerializedName("result")
     val status: Boolean = false
     // val Error: String?,
 ) : Parcelable

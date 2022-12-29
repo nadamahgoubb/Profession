@@ -37,7 +37,7 @@ object RetrofitModule {
                     //  .addHeader(Constants.Token_HEADER ,DataStoreManger()?.read(Constants.Token_KEY))
                     .addHeader("Content-Type", "application/json")
                     .addHeader("Accept", "application/json")
-                    .addHeader("lang", /*PrefsHelper.getLanguage()*/ "en")
+          //          .addHeader("lang", /*PrefsHelper.getLanguage()*/ "en")
 
                 //     .addHeader("Authorization", "Bearer " +    roomDao.getUserData()?.accessToken  )
 
