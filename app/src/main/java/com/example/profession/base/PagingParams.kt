@@ -1,15 +1,12 @@
 package com.example.profession.base
 
-
-abstract class PagingParams : HashMapParams {
-    abstract var page: Int
+open class PagingParams : HashMapParams {
+    var page: Int = 1
+    override fun dataClass(): Any {
+        return 0
+    }
 }
 
 interface HashMapParams {
     fun dataClass(): Any
-}
-data class  OrderHistoryParams(var status:Int): PagingParams() {
-    override fun dataClass(): Any = this
-    override var page: Int = 0
-        //INITIAL_PAGE_INDEX
 }

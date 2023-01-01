@@ -26,11 +26,11 @@ abstract class BasePagingDataSource<ResponseItem : Any> :
             when (response) {
                 is NetworkResponse.Success -> {
                     onResponseReceived(response.body)
-                    var total = response.body?.totalPages?.minus(1)!!
+                    var total = (response.body?.dataObj?.total!! / response.body?.dataObj?.perPage!!).toInt(). minus(1)!!
 
 
                     val nextKey =
-                        if (response.body.listOfData?.isEmpty() == true || current >= total) {
+                        if (response.body.dataObj?.data?.isEmpty() == true || current >= total) {
                             null
                         } else {
                             // initial load size = 3 * NETWORK_PAGE_SIZE
@@ -43,7 +43,7 @@ abstract class BasePagingDataSource<ResponseItem : Any> :
                         current?.minus(1)
                     }
 
-                    val listOfData = response.body.listOfData?.filterNotNull() ?: emptyList()
+                    val listOfData = response.body.dataObj?.data?.filterNotNull() ?: emptyList()
                     LoadResult.Page(
                         data = listOfData,
                         prevKey = prevKey,

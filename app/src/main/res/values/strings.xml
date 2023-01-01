@@ -138,6 +138,7 @@
     <string name="empty_country_id">برجاء اختيار البلد</string>
     <string name="empty_cityid">برجاء اختيار المدينة</string>
     <string name="enter_your_location">برجاء إدخال الموقع</string>
+    <string name="choose_country_first">برجاء اختيار البلد اولا</string>
 
 
 </resources>

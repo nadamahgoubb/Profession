@@ -44,19 +44,6 @@ data class DevResponse<T>(
         }
     }
 }
-
-data class MainResponsePaging<T>(
-    val Status: String?,
-    val Error: Array<String>?,
-    val dataPaging: DataPaging<T>
-)
-
-data class DataPaging<T>(
-    val page: Int? = 0,
-    val listDataPaging: ListDataPaging<T>?,
-    val total_pages: Int = 0
-)
-
 data class ListDataPaging<T>(
 
     @SerializedName("Data")

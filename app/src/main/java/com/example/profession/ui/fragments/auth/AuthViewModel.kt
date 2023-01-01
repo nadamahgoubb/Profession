@@ -6,23 +6,26 @@ import com.example.laundrydelivery.util.ext.isNull
 import com.example.nadifalaundries.data.repositoy.PrefsHelper
 import com.example.profession.R
 import com.example.profession.base.BaseViewModel
+import com.example.profession.base.PagingParams
+import com.example.profession.data.dataSource.Param.CityParams
 import com.example.profession.data.dataSource.Param.LoginParms
 import com.example.profession.data.dataSource.Param.RegisterParams
 import com.example.profession.data.dataSource.response.UserResponse
 
 import com.example.profession.domain.AuthUseCase
-  import com.example.profession.util.Extension
+import com.example.profession.domain.CitiesPagingUseCase
+import com.example.profession.domain.CountriesPagingUseCase
+import com.example.profession.util.Extension
 import com.example.profession.util.NetworkConnectivity
 import com.example.profession.util.Resource
  import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.math.log
 
 
 @HiltViewModel
 class AuthViewModel
-@Inject constructor(app: Application, val authUserCase: AuthUseCase ) :
+@Inject constructor(app: Application, val authUserCase: AuthUseCase, val usecaseCity: CitiesPagingUseCase, val useCaseCountry: CountriesPagingUseCase) :
     BaseViewModel<AuthAction>(app) {
     var name: String? = null
     var email: String? = null
@@ -203,6 +206,34 @@ register(name,phone,email, country_code, countryId,cityId,pass, lat, lon, mobile
         }
     }
 
+    fun getAllCitiesByCountryId(country_id:String){
+
+        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+            usecaseCity.invoke(
+                viewModelScope, CityParams(country_id)
+            ) { data ->
+                viewModelScope.launch {
+                    produce(AuthAction.ShowAllCities(data))
+                }
+            }
+        }else {
+            produce(AuthAction.ShowFailureMsg(getString(R.string.no_internet)))
+        }
+    }
+    fun getAllCountry(){
+
+        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+            useCaseCountry.invoke(
+                viewModelScope, PagingParams()
+            ) { data ->
+                viewModelScope.launch {
+                    produce(AuthAction.ShowAllCountry(data))
+                }
+            }
+        }else {
+            produce(AuthAction.ShowFailureMsg(getString(R.string.no_internet)))
+        }
+    }
 }
 
  

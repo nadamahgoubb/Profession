@@ -1,20 +1,60 @@
 package com.example.profession.ui.adapter
 
-import android.annotation.SuppressLint
+import android.app.Service
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profession.R
-import com.example.profession.data.ServiceResponse
-import com.example.profession.databinding.ItemHomeServiceBinding
+import com.example.profession.data.dataSource.response.ServicesItemsResponse
+ import com.example.profession.databinding.ItemHomeServiceBinding
 import com.example.profession.ui.listener.ServiceOnClickListener
 
 
 class ServicesHomeAdapter(
     var listener : ServiceOnClickListener,
     var   context: Context
-) : RecyclerView.Adapter<ServicesHomeAdapter.InProgressCompeletedViewHolder>() {
+//) : RecyclerView.Adapter<ServicesHomeAdapter.ServiceHomeViewHolder>() {
+): PagingDataAdapter<ServicesItemsResponse, ServicesHomeAdapter.ServiceHomeViewHolder>(
+    Service_DIFF_CALLBACK) {
+    override fun onBindViewHolder(holder: ServiceHomeViewHolder, position: Int) {
+ 
+        holder.binding.ivService.setImageDrawable(context.getDrawable(R.drawable.gr2))
+
+        holder.binding.ivService.setOnClickListener {
+            listener.onServiceClickListener(getItem(position))
+            //currentItem)
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceHomeViewHolder {
+
+        return ServiceHomeViewHolder(
+            ItemHomeServiceBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    
+    class ServiceHomeViewHolder(val binding: ItemHomeServiceBinding) :
+        RecyclerView.ViewHolder(binding.root)
+    
+
+    companion object {
+        private val Service_DIFF_CALLBACK = object : DiffUtil.ItemCallback<ServicesItemsResponse>() {
+            override fun areItemsTheSame(oldItem: ServicesItemsResponse, newItem: ServicesItemsResponse): Boolean =
+                oldItem.id == newItem.id
+
+            override fun areContentsTheSame(oldItem: ServicesItemsResponse, newItem: ServicesItemsResponse): Boolean =
+                oldItem == newItem
+        }
+    }
+}/*
 
      var _binding: ItemHomeServiceBinding? = null
 
@@ -29,17 +69,17 @@ class ServicesHomeAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): InProgressCompeletedViewHolder {
+    ): ServiceHomeViewHolder {
         _binding = ItemHomeServiceBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
         )
-        return InProgressCompeletedViewHolder(_binding!!)
+        return ServiceHomeViewHolder(_binding!!)
     }
 
 
-    override fun onBindViewHolder(holder: InProgressCompeletedViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ServiceHomeViewHolder, position: Int) {
      //   var currentItem = itemsList[position]
       if(position ==1 ||position ==4 ||position ==5)
         holder.binding.ivService.setImageDrawable(context.getDrawable(R.drawable.gr1))
@@ -62,10 +102,8 @@ class ServicesHomeAdapter(
 
     override fun getItemCount(): Int = 6
 
-    class InProgressCompeletedViewHolder(val binding: ItemHomeServiceBinding) :
-        RecyclerView.ViewHolder(binding.root)
-
 
 }
 
 
+*/

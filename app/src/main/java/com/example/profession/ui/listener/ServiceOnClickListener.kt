@@ -1,12 +1,18 @@
 package com.example.profession.ui.listener
 
-import com.example.profession.data.ServiceResponse
+ import com.example.profession.data.dataSource.response.ServicesItemsResponse
+ import com.example.profession.data.dataSource.response.SliderItemsResponse
+import com.example.profession.data.dataSource.response.SubServiceItemsResponse
 
 
 interface ServiceOnClickListener {
+    fun onServiceClickListener(item: ServicesItemsResponse?)
+}
 
-        fun onServiceClickListener()
-                //item: ServiceResponse)
+interface SubServiceListener {
+    fun onSubServiceClickListener(item: SubServiceItemsResponse)
+}
 
-
+interface SliderListener {
+    fun onSliderClickListener(item: SliderItemsResponse)
 }

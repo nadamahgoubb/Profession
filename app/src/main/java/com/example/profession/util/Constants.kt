@@ -13,7 +13,7 @@ object Constants {
     const val TOKEN = "token"
     const val LOGGED_IN = "LOGGED_IN"
     const val LANG = "lang"
-    const  val STATUS: String="status"
+    const  val CITIES: String="cities"
     const  val PHONE: String="phone"
     const  val USER: String="user"
 

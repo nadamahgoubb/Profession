@@ -183,30 +183,29 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />-->
 
+           <androidx.appcompat.widget.AppCompatTextView
 
-                <EditText
-                    android:id="@+id/et_coutry"
+                android:id="@+id/et_coutry"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginTop="@dimen/_20sdp"
-                    android:background="@drawable/bg_rounded"
+           android:gravity="center_vertical"         android:background="@drawable/bg_rounded"
                     android:drawableEnd="@drawable/spinner_drop_dawn"
-                    android:enabled="false"
-                    android:hint="@string/country"
+                     android:hint="@string/country"
                     android:paddingHorizontal="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp" />
 
-                <EditText
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/et_city"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:background="@drawable/bg_rounded"
                     android:drawableEnd="@drawable/spinner_drop_dawn"
-                    android:enabled="false"
-                    android:hint="@string/city"
-                    android:paddingHorizontal="@dimen/_5sdp"
+                     android:hint="@string/city"
+                    android:gravity="center_vertical"
+                     android:paddingHorizontal="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp" />
 
