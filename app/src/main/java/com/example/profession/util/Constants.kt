@@ -9,6 +9,7 @@ object Constants {
     const val Orders="orders"
     const val compeleted="compeleted"
     const val inprogress="inprogress"
+    const val SERVICE="Service"
 
     const val TOKEN = "token"
     const val LOGGED_IN = "LOGGED_IN"
@@ -16,6 +17,7 @@ object Constants {
     const  val CITIES: String="cities"
     const  val PHONE: String="phone"
     const  val USER: String="user"
+    const  val BaseUrl_Images: String="https://professions.tawajood.com/assets/images/users/"
 
     const val DATA_STORE_NAME = "my_datastore"
     const val ROOM_DATA_BASE_NAME = "my_datastore"

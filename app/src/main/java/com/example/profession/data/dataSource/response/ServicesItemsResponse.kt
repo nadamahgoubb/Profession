@@ -1,7 +1,10 @@
 package com.example.profession.data.dataSource.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 
 data class ServicesItemsResponse(
 
@@ -11,7 +14,7 @@ data class ServicesItemsResponse(
 
     var choosen: Boolean= false
 
-)
+) : Parcelable
 
 
 data class SliderItemsResponse(

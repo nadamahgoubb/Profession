@@ -45,19 +45,19 @@ class Repository @Inject constructor(private val api: ApiInterface) {
     }
 
     suspend fun getCountries(page: Int): NetworkResponse<BasePagingResponse<CitesItemsResponse>, ErrorResponse> {
-        return api.getCountries()
+        return api.getCountries(page)
     }
 
     suspend fun getServices(page: Int): NetworkResponse<BasePagingResponse<ServicesItemsResponse>, ErrorResponse> {
-        return api.getServices()
+        return api.getServices(page)
     }
 
     suspend fun getSlider(page: Int): NetworkResponse<BasePagingResponse<SliderItemsResponse>, ErrorResponse> {
-        return api.getSlider()
+        return api.getSlider(page)
     }
 
-    suspend fun getSubServiceItemsResponse(page: Int): NetworkResponse<BasePagingResponse<SubServiceItemsResponse>, ErrorResponse> {
-        return api.getSubServiceItemsResponse()
+    suspend fun getSubServiceItemsResponse(page: Int , serviceId:String): NetworkResponse<BasePagingResponse<SubServiceItemsResponse>, ErrorResponse> {
+        return api.getSubServiceItemsResponse(page  , serviceId)
     }
 }
 

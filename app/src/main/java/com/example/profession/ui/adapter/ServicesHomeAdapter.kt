@@ -11,6 +11,8 @@ import com.example.profession.R
 import com.example.profession.data.dataSource.response.ServicesItemsResponse
  import com.example.profession.databinding.ItemHomeServiceBinding
 import com.example.profession.ui.listener.ServiceOnClickListener
+import com.example.profession.util.Constants
+import com.example.profession.util.ext.loadImage
 
 
 class ServicesHomeAdapter(
@@ -21,8 +23,8 @@ class ServicesHomeAdapter(
     Service_DIFF_CALLBACK) {
     override fun onBindViewHolder(holder: ServiceHomeViewHolder, position: Int) {
  
-        holder.binding.ivService.setImageDrawable(context.getDrawable(R.drawable.gr2))
-
+       holder.binding.ivService.setImageDrawable(context.getDrawable(R.drawable.gr2))
+      //  holder.binding.ivService.loadImage(Constants.BaseUrl_Images+getItem(position)?.icon)
         holder.binding.ivService.setOnClickListener {
             listener.onServiceClickListener(getItem(position))
             //currentItem)
@@ -40,7 +42,7 @@ class ServicesHomeAdapter(
         )
     }
 
-    
+
     class ServiceHomeViewHolder(val binding: ItemHomeServiceBinding) :
         RecyclerView.ViewHolder(binding.root)
     

@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.profession.R
 import com.example.profession.base.BaseViewModel
 import com.example.profession.base.PagingParams
+import com.example.profession.data.dataSource.Param.SubServicesParams
 import com.example.profession.domain.ServicesPagingUseCase
 import com.example.profession.domain.SliderPagingUseCase
 import com.example.profession.domain.SubServicesPagingUseCase
@@ -49,7 +50,20 @@ class HomeViewModel
             produce(HomeAction.ShowFailureMsg(getString(R.string.no_internet)))
         }
     }
+    fun getSubService(serviceId:String){
 
+        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+            usecaseSubService.invoke(
+                viewModelScope, SubServicesParams(serviceId)
+            ) { data ->
+                viewModelScope.launch {
+                    produce(HomeAction.ShowSubService(data))
+                }
+            }
+        }else {
+            produce(HomeAction.ShowFailureMsg(getString(R.string.no_internet)))
+        }
+    }
 }
 
 

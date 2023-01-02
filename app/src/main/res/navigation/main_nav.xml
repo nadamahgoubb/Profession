@@ -77,7 +77,7 @@
         android:label="OrderSucessFragment" />
     <fragment
         android:id="@+id/changePasswordFragment"
-        android:name="com.example.profession.ui.fragments.auth.ChangePasswordFragment"
+        android:name="com.example.profession.ui.fragments.auth.changePassword.ChangePasswordFragment"
         android:label="ChangePasswordFragment" />
     <fragment
         android:id="@+id/rightsAndTermsFragment"

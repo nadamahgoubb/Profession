@@ -10,6 +10,8 @@ import com.example.profession.R
   import com.example.profession.data.dataSource.response.SliderItemsResponse
 import com.example.profession.databinding.ItemHomeOffersBinding
 import com.example.profession.ui.listener.SliderListener
+ import com.example.profession.util.Constants
+ import com.example.profession.util.ext.loadImage
 
 
 class SliderHomeAdapter(
@@ -18,7 +20,8 @@ class SliderHomeAdapter(
     ): PagingDataAdapter<SliderItemsResponse, SliderHomeAdapter.SliderHomeViewHolder>(SLIDER_DIFF_CALLBACK) {
     override fun onBindViewHolder(holder: SliderHomeViewHolder, position: Int) {
 
-         holder.binding.ivOffers.setImageDrawable(context.getDrawable(R.drawable.slider1))
+       holder.binding.ivOffers.setImageDrawable(context.getDrawable(R.drawable.slider1))
+    //    holder.binding.ivOffers.loadImage(Constants.BaseUrl_Images+getItem(position)?.image)
 
         holder.binding.root.setOnClickListener {
             getItem(position)?.let { it1 -> listener.onSliderClickListener(it1) }

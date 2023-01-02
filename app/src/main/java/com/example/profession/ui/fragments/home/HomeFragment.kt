@@ -1,6 +1,7 @@
 package com.example.profession.ui.fragments.home
 
 
+import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -10,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import com.example.nadifalaundries.data.repositoy.PrefsHelper
 import com.example.profession.R
 import com.example.profession.databinding.FragmentHomeBinding
 import com.example.profession.ui.activity.MainActivity
@@ -21,6 +23,7 @@ import com.example.profession.ui.adapter.SliderHomeAdapter
 import com.example.profession.ui.fragments.auth.AuthViewModel
 import com.example.profession.ui.listener.ServiceOnClickListener
 import com.example.profession.ui.listener.SliderListener
+import com.example.profession.util.Constants
 import com.example.profession.util.ext.hideKeyboard
 import com.example.profession.util.ext.init
 import com.example.profession.util.ext.showActivity
@@ -87,7 +90,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), ServiceOnClickListener
         binding.ivMenu.setOnClickListener {
             parent.openDrawer()
         }
-
+binding.tvName.setText(PrefsHelper.getUserData().name)
         binding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             if (Math.abs(verticalOffset) ==   binding.appBarLayout.getTotalScrollRange()) {
                 // If collapsed, then do this
@@ -203,8 +206,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), ServiceOnClickListener
     }
 
     override fun onServiceClickListener(item: ServicesItemsResponse?) {
-
-        findNavController().navigate(R.id.subServiceFragment)
+var bundle = Bundle()
+        bundle.putParcelable(Constants.SERVICE, item)
+        findNavController().navigate(R.id.subServiceFragment,bundle)
     }
 
     override fun onSliderClickListener(item: SliderItemsResponse) {

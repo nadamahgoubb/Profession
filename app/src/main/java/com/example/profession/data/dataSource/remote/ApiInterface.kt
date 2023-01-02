@@ -44,6 +44,7 @@ interface ApiInterface {
 
     @GET("countries")
     suspend fun getCountries(
+        @Query("page") page: Int? = null,
 
     ): NetworkResponse<BasePagingResponse<CitesItemsResponse>, ErrorResponse>
 
@@ -59,9 +60,11 @@ interface ApiInterface {
 
         ): NetworkResponse<BasePagingResponse<SliderItemsResponse>, ErrorResponse>
 
-    @GET("user/services/sub_service")
+   @FormUrlEncoded
+   @POST("user/services/sub_service")
     suspend fun getSubServiceItemsResponse(
         @Query("page") page: Int? = null,
+        @Field("service_id") service_id: String? = null,
 
         ): NetworkResponse<BasePagingResponse<SubServiceItemsResponse>, ErrorResponse>
 

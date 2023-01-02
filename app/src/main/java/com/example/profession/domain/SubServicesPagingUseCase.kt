@@ -4,6 +4,7 @@ package com.example.profession.domain
 import androidx.paging.PagingSource
 import com.example.profession.base.BasePagingUseCase
 import com.example.profession.base.PagingParams
+import com.example.profession.data.dataSource.Param.SubServicesParams
 import com.example.profession.data.dataSource.pagingSource.CountryPagingSource
 import com.example.profession.data.dataSource.pagingSource.ServiceHomePagingSource
 import com.example.profession.data.dataSource.pagingSource.SubServiceHomePagingSource
@@ -20,7 +21,7 @@ class SubServicesPagingUseCase @Inject constructor(private val repo: Repository)
     BasePagingUseCase<SubServiceItemsResponse, PagingParams>() {
 
     override fun getPagingSource(params: PagingParams?): PagingSource<Int, SubServiceItemsResponse> {
-       var res= SubServiceHomePagingSource(repo, params!!)
+       var res= SubServiceHomePagingSource(repo, params!! as SubServicesParams)
         return res
 
 
