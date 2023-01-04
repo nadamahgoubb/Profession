@@ -1,4 +1,4 @@
-package com.example.nadifalaundries.data.repositoy
+package com.example.profession.data.dataSource.repositoy
 
 import androidx.annotation.Keep
 import androidx.room.*

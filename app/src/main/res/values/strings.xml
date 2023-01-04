@@ -128,8 +128,7 @@
     <string name="tax_not_included">ضريبه القيمه المضافه غير مشموله</string>
     <string name="logout">تسجيل الخروج</string>
     <string name="please_enter_your_phone">برجاء إدخال رقم الهاتف</string>
-    <string name="msg_empty_password">برجاء إدخال كلمة المرور</string>
-    <string name="no_internet">لا يوجد إتصال بالانترنت</string>
+     <string name="no_internet">لا يوجد إتصال بالانترنت</string>
     <string name="empty_user_name">برجاء إدخال اسم المستخدم</string>
     <string name="empty_num">برجاء إدخال رقم الجوال</string>
     <string name="msg_empty_email">برجاء إدخال البريد الإلكترونى</string>
@@ -139,6 +138,10 @@
     <string name="empty_cityid">برجاء اختيار المدينة</string>
     <string name="enter_your_location">برجاء إدخال الموقع</string>
     <string name="choose_country_first">برجاء اختيار البلد اولا</string>
-
+    <string name="msg_empty_password">يرجى إدخال كلمه المرور</string>
+    <string name="msg_empty_new_password">يرجى إدخال رقم المرور الجديد</string>
+    <string name="msg_empty_confirm_password">يرجى تأكيد رقم المرور الجديد</string>
+    <string name="msg_empty_confirm_new_password">يرجى أعاده إدخال رقم المرور</string>
+    <string name="password_not_matching">كلمه المرور غير متطابقه</string>
 
 </resources>

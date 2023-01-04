@@ -5,10 +5,11 @@ import com.example.profession.base.BasePagingResponse
 import com.example.profession.base.DevResponse
 import com.example.profession.base.ErrorResponse
 import com.example.profession.base.NetworkResponse
-import com.example.profession.data.dataSource.Param.LoginParms
-import com.example.profession.data.dataSource.Param.RegisterParams
+import com.example.profession.data.dataSource.Param.*
 import com.example.profession.data.dataSource.remote.ApiInterface
+import com.example.profession.data.dataSource.repoistry.PrefsHelper
 import com.example.profession.data.dataSource.response.*
+import com.example.profession.util.FileManager.toMultiPart
 import retrofit2.http.Query
 import javax.inject.Inject
 
@@ -58,6 +59,24 @@ class Repository @Inject constructor(private val api: ApiInterface) {
 
     suspend fun getSubServiceItemsResponse(page: Int , serviceId:String): NetworkResponse<BasePagingResponse<SubServiceItemsResponse>, ErrorResponse> {
         return api.getSubServiceItemsResponse(page  , serviceId)
+    }
+
+
+    suspend fun getProfile(): NetworkResponse<DevResponse<ProfileResponse>, ErrorResponse> {
+        return api.getProfile(
+        //    "Bearer" +PrefsHelper.getToken()
+        )
+    }
+
+    suspend fun updateProfile(param: EditProfileParams): NetworkResponse<DevResponse<UserResponse>, ErrorResponse> {
+        return api.updateProfile( param.toMap(),           param.photo?.let {  param.photo?.toMultiPart("photo") },
+        )
+    }
+    suspend fun changePassword(param: ChangePasswordParam): NetworkResponse<DevResponse<Any>, ErrorResponse> {
+        return api.changePassword( param.oldPassword, param.newPassword)
+    }
+    suspend fun deleteAccount(): NetworkResponse<DevResponse<Any>, ErrorResponse> {
+        return api.deleteAccount( )
     }
 }
 

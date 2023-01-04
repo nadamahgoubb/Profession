@@ -7,6 +7,7 @@
 
     </data>
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -152,6 +153,7 @@
                             android:layout_height="match_parent"
                             android:background="@drawable/bg_rounded"
                             android:hint="@string/phone_number"
+                            android:textAlignment="viewStart"
                             android:inputType="phone"
                             android:paddingStart="@dimen/_5sdp"
                             android:text="" />
@@ -209,15 +211,16 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp" />
 
-                <EditText
-                    android:id="@+id/et_location"
+              <androidx.appcompat.widget.AppCompatTextView
+
+                android:id="@+id/et_location"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
+                  android:gravity="center_vertical"
+                  android:layout_marginTop="@dimen/_20sdp"
                     android:background="@drawable/bg_rounded"
                     android:drawableEnd="@drawable/location"
-                    android:enabled="false"
-                    android:hint="@string/location"
+                     android:hint="@string/location"
                     android:paddingHorizontal="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp" />
@@ -233,9 +236,8 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/password"
-                        android:text="@string/password"
-                        android:textColor="@color/black"
+           app:hintEnabled="false"
+                        app:hintAnimationEnabled="false" android:textColor="@color/black"
                         android:textSize="@dimen/_12ssp"
                         app:endIconDrawable="@drawable/ic_eye_closed"
                         app:endIconMode="password_toggle"
@@ -248,7 +250,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/et_password"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:hint="@string/password"
+                            android:layout_height="@dimen/_40sdp"
                             android:autofillHints="password"
                             android:background="@drawable/bg_rounded"
                             android:inputType="textPassword" />
@@ -331,4 +334,4 @@ android:text="@string/some_text"
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-</layout>
+ </layout>

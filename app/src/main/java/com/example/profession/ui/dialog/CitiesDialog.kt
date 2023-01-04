@@ -29,10 +29,9 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CategoriesDialog(
-  private val onClick: CitesListener,
-  var data: PagingData<CitesItemsResponse>,
- ) :
-    DialogFragment(R.layout.item_filter_multi_choice), CitesListener {
+    private val onClick: CitesListener,
+    var data: PagingData<CitesItemsResponse>,
+) : DialogFragment(R.layout.item_filter_multi_choice), CitesListener {
     private lateinit var adapter: CitesPagingAdapter
 
     private lateinit var binding: DialogCitiesBinding
@@ -41,11 +40,12 @@ class CategoriesDialog(
     companion object {
         fun newInstance(
             onClick: CitesListener,
-              data: PagingData<CitesItemsResponse>,
-         ): CategoriesDialog {
+            data: PagingData<CitesItemsResponse>,
+        ): CategoriesDialog {
             val args = Bundle()
             val f = CategoriesDialog(
-            onClick, data)
+                onClick, data
+            )
             f.arguments = args
             return f
         }
@@ -53,15 +53,12 @@ class CategoriesDialog(
 
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         if (dialog?.isShowing == false) {
             binding = DialogCitiesBinding.inflate(inflater)
             return binding.root
-        } else
-            return null
+        } else return null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -77,9 +74,9 @@ class CategoriesDialog(
         setLayoutHorizintalBottom(binding.root, 100f)
 
 
-     /*   (arguments?.getParcelableArrayList<CitesItemsResponse>(Constants.CITIES))?.let {
-            categories= it
-        }*/
+        /*   (arguments?.getParcelableArrayList<CitesItemsResponse>(Constants.CITIES))?.let {
+               categories= it
+           }*/
         initAdapters()
 
 
@@ -91,12 +88,14 @@ class CategoriesDialog(
         layoutParams.leftMargin = bottom.toInt()
         view.layoutParams = layoutParams
     }
-var cityId :CitesItemsResponse? = null
+
+    var cityId: CitesItemsResponse? = null
 
     private fun initAdapters() {
 
-        adapter= CitesPagingAdapter(
-            requireContext(),this,)
+        adapter = CitesPagingAdapter(
+            requireContext(), this,
+        )
         binding.rvCat.init(requireContext(), adapter, 2)
 
 
@@ -111,19 +110,17 @@ var cityId :CitesItemsResponse? = null
         adapter.addLoadStateListener { loadState ->
 
             // show empty list
-            if (loadState.refresh is LoadState.Loading ||
-                loadState.append is LoadState.Loading
-            ) {
-            //    binding.lytEmptyState.visibility = View.GONE
-           //     binding.lytData.visibility = View.VISIBLE
+            if (loadState.refresh is LoadState.Loading || loadState.append is LoadState.Loading) {
+                //    binding.lytEmptyState.visibility = View.GONE
+                //     binding.lytData.visibility = View.VISIBLE
             }
             if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && adapter.itemCount < 1) {
-           //     binding.lytData.visibility = View.GONE
+                //     binding.lytData.visibility = View.GONE
 
-             //   binding.lytEmptyState.visibility = View.VISIBLE
+                //   binding.lytEmptyState.visibility = View.VISIBLE
             } else {
-               // binding.lytEmptyState.visibility = View.GONE
-               // binding.lytData.visibility = View.VISIBLE
+                // binding.lytEmptyState.visibility = View.GONE
+                // binding.lytData.visibility = View.VISIBLE
                 // If we have an error, show a toast*/
                 val errorState = when {
                     loadState.append is LoadState.Error -> loadState.append as LoadState.Error
@@ -135,8 +132,7 @@ var cityId :CitesItemsResponse? = null
                     /* if (it.error.message.equals(Constants.UNAUTHURAIZED_ACCESS)) {
                          showEmptyState(true)
                      } else*/
-                    Toast.makeText(activity, it.error.message.toString(), Toast.LENGTH_LONG)
-                        .show()
+                    Toast.makeText(activity, it.error.message.toString(), Toast.LENGTH_LONG).show()
                 }
 
             }
@@ -149,6 +145,8 @@ var cityId :CitesItemsResponse? = null
 
 
     override fun onOrderClicked(item: CitesItemsResponse?) {
-cityId=item
+        cityId = item
+        onClick.onOrderClicked(item)
+        dialog?.dismiss()
     }
 }

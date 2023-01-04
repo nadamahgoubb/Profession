@@ -3,7 +3,7 @@ package com.example.profession.ui.fragments.auth
 import android.app.Application
 import androidx.lifecycle.viewModelScope
 import com.example.laundrydelivery.util.ext.isNull
-import com.example.nadifalaundries.data.repositoy.PrefsHelper
+import com.example.profession.data.dataSource.repoistry.PrefsHelper
 import com.example.profession.R
 import com.example.profession.base.BaseViewModel
 import com.example.profession.base.PagingParams
@@ -101,7 +101,6 @@ login(phone,pass)
         pass: String,
         lat: Double?,
         lon: Double?,
-        mobile_id: String?
 
  ): Boolean {
         return  if (name.isNullOrBlank()) {
@@ -133,23 +132,11 @@ login(phone,pass)
         else if (pass.isNullOrBlank()) {
             produce(AuthAction.ShowFailureMsg(getString(R.string.msg_empty_password)))
             false
-        } else if (mobile_id.isNullOrBlank()) {
-         //   produce(AuthAction.ShowFailureMsg(getString(R.string.empt_mobile_id)))
-            false
-        } else if  (lat.isNull() || lon?.equals(0) == true) {
+        }   else if  (lat.isNull() || lon?.equals(0) == true) {
             produce(AuthAction.ShowFailureMsg(getString(R.string.enter_your_location)))
             false
         }  else {
-         /*   param.name,
-            param. phone,
-            param. email,
-            param.countryCode,
-            param.   countryId,
-            param.    cityId,
-            param.      password,
-            param.   lat,
-            param.    lon,
-            param.  mobile_id*/
+
         this.name = name
             this.phone = phone
             this.email = email
@@ -159,7 +146,7 @@ login(phone,pass)
             this.password = pass
              this.lon = lon
             this.lat = lat
-register(name,phone,email, country_code, countryId,cityId,pass, lat, lon, mobile_id)
+register(name,phone,email, country_code, countryId,cityId,pass, lat, lon, "0")
             true
 
         }

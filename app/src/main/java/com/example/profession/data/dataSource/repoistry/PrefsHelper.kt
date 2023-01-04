@@ -1,4 +1,4 @@
-package com.example.nadifalaundries.data.repositoy
+package com.example.profession.data.dataSource.repoistry
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -41,7 +41,7 @@ object PrefsHelper {
     }
 
 
-    fun saveUserData(user:UserResponse){
+    fun saveUserData(user:UserResponse?){
  //set variables of 'myObject', etc.
 
        var prefsEditor = preferences.edit()
@@ -51,7 +51,7 @@ object PrefsHelper {
         prefsEditor.putString(Constants.USER, json);
         prefsEditor.commit();
     }
-    fun getUserData():UserResponse{
+    fun getUserData():UserResponse?{
         //set variables of 'myObject', etc.
 
         val gson = Gson()
@@ -59,6 +59,8 @@ object PrefsHelper {
        return gson.fromJson(json, UserResponse::class.java)
     }
     fun clear() {
-preferences.edit().clear()   }
+preferences.edit().clear()
+    saveUserData(null)
+saveToken(null)    }
 
 }

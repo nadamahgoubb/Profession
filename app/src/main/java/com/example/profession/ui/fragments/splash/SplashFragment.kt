@@ -3,7 +3,7 @@ package com.example.profession.ui.fragments.splash
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import com.example.nadifalaundries.data.repositoy.PrefsHelper
+import com.example.profession.data.dataSource.repoistry.PrefsHelper
 import com.example.profession.R
 import com.example.profession.databinding.FragmentSplashBinding
 import com.example.profession.base.BaseFragment

@@ -2,6 +2,7 @@ package com.example.profession.di
 
 
 
+import com.example.profession.data.dataSource.repoistry.PrefsHelper
 import com.example.profession.base.NetworkResponseAdapterFactory
 import com.example.profession.data.dataSource.remote.ApiBase
 import com.example.profession.data.dataSource.remote.ApiInterface
@@ -39,7 +40,7 @@ object RetrofitModule {
                     .addHeader("Accept", "application/json")
           //          .addHeader("lang", /*PrefsHelper.getLanguage()*/ "en")
 
-                //     .addHeader("Authorization", "Bearer " +    roomDao.getUserData()?.accessToken  )
+                .addHeader("Authorization", "Bearer" + PrefsHelper.getToken())
 
                 val request = requestBuilder.build()
                 chain.proceed(request)

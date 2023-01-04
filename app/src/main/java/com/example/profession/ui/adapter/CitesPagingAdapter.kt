@@ -31,11 +31,11 @@ var currentItem= getItem(position)
         holder.binding.checkbox.setOnClickListener {
             if (holder.binding.checkbox.isChecked == true) {
                 currentItem?.choosen=true
-                currentItem?.let { it1 -> selectOneItemOnly(it1, position) }
+              //  currentItem?.let { it1 -> selectOneItemOnly(it1, position) }
                 currentItem?.let { it1 -> listener.onOrderClicked(it1) }
             } else {
                 currentItem?.choosen=false
-                listener.onOrderClicked(null)
+               // listener.onOrderClicked(null)
 
             }   }
 
@@ -79,7 +79,7 @@ getItem(pos)?.name=item.name
                    false ),position
             )
         }
-        updateItem(item,position)
+         updateItem(item,position)
         lastPosition = position
 
 

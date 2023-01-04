@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.createDataStore
-import com.example.nadifalaundries.data.repositoy.PrefsHelper
+import com.example.profession.data.dataSource.repoistry.PrefsHelper
 import com.example.profession.util.Constants
 import com.example.profession.util.ContextUtils
 import dagger.hilt.android.HiltAndroidApp

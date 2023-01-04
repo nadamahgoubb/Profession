@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import com.example.nadifalaundries.data.repositoy.PrefsHelper
+import com.example.profession.data.dataSource.repoistry.PrefsHelper
 import com.example.profession.R
 import com.example.profession.databinding.FragmentHomeBinding
 import com.example.profession.ui.activity.MainActivity
@@ -20,13 +20,11 @@ import com.example.profession.data.dataSource.response.ServicesItemsResponse
 import com.example.profession.data.dataSource.response.SliderItemsResponse
 import com.example.profession.ui.adapter.ServicesHomeAdapter
 import com.example.profession.ui.adapter.SliderHomeAdapter
-import com.example.profession.ui.fragments.auth.AuthViewModel
 import com.example.profession.ui.listener.ServiceOnClickListener
 import com.example.profession.ui.listener.SliderListener
 import com.example.profession.util.Constants
 import com.example.profession.util.ext.hideKeyboard
 import com.example.profession.util.ext.init
-import com.example.profession.util.ext.showActivity
 import com.example.profession.util.observe
 import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,6 +46,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), ServiceOnClickListener
             observe(viewState) {
                 handleViewState(it)
             }
+        }
+        binding.swiperefreshHome.setOnRefreshListener {
+            mViewModel.  getAllServices()
+            mViewModel. getAllSlider()
+            if (binding.swiperefreshHome != null) binding.swiperefreshHome.isRefreshing = false
         }
     }
 
@@ -90,7 +93,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), ServiceOnClickListener
         binding.ivMenu.setOnClickListener {
             parent.openDrawer()
         }
-binding.tvName.setText(PrefsHelper.getUserData().name)
+binding.tvName.setText(PrefsHelper.getUserData()?.name)
         binding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             if (Math.abs(verticalOffset) ==   binding.appBarLayout.getTotalScrollRange()) {
                 // If collapsed, then do this
