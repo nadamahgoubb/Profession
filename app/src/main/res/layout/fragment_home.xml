@@ -143,10 +143,16 @@
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
+        <com.example.profession.base.OnlyVerticalSwipeRefreshLayout
+              android:layout_width="match_parent"
+            android:layout_height="match_parent"
+             android:id="@+id/swiperefresh_home"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="@dimen/_10sdp"
             android:background="@color/white"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
@@ -155,6 +161,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginHorizontal="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -238,9 +245,9 @@ android:src="@drawable/no_services"
                              android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_8sdp"
-                             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                      android:clipToPadding="true"       app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                             app:spanCount="2"
-                              android:layout_columnWeight="1"
+                               android:layout_columnWeight="1"
                             tools:itemCount="5"
                              tools:listitem="@layout/item_home_service" />
                         <ProgressBar
@@ -268,5 +275,6 @@ android:src="@drawable/no_services"
 </LinearLayout>     </ScrollView>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
+        </com.example.profession.base.OnlyVerticalSwipeRefreshLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

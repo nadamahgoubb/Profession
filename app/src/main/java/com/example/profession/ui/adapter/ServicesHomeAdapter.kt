@@ -22,10 +22,10 @@ class ServicesHomeAdapter(
 ): PagingDataAdapter<ServicesItemsResponse, ServicesHomeAdapter.ServiceHomeViewHolder>(
     Service_DIFF_CALLBACK) {
     override fun onBindViewHolder(holder: ServiceHomeViewHolder, position: Int) {
- 
-       holder.binding.ivService.setImageDrawable(context.getDrawable(R.drawable.gr2))
-      //  holder.binding.ivService.loadImage(Constants.BaseUrl_Images+getItem(position)?.icon)
-        holder.binding.ivService.setOnClickListener {
+ holder.binding.tvServiceName.setText(getItem(position)?.name)
+   //    holder.binding.ivService.setImageDrawable(context.getDrawable(R.drawable.gr2))
+      holder.binding.ivSerivce.loadImage(Constants.BaseUrl_Images+getItem(position)?.icon)
+        holder.binding.root.setOnClickListener {
             listener.onServiceClickListener(getItem(position))
             //currentItem)
         }

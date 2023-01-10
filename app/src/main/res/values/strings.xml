@@ -69,14 +69,14 @@
     <string name="nav_close">close</string>
     <string name="order_num">طلب رقم</string>
     <string name="chat_with_app">مع التطبيق</string>
-    <string name="with_provider">مع المزود</string>
+    <string name="with_provider">مع المقدم</string>
     <string name="orders_details">تفاصيل الطلب</string>
     <string name="waiting_approval">بانتظار الموافقه عليها</string>
     <string name="on_hold_msg">تم ارسال طلبك بنجاح الى مزود الخدمة .سيتم مراجعه طلبك قبل الموافقه عليه ثم سيتواصل معك مزود خدمه لاعلام سيادتكم باى تفاصيل اخري</string>
     <string name="order_id">رقم الطلب</string>
     <string name="payment_meyhod">طرق الدفع</string>
     <string name="cash">نقدى</string>
-    <string name="service_provider">مزود الخدمة</string>
+    <string name="service_provider">مقدم الخدمة</string>
     <string name="total">اجمالي التكلفه</string>
     <string name="cancel">الغاء الطلب</string>
     <string name="inprogress_order">طلب قيد التنفيذ</string>
@@ -101,7 +101,7 @@
     <string name="pull_up">اسحب لاعلي</string>
     <string name="thanks_for_order">شكرا لطلب خدمتك</string>
     <string name="continuee_shopping">متابعه الخدمات</string>
-    <string name="provider">مزودى الخدمات</string>
+    <string name="provider">مقدمى الخدمات</string>
     <string name="service_details">تفاصيل الخدمه</string>
     <string name="order_servie">طلب الخدمة</string>
     <string name="are_you_sure_want_to_delete_this_account">هل انت متاكد انك تريد حذف الحساب الخاص بك</string>
@@ -120,7 +120,8 @@
     <string name="reject">رفض</string>
     <string name="accept">قبول</string>
     <string name="order_has_been_done">تم تقديم الخدمة</string>
-    <string name="provider_review">تقييمات مزود الخدمة</string>
+    <string name="complain">الابلاغ عن مقدم الخدمه</string>
+    <string name="provider_review">تقييمات مقدمى الخدمة</string>
     <string name="change_pass">تغيير كلمه المرور</string>
     <string name="enter_pin_code">ادخل رمز التاكيد</string>
     <string name="pincode_has_been_ent_to_your_phone">لقد تم ارسال رمز التعريف الى هاتفك</string>
@@ -143,5 +144,19 @@
     <string name="msg_empty_confirm_password">يرجى تأكيد رقم المرور الجديد</string>
     <string name="msg_empty_confirm_new_password">يرجى أعاده إدخال رقم المرور</string>
     <string name="password_not_matching">كلمه المرور غير متطابقه</string>
+    <string name="filter">فلتر</string>
+    <string name="price">السعر</string>
+    <string name="reviews">التقييمات</string>
+    <string name="distance">المسافه</string>
+    <string name="done">تطبيق</string>
+    <string name="deletefilter">مسح</string>
+    <string name="high_to_law">من الاعلى للاقل</string>
+    <string name="law_to_high">من الاقل للاعلي</string>
+    <string name="hours_count">عدد الساعات</string>
+    <string name="add_money">اضافه رصيد</string>
+    <string name="balance">الرصيد :</string>
+    <string name="add_balance">اضافه رصيد</string>
+    <string name="amount">المبلغ</string>
+    <string name="add">اضافه</string>
 
 </resources>

@@ -7,23 +7,13 @@
 
     </data>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        app:cardCornerRadius="@dimen/_8sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/grey_200"
-        app:strokeWidth="1dp">
+
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/lyt_header"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/_10sdp"
             android:animateLayoutChanges="true"
             android:paddingVertical="@dimen/_5sdp"
@@ -36,23 +26,23 @@
                 android:text="تركيب مروحه شفاط "
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
+
            android:layout_marginStart="@dimen/_10sdp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/checkbox"
                 app:layout_constraintTop_toTopOf="@id/checkbox"
                 app:layout_constraintBottom_toBottomOf="@id/checkbox"/>
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/checkbox"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/check_box_selector"
-                android:gravity="center_vertical"
+                 android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"         android:background="@drawable/checkbox_selector_voiln"
+    android:gravity="center_vertical"
                 android:button="@null"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:padding="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </com.google.android.material.card.MaterialCardView>
-</layout>
+ </layout>

@@ -6,8 +6,8 @@
     android:background="@color/white">
 
     <com.makeramen.roundedimageview.RoundedImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
 android:src="@drawable/user1"
         android:id="@+id/iv_user"
         android:layout_marginTop="@dimen/_50sdp"

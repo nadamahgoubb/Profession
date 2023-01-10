@@ -19,6 +19,8 @@ import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.nav_header.view.*
  import  com.example.profession.R
+import com.example.profession.data.dataSource.repoistry.PrefsHelper
+import com.example.profession.util.ext.loadImage
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() , NavigationView.OnNavigationItemSelectedListener {
@@ -52,6 +54,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() , NavigationView.OnNavi
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         var headerview = binding.navViewSideNav.getHeaderView(0);
+    headerview.tv_name.setText(PrefsHelper.getUserData()?.name)
+        headerview.iv_user.loadImage(Constants.BaseUrl_Images+PrefsHelper.getUserData()?.photo , isCircular = true)
         headerview.iv_cancel.setOnClickListener {
             closeDrawer()
 

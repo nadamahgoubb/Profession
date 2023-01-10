@@ -52,8 +52,9 @@
                         app:layout_collapseMode="pin">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:paddingHorizontal="@dimen/_8sdp"           android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                         >
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -80,6 +81,18 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/iv_filter"
+                                android:layout_width="@dimen/_35sdp"
+                                android:layout_height="@dimen/_35sdp"
+                                android:layout_gravity="start"
+                                android:contentDescription="@string/app_name"
+                                android:padding="@dimen/_6sdp"
+                                android:src="@drawable/ic_filter"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </Toolbar>
 
@@ -99,8 +112,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/_20sdp"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
+                     android:paddingTop="@dimen/_10sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -112,7 +124,7 @@
                         android:clipToPadding="false"
                         android:orientation="vertical"
                         android:visibility="gone"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:layout_marginHorizontal="@dimen/_10sdp"           app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -133,37 +145,41 @@
                         <include
                             android:id="@+id/item1"
                             layout="@layout/item_provider"
-                            android:layout_width="match_parent"
+                  android:layout_marginHorizontal="@dimen/_10sdp"          android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_4sdp" />
+                       android:layout_marginTop="@dimen/_10sdp"   />
 
                         <include
                             android:id="@+id/item2"
                             layout="@layout/item_provider"
-                            android:layout_width="match_parent"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_4sdp" />
+                              />
 
                         <include
                             android:id="@+id/item3"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
                             layout="@layout/item_provider"
-                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/_10sdp"     android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_4sdp" />
+                              />
 
                         <include
                             android:id="@+id/item4"
                             layout="@layout/item_provider"
-                            android:layout_width="match_parent"
+                            android:layout_marginHorizontal="@dimen/_10sdp"          android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/_10sdp"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_4sdp" />
+                              />
 
                         <include
                             android:id="@+id/item5"
                             layout="@layout/item_provider"
-                            android:layout_width="match_parent"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"          android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_4sdp" />
+                              />
                     </LinearLayout>
 
 

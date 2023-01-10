@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lyt_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:animateLayoutChanges="true"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <ImageView
+                android:id="@+id/iv_dawn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rotation="90"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:src="@drawable/ic_arraw"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_dawn" />
+
+
+            <TextView
+                android:id="@+id/tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/price"
+                android:textColor="@color/grey_500"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv2" />
+
+            <LinearLayout
+                android:id="@+id/lyt_rec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv3"
+                tools:listitem="@layout/item_filter_multi_choice">
+
+                <include
+                    android:id="@+id/lyt_low_tohight"
+                    layout="@layout/item_filter_multi_choice" />
+
+                <include
+                    android:id="@+id/lyt_high_to_law"
+                    layout="@layout/item_filter_multi_choice" />
+
+
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rec_filter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv3"
+                tools:listitem="@layout/item_filter_multi_choice"
+
+                />
+
+
+            <TextView
+                android:id="@+id/tv4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="الجنسية"
+                android:textColor="@color/grey_500"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lyt_rec" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+
+                android:id="@+id/et_nationality"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginHorizontal="@dimen/_25sdp"
+                 android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/bg_rounded"
+                android:drawableEnd="@drawable/spinner_drop_dawn"
+                android:gravity="center_vertical"
+                android:hint="سعودى"
+                android:paddingHorizontal="@dimen/_5sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey_800"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv4" />
+            <TextView
+                android:id="@+id/tv5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reviews"
+                android:textColor="@color/grey_500"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_nationality"/>
+
+
+
+
+            <RatingBar
+                android:id="@+id/rating"
+                style="@style/foodRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="false"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:numStars="5"
+                android:rating="3"
+android:layout_marginTop="@dimen/_15sdp"
+                 android:stepSize=".5"
+                app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toBottomOf="@id/tv5">
+
+            </RatingBar>
+            <TextView
+                android:id="@+id/tv6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/distance"
+                android:textColor="@color/grey_500"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold"
+                 android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rating"/>
+            <ProgressBar
+                android:id="@+id/pb2"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:max="120"
+                android:progress="50"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:minHeight="@dimen/_3sdp"
+                android:progressDrawable="@drawable/progress_limit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv6" />
+            <TextView
+                android:id="@+id/tv_start_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1 كم"
+                android:textColor="@color/grey_500"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="@id/pb2"
+                app:layout_constraintTop_toBottomOf="@id/pb2"/>
+            <TextView
+                android:id="@+id/tv_mid_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25 كم"
+                android:textColor="@color/grey_500"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="@id/pb2"
+                app:layout_constraintEnd_toEndOf="@id/pb2"
+                app:layout_constraintTop_toBottomOf="@id/pb2"/>
+            <TextView
+                android:id="@+id/tv_max_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50 كم"
+                android:textColor="@color/grey_500"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_10sdp"
+                 app:layout_constraintEnd_toEndOf="@id/pb2"
+                app:layout_constraintTop_toBottomOf="@id/pb2"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_done"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_40sdp"
+                 android:text="@string/done"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold"
+                app:cornerRadius="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_40sdp"
+                app:layout_constraintStart_toStartOf="parent"
+app:backgroundTint="@color/grey_800"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_max_distance"/>
+            <TextView
+                android:id="@+id/tv_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/deletefilter"
+                android:textColor="@color/gold"
+                android:textSize="@dimen/_14sdp"
+
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_done"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -6,6 +6,8 @@ import com.example.profession.R
 import com.example.profession.databinding.FragmentProvidersBinding
 import com.example.profession.ui.activity.MainActivity
 import com.example.profession.base.BaseFragment
+import com.example.profession.ui.dialog.FilterBottomSheet
+import com.example.profession.ui.dialog.OnFilterClick
 
 
 class ProvidersFragment : BaseFragment<FragmentProvidersBinding>() {
@@ -39,6 +41,20 @@ class ProvidersFragment : BaseFragment<FragmentProvidersBinding>() {
         binding.ivBack.setOnClickListener {
             activity?.onBackPressed()
         }
+        binding.ivFilter.setOnClickListener {
+            showFilterBottomSheet()
+        }
     }
 
+    fun showFilterBottomSheet() {
+        FilterBottomSheet.newInstance(object : OnFilterClick {
+            override fun onFilterSubmitted(brandId: ArrayList<Int>?, sortId: String?) {
+
+            }
+
+
+        })
+            .show(childFragmentManager, FilterBottomSheet::class.java.canonicalName)
+
+    }
 }

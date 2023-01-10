@@ -60,6 +60,7 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
         adapterSubServices  = SubServiceAdapter(this, requireContext())
 
         binding.recServices.init(requireContext(), adapterSubServices, 2)
+        binding.recServices.addItemDecoration( SimpleDividerItemDecoration(requireContext()));
 
 
         lifecycleScope.launch {

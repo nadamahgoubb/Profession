@@ -22,9 +22,7 @@ import com.example.profession.data.dataSource.repoistry.PrefsHelper
 import com.example.profession.data.dataSource.response.CitesItemsResponse
 import com.example.profession.data.dataSource.response.ProfileResponse
 import com.example.profession.ui.adapter.CitesListener
-import com.example.profession.ui.dialog.CategoriesDialog
-import com.example.profession.ui.dialog.DeleteAccountSheetFragment
-import com.example.profession.ui.dialog.OnClick
+import com.example.profession.ui.dialog.*
 import com.example.profession.ui.fragments.auth.AuthAction
 import com.example.profession.ui.fragments.map.MapBottomSheet
 import com.example.profession.ui.fragments.map.onLocationClick
@@ -127,7 +125,20 @@ private fun openCountriesDialog(data: PagingData<CitesItemsResponse>) {
     }, data).show(childFragmentManager, CategoriesDialog::class.java.canonicalName)
 }
 
+    private fun showAddBalanceSheetFragment() {
+        AddBalanceSheetFragment.newInstance(object : OnClickAddBalance {
+            override fun onClick(choice: String) {
+                if (choice.equals(Constants.YES)) {
 
+
+                } else {
+
+                }
+            }
+
+
+        }).show(childFragmentManager, AddBalanceSheetFragment::class.java.canonicalName)
+    }
 fun openCitiesDialog(data: PagingData<CitesItemsResponse>) {
     CategoriesDialog.newInstance(object : CitesListener {
         override fun onOrderClicked(item: CitesItemsResponse?) {
@@ -172,6 +183,9 @@ fun openCitiesDialog(data: PagingData<CitesItemsResponse>) {
         }
         binding.ivMenu.setOnClickListener {
             parent.openDrawer()
+        }
+        binding.btnAddWallet.setOnClickListener {
+            showAddBalanceSheetFragment()
         }
         binding.btnEdit.setOnClickListener {
             if(state==0)stateEditProfile()
@@ -252,7 +266,7 @@ fun openCitiesDialog(data: PagingData<CitesItemsResponse>) {
         parent = requireActivity() as MainActivity
         parent.showBottomNav(true)
         parent.showSideNav(true)
-        binding.btnChangePass.setPaintFlags(binding.btnChangePass.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
+        binding.btnAddWallet.setPaintFlags(binding.btnAddWallet.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
         binding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             if (Math.abs(verticalOffset) == binding.appBarLayout.getTotalScrollRange()) {
                 // If collapsed, then do this
