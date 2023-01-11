@@ -101,5 +101,14 @@ interface ApiInterface {
     @POST("user/profile/delete")
     suspend fun deleteAccount(
          ): NetworkResponse<DevResponse<Any>, ErrorResponse>
+    @FormUrlEncoded
+    @POST("user/complaint")
+    suspend fun complain(
+        @Field("user_id") user_id: String? = null,
+        @Field("title") title: String? = null,
+        @Field("content") content: String? = null,
+
+
+         ): NetworkResponse<DevResponse<Any>, ErrorResponse>
 
 }

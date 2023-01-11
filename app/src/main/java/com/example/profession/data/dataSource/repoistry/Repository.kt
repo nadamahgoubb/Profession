@@ -77,6 +77,8 @@ class Repository @Inject constructor(private val api: ApiInterface) {
     }
     suspend fun deleteAccount(): NetworkResponse<DevResponse<Any>, ErrorResponse> {
         return api.deleteAccount( )
+    } suspend fun complain(params: ComplainParams): NetworkResponse<DevResponse<Any>, ErrorResponse> {
+        return api.complain( params.user_id,params.title, params.content)
     }
 }
 

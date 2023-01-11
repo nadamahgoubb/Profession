@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class UserResponse(
 
-    @SerializedName("id"                ) var id              : Int?    = null,
+    @SerializedName("id"                ) var id              : String?    = null,
     @SerializedName("name"              ) var name            : String? = null,
     @SerializedName("phone"             ) var phone           : String? = null,
     @SerializedName("country_code"      ) var countryCode     : String? = null,

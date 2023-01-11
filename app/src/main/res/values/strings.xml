@@ -158,5 +158,7 @@
     <string name="add_balance">اضافه رصيد</string>
     <string name="amount">المبلغ</string>
     <string name="add">اضافه</string>
+    <string name="please_enter_your_title">برجاء ادخال العنوان</string>
+    <string name="msg_empty_content">"برجاء ادخال مختوى الشكوى "</string>
 
 </resources>

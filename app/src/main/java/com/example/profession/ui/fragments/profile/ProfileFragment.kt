@@ -36,7 +36,8 @@ import java.io.File
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ProfileFragment : BaseFragment<FragmentProfileBinding>()   ,    CountryCodePicker.OnCountryChangeListener {
+class ProfileFragment : BaseFragment<FragmentProfileBinding>(),
+    CountryCodePicker.OnCountryChangeListener {
     private var countryCode: String = "+966"
     private lateinit var parent: MainActivity
     private val mViewModel: ProfileViewModel by viewModels()
@@ -45,15 +46,16 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>()   ,    CountryCod
 
     var lat: Double? = null
     var long: Double? = null
+
     @Inject
     lateinit var permissionManager: PermissionManager
 
     @Inject
     lateinit var locationManager: WWLocationManager
-var state =0 // show data  1->edit
+    var state = 0 // show data  1->edit
     override fun onFragmentReady() {
         onClick()
-stateShowData()
+        stateShowData()
         setupUi()
         mViewModel.apply {
             get_profile()
@@ -77,7 +79,7 @@ stateShowData()
             }
             is ProfileAction.ShowUpdatesProfile -> {
                 showProgress(false)
-showToast(action.message)
+                showToast(action.message)
                 stateShowData()
             }
             is ProfileAction.ShowFailureMsg -> action.message?.let {
@@ -86,44 +88,44 @@ showToast(action.message)
 
             }
 
-        is ProfileAction.ShowAllCities -> {
-            showProgress(false)
-            openCitiesDialog(action.data)
-        }
+            is ProfileAction.ShowAllCities -> {
+                showProgress(false)
+                openCitiesDialog(action.data)
+            }
 
-        is ProfileAction.ShowAllCountry -> {
-            showProgress(false)
-            openCountriesDialog(action.data)
-        }
-        is ProfileAction.DeleteAccount -> {
-            showProgress(false)
-            showToast(action.message)
-            PrefsHelper.clear()
-            var intent = Intent(activity, AuthActivity::class.java)
-            intent.putExtra(Constants.Start, Constants.login)
-            startActivity(intent)
-            activity?.finish()
-
-
-        }
+            is ProfileAction.ShowAllCountry -> {
+                showProgress(false)
+                openCountriesDialog(action.data)
+            }
+            is ProfileAction.DeleteAccount -> {
+                showProgress(false)
+                showToast(action.message)
+                PrefsHelper.clear()
+                var intent = Intent(activity, AuthActivity::class.java)
+                intent.putExtra(Constants.Start, Constants.login)
+                startActivity(intent)
+                activity?.finish()
 
 
-        else -> {
+            }
 
+
+            else -> {
+
+            }
         }
     }
-}
 
-private fun openCountriesDialog(data: PagingData<CitesItemsResponse>) {
-    CategoriesDialog.newInstance(object : CitesListener {
-        override fun onOrderClicked(item: CitesItemsResponse?) {
-            (item?.id)?.let { countryId = it }
-            binding.etCoutry.setText(item?.name)
-        }
+    private fun openCountriesDialog(data: PagingData<CitesItemsResponse>) {
+        CategoriesDialog.newInstance(object : CitesListener {
+            override fun onOrderClicked(item: CitesItemsResponse?) {
+                (item?.id)?.let { countryId = it }
+                binding.etCoutry.setText(item?.name)
+            }
 
 
-    }, data).show(childFragmentManager, CategoriesDialog::class.java.canonicalName)
-}
+        }, data).show(childFragmentManager, CategoriesDialog::class.java.canonicalName)
+    }
 
     private fun showAddBalanceSheetFragment() {
         AddBalanceSheetFragment.newInstance(object : OnClickAddBalance {
@@ -139,16 +141,17 @@ private fun openCountriesDialog(data: PagingData<CitesItemsResponse>) {
 
         }).show(childFragmentManager, AddBalanceSheetFragment::class.java.canonicalName)
     }
-fun openCitiesDialog(data: PagingData<CitesItemsResponse>) {
-    CategoriesDialog.newInstance(object : CitesListener {
-        override fun onOrderClicked(item: CitesItemsResponse?) {
-            (item?.id)?.let { cityID = it }
-            binding.etCity.setText(item?.name)
-        }
+
+    fun openCitiesDialog(data: PagingData<CitesItemsResponse>) {
+        CategoriesDialog.newInstance(object : CitesListener {
+            override fun onOrderClicked(item: CitesItemsResponse?) {
+                (item?.id)?.let { cityID = it }
+                binding.etCity.setText(item?.name)
+            }
 
 
-    }, data).show(childFragmentManager, CategoriesDialog::class.java.canonicalName)
-}
+        }, data).show(childFragmentManager, CategoriesDialog::class.java.canonicalName)
+    }
 
     private fun showData(data: ProfileResponse) {
         binding.etUserName.setText(data.name)
@@ -158,12 +161,12 @@ fun openCitiesDialog(data: PagingData<CitesItemsResponse>) {
         binding.etLocation.setText(data.countryName + "," + data.cityName)
         binding.etEmail.setText(data.email)
         binding.etPhone.setText(data.phone)
-        countryCode= data.countryCode.toString()
-       data.cityId?.let {
-           cityID=it
+        countryCode = data.countryCode.toString()
+        data.cityId?.let {
+            cityID = it
         }
         data.countryId?.let {
-            countryId=it
+            countryId = it
         }
         // binding.countryCodePicker.selectedCountryCode=data.countryCode
 
@@ -188,19 +191,25 @@ fun openCitiesDialog(data: PagingData<CitesItemsResponse>) {
             showAddBalanceSheetFragment()
         }
         binding.btnEdit.setOnClickListener {
-            if(state==0)stateEditProfile()
-            else mViewModel.validateUpdateProfile(binding.etUserName.text.toString(),binding.etPhone.text.toString(),binding.etEmail.text.toString(),
+            if (state == 0) stateEditProfile()
+            else mViewModel.validateUpdateProfile(
+                binding.etUserName.text.toString(),
+                binding.etPhone.text.toString(),
+                binding.etEmail.text.toString(),
                 countryCode,
                 countryId.toString(),
                 cityID.toString(),
-                lat,long , photo = null )
+                lat,
+                long,
+                photo = null
+            )
         }
         binding.etCoutry.setOnClickListener {
-            if(state==1) mViewModel.getAllCountry()
+            if (state == 1) mViewModel.getAllCountry()
         }
 
         binding.etCity.setOnClickListener {
-            if(state==1) {
+            if (state == 1) {
                 if (countryId == -1) showToast(resources.getString(R.string.choose_country_first))
                 else mViewModel.getAllCitiesByCountryId(countryId.toString())
             }
@@ -208,26 +217,26 @@ fun openCitiesDialog(data: PagingData<CitesItemsResponse>) {
         binding.etLocation.setOnClickListener {
             checkLocation()
         }
-        binding.ivEdit.setOnClickListener{
+        binding.ivEdit.setOnClickListener {
 
             pickImage()
         }
     }
+
     private fun openMaps() {
         MapBottomSheet.newInstance(object : onLocationClick {
-            override fun onClick(lat:Double? ,long :Double? , address :String?) {
-                this@ProfileFragment.lat =lat
-                this@ProfileFragment.long=long
+            override fun onClick(lat: Double?, long: Double?, address: String?) {
+                this@ProfileFragment.lat = lat
+                this@ProfileFragment.long = long
                 //   this@RegisterFragment.address=address
-                if(!address.isNullOrEmpty()){
-                    binding.etLocation.visibility= View.VISIBLE
-                    binding.etLocation.setText( address.toString())
-                }else{
-                    binding.etLocation.visibility= View.GONE
+                if (!address.isNullOrEmpty()) {
+                    binding.etLocation.visibility = View.VISIBLE
+                    binding.etLocation.setText(address.toString())
+                } else {
+                    binding.etLocation.visibility = View.GONE
                 }
             }
-        }
-        ).show(childFragmentManager, MapBottomSheet::class.java.canonicalName)
+        }).show(childFragmentManager, MapBottomSheet::class.java.canonicalName)
     }
 
     private fun checkLocation() {
@@ -237,9 +246,11 @@ fun openCitiesDialog(data: PagingData<CitesItemsResponse>) {
             permissionsLauncher?.launch(permissionManager.getAllLocationPermissions())
         }
     }
+
     private val locationSettingLauncher = openLocationSettingsResultLauncher {
         checkIfLocationEnabled()
     }
+
     private fun checkIfLocationEnabled() {
         if (locationManager.isLocationEnabled()) {
             openMaps()
@@ -254,9 +265,7 @@ fun openCitiesDialog(data: PagingData<CitesItemsResponse>) {
             checkIfLocationEnabled()
         } else {
             Toast.makeText(
-                activity,
-                getString(R.string.not_all_permissions_accepted),
-                Toast.LENGTH_LONG
+                activity, getString(R.string.not_all_permissions_accepted), Toast.LENGTH_LONG
             ).show()
         }
     }
@@ -283,10 +292,9 @@ fun openCitiesDialog(data: PagingData<CitesItemsResponse>) {
             }
 
         })
-        binding.swiperefresh .setOnRefreshListener {
+        binding.swiperefresh.setOnRefreshListener {
             mViewModel.get_profile()
-            if (binding.swiperefresh != null) binding.swiperefresh.isRefreshing =
-                false
+            if (binding.swiperefresh != null) binding.swiperefresh.isRefreshing = false
         }
     }
 
@@ -310,15 +318,16 @@ fun openCitiesDialog(data: PagingData<CitesItemsResponse>) {
 
         }).show(childFragmentManager, DeleteAccountSheetFragment::class.java.canonicalName)
     }
-    fun stateShowData(){
-state=0
-binding.etUserName.isEnabled= false
-        binding.etPhone.isEnabled= false
-        binding.etCity.isEnabled= false
-        binding.etCoutry.isEnabled= false
-        binding.etEmail.isEnabled= false
-        binding.etLocation.isEnabled= false
-binding.ivEdit.isVisible=false
+
+    fun stateShowData() {
+        state = 0
+        binding.etUserName.isEnabled = false
+        binding.etPhone.isEnabled = false
+        binding.etCity.isEnabled = false
+        binding.etCoutry.isEnabled = false
+        binding.etEmail.isEnabled = false
+        binding.etLocation.isEnabled = false
+        binding.ivEdit.isVisible = false
         binding.etUserName.setTextColor(resources.getColor(R.color.grey_700))
         binding.etPhone.setTextColor(resources.getColor(R.color.grey_700))
         binding.etCity.setTextColor(resources.getColor(R.color.grey_700))
@@ -326,15 +335,16 @@ binding.ivEdit.isVisible=false
         binding.etEmail.setTextColor(resources.getColor(R.color.grey_700))
         binding.etLocation.setTextColor(resources.getColor(R.color.grey_700))
     }
-    fun stateEditProfile(){
-   state=1
-        binding.etUserName.isEnabled= true
-        binding.etPhone.isEnabled= true
-        binding.etCity.isEnabled= true
-        binding.etCoutry.isEnabled= true
-        binding.etEmail.isEnabled= true
-        binding.etLocation.isEnabled= true
-        binding.ivEdit.isVisible=true
+
+    fun stateEditProfile() {
+        state = 1
+        binding.etUserName.isEnabled = true
+        binding.etPhone.isEnabled = true
+        binding.etCity.isEnabled = true
+        binding.etCoutry.isEnabled = true
+        binding.etEmail.isEnabled = true
+        binding.etLocation.isEnabled = true
+        binding.ivEdit.isVisible = true
 
         binding.etUserName.setTextColor(Color.BLACK)
         binding.etPhone.setTextColor(Color.BLACK)
@@ -347,8 +357,7 @@ binding.ivEdit.isVisible=false
     private val imagePermissionLauncherResult = requestAppPermissions { allIsGranted, _ ->
         if (allIsGranted) {
             FileManager.pickOneImage(this, selectImageFromGalleryResult)
-        } else
-            showToast(getString(R.string.not_all_permissions_accepted))
+        } else showToast(getString(R.string.not_all_permissions_accepted))
     }
 
     private fun pickImage() {
@@ -373,5 +382,6 @@ binding.ivEdit.isVisible=false
         }
 
     override fun onCountrySelected() {
-countryCode= binding.countryCodePicker.selectedCountryCode    }
+        countryCode = binding.countryCodePicker.selectedCountryCode
+    }
 }
