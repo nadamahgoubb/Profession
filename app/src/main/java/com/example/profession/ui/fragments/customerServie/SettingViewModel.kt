@@ -2,26 +2,16 @@ package com.example.profession.ui.fragments.customerServie
 
 import android.app.Application
 import androidx.lifecycle.viewModelScope
-import com.example.laundrydelivery.util.ext.isNull
 import com.example.profession.data.dataSource.repoistry.PrefsHelper
 import com.example.profession.R
 import com.example.profession.base.BaseViewModel
-import com.example.profession.base.PagingParams
-import com.example.profession.data.dataSource.Param.CityParams
 import com.example.profession.data.dataSource.Param.ComplainParams
-import com.example.profession.data.dataSource.Param.LoginParms
-import com.example.profession.data.dataSource.Param.RegisterParams
 import com.example.profession.data.dataSource.response.UserResponse
 
-import com.example.profession.domain.AuthUseCase
-import com.example.profession.domain.CitiesPagingUseCase
-import com.example.profession.domain.CountriesPagingUseCase
 import com.example.profession.domain.SettingUseCase
-import com.example.profession.util.Extension
 import com.example.profession.util.NetworkConnectivity
 import com.example.profession.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -63,7 +53,7 @@ class SettingViewModel
                     is Resource.Success -> {
                         PrefsHelper.saveToken((res.data.data as UserResponse).token)
                         PrefsHelper.saveUserData(res.data.data as UserResponse)
-                        produce(SettingAction.LoginSuccess(res.data.data as UserResponse))
+                        produce(SettingAction.CompalinSucessed(res.data.message as String))
 
                     }
                 }

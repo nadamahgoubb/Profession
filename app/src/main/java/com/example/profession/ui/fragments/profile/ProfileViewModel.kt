@@ -14,23 +14,27 @@ import com.example.profession.domain.ProfileUseCase
 import com.example.profession.util.NetworkConnectivity
 import com.example.profession.util.Resource
 import com.example.profession.R
-import com.example.profession.base.PagingParams
 import com.example.profession.data.dataSource.Param.CityParams
-import com.example.profession.domain.CitiesPagingUseCase
-import com.example.profession.domain.CountriesPagingUseCase
- import com.example.profession.util.Extension
+import com.example.profession.data.dataSource.response.CitesResponse
+import com.example.profession.data.dataSource.response.CountriesResponse
+import com.example.profession.domain.AuthUseCase
+import com.example.profession.util.Extension
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.File
 import javax.inject.Inject
 
+
 @HiltViewModel
 class ProfileViewModel
-@Inject constructor(app: Application, var usecase: ProfileUseCase, val usecaseCity: CitiesPagingUseCase, val useCaseCountry: CountriesPagingUseCase) :
+@Inject constructor(app: Application, var usecase: ProfileUseCase, var usecaseAuth: AuthUseCase ) :
     BaseViewModel<ProfileAction>(app) {
 
-    fun get_profile() {
-
+    companion object{
+        val getCurrentCountryName =1
+        val getAllCountries =2
+    }
+    fun getProfile() {
         produce(ProfileAction.ShowLoading(true))
 
         viewModelScope.launch {
@@ -187,31 +191,48 @@ class ProfileViewModel
             produce(ProfileAction.ShowFailureMsg(getString(R.string.no_internet)))
         }
     }
-    fun getAllCitiesByCountryId(country_id:String){
+    fun getAllCitiesByCountryId(country_id: String, type :Int) {
+
 
         if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
-            usecaseCity.invoke(
+
+
+            produce(ProfileAction.ShowLoading(true))
+            usecaseAuth.invoke(
                 viewModelScope, CityParams(country_id)
-            ) { data ->
-                viewModelScope.launch {
-                    produce(ProfileAction.ShowAllCities(data))
+            ) { res ->
+                when (res) {
+                    is Resource.Failure -> produce(ProfileAction.ShowFailureMsg(res.message.toString()))
+                    is Resource.Progress -> produce(ProfileAction.ShowLoading(res.loading))
+                    is Resource.Success -> {
+                        produce(ProfileAction.ShowAllCities(res.data.data as CitesResponse, type))
+
+                    }
                 }
             }
-        }else {
+        } else {
             produce(ProfileAction.ShowFailureMsg(getString(R.string.no_internet)))
         }
     }
-    fun getAllCountry(){
 
+    fun getAllCountry(type :Int) {
         if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
-            useCaseCountry.invoke(
-                viewModelScope, PagingParams()
-            ) { data ->
-                viewModelScope.launch {
-                    produce(ProfileAction.ShowAllCountry(data))
+
+
+            produce(ProfileAction.ShowLoading(true))
+            usecaseAuth.invoke(
+                viewModelScope
+            ) { res ->
+                when (res) {
+                    is Resource.Failure -> produce(ProfileAction.ShowFailureMsg(res.message.toString()))
+                    is Resource.Progress -> produce(ProfileAction.ShowLoading(res.loading))
+                    is Resource.Success -> {
+                        produce(ProfileAction.ShowAllCountry(res.data.data as CountriesResponse, type))
+
+                    }
                 }
             }
-        }else {
+        } else {
             produce(ProfileAction.ShowFailureMsg(getString(R.string.no_internet)))
         }
     }

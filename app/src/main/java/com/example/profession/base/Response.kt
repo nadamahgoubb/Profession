@@ -23,7 +23,8 @@ data class DevResponse<T>(
     @SerializedName("data")
     var data:  T? = null
 
-) : BaseResponse() {
+) : BaseResponse()
+{
     constructor(parcel: Parcel) : this()
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

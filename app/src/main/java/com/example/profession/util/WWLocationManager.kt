@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import com.example.profession.R
+ import com.example.profession.data.dataSource.Param.AddressParams
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -99,19 +100,19 @@ open class WWLocationManager @Inject constructor(
         }
     }
 
-    fun getAddress(lat: Double?, lng: Double?): String? {
+    fun getAddress(lat: Double?, lng: Double?): AddressParams? {
         val geocoder = Geocoder(context)
         return try {
             val addressList =
                 geocoder.getFromLocation(lat ?: 0.0, lng ?: 0.0, 1)
-            var address = ""
+            var address : AddressParams?= null
             if (addressList != null && addressList.size > 0) {
                 val addressObj = addressList[0]
-                address = addressObj.getAddressLine(0)
-           //     val cityName: String = addressObj.getAddressLine(0)
-           //     val stateName: String = addressObj.getAddressLine(1)
-           //     val countryName: String = addressObj.getAddressLine(2)
-                }
+         /*    val   addresstxt = addressObj.getAddressLine(0)
+              val cityName: String? = addressObj.adminArea
+              val stateName: String? = addressObj.subAdminArea
+              val street: String? = addressObj.locality*/
+                address=AddressParams(addressObj.getAddressLine(0) ,addressObj.countryName, addressObj.adminArea, addressObj.subAdminArea, addressObj.locality, lat?.toString(), lng?.toString())      }
             address
         } catch (e: IOException) {
          //   e.showLogMessage()

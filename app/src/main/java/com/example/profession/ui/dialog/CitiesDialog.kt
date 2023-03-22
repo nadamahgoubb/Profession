@@ -7,45 +7,36 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import androidx.paging.LoadState
-import androidx.paging.PagingData
 import com.example.profession.R
 import com.example.profession.data.dataSource.response.CitesItemsResponse
 import com.example.profession.databinding.DialogCitiesBinding
 import com.example.profession.ui.adapter.CitesListener
-import com.example.profession.ui.adapter.CitesPagingAdapter
-import com.example.profession.util.Constants
+import com.example.profession.ui.adapter.CitesAdapter
 import com.example.profession.util.ext.init
 
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
 class CategoriesDialog(
     private val onClick: CitesListener,
-    var data: PagingData<CitesItemsResponse>,
+    var data: ArrayList<CitesItemsResponse>,
 ) : DialogFragment(R.layout.item_filter_multi_choice), CitesListener {
-    private lateinit var adapter: CitesPagingAdapter
 
     private lateinit var binding: DialogCitiesBinding
+    private lateinit var adapter: CitesAdapter
+    var cityItem: CitesItemsResponse? = null
 
 
     companion object {
         fun newInstance(
             onClick: CitesListener,
-            data: PagingData<CitesItemsResponse>,
+            data: ArrayList<CitesItemsResponse>,
         ): CategoriesDialog {
             val args = Bundle()
             val f = CategoriesDialog(
-                onClick, data
-            )
+                onClick, data)
             f.arguments = args
             return f
         }
@@ -89,63 +80,17 @@ class CategoriesDialog(
         view.layoutParams = layoutParams
     }
 
-    var cityId: CitesItemsResponse? = null
 
     private fun initAdapters() {
 
-        adapter = CitesPagingAdapter(
-            requireContext(), this,
-        )
+        adapter = CitesAdapter(requireContext(), this)
         binding.rvCat.init(requireContext(), adapter, 2)
-
-
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                adapter.loadStateFlow.collect {
-                    binding.preProg.isVisible = it.source.prepend is LoadState.Loading
-                    binding.appendProgress.isVisible = it.source.append is LoadState.Loading
-                }
-            }
-        }
-        adapter.addLoadStateListener { loadState ->
-
-            // show empty list
-            if (loadState.refresh is LoadState.Loading || loadState.append is LoadState.Loading) {
-                //    binding.lytEmptyState.visibility = View.GONE
-                //     binding.lytData.visibility = View.VISIBLE
-            }
-            if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && adapter.itemCount < 1) {
-                //     binding.lytData.visibility = View.GONE
-
-                //   binding.lytEmptyState.visibility = View.VISIBLE
-            } else {
-                // binding.lytEmptyState.visibility = View.GONE
-                // binding.lytData.visibility = View.VISIBLE
-                // If we have an error, show a toast*/
-                val errorState = when {
-                    loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-                    loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-                    loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-                    else -> null
-                }
-                errorState?.let {
-                    /* if (it.error.message.equals(Constants.UNAUTHURAIZED_ACCESS)) {
-                         showEmptyState(true)
-                     } else*/
-                    Toast.makeText(activity, it.error.message.toString(), Toast.LENGTH_LONG).show()
-                }
-
-            }
-        }
-        lifecycleScope.launch {
-            adapter.submitData(data)
-        }
-
+        adapter.list = (data)
+        adapter.notifyDataSetChanged()
     }
 
-
     override fun onOrderClicked(item: CitesItemsResponse?) {
-        cityId = item
+        cityItem = item
         onClick.onOrderClicked(item)
         dialog?.dismiss()
     }

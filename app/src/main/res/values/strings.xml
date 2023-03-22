@@ -113,6 +113,13 @@
     <string name="expected_time">وقت الوصول المتوقع</string>
     <string name="comment">تعليقات اضافيه</string>
     <string name="order">تنفيذ الطلب</string>
+    <string name="new_">الجديدة</string>
+    <string name="prev">السابقة</string>
+    <string name="current">الحالية</string>
+    <string name="new_order">طلب جديد</string>
+    <string name="prev_orders">طلب سابق</string>
+    <string name="current_orders">طلب حالى </string>
+
     <string name="empty_address">Please Enter Your Address</string>
     <string name="location_is_off">location_is_off</string>
     <string name="location_off_body_message">location_off_body_message</string>
@@ -129,7 +136,7 @@
     <string name="tax_not_included">ضريبه القيمه المضافه غير مشموله</string>
     <string name="logout">تسجيل الخروج</string>
     <string name="please_enter_your_phone">برجاء إدخال رقم الهاتف</string>
-     <string name="no_internet">لا يوجد إتصال بالانترنت</string>
+    <string name="no_internet">لا يوجد إتصال بالانترنت</string>
     <string name="empty_user_name">برجاء إدخال اسم المستخدم</string>
     <string name="empty_num">برجاء إدخال رقم الجوال</string>
     <string name="msg_empty_email">برجاء إدخال البريد الإلكترونى</string>
@@ -153,6 +160,7 @@
     <string name="high_to_law">من الاعلى للاقل</string>
     <string name="law_to_high">من الاقل للاعلي</string>
     <string name="hours_count">عدد الساعات</string>
+    <string name="hours_cost">تكلفة الساعة </string>
     <string name="add_money">اضافه رصيد</string>
     <string name="balance">الرصيد :</string>
     <string name="add_balance">اضافه رصيد</string>
@@ -160,5 +168,13 @@
     <string name="add">اضافه</string>
     <string name="please_enter_your_title">برجاء ادخال العنوان</string>
     <string name="msg_empty_content">"برجاء ادخال مختوى الشكوى "</string>
+    <string name="orderid">طلب رقم</string>
+    <string name="whatsup_not_installed">تطبيق الواتساب غير مثبت على الهاتف</string>
+    <string name="please_choose_your_locaion">برجاء اختيار العنوان اولا</string>
+    <string name="distance_between">المسافه بينكم</string>
+    <string name="ecperience">سنين الخبرة</string>
+    <string name="selected_provider">مقدمى الخدمة المختارين</string>
+    <string name="please_choose_providers_first">برجاء اختيار مزود خدمة اولا</string>
+    <string name="visit_start_time">بداية وقت الزبارة</string>
 
 </resources>

@@ -1,5 +1,6 @@
 package com.example.profession.ui.adapter
 
+ import android.annotation.SuppressLint
  import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -17,40 +18,44 @@ import com.example.profession.ui.listener.SliderListener
 class SliderHomeAdapter(
     var listener : SliderListener,
     var   context: Context
-    ): PagingDataAdapter<SliderItemsResponse, SliderHomeAdapter.SliderHomeViewHolder>(SLIDER_DIFF_CALLBACK) {
-    override fun onBindViewHolder(holder: SliderHomeViewHolder, position: Int) {
+    ):   RecyclerView.Adapter<SliderHomeAdapter.SliderHomeViewHolder>() {
 
-      holder.binding.ivOffers.setImageDrawable(context.getDrawable(R.drawable.slider1))
-      //holder.binding.ivOffers.loadImage(Constants.BaseUrl_Images+getItem(position)?.image)
+    var _binding: ItemHomeOffersBinding? = null
+    var list = mutableListOf<SliderItemsResponse>()
+        @SuppressLint("NotifyDataSetChanged")
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
+        override fun onBindViewHolder(holder: SliderHomeViewHolder, position: Int) {
+var current = list.get(position)
+     //  holder.binding.ivOffers.loadImage(list[position].image)
+            holder.binding.ivOffers.setImageDrawable(context.getDrawable(R.drawable.slider1))
 
         holder.binding.root.setOnClickListener {
-            getItem(position)?.let { it1 -> listener.onSliderClickListener(it1) }
+            listener.onSliderClickListener(current) }
         }
-    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SliderHomeViewHolder {
 
-        return SliderHomeViewHolder(
+        _binding=
             ItemHomeOffersBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
             )
-        )
+
+        return  SliderHomeViewHolder(_binding!!)
     }
+
+    override fun getItemCount(): Int = list.size
 
     class SliderHomeViewHolder(val binding: ItemHomeOffersBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    companion object {
-        private val SLIDER_DIFF_CALLBACK = object : DiffUtil.ItemCallback<SliderItemsResponse>() {
-            override fun areItemsTheSame(oldItem: SliderItemsResponse, newItem: SliderItemsResponse): Boolean =
-                oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: SliderItemsResponse, newItem: SliderItemsResponse): Boolean =
-                oldItem == newItem
-        }
-    }
 }
 
 

@@ -4,6 +4,7 @@ package com.example.profession.ui.fragments.subService
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -16,7 +17,6 @@ import com.example.profession.ui.activity.MainActivity
 import com.example.profession.base.BaseFragment
 import com.example.profession.data.dataSource.response.ServicesItemsResponse
 import com.example.profession.data.dataSource.response.SubServiceItemsResponse
-import com.example.profession.ui.adapter.ServicesHomeAdapter
 import com.example.profession.ui.adapter.SubServiceAdapter
 import com.example.profession.ui.fragments.home.HomeAction
 import com.example.profession.ui.fragments.home.HomeViewModel
@@ -33,6 +33,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubServiceListener {
     private val mViewModel: HomeViewModel by viewModels()
+    private val mViewModelCreateOrder: CreateOrdersViewModel by activityViewModels()
     lateinit var adapterSubServices: SubServiceAdapter
 
     @Inject
@@ -42,13 +43,13 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
     @Inject
     lateinit var locationManager: WWLocationManager
     override fun onFragmentReady() {
-        var item =arguments?.getParcelable<ServicesItemsResponse>(Constants.SERVICE)
+        var item = arguments?.getParcelable<ServicesItemsResponse>(Constants.SERVICE)
         setupUi(item)
+        mViewModelCreateOrder.serviceId = item?.id
         onClick()
         initAdapter()
         mViewModel.apply {
             getSubService(item?.id.toString())
-
             observe(viewState) {
                 handleViewState(it)
             }
@@ -57,16 +58,16 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
 
     private fun initAdapter() {
 
-        adapterSubServices  = SubServiceAdapter(this, requireContext())
+        adapterSubServices = SubServiceAdapter(this, requireContext())
 
         binding.recServices.init(requireContext(), adapterSubServices, 2)
-        binding.recServices.addItemDecoration( SimpleDividerItemDecoration(requireContext()));
+        binding.recServices.addItemDecoration(SimpleDividerItemDecoration(requireContext()));
 
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 adapterSubServices.loadStateFlow.collect {
-                     binding.appendProgress.isVisible = it.source.append is LoadState.Loading
+                    binding.appendProgress.isVisible = it.source.append is LoadState.Loading
                 }
             }
         }
@@ -76,15 +77,15 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
             if (loadState.refresh is LoadState.Loading ||
                 loadState.append is LoadState.Loading
             ) {
-              //  binding.lytEmptyState.visibility = View.GONE
+                //  binding.lytEmptyState.visibility = View.GONE
                 binding.lytData.visibility = View.VISIBLE
             }
             if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && adapterSubServices.itemCount < 1) {
                 binding.lytData.visibility = View.GONE
 
-            //    binding.lytEmptyState.visibility = View.VISIBLE
+                //    binding.lytEmptyState.visibility = View.VISIBLE
             } else {
-              //  binding.lytEmptyState.visibility = View.GONE
+                //  binding.lytEmptyState.visibility = View.GONE
                 binding.lytData.visibility = View.VISIBLE
                 // If we have an error, show a toast*/
                 val errorState = when {
@@ -107,10 +108,7 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
 
     }
 
-    private fun onClick() {
-        binding.ivBack.setOnClickListener {
-            activity?.onBackPressed()
-        }    }
+
 
     private fun handleViewState(action: HomeAction) {
         when (action) {
@@ -120,7 +118,7 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
                     hideKeyboard()
                 }
             }
-            is    HomeAction.ShowSubService -> {
+            is HomeAction.ShowSubService -> {
                 showProgress(false)
                 lifecycleScope.launch {
                     adapterSubServices.submitData(action.data)
@@ -141,34 +139,34 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
     }
 
 
-        private fun setupUi(item: ServicesItemsResponse?) {
-            setupBottomCard()
-            parent = requireActivity() as MainActivity
-                parent.showBottomNav(false)
-                parent.showSideNav(false)
-binding.ivProfile.loadImage(Constants.BaseUrl_Images+item?.icon)
+    private fun setupUi(item: ServicesItemsResponse?) {
+        onClick()
+        parent = requireActivity() as MainActivity
+        parent.showBottomNav(false)
+        parent.showSideNav(false)
+        binding.ivProfile.loadImage(item?.icon)
 
-      binding.tvTitle.setText(item?.name.toString())
+        binding.tvTitle.setText(item?.name.toString())
 
-            binding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-                if (Math.abs(verticalOffset) ==   binding.appBarLayout.getTotalScrollRange()) {
-                    // If collapsed, then do this
-                    binding.ivProfile.setVisibility(View.GONE);
-               binding.lytImg.setVisibility(View.GONE);
-                 } else if (verticalOffset == 0) {
-                 binding.lytImg.setVisibility(View.VISIBLE);
-                    binding.ivProfile.setVisibility(View.VISIBLE);
-                 } else {
-                    // Somewhere in between
-                    // Do according to your requirement
-                }
+        binding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            if (Math.abs(verticalOffset) == binding.appBarLayout.getTotalScrollRange()) {
+                // If collapsed, then do this
+                binding.ivProfile.setVisibility(View.GONE);
+                binding.lytImg.setVisibility(View.GONE);
+            } else if (verticalOffset == 0) {
+                binding.lytImg.setVisibility(View.VISIBLE);
+                binding.ivProfile.setVisibility(View.VISIBLE);
+            } else {
+                // Somewhere in between
+                // Do according to your requirement
+            }
 
-                   })
+        })
 
-        }
+    }
 
 
-    private fun setupBottomCard() {
+    private fun onClick() {
         binding.ivUp.setOnClickListener {
             up()
         }
@@ -245,6 +243,9 @@ binding.ivProfile.loadImage(Constants.BaseUrl_Images+item?.icon)
         }
     }
 
-    override fun onSubServiceClickListener(item: SubServiceItemsResponse) {
-     }
+
+    override fun onSubServiceClickListener(items: ArrayList<SubServiceItemsResponse>) {
+      mViewModelCreateOrder.  selectedSubservice.clear()
+        mViewModelCreateOrder.  selectedSubservice = items
+    }
 }

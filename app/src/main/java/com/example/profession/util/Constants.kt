@@ -17,7 +17,7 @@ object Constants {
     const  val CITIES: String="cities"
     const  val PHONE: String="phone"
     const  val USER: String="user"
-    const  val BaseUrl_Images: String="https://professions.tawajood.com/assets/images/users/"
+   // const  val BaseUrl_Images: String="https://professions.tawajood.com/assets/images/users/"
 
     const val DATA_STORE_NAME = "my_datastore"
     const val ROOM_DATA_BASE_NAME = "my_datastore"
@@ -30,11 +30,11 @@ object Constants {
     const val YES = "Yes"
     const val NO = "no"
 
-    const val PICK_UP="pick_up_laundy"
-    const val DROP_OFF="drop_of_home"
-
-    const val PICK_UP_TITLE="Pick Up"
-    const val DROP_OFF_TITLE="Drop Off"
-
+    const val ORDER="order"
+    const val PROVIDERS="providers"
+    const   val ORDERID: String ="ORDERID"
+    const val PREV_ORDER="previous"
+    const val New_ORDER="new"
+    const val CURRENT_ORDER="underway"
 
 }

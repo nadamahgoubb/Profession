@@ -7,10 +7,14 @@ import android.location.Location
 import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.laundrydelivery.util.ext.isNull
 import com.example.profession.R
 import com.example.profession.databinding.FragmentMapBinding
 import com.example.profession.base.BaseFragment
+import com.example.profession.data.dataSource.Param.AddressParams
+import com.example.profession.ui.fragments.subService.CreateOrdersViewModel
 import com.example.profession.util.ExpandAnimation.collapse
 import com.example.profession.util.ExpandAnimation.expand
 import com.example.profession.util.MapUtil
@@ -40,7 +44,7 @@ class MapFragment():BaseFragment<FragmentMapBinding>()
     private var long: Double?= null
 
     private var loc: Location? = null
-    private var address: String? = null
+    private var address: AddressParams? = null
 
 
     private lateinit var googleMap: GoogleMap
@@ -52,6 +56,7 @@ class MapFragment():BaseFragment<FragmentMapBinding>()
 
     @Inject
     lateinit var permissionManager: PermissionManager
+    private val mViewModelCreateOrder: CreateOrdersViewModel by activityViewModels()
 
 
     private fun getLocationNow() {
@@ -83,8 +88,17 @@ class MapFragment():BaseFragment<FragmentMapBinding>()
         long= longitude
         onMapReady(googleMap, latitude, longitude)
         address= locationManager.getAddress(latitude, longitude)
-        binding?.tvAddress?.text =
-            address
+
+      address?.let {
+          mViewModelCreateOrder.address =it
+          mViewModelCreateOrder.lat = latitude
+           mViewModelCreateOrder.long= longitude
+          binding?.tvAddress?.text =
+              address?.address.toString()
+          binding?.tvCountry?.text =
+              address?.country.toString()+","+ address?.city.toString()
+        }
+
     }
 
     private fun onMapReady(gm: GoogleMap, latitude:Double, longitude:Double) {
@@ -126,8 +140,8 @@ class MapFragment():BaseFragment<FragmentMapBinding>()
             expand(binding.cardUp)
         }
         binding?.btnDone?.setOnClickListener {
-
-findNavController().navigate(R.id.providersFragment)        }
+if(mViewModelCreateOrder.address.isNull()) showToast(resources.getString(R.string.please_choose_your_locaion))
+ else findNavController().navigate(R.id.providersFragment)        }
         binding.ivUp.setOnClickListener {
             collapse(binding.cardUp)
             expand(binding.locationCard)

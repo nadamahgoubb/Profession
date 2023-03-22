@@ -24,7 +24,7 @@ class ServicesHomeAdapter(
     override fun onBindViewHolder(holder: ServiceHomeViewHolder, position: Int) {
  holder.binding.tvServiceName.setText(getItem(position)?.name)
    //    holder.binding.ivService.setImageDrawable(context.getDrawable(R.drawable.gr2))
-      holder.binding.ivSerivce.loadImage(Constants.BaseUrl_Images+getItem(position)?.icon)
+      holder.binding.ivSerivce.loadImage( getItem(position)?.icon)
         holder.binding.root.setOnClickListener {
             listener.onServiceClickListener(getItem(position))
             //currentItem)

@@ -10,7 +10,7 @@ interface ServiceOnClickListener {
 }
 
 interface SubServiceListener {
-    fun onSubServiceClickListener(item: SubServiceItemsResponse)
+    fun onSubServiceClickListener(items: ArrayList<SubServiceItemsResponse>)
 }
 
 interface SliderListener {

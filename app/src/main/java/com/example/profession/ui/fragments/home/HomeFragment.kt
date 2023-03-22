@@ -70,8 +70,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), ServiceOnClickListener
             }
             is    HomeAction.ShowSlider -> {
                 showProgress(false)
-                lifecycleScope.launch {
-                adapter_slider.submitData(action.data) }
+                action.data?.sliders?.let {
+                    adapter_slider.list =it
+                        adapter_slider.notifyDataSetChanged()
+                }
             }
             is HomeAction.ShowFailureMsg ->
                 action.message?.let {
@@ -165,47 +167,6 @@ binding.tvName.setText(PrefsHelper.getUserData()?.name)
         binding.rvOffersHome.init(requireContext(), adapter_slider, 1)
 
 
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                adapter_slider.loadStateFlow.collect {
-                    binding.preProg.isVisible = it.source.prepend is LoadState.Loading
-                    binding.appendProgress.isVisible = it.source.append is LoadState.Loading
-                }
-            }
-        }
-        adapter_slider.addLoadStateListener { loadState ->
-
-            // show empty list
-            if (loadState.refresh is LoadState.Loading ||
-                loadState.append is LoadState.Loading
-            ) {
-              //  binding.lytEmptyState.visibility = View.GONE
-              //  binding.lytData.visibility = View.VISIBLE
-            }
-            if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && adapter_slider.itemCount < 1) {
-               // binding.lytData.visibility = View.GONE
-
-             //   binding.lytEmptyState.visibility = View.VISIBLE
-            } else {
-              //  binding.lytEmptyState.visibility = View.GONE
-              //  binding.lytData.visibility = View.VISIBLE
-                // If we have an error, show a toast*/
-                val errorState = when {
-                    loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-                    loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-                    loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-                    else -> null
-                }
-                errorState?.let {
-                    /* if (it.error.message.equals(Constants.UNAUTHURAIZED_ACCESS)) {
-                         showEmptyState(true)
-                     } else*/
-                    Toast.makeText(activity, it.error.message.toString(), Toast.LENGTH_LONG)
-                        .show()
-                }
-
-            }
-        }
     }
 
     override fun onServiceClickListener(item: ServicesItemsResponse?) {

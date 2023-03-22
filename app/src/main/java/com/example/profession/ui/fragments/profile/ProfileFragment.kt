@@ -13,19 +13,22 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.paging.PagingData
+import com.example.laundrydelivery.util.ext.isNull
 import com.example.profession.R
 import com.example.profession.databinding.FragmentProfileBinding
 import com.example.profession.ui.activity.AuthActivity
 import com.example.profession.ui.activity.MainActivity
 import com.example.profession.base.BaseFragment
+import com.example.profession.data.dataSource.Param.AddressParams
 import com.example.profession.data.dataSource.repoistry.PrefsHelper
 import com.example.profession.data.dataSource.response.CitesItemsResponse
 import com.example.profession.data.dataSource.response.ProfileResponse
 import com.example.profession.ui.adapter.CitesListener
 import com.example.profession.ui.dialog.*
-import com.example.profession.ui.fragments.auth.AuthAction
 import com.example.profession.ui.fragments.map.MapBottomSheet
 import com.example.profession.ui.fragments.map.onLocationClick
+import com.example.profession.ui.fragments.profile.ProfileViewModel.Companion.getAllCountries
+import com.example.profession.ui.fragments.profile.ProfileViewModel.Companion.getCurrentCountryName
 import com.example.profession.util.*
 import com.example.profession.util.ext.hideKeyboard
 import com.example.profession.util.ext.loadImage
@@ -41,8 +44,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(),
     private var countryCode: String = "+966"
     private lateinit var parent: MainActivity
     private val mViewModel: ProfileViewModel by viewModels()
-    var cityID: Int = -1
-    var countryId: Int = -1
+    var cityID: String = ""
+    var countryId: String = ""
+    var countries: ArrayList<CitesItemsResponse> = arrayListOf()
+    var cities: ArrayList<CitesItemsResponse> = arrayListOf()
 
     var lat: Double? = null
     var long: Double? = null
@@ -58,7 +63,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(),
         stateShowData()
         setupUi()
         mViewModel.apply {
-            get_profile()
+            getProfile()
+            getAllCountry(getCurrentCountryName)
             observe(viewState) {
                 handleViewState(it)
             }
@@ -90,12 +96,24 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(),
 
             is ProfileAction.ShowAllCities -> {
                 showProgress(false)
-                openCitiesDialog(action.data)
+
+                action.data.cities?.let {
+                    cities=it
+                    if(action.type== getAllCountries) openCitiesDialog(it)
+else binding.etCity.setText(searchInCiteies(cityID, cities)?.name)
+
+                }
             }
 
             is ProfileAction.ShowAllCountry -> {
+
                 showProgress(false)
-                openCountriesDialog(action.data)
+
+                action.data.countries?.let {
+                    countries = it
+                    if(action.type== getAllCountries) openCountriesDialog(it)
+                    else binding.etCoutry.setText(searchInCiteies(countryId, countries)?.name)
+                }
             }
             is ProfileAction.DeleteAccount -> {
                 showProgress(false)
@@ -115,11 +133,17 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(),
             }
         }
     }
+ fun searchInCiteies(id:String , list:ArrayList<CitesItemsResponse>): CitesItemsResponse? {
+     for (i in list){
+         if(id == i.id) return i
 
-    private fun openCountriesDialog(data: PagingData<CitesItemsResponse>) {
+     }
+     return  null
+ }
+    private fun openCountriesDialog(data: ArrayList<CitesItemsResponse>) {
         CategoriesDialog.newInstance(object : CitesListener {
             override fun onOrderClicked(item: CitesItemsResponse?) {
-                (item?.id)?.let { countryId = it }
+                (item?.id)?.let { countryId = it.toString() }
                 binding.etCoutry.setText(item?.name)
             }
 
@@ -142,7 +166,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(),
         }).show(childFragmentManager, AddBalanceSheetFragment::class.java.canonicalName)
     }
 
-    fun openCitiesDialog(data: PagingData<CitesItemsResponse>) {
+    fun openCitiesDialog(data: ArrayList<CitesItemsResponse>) {
         CategoriesDialog.newInstance(object : CitesListener {
             override fun onOrderClicked(item: CitesItemsResponse?) {
                 (item?.id)?.let { cityID = it }
@@ -168,6 +192,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(),
         data.countryId?.let {
             countryId = it
         }
+     mViewModel.   getAllCitiesByCountryId(countryId , getCurrentCountryName)
+
         // binding.countryCodePicker.selectedCountryCode=data.countryCode
 
     }
@@ -205,13 +231,17 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(),
             )
         }
         binding.etCoutry.setOnClickListener {
-            if (state == 1) mViewModel.getAllCountry()
-        }
+            if (state == 1) {
+                if (countries.isNullOrEmpty()) mViewModel.getAllCountry(getAllCountries)
+                else openCountriesDialog(countries)
+
+            }}
 
         binding.etCity.setOnClickListener {
-            if (state == 1) {
-                if (countryId == -1) showToast(resources.getString(R.string.choose_country_first))
-                else mViewModel.getAllCitiesByCountryId(countryId.toString())
+          if (state == 1) {
+              if(cities.isNullOrEmpty())mViewModel.getAllCitiesByCountryId(countryId, getAllCountries)
+               else if (countryId == "") showToast(resources.getString(R.string.choose_country_first))
+                else openCitiesDialog(cities)
             }
         }
         binding.etLocation.setOnClickListener {
@@ -225,11 +255,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(),
 
     private fun openMaps() {
         MapBottomSheet.newInstance(object : onLocationClick {
-            override fun onClick(lat: Double?, long: Double?, address: String?) {
+            override fun onClick(lat: Double?, long: Double?, address: AddressParams?) {
                 this@ProfileFragment.lat = lat
                 this@ProfileFragment.long = long
                 //   this@RegisterFragment.address=address
-                if (!address.isNullOrEmpty()) {
+                if (!address.isNull()) {
                     binding.etLocation.visibility = View.VISIBLE
                     binding.etLocation.setText(address.toString())
                 } else {
@@ -293,7 +323,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(),
 
         })
         binding.swiperefresh.setOnRefreshListener {
-            mViewModel.get_profile()
+            mViewModel.getProfile()
             if (binding.swiperefresh != null) binding.swiperefresh.isRefreshing = false
         }
     }

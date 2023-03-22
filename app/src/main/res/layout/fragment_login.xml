@@ -60,7 +60,7 @@ android:paddingBottom="@dimen/_20sdp"
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <ImageView
-                    android:id="@+id/iv_play"
+                    android:id="@+id/iv_back"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
               android:layout_marginStart="@dimen/_10sdp"      android:layout_marginBottom="@dimen/_10sdp"

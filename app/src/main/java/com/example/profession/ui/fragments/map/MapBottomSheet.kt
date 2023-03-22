@@ -13,6 +13,7 @@ import android.widget.FrameLayout
 import androidx.core.app.ActivityCompat
 
 import com.example.profession.R
+import com.example.profession.data.dataSource.Param.AddressParams
 import com.example.profession.databinding.FragmentMapBinding
 import com.example.profession.util.ExpandAnimation.collapse
 import com.example.profession.util.MapUtil
@@ -37,7 +38,7 @@ import java.lang.Exception
 
 
 interface onLocationClick {
-    fun onClick( lat :Double?, long :Double?,address :String?)
+    fun onClick( lat :Double?, long :Double?,address :AddressParams?)
 }
 
 @AndroidEntryPoint
@@ -49,7 +50,7 @@ class MapBottomSheet(var onClick: onLocationClick) :     BottomSheetDialogFragme
     private lateinit var binding: FragmentMapBinding
 
     private var loc: Location? = null
-    private var address: String? = null
+    private var address: AddressParams? = null
 
      companion object {
         fun newInstance(onClick: onLocationClick): MapBottomSheet {
@@ -108,8 +109,13 @@ class MapBottomSheet(var onClick: onLocationClick) :     BottomSheetDialogFragme
         long= longitude
         onMapReady(googleMap, latitude, longitude)
         address= locationManager.getAddress(latitude, longitude)
-        binding?.tvAddress?.text =
-            address
+        address?.let {
+
+            binding?.tvAddress?.text =
+                address?.address.toString()
+            binding?.tvCountry?.text =
+                address?.country.toString()+","+ address?.city.toString()
+        }
     }
 
     private fun onMapReady(gm: GoogleMap, latitude:Double, longitude:Double) {

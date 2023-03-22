@@ -1,5 +1,5 @@
 package com.example.profession.data.dataSource.Param
 
-import com.example.profession.base.PagingParams
 
-data class CityParams(var countryId:String) : PagingParams ()
+data class CityParams(var countryId:String)
+data class AddressParams(var address:String?,var country:String?, val city:String? ,val district:String? ,val  street:String?,val lat :String? , val lon:String? )

@@ -55,7 +55,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() , NavigationView.OnNavi
         toggle.syncState()
         var headerview = binding.navViewSideNav.getHeaderView(0);
     headerview.tv_name.setText(PrefsHelper.getUserData()?.name)
-        headerview.iv_user.loadImage(Constants.BaseUrl_Images+PrefsHelper.getUserData()?.photo , isCircular = true)
+        headerview.iv_user.loadImage(PrefsHelper.getUserData()?.photo , isCircular = true)
         headerview.iv_cancel.setOnClickListener {
             closeDrawer()
 

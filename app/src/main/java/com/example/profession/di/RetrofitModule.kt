@@ -40,7 +40,7 @@ object RetrofitModule {
                     .addHeader("Accept", "application/json")
           //          .addHeader("lang", /*PrefsHelper.getLanguage()*/ "en")
 
-                .addHeader("Authorization", "Bearer" + PrefsHelper.getToken())
+                .addHeader("Authorization", "Bearer " + PrefsHelper.getToken())
 
                 val request = requestBuilder.build()
                 chain.proceed(request)

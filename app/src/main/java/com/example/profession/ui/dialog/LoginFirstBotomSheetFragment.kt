@@ -57,7 +57,6 @@ class LoginFirstBotomSheetFragment(var onClick: OnClickLoginFirst) :
         binding.btnOk.setOnClickListener {
             onClick.onClick(Constants.YES)
             dismiss()
-
         }
     }
 

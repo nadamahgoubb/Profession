@@ -23,8 +23,7 @@
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="تركيب مروحه شفاط "
-                android:textColor="@color/black"
+                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
 
            android:layout_marginStart="@dimen/_10sdp"

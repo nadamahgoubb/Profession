@@ -1,9 +1,9 @@
 package com.example.profession.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.profession.data.dataSource.response.CitesItemsResponse
@@ -17,15 +17,22 @@ interface CitesListener {
 
 }
 
-class CitesPagingAdapter(
+class CitesAdapter(
      var context:Context,
      var listener:CitesListener
     ) :
-    PagingDataAdapter<CitesItemsResponse, CitesPagingAdapter.MyViewHolder>(Cities_DIFF_CALLBACK) {
-    var lastPosition = -1
-
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-var currentItem= getItem(position)
+   // PagingDataAdapter<CitesItemsResponse, CitesItemsResponse.MyViewHolder>(Cities_DIFF_CALLBACK) {
+      RecyclerView.Adapter<CitesAdapter.CitesViewHolder>() {
+        var lastPosition = -1
+    var _binding: ItemFilterMultiChoiceBinding? = null
+    var list = mutableListOf<CitesItemsResponse>()
+        @SuppressLint("NotifyDataSetChanged")
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+    override fun onBindViewHolder(holder: CitesViewHolder, position: Int) {
+var currentItem= list.get(position)
         holder.binding.tvName.text = currentItem?.name
 
         holder.binding.checkbox.setOnClickListener {
@@ -41,9 +48,9 @@ var currentItem= getItem(position)
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CitesViewHolder {
 
-        return MyViewHolder(
+        return CitesViewHolder(
             ItemFilterMultiChoiceBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -58,10 +65,10 @@ var currentItem= getItem(position)
     //    ca.indexOfFirst { item.id == it.id }
      //       .takeIf { it > -1 }?.let { pos ->
      //           list[pos] = item
-getItem(pos)?.name=item.name
-        getItem(pos)?.id=item.id
+        list.get(pos)?.name=item.name
+        list.get(pos)?.id=item.id
      //   getItem(pos)?.countryId=item.countryId
-        getItem(pos)?.choosen=item.choosen
+        list.get(pos)?.choosen=item.choosen
 
                 notifyItemChanged(pos)
             }
@@ -69,7 +76,7 @@ getItem(pos)?.name=item.name
 
     fun selectOneItemOnly(item: CitesItemsResponse, position: Int) {
         if (lastPosition != -1) {
-            var lastChoosen = getItem(lastPosition)
+            var lastChoosen = list.get(lastPosition)
 
             updateItem(
                 item = CitesItemsResponse(
@@ -85,7 +92,7 @@ getItem(pos)?.name=item.name
 
 
     }
-    class MyViewHolder(var binding: ItemFilterMultiChoiceBinding) : RecyclerView.ViewHolder(binding.root) {
+    class CitesViewHolder(var binding: ItemFilterMultiChoiceBinding) : RecyclerView.ViewHolder(binding.root) {
     }
 
     companion object {
@@ -97,6 +104,8 @@ getItem(pos)?.name=item.name
                 oldItem == newItem
         }
     }
+
+    override fun getItemCount(): Int = list.size
 }
 
 

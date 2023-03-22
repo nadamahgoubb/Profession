@@ -112,76 +112,69 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                     android:paddingTop="@dimen/_10sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_offers_home"
+                        android:id="@+id/rv_providers"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:clipToPadding="false"
                         android:orientation="vertical"
-                        android:visibility="gone"
-                        android:layout_marginHorizontal="@dimen/_10sdp"           app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="6"
+                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:itemCount="4"
-                        tools:listitem="@layout/item_provider" />
+                        app:layout_constraintBottom_toTopOf="@id/card_bottom"
+                         tools:listitem="@layout/item_provider" />
 
-                    <LinearLayout
-                        android:id="@+id/lin_offers"
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:clipToPadding="false"
+                        android:id="@+id/card_bottom"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/rv_providers"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        android:background="@drawable/bg_rounded_top"
                         android:orientation="vertical"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintBottom_toBottomOf="parent"
+
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:id="@+id/iv_dawn"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:rotation="90"
+                            android:src="@drawable/ic_arraw"
+                            android:visibility="invisible"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
 
-                        <include
-                            android:id="@+id/item1"
-                            layout="@layout/item_provider"
-                  android:layout_marginHorizontal="@dimen/_10sdp"          android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                       android:layout_marginTop="@dimen/_10sdp"   />
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_order"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:layout_marginHorizontal="@dimen/_30sdp"
+                            android:backgroundTint="@color/gold"
+                            android:text="@string/order_servie"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_15sdp"
+                            android:textStyle="bold"
+                            app:cornerRadius="@dimen/_8sdp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/iv_dawn" />
 
-                        <include
-                            android:id="@+id/item2"
-                            layout="@layout/item_provider"
-                            android:layout_marginHorizontal="@dimen/_10sdp"
-                            android:layout_marginTop="@dimen/_10sdp"            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                              />
-
-                        <include
-                            android:id="@+id/item3"
-                            android:layout_marginHorizontal="@dimen/_10sdp"
-                            layout="@layout/item_provider"
-                            android:layout_marginTop="@dimen/_10sdp"     android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                              />
-
-                        <include
-                            android:id="@+id/item4"
-                            layout="@layout/item_provider"
-                            android:layout_marginHorizontal="@dimen/_10sdp"          android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/_10sdp"
-                            android:layout_height="wrap_content"
-                              />
-
-                        <include
-                            android:id="@+id/item5"
-                            layout="@layout/item_provider"
-                            android:layout_marginHorizontal="@dimen/_10sdp"
-                            android:layout_marginTop="@dimen/_10sdp"          android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                              />
-                    </LinearLayout>
-
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -4,44 +4,35 @@ import android.graphics.Paint
 import android.view.View
 import android.widget.Toast
 import androidx.core.text.HtmlCompat
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.paging.LoadState
 import androidx.paging.PagingData
+import com.example.laundrydelivery.util.ext.isNull
 import com.example.profession.R
 import com.example.profession.databinding.FragmentRegisterBinding
 import com.example.profession.ui.activity.MainActivity
 import com.example.profession.base.BaseFragment
+import com.example.profession.data.dataSource.Param.AddressParams
 import com.example.profession.data.dataSource.response.CitesItemsResponse
 import com.example.profession.ui.adapter.CitesListener
-import com.example.profession.ui.adapter.CitesPagingAdapter
-import com.example.profession.ui.adapter.ServicesHomeAdapter
-import com.example.profession.ui.adapter.SliderHomeAdapter
 import com.example.profession.ui.dialog.CategoriesDialog
 import com.example.profession.ui.fragments.auth.AuthAction
 import com.example.profession.ui.fragments.auth.AuthViewModel
 import com.example.profession.ui.fragments.map.MapBottomSheet
 import com.example.profession.ui.fragments.map.onLocationClick
-import com.example.profession.ui.listener.ServiceOnClickListener
 import com.example.profession.util.*
 import com.example.profession.util.ext.hideKeyboard
-import com.example.profession.util.ext.init
 import com.example.profession.util.ext.showActivity
 import com.hbb20.CountryCodePicker
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>()  ,    CountryCodePicker.OnCountryChangeListener {
     private var countryCode: String = "+966"
     private val mViewModel: AuthViewModel by viewModels()
-    var cityID: Int = -1
-    var countryId: Int = -1
+    var cityID: String = ""
+    var countryId: String = ""
     var lat: Double? = null
     var long: Double? = null
     @Inject
@@ -80,12 +71,12 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>()  ,    CountryCo
             }
             is AuthAction.ShowAllCities -> {
                 showProgress(false)
-                openCitiesDialog(action.data)
+                action.data.cities?.let { openCitiesDialog(it) }
             }
 
             is AuthAction.ShowAllCountry -> {
                 showProgress(false)
-                openCountriesDialog(action.data)
+                action.data.countries?.let { openCountriesDialog(it) }
             }
             else -> {
 
@@ -93,7 +84,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>()  ,    CountryCo
         }
     }
 
-    private fun openCountriesDialog(data: PagingData<CitesItemsResponse>) {
+    private fun openCountriesDialog(data: ArrayList<CitesItemsResponse>) {
         CategoriesDialog.newInstance(object : CitesListener {
             override fun onOrderClicked(item: CitesItemsResponse?) {
                 binding.etCoutry.setText(item?.name)
@@ -105,7 +96,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>()  ,    CountryCo
     }
 
 
-    fun openCitiesDialog(data: PagingData<CitesItemsResponse>) {
+    fun openCitiesDialog(data: ArrayList<CitesItemsResponse>) {
         CategoriesDialog.newInstance(object : CitesListener {
             override fun onOrderClicked(item: CitesItemsResponse?) {
                 binding.etCity.setText(item?.name)
@@ -149,7 +140,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>()  ,    CountryCo
 
         }
         binding.etCity.setOnClickListener {
-            if (countryId == -1)  showToast(resources.getString(R.string.choose_country_first))
+            if (countryId == "")  showToast(resources.getString(R.string.choose_country_first))
                     else  mViewModel.getAllCitiesByCountryId(countryId.toString())
         }
         binding.etCoutry.setOnClickListener {
@@ -158,14 +149,17 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>()  ,    CountryCo
         binding.etLocation.setOnClickListener {
             checkLocation()
         }
+        binding.ivBack.setOnClickListener {
+            activity?.onBackPressed()
+        }
     }
     private fun openMaps() {
         MapBottomSheet.newInstance(object : onLocationClick {
-            override fun onClick(lat:Double? ,long :Double? , address :String?) {
+            override fun onClick(lat:Double? ,long :Double? , address :AddressParams?) {
                 this@RegisterFragment.lat =lat
                 this@RegisterFragment.long=long
              //   this@RegisterFragment.address=address
-                if(!address.isNullOrEmpty()){
+                if(!address.isNull()){
                     binding.etLocation.visibility= View.VISIBLE
                     binding.etLocation.setText( address.toString())
                 }else{

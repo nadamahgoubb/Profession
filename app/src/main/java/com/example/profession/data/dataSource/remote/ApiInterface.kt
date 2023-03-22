@@ -5,12 +5,15 @@ import com.example.profession.base.BasePagingResponse
 import com.example.profession.base.DevResponse
 import com.example.profession.base.ErrorResponse
 import com.example.profession.base.NetworkResponse
+import com.example.profession.data.dataSource.Param.OrderParams
+import com.example.profession.data.dataSource.Param.ProvidersCreateOrderParams
 import com.example.profession.data.dataSource.response.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
 import java.io.File
 import javax.inject.Singleton
+import com.example.profession.data.dataSource.response.SliderResponse
 
 @Singleton
 
@@ -42,30 +45,25 @@ interface ApiInterface {
     @FormUrlEncoded
     suspend fun getCities(
         @Field("country_id") countryId: String? = null,
-        @Query("page") page: Int? = null,
-    ): NetworkResponse<BasePagingResponse<CitesItemsResponse>, ErrorResponse>
-//
+    ): NetworkResponse<DevResponse<CitesResponse>, ErrorResponse>
+
 
     @GET("countries")
-    suspend fun getCountries(
-        @Query("page") page: Int? = null,
-
-    ): NetworkResponse<BasePagingResponse<CitesItemsResponse>, ErrorResponse>
+    suspend fun getCountries(): NetworkResponse<DevResponse<CountriesResponse>, ErrorResponse>
 
     @GET("user/services")
     suspend fun getServices(
         @Query("page") page: Int? = null,
 
-    ): NetworkResponse<BasePagingResponse<ServicesItemsResponse>, ErrorResponse>
+        ): NetworkResponse<BasePagingResponse<ServicesItemsResponse>, ErrorResponse>
 
     @GET("user/slider")
     suspend fun getSlider(
-        @Query("page") page: Int? = null,
 
-        ): NetworkResponse<BasePagingResponse<SliderItemsResponse>, ErrorResponse>
+    ): NetworkResponse<DevResponse<SliderResponse>, ErrorResponse>
 
-   @FormUrlEncoded
-   @POST("user/services/sub_service")
+    @FormUrlEncoded
+    @POST("user/services/sub_service")
     suspend fun getSubServiceItemsResponse(
         @Query("page") page: Int? = null,
         @Field("service_id") service_id: String? = null,
@@ -74,7 +72,7 @@ interface ApiInterface {
 
     @GET("user/profile")
     suspend fun getProfile(
-      //  @Header("Authorization") auth: String,
+        //  @Header("Authorization") auth: String,
     ): NetworkResponse<DevResponse<ProfileResponse>, ErrorResponse>
 
 
@@ -83,10 +81,10 @@ interface ApiInterface {
     @POST("user/profile/update")
     suspend fun updateProfile(
         @PartMap updateMap: Map<String, RequestBody>,
-        @Part    image: MultipartBody.Part?,
+        @Part image: MultipartBody.Part?,
 
 
-    ): NetworkResponse<DevResponse<UserResponse>, ErrorResponse>
+        ): NetworkResponse<DevResponse<UserResponse>, ErrorResponse>
 
 
     @FormUrlEncoded
@@ -100,15 +98,73 @@ interface ApiInterface {
     @FormUrlEncoded
     @POST("user/profile/delete")
     suspend fun deleteAccount(
-         ): NetworkResponse<DevResponse<Any>, ErrorResponse>
+    ): NetworkResponse<DevResponse<Any>, ErrorResponse>
+
     @FormUrlEncoded
     @POST("user/complaint")
     suspend fun complain(
         @Field("user_id") user_id: String? = null,
         @Field("title") title: String? = null,
         @Field("content") content: String? = null,
+    ): NetworkResponse<DevResponse<Any>, ErrorResponse>
+
+    @FormUrlEncoded
+    @POST("user/get_providers")
+    suspend fun getProviders(
+        @Field("service_id") service_id: String? = null,
+        @Field("lat") lat: String? = null,
+        @Field("lon") lon: String? = null,
+    ): NetworkResponse<DevResponse<ProvidersResponse>, ErrorResponse>
+
+    @FormUrlEncoded
+    @POST("user/get_reviews")
+    suspend fun getReviews(
+        @Field("provider_id") provider_id: String? = null,
+
+    ): NetworkResponse<DevResponse<ReviewsResponse>, ErrorResponse>
+     @GET("tax")
+    suspend fun getTax(
+    ): NetworkResponse<DevResponse<TaxResponse>, ErrorResponse>
+
+    @FormUrlEncoded
+    @POST("user/get_orders")
+    suspend fun getOrders(
+        @Field("order_status") order_status: String? = null,
+    ): NetworkResponse<DevResponse<OrderdResponse>, ErrorResponse>
+
+    @FormUrlEncoded
+    @POST("user/cancel_order")
+    suspend fun cancelOrder(
+        @Field("order_id") order_id: String? = null,
+        @Field("order_status") order_status: String? = null,
+    ): NetworkResponse<DevResponse<Any>, ErrorResponse>
+
+    @FormUrlEncoded
+    @POST("user/add_review")
+    suspend fun addReview(
+        @Field("provider_id") provider_id: String? = null,
+        @Field("user_id") user_id: String? = null,
+        @Field("order_id") order_id: String? = null,
+        @Field("rate") rate: String? = null,
+        @Field("comment") comment: String? = null,
+    ): NetworkResponse<DevResponse<Any>, ErrorResponse>
+
+    @POST("user/create_orders")
+    suspend fun createOrder(
+        @Body param: OrderParams? = null,
+    ): NetworkResponse<DevResponse<OrderdResponse>, ErrorResponse>
+
+    @GET("nationalities")
+    suspend fun getNationalities(
+    ): NetworkResponse<DevResponse<NationalitiesResponse>, ErrorResponse>
+
+    @FormUrlEncoded
+    @POST("/user/update_fcm_token")
+    suspend fun updateFcm(
+        @Field("fcm_token") fcm_token: String? = null,
+        @Field("mobile_id") mobile_id: Int? = 0,
 
 
-         ): NetworkResponse<DevResponse<Any>, ErrorResponse>
+        ): NetworkResponse<DevResponse<Any>, ErrorResponse>
 
 }
