@@ -83,4 +83,8 @@
         android:id="@+id/rightsAndTermsFragment"
         android:name="com.example.profession.ui.fragments.terms.RightsAndTermsFragment"
         android:label="RightsAndTermsFragment" />
+    <fragment
+        android:id="@+id/providerTaxFragment"
+        android:name="com.example.profession.ui.fragments.providers.ProviderTaxFragment"
+        android:label="ProviderTaxFragment" />
 </navigation>

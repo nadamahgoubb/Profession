@@ -26,7 +26,11 @@ class CreateOrdersViewModel
    var loc: Location? = null
    var serviceId: String? = null
    var address: AddressParams? = null
-
+   var tax: Double? = null
+    var hoursCount = 1
+    var hourToVisit = ""
+    var mintueToVisit = "00"
+    var am ="am"
 
     fun getProviders() {
         if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {

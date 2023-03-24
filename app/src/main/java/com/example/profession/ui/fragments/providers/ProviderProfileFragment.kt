@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.laundrydelivery.util.ext.roundTo
 import com.example.profession.R
 import com.example.profession.databinding.FragmentProviderProfileBinding
 import com.example.profession.ui.activity.AuthActivity
@@ -53,7 +54,8 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
             binding.tvName.setText(it.name)
             binding.tvDesc.setText(it.previousExperience)
             binding.ivProfile.loadImage(it.photo)
-            binding.tvRate.setText(it.totalRate.toString())
+            binding.tvRate.setText(it.totalRate.roundTo(2) .toString())
+
             binding.tvLocation.setText(it.address.toString())
             binding.tvServiceDetails.setText(it.address.toString())
             binding.tvRateCounts.setText("(" + it.countReviews + ")")
@@ -88,7 +90,7 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
         }
 
         binding.btnOrder.setOnClickListener {
-            // showLoginFirstBotomSheetFragment()
+            findNavController().navigate(R.id.chooseTimeFragment)
         }
         binding.lytRate.setOnClickListener {
             findNavController().navigate(R.id.reviewsFragment)

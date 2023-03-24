@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.profession.data.dataSource.response.Providers
 import com.example.profession.data.dataSource.response.SubServiceItemsResponse
 import com.example.profession.databinding.ItemProviderServiceDetailsBinding
+import com.example.profession.util.ext.loadImage
 
 
 class ProvidersSubServiceAdapter(
@@ -23,6 +24,7 @@ class ProvidersSubServiceAdapter(
     override fun onBindViewHolder(holder: ProvidersSubServiceViewHolder, position: Int) {
         var currentItem = list.get(position)
         holder.binding.tvTitle.text = currentItem?.name
+        holder.binding.ivImg.loadImage( currentItem?.icon)
     }
 
     override fun onCreateViewHolder(

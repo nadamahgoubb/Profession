@@ -37,7 +37,7 @@
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/gold" />
+                 />
 
             <TextView
                 android:id="@+id/tv_title"
@@ -45,13 +45,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_13sdp"
-                android:src="@drawable/ic_location"
-                android:text="@string/distance_between"
+                 android:text="@string/distance_between"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_11sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_img"
-                app:tint="@color/gold" />
+               />
 
             <TextView
                 android:id="@+id/tv_data"

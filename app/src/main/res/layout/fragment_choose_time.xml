@@ -74,16 +74,16 @@
                         android:id="@+id/tv_title_header"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_40sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fitsSystemWindows="true"
-                        android:text="اختر وقت الزيارة المفضل "
+                        android:text="@string/choose_time_to_visit"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_13sdp"
                         android:textStyle="bold"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior"
                         app:layout_collapseMode="parallax"
-                        app:layout_scrollFlags="exitUntilCollapsed" />
+                   />
                 </RelativeLayout>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
@@ -119,17 +119,18 @@
 
 
                     <RelativeLayout
-                        android:layout_width="@dimen/_25sdp"
-                        android:layout_height="@dimen/_25sdp"
+                  android:id="@+id/lyt_prev"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:padding="@dimen/_12sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:background="@drawable/bg_rounded_grey"
-                        android:padding="@dimen/_7sdp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
-                            android:id="@+id/iv_next"
+                            android:id="@+id/iv_previous"
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
                             android:src="@drawable/ic_prev" />
@@ -140,9 +141,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="28 Aug"
-
-                        android:textColor="@color/grey_600"
+                         android:textColor="@color/grey_600"
                         android:textSize="@dimen/_14sdp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -151,17 +150,18 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <RelativeLayout
-                        android:layout_width="@dimen/_25sdp"
-                        android:layout_height="@dimen/_25sdp"
+                        android:id="@+id/lyt_next"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:padding="@dimen/_12sdp"
                         android:layout_marginStart="@dimen/_20sdp"
                         android:background="@drawable/bg_rounded_grey"
-                        android:padding="@dimen/_7sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
-                            android:id="@+id/iv_previous"
+                            android:id="@+id/iv_next"
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
                             android:layout_centerInParent="true"
@@ -198,16 +198,16 @@
       android:layout_height="wrap_content"
       android:background="@drawable/bg_rounded"
       >
-          <EditText
-          android:id="@+id/tv_min"
+          <androidx.appcompat.widget.AppCompatEditText
+          android:id="@+id/et_min"
           android:inputType="number"
           android:maxLength="2"
           android:padding="@dimen/_12sdp"
           android:textSize="@dimen/_12sdp"
           android:textColor="@color/black"
           android:gravity="center"
-              android:background="null"
-          android:layout_width="wrap_content"
+              android:background="@drawable/bg_rounded"
+           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:hint="00"
           />
@@ -228,14 +228,14 @@
         android:background="@drawable/bg_rounded"
         >
         <EditText
-            android:id="@+id/tv_hours"
+            android:id="@+id/et_hour"
             android:inputType="number"
             android:maxLength="2"
             android:padding="@dimen/_12sdp"
             android:textSize="@dimen/_12sdp"
             android:textColor="@color/black"
             android:gravity="center"
-            android:background="null"
+            android:background="@drawable/bg_rounded"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="11"
@@ -247,7 +247,7 @@
         android:layout_marginStart="@dimen/_12sdp"
         android:background="@drawable/bg_rounded"
         >
-        <EditText
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/tv_am"
             android:inputType="number"
             android:maxLength="2"
@@ -255,10 +255,12 @@
             android:textSize="@dimen/_12sdp"
             android:textColor="@color/black"
             android:gravity="center"
-            android:background="null"
-            android:layout_width="wrap_content"
+            android:button="@null"
+
+            android:background="@drawable/bg_rounded"
+            android:layout_width="@dimen/_40sdp"
             android:layout_height="wrap_content"
-            android:text="ص"
+            android:text="@string/am"
             />
     </RelativeLayout>
 </LinearLayout>
@@ -304,50 +306,69 @@
 
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="@dimen/_100sdp"
+                        android:layout_width="@dimen/_120sdp"
                         android:layout_height="@dimen/_35sdp"
-                         android:paddingHorizontal="@dimen/_12sdp">
-
+                       >
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="@dimen/_50sdp"
+                        android:id="@+id/lyt_minus"
+                        android:layout_height="@dimen/_35sdp"
+                         app:layout_constraintBottom_toBottomOf="@id/tv_count"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_count">
                         <ImageView
                             android:id="@+id/iv_minus"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fitsSystemWindows="true"
+                            android:layout_height="@dimen/_35sdp"
+                             android:fitsSystemWindows="true"
                             android:src="@drawable/ic_minus"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_13sdp"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@id/tv_count"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@id/tv_count" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                           />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
                             android:id="@+id/tv_count"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:layout_marginTop="@dimen/_10sdp"
+                             android:layout_marginTop="@dimen/_10sdp"
                             android:fitsSystemWindows="true"
                             android:text="1"
+                            android:layout_marginStart="@dimen/_9sdp"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_13sdp"
                             android:textStyle="bold"
-                            app:layout_constraintStart_toEndOf="@id/iv_minus"
+                            app:layout_constraintStart_toEndOf="@id/lyt_minus"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="@dimen/_50sdp"
+                        android:id="@+id/lyt_plus"
+                        android:layout_height="@dimen/_35sdp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_count"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_count" >
+                           <ImageView
                             android:id="@+id/iv_plus"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:fitsSystemWindows="true"
+                             android:fitsSystemWindows="true"
                             android:src="@drawable/ic_plus"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_13sdp"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@id/tv_count"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@id/tv_count" />
+                               app:layout_constraintTop_toTopOf="parent"
+                               app:layout_constraintBottom_toBottomOf="parent"
+                               app:layout_constraintStart_toStartOf="parent"
+                               app:layout_constraintEnd_toEndOf="parent"
+                           />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 <Button
@@ -358,6 +379,7 @@ app:layout_constraintTop_toBottomOf="@id/lyt_active_orders"
     android:layout_marginTop="@dimen/_35sdp"
     android:textColor="@color/white"
     android:text="@string/continuee"
+    android:id="@+id/btn_ok"
     android:textAllCaps="false"
     android:layout_marginHorizontal="@dimen/_12sdp"
 

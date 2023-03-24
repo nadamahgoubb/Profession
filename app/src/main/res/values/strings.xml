@@ -176,5 +176,11 @@
     <string name="selected_provider">مقدمى الخدمة المختارين</string>
     <string name="please_choose_providers_first">برجاء اختيار مزود خدمة اولا</string>
     <string name="visit_start_time">بداية وقت الزبارة</string>
+    <string name="am">ص</string>
+    <string name="pm">م</string>
+    <string name="choose_time_to_visit">اختر وقت الزيارة المفضل</string>
+    <string name="please_choose_time_to_Visit">برجاء اختيار وقت الزياره اولا</string>
+    <string name="service_cost">اجمالى التكلفه المبدئية</string>
+    <string name="service_tax">ضريبة القيمة المضافة</string>
 
 </resources>

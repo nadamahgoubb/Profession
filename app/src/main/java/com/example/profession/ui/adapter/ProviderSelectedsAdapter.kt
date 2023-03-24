@@ -4,30 +4,20 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isVisible
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.profession.R
-import com.example.profession.data.dataSource.response.CitesItemsResponse
-import com.example.profession.data.dataSource.response.OrdersItem
+import com.example.laundrydelivery.util.ext.roundTo
 import com.example.profession.data.dataSource.response.Providers
-import com.example.profession.data.dataSource.response.ProvidersResponse
-import com.example.profession.databinding.ItemFilterMultiChoiceBinding
-import com.example.profession.databinding.ItemOrdersBinding
-import com.example.profession.databinding.ItemProviderBinding
 import com.example.profession.databinding.ItemProviderTaxBinding
-import com.example.profession.util.Constants
 
 
 interface ProviderSelectedsClickListener {
 
-    fun onProviderDetailsClicked(item: Providers?)
-    fun onProviderAddedClicked(items: ArrayList<Providers>)
+    fun onProviderCancelClicked(item: Providers?, position: Int)
 
 }
 
 class ProviderSelectedAdapter(
-  var listener: ProviderClickListener
+  var listener: ProviderSelectedsClickListener
 ) : RecyclerView.Adapter<ProviderSelectedAdapter.ProviderSelectedViewHolder>() {
     var _binding: ItemProviderTaxBinding? = null
     var list = mutableListOf<Providers>()
@@ -40,40 +30,17 @@ var selectedProviders :ArrayList<Providers> = arrayListOf()
     override fun onBindViewHolder(holder: ProviderSelectedViewHolder, position: Int) {
         var currentItem = list.get(position)
         holder.binding.tvName.text =  currentItem?.name
-        /* holder.binding.tvDistance.text =
-            currentItem?.distance.toString()
-
-        holder.binding.tvPrice.text=currentItem.hourPrice.toString()
-        holder.binding.tvDesc.text=currentItem.previousExperience.toString()
 
 
-        holder.binding.root.setOnClickListener {
-            listener.onProviderDetailsClicked(currentItem)
+        holder.binding.tvRate.text=currentItem.totalRate.roundTo(2).toString()
+        holder.binding.tvCost.text=currentItem.serviceCostBeforeTax.toString()
+        holder.binding.tvTax.text=currentItem.serviceTax.toString()
+        holder.binding.tvTotal.text=currentItem.serviceTotalCost.toString()
+
+
+        holder.binding.ivCancel.setOnClickListener {
+            listener.onProviderCancelClicked(currentItem, position)
         }
-        holder.binding.checkbox.setOnClickListener {
-            if (holder.binding.checkbox.isChecked) {
-                currentItem?.let { it1 -> selectedProviders.add(it1) }
-                currentItem?.choosen = true
-             } else {
-                selectedProviders.remove(currentItem)
-                currentItem?.choosen = false
-
-            }
-            currentItem?.let { it1 -> listener.onProviderAddedClicked(selectedProviders) }
-        }
-        holder.binding.lytCheck.setOnClickListener {
-            if (holder.binding.checkbox.isChecked) {
-                selectedProviders.remove(currentItem)
-                currentItem?.choosen = false
-
-
-             } else {
-
-                currentItem?.let { it1 -> selectedProviders.add(it1) }
-                currentItem?.choosen = true
-            }
-            currentItem?.let { it1 -> listener.onProviderAddedClicked(selectedProviders) }
-        }*/
 
     }
 
@@ -85,7 +52,13 @@ var selectedProviders :ArrayList<Providers> = arrayListOf()
         context = parent.context
       return ProviderSelectedViewHolder(_binding!!)
     }
+    fun deleteItem(position: Int) {
 
+        list.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, list.size)
+        notifyDataSetChanged()
+    }
 
     class ProviderSelectedViewHolder(var binding: ItemProviderTaxBinding) :
         RecyclerView.ViewHolder(binding.root) {}

@@ -108,7 +108,7 @@
     android:layout_height="wrap_content"
     android:text="@string/provider"
     android:id="@+id/tv_title"
-    android:layout_marginStart="@dimen/_10sdp"
+    android:layout_marginHorizontal="@dimen/_10sdp"
     android:textColor="@color/black"
     android:textSize="@dimen/_12sdp"
     android:layout_marginVertical="@dimen/_10sdp"

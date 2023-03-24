@@ -40,7 +40,7 @@ data class Providers (
     @SerializedName("photo"                      ) var photo                    : String?                = null,
     @SerializedName("personal_id_photo"          ) var personalIdPhoto          : String?                = null,
     @SerializedName("balance"                    ) var balance                  : Int?                   = null,
-    @SerializedName("total_rate"                 ) var totalRate                : Int?                   = null,
+    @SerializedName("total_rate"                 ) var totalRate                : Double?                   = null,
     @SerializedName("count_reviews"              ) var countReviews             : Int?                   = null,
     @SerializedName("account_number"             ) var accountNumber            : String?                = null,
     @SerializedName("account_name"               ) var accountName              : String?                = null,
@@ -55,6 +55,9 @@ data class Providers (
     @SerializedName("remember_token"             ) var rememberToken            : String?                = null,
     @SerializedName("distance"                   ) var distance                 : String?                = null,
     @SerializedName("sub_services"               ) var subServices              :  @RawValue ArrayList<SubServiceItemsResponse> = arrayListOf(),
+  var serviceCostBeforeTax              :  Double? = null,
+  var serviceTotalCost              :  Double? = null,
+   var serviceTax              :       Double? = null ,
     var choosen : Boolean
 
 ) : Parcelable
