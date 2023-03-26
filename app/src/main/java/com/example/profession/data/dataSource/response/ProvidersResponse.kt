@@ -21,7 +21,7 @@ data class ReviewsResponse(
 
 data class Providers (
 
-    @SerializedName("id"                         ) var id                       : Int?                   = null,
+    @SerializedName("id"                         ) var id                       : String?                   = null,
     @SerializedName("name"                       ) var name                     : String?                = null,
     @SerializedName("type"                       ) var type                     : String?                = null,
     @SerializedName("national_id"                ) var nationalId               : String?                = null,

@@ -54,6 +54,10 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
                 handleViewState(it)
             }
         }
+        binding.swiperefreshHome.setOnRefreshListener {
+           mViewModel. getSubService(item?.id.toString())
+            if (binding.swiperefreshHome != null) binding.swiperefreshHome.isRefreshing = false
+        }
     }
 
     private fun initAdapter() {
@@ -77,15 +81,14 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
             if (loadState.refresh is LoadState.Loading ||
                 loadState.append is LoadState.Loading
             ) {
-                //  binding.lytEmptyState.visibility = View.GONE
+                binding.lytEmptyState.visibility = View.GONE
                 binding.lytData.visibility = View.VISIBLE
             }
             if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && adapterSubServices.itemCount < 1) {
                 binding.lytData.visibility = View.GONE
-
-                //    binding.lytEmptyState.visibility = View.VISIBLE
+   binding.lytEmptyState.visibility = View.VISIBLE
             } else {
-                //  binding.lytEmptyState.visibility = View.GONE
+                binding.lytEmptyState.visibility = View.GONE
                 binding.lytData.visibility = View.VISIBLE
                 // If we have an error, show a toast*/
                 val errorState = when {
@@ -171,7 +174,7 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
             up()
         }
         binding.ivDawn.setOnClickListener {
-            if (!binding.lytCustomerService.isVisible) up()
+            if (!binding.cardPrice.isVisible) up()
             else dawn()
 
         }
@@ -180,7 +183,8 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
 
         }
         binding.btnDone.setOnClickListener {
-            checkLocation()
+            if (mViewModelCreateOrder.selectedSubservice.size<1) showToast(resources.getString(R.string.please_select_subServie))
+         else   checkLocation()
         }
         binding.ivBack.setOnClickListener {
             activity?.onBackPressed()
@@ -223,9 +227,9 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
     }
 
     fun up() {
-        if (!binding.lytCustomerService.isVisible) {
+        if (!binding.cardPrice.isVisible) {
 
-            ExpandAnimation.expand(binding.lytCustomerService)
+            ExpandAnimation.expand(binding.cardPrice)
             binding.ivUp.visibility = View.GONE
             binding.tvUp.visibility = View.GONE
             binding.ivDawn.rotation = 90F
@@ -233,9 +237,9 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
     }
 
     fun dawn() {
-        if (binding.lytCustomerService.isVisible) {
+        if (binding.cardPrice.isVisible) {
 
-            ExpandAnimation.collapse(binding.lytCustomerService)
+            ExpandAnimation.collapse(binding.cardPrice)
             binding.ivUp.visibility = View.VISIBLE
             binding.tvUp.visibility = View.VISIBLE
             binding.ivDawn.rotation = 270F

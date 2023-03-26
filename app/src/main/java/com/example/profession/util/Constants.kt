@@ -32,6 +32,7 @@ object Constants {
 
     const val ORDER="order"
     const val PROVIDERS="providers"
+    const val PROVIDER_ID="provider_id"
     const   val ORDERID: String ="ORDERID"
     const val PREV_ORDER="previous"
     const val New_ORDER="new"

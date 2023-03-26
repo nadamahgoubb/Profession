@@ -1,6 +1,7 @@
 package com.example.profession.ui.fragments.providers
 
 import android.os.Bundle
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.profession.R
@@ -19,7 +20,9 @@ import com.example.profession.util.Constants
 import com.example.profession.util.ext.hideKeyboard
 import com.example.profession.util.ext.init
 import com.example.profession.util.observe
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProvidersFragment : BaseFragment<FragmentProvidersBinding>(), ProviderClickListener {
 
     private lateinit var parent: MainActivity
@@ -34,6 +37,10 @@ class ProvidersFragment : BaseFragment<FragmentProvidersBinding>(), ProviderClic
                 handleViewState(it)
             }
         }
+        binding.swiperefreshHome.setOnRefreshListener {
+           mViewModel. getProviders()
+            if (binding.swiperefreshHome != null) binding.swiperefreshHome.isRefreshing = false
+        }
     }
 
     private fun handleViewState(action: CreateOrdersAction) {
@@ -46,8 +53,8 @@ class ProvidersFragment : BaseFragment<FragmentProvidersBinding>(), ProviderClic
             }
             is CreateOrdersAction.ShowProviders -> {
                 showProgress(false)
-                adapter.list = action.data.providers
-                adapter.notifyDataSetChanged()
+                showProviders(action.data.providers)
+
             }
 
             is CreateOrdersAction.ShowFailureMsg -> action.message?.let {
@@ -60,6 +67,19 @@ class ProvidersFragment : BaseFragment<FragmentProvidersBinding>(), ProviderClic
 
             }
         }
+    }
+
+    private fun showProviders(data: ArrayList<Providers>) {
+        if (data.size > 0) {
+            binding.lytEmptyState.isVisible= false
+            binding.lytData.isVisible=true
+            adapter.list = data
+            adapter.notifyDataSetChanged()
+        }else{
+            binding.lytEmptyState.isVisible= true
+            binding.lytData.isVisible=false
+        }
+
     }
 
     private fun setupUi() {

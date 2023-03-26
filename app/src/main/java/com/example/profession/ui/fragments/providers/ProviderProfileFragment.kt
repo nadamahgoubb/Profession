@@ -1,6 +1,7 @@
 package com.example.profession.ui.fragments.providers
 
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -42,6 +43,7 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
             ProviderData = it
             showData()
         }
+
     }
 
     private fun initAdapter() {
@@ -93,8 +95,11 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
             findNavController().navigate(R.id.chooseTimeFragment)
         }
         binding.lytRate.setOnClickListener {
-            findNavController().navigate(R.id.reviewsFragment)
-        }
+            var bundle = Bundle()
+            bundle.putString(Constants.PROVIDER_ID, ProviderData?.id)
+            findNavController().navigate(R.id.reviewsFragment, bundle )
+
+         }
     }
 
     private fun handleViewState(action: CreateOrdersAction) {

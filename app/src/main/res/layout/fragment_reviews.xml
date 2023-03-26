@@ -53,8 +53,7 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:paddingHorizontal="@dimen/_8sdp">
+                            android:layout_height="match_parent">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -98,177 +97,93 @@
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
             </com.google.android.material.appbar.AppBarLayout>
 
-
-            <androidx.core.widget.NestedScrollView
+            <com.example.profession.base.OnlyVerticalSwipeRefreshLayout
+                android:id="@+id/swiperefresh_home"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <RelativeLayout
+
+                <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_offers_home"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:clipToPadding="false"
-                        android:orientation="vertical"
-                        android:visibility="gone"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:itemCount="4"
-                        tools:listitem="@layout/item_provider" />
-
-                    <LinearLayout
-                        android:id="@+id/lyt_reviews"
-                        android:layout_marginHorizontal="@dimen/_10sdp"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:clipToPadding="false"
-                        android:orientation="vertical"
-                        android:paddingTop="@dimen/_10sdp"
+                        android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-
-                        <include
-                            android:id="@+id/item1"
-                            layout="@layout/item_provider"
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_reviews"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_4sdp" />
-
-                        <include
-                            android:id="@+id/item2"
-                            layout="@layout/item_provider"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_4sdp" />
-
-                        <include
-                            android:id="@+id/item3"
-                            layout="@layout/item_provider"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_4sdp" />
-
-                        <include
-                            android:id="@+id/item4"
-                            layout="@layout/item_provider"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_4sdp" />
-
-                        <include
-                            android:id="@+id/item5"
-                            layout="@layout/item_provider"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_4sdp" />
-                    </LinearLayout>
-
-
+                            android:layout_height="match_parent"
+                            android:clipToPadding="false"
+                            android:orientation="vertical"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:itemCount="4"
+                            tools:listitem="@layout/item_reviews" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/card_price"
-                            android:paddingBottom="@dimen/_20sdp"
-                            android:layout_alignParentBottom="true"
-                            android:layout_below="@+id/lyt_reviews"
-                            android:background="@drawable/bg_rounded_top"
-                            android:layout_gravity="bottom"
-                            android:layout_marginTop="@dimen/_40sdp"
-
-                        android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="@dimen/_16sdp"
-                            tools:ignore="UseCompoundDrawables">
+                            android:id="@+id/lyt_empty_state"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="gone">
 
                             <ImageView
-                                android:id="@+id/iv_dawn"
-                                android:layout_width="@dimen/_35sdp"
-                                android:layout_height="@dimen/_35sdp"
-                                android:paddingHorizontal="@dimen/_10sdp"
-                                android:rotation="90"
-                      android:visibility="gone"          android:src="@drawable/ic_arraw"
+                                android:id="@+id/iv_unauth"
+                                android:layout_width="@dimen/_200sdp"
+                                android:layout_height="@dimen/_200sdp"
+                                android:layout_marginTop="@dimen/_50sdp"
+                                android:src="@drawable/no_reviews"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
-                                android:id="@+id/tv4"
+                                android:id="@+id/tv_unauth"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_8sdp"
-                                android:gravity="center"
-                                android:text="تقييمك للمزود"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_14sdp"
-                                android:textStyle="bold"
+                                android:paddingTop="@dimen/_15sdp"
+                                android:text="لا توجد تقييمات لمقدم الخدمه حتى الان "
+                                android:textColor="@color/grey_800"
+                                android:textSize="@dimen/_13sdp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/iv_dawn" />
+                                app:layout_constraintTop_toBottomOf="@id/iv_unauth" />
 
-                            <RatingBar
-                                android:id="@+id/rating"
-                                style="@style/foodRatingBar"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:isIndicator="false"
-                                android:numStars="5"
-                                android:rating="0"
-                                android:stepSize=".5"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/tv4">
-
-                            </RatingBar>
-
-                            <androidx.appcompat.widget.AppCompatEditText
-
-                                android:id="@+id/et_msg"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_20sdp"
-                                android:backgroundTint="@color/grey_400"
-                                android:hint="@string/write_your_comment"
-                                android:minHeight="@dimen/_40sdp"
-                                android:paddingVertical="@dimen/_6sdp"
-                                android:textSize="@dimen/_12sdp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/rating" />
-
-                            <com.google.android.material.button.MaterialButton
-                                android:id="@+id/btn_done"
+                            <Button
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_45sdp"
-                                android:layout_marginHorizontal="@dimen/_10sdp"
-                                android:layout_marginTop="@dimen/_20sdp"
+
+                                android:layout_marginHorizontal="@dimen/_20sdp"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:background="@drawable/bg_orange_rounded"
                                 android:backgroundTint="@color/gold"
-                                android:text="@string/add_comment"
-                                android:textAllCaps="false"
+                                android:text="@string/goto_selected_provider"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/_13sdp"
-                                android:textStyle="bold"
-                                app:cornerRadius="@dimen/_8sdp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/et_msg" />
+
+                                app:layout_constraintTop_toBottomOf="@id/tv_unauth" />
+
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </RelativeLayout>
 
-            </androidx.core.widget.NestedScrollView>
+                    </RelativeLayout>
+
+                </androidx.core.widget.NestedScrollView>
+            </com.example.profession.base.OnlyVerticalSwipeRefreshLayout>
+
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

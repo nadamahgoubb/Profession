@@ -182,5 +182,12 @@
     <string name="please_choose_time_to_Visit">برجاء اختيار وقت الزياره اولا</string>
     <string name="service_cost">اجمالى التكلفه المبدئية</string>
     <string name="service_tax">ضريبة القيمة المضافة</string>
+    <string name="empty_rate">برجاء إدخال التقييم</string>
+    <string name="empty_comment">برجاء إدخال التعليق</string>
+    <string name="goto_selected_provider">الذهاب لمقدمى الخدمه</string>
+    <string name="no_providers">عفوا لا يتوفر مقدمى خدمه الان</string>
+    <string name="goto_main_screen">الذهاب للرئيسية</string>
+    <string name="please_select_subServie">برجاء اختيار نوع الخدمة</string>
+    <string name="no_service">لا توجد خدمات حتى الان</string>
 
 </resources>

@@ -14,15 +14,15 @@ import com.example.profession.ui.listener.ChooseTimeOnClickListener
 import com.example.profession.util.ext.init
 import com.example.profession.util.ext.setTint
 import com.google.android.material.appbar.AppBarLayout
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
-
+@AndroidEntryPoint
 class ChooseTimeFragment : BaseFragment<FragmentChooseTimeBinding>() {
     private lateinit var parent: MainActivity
     private val mViewModel: CreateOrdersViewModel by activityViewModels()
-    lateinit var adapter: ChooseTimeAdapter
 
     override fun onFragmentReady() {
 

@@ -6,11 +6,11 @@ import com.example.profession.data.dataSource.response.*
 
 sealed class CreateOrdersAction() : Action {
 
-    data class  ShowProviders(val data: ProvidersResponse): CreateOrdersAction()
-     data class ShowLoading(val show: Boolean) : CreateOrdersAction()
+    data class ShowProviders(val data: ProvidersResponse) : CreateOrdersAction()
+    data class ShowLoading(val show: Boolean) : CreateOrdersAction()
     data class ShowFailureMsg(val message: String?) : CreateOrdersAction()
+    data class ShowReviewAdded(val message: String?) : CreateOrdersAction()
     data class ShowTaxResponse(val data: TaxResponse?) : CreateOrdersAction()
-
-
+    data class ShowProviderReview(val data: ReviewsResponse) : CreateOrdersAction()
 
 }

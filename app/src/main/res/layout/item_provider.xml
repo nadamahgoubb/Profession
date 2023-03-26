@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:animateLayoutChanges="true"
             android:padding="@dimen/_4sdp"
-          >
+            >
             <TextView
 
                 android:id="@+id/tv_distance"
@@ -41,33 +41,33 @@
                 app:layout_constraintBottom_toBottomOf="@id/lyt_check"
                 app:layout_constraintTop_toTopOf="@id/lyt_check" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-android:id="@+id/lyt_check"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:animateLayoutChanges="true"
-
-          >
-
-            <androidx.appcompat.widget.AppCompatCheckBox
-
-                android:id="@+id/checkbox"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                 android:layout_marginVertical="@dimen/_5sdp"
-                  android:button="@null"
-
-android:background="@drawable/check_box_selector_gold"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/lyt_check"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:animateLayoutChanges="true"
+
+                >
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+
+                    android:id="@+id/checkbox"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginVertical="@dimen/_5sdp"
+                    android:button="@null"
+
+                    android:background="@drawable/check_box_selector_gold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <View
                 android:id="@+id/v2"
                 android:layout_width="match_parent"
@@ -107,8 +107,8 @@ android:background="@drawable/check_box_selector_gold"
             <ImageView
 
                 android:id="@+id/iv_star"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
+                android:layout_width="@dimen/_12sdp"
+                android:layout_height="@dimen/_12sdp"
                 android:src="@drawable/ic_star_vector"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/tv_name"
@@ -158,7 +158,7 @@ android:background="@drawable/check_box_selector_gold"
                     android:layout_width="@dimen/_85sdp"
                     android:layout_height="@dimen/_35sdp"
                     android:src="@drawable/union"
-                      app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
 
                     app:layout_constraintTop_toTopOf="parent" />
 
