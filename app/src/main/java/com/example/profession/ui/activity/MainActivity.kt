@@ -128,12 +128,12 @@ startActivity(Intent(this@MainActivity, AuthActivity::class.java))
     fun openDrawer() {
         //    if(!binding.drawerLayout.isVisible)
         //    binding.drawerLayout.openDrawer(GravityCompat.END)
-        binding.drawerLayout.openDrawer(Gravity.LEFT);
+        binding.drawerLayout.openDrawer(Gravity.END);
 
     }
 
     fun closeDrawer() {
-        binding.drawerLayout.closeDrawer(Gravity.LEFT)
+        binding.drawerLayout.closeDrawer(Gravity.END)
     }
 
     fun showBottomNav(isVisible: Boolean) {

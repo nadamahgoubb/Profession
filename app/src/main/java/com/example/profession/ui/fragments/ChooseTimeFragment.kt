@@ -87,7 +87,7 @@ else{
                 mViewModel.   current= SimpleDateFormat("YYYY-MM-dd").format(cal.getTime())
                 current = SimpleDateFormat("MMM dd").format(cal.getTime())
 
-                binding.tvDay.setText( mViewModel. current)
+                binding.tvDay.setText( current)
             }
             if (i == 1) binding.ivPrevious.setTint(resources.getColor(R.color.gray_800))
         }

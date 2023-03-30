@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:layoutDirection="locale"
         android:fitsSystemWindows="true"
-    tools:openDrawer="left"
+    tools:openDrawer="end"
         android:id="@+id/drawerLayout">
 
 
@@ -80,10 +80,10 @@
             android:id="@+id/navView_side_nav"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layoutDirection="ltr"
+            android:layoutDirection="locale"
             app:menu="@menu/nav_menu"
             app:headerLayout="@layout/nav_header"
-            android:layout_gravity="left"
+            android:layout_gravity="end"
             />
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
