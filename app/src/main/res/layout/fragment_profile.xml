@@ -12,15 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="false"
-        android:layoutDirection="rtl">
+         >
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="false"
-            android:layoutDirection="rtl"
-            android:theme="@style/ThemeOverlay.MaterialComponents.Dark">
+             android:theme="@style/ThemeOverlay.MaterialComponents.Dark">
 
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -58,6 +57,7 @@
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
                             android:layout_gravity="start"
+                            android:rotation="180"
                             android:padding="@dimen/_2sdp"
                             android:src="@drawable/ic_back_"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -94,7 +94,7 @@
                     <ImageView
 
                         android:id="@+id/lyt_img"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="@dimen/_180sdp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/header_black_profile"
@@ -115,15 +115,15 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tv_change"
+                        android:id="@+id/tv_balance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                          android:layout_alignParentEnd="true"
                         android:layout_marginStart="@dimen/_20sdp"
                 android:layout_above="@id/btn_add_wallet"
-                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_25sdp"
                         android:paddingVertical="@dimen/_5sdp"
-                        android:text="300 ر.س"
+                        android:text="300 "
 
                         android:textColor="@color/gold"
                         android:textSize="@dimen/_11sdp"
@@ -134,7 +134,7 @@
                         android:layout_height="wrap_content"
                      android:layout_marginHorizontal="@dimen/_20sdp"
                         android:layout_alignParentEnd="true"
-                         android:layout_above="@id/tv_change"
+                         android:layout_above="@id/tv_balance"
                  android:drawableStart="@drawable/ic_wallet"
                         android:text="@string/balance"
                         android:drawablePadding="@dimen/_3sdp"
@@ -189,7 +189,8 @@
 
 
                     <LinearLayout
-                        android:id="@+id/lyt_login"
+                        android:id="@+id/lyt_data"
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_10sdp"

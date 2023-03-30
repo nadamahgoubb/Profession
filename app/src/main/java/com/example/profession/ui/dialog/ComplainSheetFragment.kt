@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.Toast
 import com.example.profession.R
 import com.example.profession.databinding.DialogComplainBottomsheetBinding
 import com.example.profession.databinding.FragmentDeleteAccountSheetBinding
@@ -18,7 +19,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.util.*
 
 interface OnClickComplain{
-    fun onClick(choice: String)
+    fun onClick(comment: String)
 }
 
 class ComplainSheetFragment(var onClick: OnClickComplain) :
@@ -51,9 +52,14 @@ class ComplainSheetFragment(var onClick: OnClickComplain) :
     private fun onClick() {
 
         binding.btnOk.setOnClickListener {
-            onClick.onClick(Constants.YES)
+            if(binding.etComplain.text.toString().isNullOrEmpty()) Toast.makeText(requireContext(), getText(R.string.empty_comment), Toast.LENGTH_SHORT).show()
+            else {
+                onClick.onClick(binding.etComplain.text.toString() )
+                dismiss()
+            }
+        }
+        binding.ivDawn.setOnClickListener {
             dismiss()
-
         }
     }
 

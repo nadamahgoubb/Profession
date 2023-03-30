@@ -19,6 +19,7 @@ sealed class AuthAction() : Action {
 
      data class ShowLoading(val show: Boolean) : AuthAction()
     data class ShowFailureMsg(val message: String?) : AuthAction()
+    data class ShowForgetPassword(val message: String?) : AuthAction()
     data class ShowAllCities(var data: CitesResponse) : AuthAction()
     data class ShowAllCountry(var data: CountriesResponse) : AuthAction()
 

@@ -1,6 +1,8 @@
 package com.example.profession.ui.fragments.subService
 
 
+ import android.util.Log
+ import android.util.Log.d
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -25,6 +27,7 @@ import com.example.profession.util.*
 import com.example.profession.util.ext.hideKeyboard
 import com.example.profession.util.ext.init
 import com.example.profession.util.ext.loadImage
+import com.example.profession.util.ext.showActivity
 import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -58,6 +61,8 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
            mViewModel. getSubService(item?.id.toString())
             if (binding.swiperefreshHome != null) binding.swiperefreshHome.isRefreshing = false
         }
+        mViewModelCreateOrder.  selectedSubservice .clear()
+
     }
 
     private fun initAdapter() {
@@ -124,6 +129,7 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
             is HomeAction.ShowSubService -> {
                 showProgress(false)
                 lifecycleScope.launch {
+                    mViewModelCreateOrder.  selectedSubservice .clear()
                     adapterSubServices.submitData(action.data)
                 }
             }
@@ -170,24 +176,16 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
 
 
     private fun onClick() {
-        binding.ivUp.setOnClickListener {
-            up()
-        }
-        binding.ivDawn.setOnClickListener {
-            if (!binding.cardPrice.isVisible) up()
-            else dawn()
 
-        }
-        binding.tvUp.setOnClickListener {
-            up()
-
-        }
         binding.btnDone.setOnClickListener {
             if (mViewModelCreateOrder.selectedSubservice.size<1) showToast(resources.getString(R.string.please_select_subServie))
          else   checkLocation()
         }
         binding.ivBack.setOnClickListener {
             activity?.onBackPressed()
+        }
+        binding.btnGohome.setOnClickListener {
+            showActivity(MainActivity::class.java, clearAllStack = true)
         }
     }
 
@@ -226,30 +224,9 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
         checkIfLocationEnabled()
     }
 
-    fun up() {
-        if (!binding.cardPrice.isVisible) {
-
-            ExpandAnimation.expand(binding.cardPrice)
-            binding.ivUp.visibility = View.GONE
-            binding.tvUp.visibility = View.GONE
-            binding.ivDawn.rotation = 90F
-        }
-    }
-
-    fun dawn() {
-        if (binding.cardPrice.isVisible) {
-
-            ExpandAnimation.collapse(binding.cardPrice)
-            binding.ivUp.visibility = View.VISIBLE
-            binding.tvUp.visibility = View.VISIBLE
-            binding.ivDawn.rotation = 270F
-
-        }
-    }
-
 
     override fun onSubServiceClickListener(items: ArrayList<SubServiceItemsResponse>) {
-      mViewModelCreateOrder.  selectedSubservice.clear()
-        mViewModelCreateOrder.  selectedSubservice = items
+         mViewModelCreateOrder.  selectedSubservice = items
+        Log.d("mViewModelCreateOrder", mViewModelCreateOrder.selectedSubservice.size.toString())
     }
 }

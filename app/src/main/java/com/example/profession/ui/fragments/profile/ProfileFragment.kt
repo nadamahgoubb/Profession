@@ -30,11 +30,13 @@ import com.example.profession.ui.fragments.map.onLocationClick
 import com.example.profession.ui.fragments.profile.ProfileViewModel.Companion.getAllCountries
 import com.example.profession.ui.fragments.profile.ProfileViewModel.Companion.getCurrentCountryName
 import com.example.profession.util.*
+import com.example.profession.util.Extension.loadImage
 import com.example.profession.util.ext.hideKeyboard
 import com.example.profession.util.ext.loadImage
 import com.google.android.material.appbar.AppBarLayout
 import com.hbb20.CountryCodePicker
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.internal.cache2.Relay.Companion.edit
 import java.io.File
 import javax.inject.Inject
 
@@ -98,9 +100,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(),
                 showProgress(false)
 
                 action.data.cities?.let {
-                    cities=it
-                    if(action.type== getAllCountries) openCitiesDialog(it)
-else binding.etCity.setText(searchInCiteies(cityID, cities)?.name)
+                    cities = it
+                    if (action.type == getAllCountries) openCitiesDialog(it)
+                    else binding.etCity.setText(searchInCiteies(cityID, cities)?.name)
 
                 }
             }
@@ -111,7 +113,7 @@ else binding.etCity.setText(searchInCiteies(cityID, cities)?.name)
 
                 action.data.countries?.let {
                     countries = it
-                    if(action.type== getAllCountries) openCountriesDialog(it)
+                    if (action.type == getAllCountries) openCountriesDialog(it)
                     else binding.etCoutry.setText(searchInCiteies(countryId, countries)?.name)
                 }
             }
@@ -133,13 +135,15 @@ else binding.etCity.setText(searchInCiteies(cityID, cities)?.name)
             }
         }
     }
- fun searchInCiteies(id:String , list:ArrayList<CitesItemsResponse>): CitesItemsResponse? {
-     for (i in list){
-         if(id == i.id) return i
 
-     }
-     return  null
- }
+    fun searchInCiteies(id: String, list: ArrayList<CitesItemsResponse>): CitesItemsResponse? {
+        for (i in list) {
+            if (id == i.id) return i
+
+        }
+        return null
+    }
+
     private fun openCountriesDialog(data: ArrayList<CitesItemsResponse>) {
         CategoriesDialog.newInstance(object : CitesListener {
             override fun onOrderClicked(item: CitesItemsResponse?) {
@@ -154,12 +158,9 @@ else binding.etCity.setText(searchInCiteies(cityID, cities)?.name)
     private fun showAddBalanceSheetFragment() {
         AddBalanceSheetFragment.newInstance(object : OnClickAddBalance {
             override fun onClick(choice: String) {
-                if (choice.equals(Constants.YES)) {
 
 
-                } else {
 
-                }
             }
 
 
@@ -178,13 +179,18 @@ else binding.etCity.setText(searchInCiteies(cityID, cities)?.name)
     }
 
     private fun showData(data: ProfileResponse) {
+        binding.lytData.isVisible = true
         binding.etUserName.setText(data.name)
         binding.tvNameTitle.setText(data.name)
         binding.etCity.setText(data.cityName)
         binding.etCoutry.setText(data.countryName)
-        binding.etLocation.setText(data.countryName + "," + data.cityName)
+        binding.etLocation.setText(data.address)
         binding.etEmail.setText(data.email)
         binding.etPhone.setText(data.phone)
+        binding.tvBalance.setText(data.balance)
+        this@ProfileFragment.lat = data.lat?.toDoubleOrNull()
+        this@ProfileFragment.long = data.lon?.toDoubleOrNull()
+        binding.ivProfile.loadImage(data.photo, isCircular = true)
         countryCode = data.countryCode.toString()
         data.cityId?.let {
             cityID = it
@@ -192,7 +198,7 @@ else binding.etCity.setText(searchInCiteies(cityID, cities)?.name)
         data.countryId?.let {
             countryId = it
         }
-     mViewModel.   getAllCitiesByCountryId(countryId , getCurrentCountryName)
+        mViewModel.getAllCitiesByCountryId(countryId, getCurrentCountryName)
 
         // binding.countryCodePicker.selectedCountryCode=data.countryCode
 
@@ -227,7 +233,8 @@ else binding.etCity.setText(searchInCiteies(cityID, cities)?.name)
                 cityID.toString(),
                 lat,
                 long,
-                photo = null
+                photo = image,
+                binding.etLocation.text.toString()
             )
         }
         binding.etCoutry.setOnClickListener {
@@ -235,12 +242,16 @@ else binding.etCity.setText(searchInCiteies(cityID, cities)?.name)
                 if (countries.isNullOrEmpty()) mViewModel.getAllCountry(getAllCountries)
                 else openCountriesDialog(countries)
 
-            }}
+            }
+        }
 
         binding.etCity.setOnClickListener {
-          if (state == 1) {
-              if(cities.isNullOrEmpty())mViewModel.getAllCitiesByCountryId(countryId, getAllCountries)
-               else if (countryId == "") showToast(resources.getString(R.string.choose_country_first))
+            if (state == 1) {
+                if (cities.isNullOrEmpty()) mViewModel.getAllCitiesByCountryId(
+                    countryId,
+                    getAllCountries
+                )
+                else if (countryId == "") showToast(resources.getString(R.string.choose_country_first))
                 else openCitiesDialog(cities)
             }
         }
@@ -258,10 +269,10 @@ else binding.etCity.setText(searchInCiteies(cityID, cities)?.name)
             override fun onClick(lat: Double?, long: Double?, address: AddressParams?) {
                 this@ProfileFragment.lat = lat
                 this@ProfileFragment.long = long
-                //   this@RegisterFragment.address=address
+                //   this@ProfileFragment.address=address
                 if (!address.isNull()) {
                     binding.etLocation.visibility = View.VISIBLE
-                    binding.etLocation.setText(address.toString())
+                    binding.etLocation.setText(address?.address.toString())
                 } else {
                     binding.etLocation.visibility = View.GONE
                 }
@@ -311,11 +322,9 @@ else binding.etCity.setText(searchInCiteies(cityID, cities)?.name)
                 // If collapsed, then do this
                 binding.ivProfile.setVisibility(View.GONE);
                 binding.lytImg.setVisibility(View.GONE);
-                binding.btnChangePass.setVisibility(View.GONE);
             } else if (verticalOffset == 0) {
                 binding.lytImg.setVisibility(View.VISIBLE);
                 binding.ivProfile.setVisibility(View.VISIBLE);
-                binding.btnChangePass.setVisibility(View.VISIBLE);
             } else {
                 // Somewhere in between
                 // Do according to your requirement
@@ -364,6 +373,7 @@ else binding.etCity.setText(searchInCiteies(cityID, cities)?.name)
         binding.etCoutry.setTextColor(resources.getColor(R.color.grey_700))
         binding.etEmail.setTextColor(resources.getColor(R.color.grey_700))
         binding.etLocation.setTextColor(resources.getColor(R.color.grey_700))
+        binding.btnEdit.setText(resources.getText(R.string.edit))
     }
 
     fun stateEditProfile() {
@@ -382,6 +392,7 @@ else binding.etCity.setText(searchInCiteies(cityID, cities)?.name)
         binding.etCoutry.setTextColor(Color.BLACK)
         binding.etEmail.setTextColor(Color.BLACK)
         binding.etLocation.setTextColor(Color.BLACK)
+        binding.btnEdit.setText(resources.getText(R.string.save))
     }
 
     private val imagePermissionLauncherResult = requestAppPermissions { allIsGranted, _ ->
@@ -406,12 +417,12 @@ else binding.etCity.setText(searchInCiteies(cityID, cities)?.name)
                 FileManager.from(requireActivity(), it)?.let { file ->
                     image = file
 
-                    binding.ivProfile.loadImage(file)
+                    binding.ivProfile.loadImage(file, isCircular = true)
                 }
             }
         }
 
     override fun onCountrySelected() {
-        countryCode = binding.countryCodePicker.selectedCountryCode
+        countryCode = "+" + binding.countryCodePicker.selectedCountryCode
     }
 }

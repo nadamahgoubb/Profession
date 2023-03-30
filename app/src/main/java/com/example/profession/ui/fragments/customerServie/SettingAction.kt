@@ -7,6 +7,7 @@ sealed class SettingAction() : Action {
      data class ShowLoading(val show: Boolean) : SettingAction()
     data class ShowFailureMsg(val message: String?) : SettingAction()
     data class CompalinSucessed(val message: String?) : SettingAction()
+    data class ContactSucessed(val message: String?) : SettingAction()
 
 
 

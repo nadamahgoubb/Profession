@@ -24,6 +24,11 @@ class CreateOrdersUseCase @Inject constructor(private val repository: Repository
                 params?.let { repository.getProviders(params ) }?.let { emit(it) }
             } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
 
+        } else if (params  is CreateOrderParams) {
+            flow {
+                params?.let { repository.createOrder(params ) }?.let { emit(it) }
+            } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
+
         }
         else {
             flow {

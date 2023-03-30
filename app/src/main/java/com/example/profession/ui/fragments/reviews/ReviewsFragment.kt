@@ -79,23 +79,15 @@ class ReviewsFragment : BaseFragment<FragmentReviewsBinding>() {
     }
 
     private fun onClick() {
-  /*      binding.btnDone.setOnClickListener {
-           *//* mViewModel.addReview(
-               providerId, PrefsHelper.getUserData().id, order_id: String, rate: String, comment: String
-
-            )*//*
-          //  findNavController().navigate(R.id.chooseTimeFragment)
-        }
-*/
 
         binding.ivBack.setOnClickListener {
             activity?.onBackPressed()
         }
+        binding.btnGoProviders.setOnClickListener {
+            activity?.onBackPressed()
+        }
 
-/*        binding.rating.onRatingBarChangeListener =
-            OnRatingBarChangeListener { ratingBar, rating, fromUser ->
-                //   Toast.makeText(requireContext(), rating.toString(), Toast.LENGTH_SHORT).show()
-            }*/
+/*      */
     }
 
     private fun setupUi() {

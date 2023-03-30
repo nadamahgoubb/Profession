@@ -1,7 +1,5 @@
 package com.example.profession.data.dataSource.Param
 
-import retrofit2.http.Field
-
 
 data class GetProvidersParam(
     val service_id: String? = null,
@@ -27,3 +25,7 @@ data class GetOrderParam(
 data class CancelOrderParam(
    val order_id: String = "",
     val order_status: String = "",)
+
+data class ComplainOrderParam(
+   val order_id: String = "",
+    val complaint: String = "",)

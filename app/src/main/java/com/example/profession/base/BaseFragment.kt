@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.example.profession.util.LoadingUtil
-import com.example.profession.util.ext.bindView
+ import com.example.profession.util.ext.bindView
+import com.example.profession.util.ext.castToActivity
 import com.example.profession.util.ext.showAppToast
 import com.example.profession.util.ext.showErrorDialog
 
@@ -22,8 +22,7 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
      * second: height
      * */
     open fun mPageToolbarBackground(): Pair<Int, Int>? = null
-    lateinit var loadingUtil: LoadingUtil
-    open val mTitleGravity: Int = Gravity.CENTER_VERTICAL
+     open val mTitleGravity: Int = Gravity.CENTER_VERTICAL
     open val showBottomNavigationView: Boolean = true
 
     abstract fun onFragmentReady()
@@ -38,8 +37,7 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
     ): View? {
         _binding = bindView()
         binding = _binding!!
-        loadingUtil = activity?.let { LoadingUtil(it) }!!
-        return binding.root
+         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,12 +47,11 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
     }
 
 
-    fun showProgress(show: Boolean) {
-        if (show == false) loadingUtil.hideLoading()
-        else loadingUtil.showLoading()
-
+    fun showProgress(show: Boolean = true) {
+        castToActivity<BaseActivity<*>> {
+            it?.baseShowProgress?.set(show)
+        }
     }
-
     fun showDialog(message: String?) {
         context?.showErrorDialog(message)
     }
@@ -65,8 +62,7 @@ abstract class BaseFragment<B : ViewDataBinding> : Fragment() {
 
     override fun onDestroyView() {
         showProgress(false)
-        loadingUtil.hideLoading()
-        _binding = null
+         _binding = null
         super.onDestroyView()
     }
 

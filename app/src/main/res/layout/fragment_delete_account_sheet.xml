@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_18sdp"
         android:background="@drawable/bg_rounded"
         android:paddingBottom="@dimen/_10sdp">
 
@@ -47,7 +48,7 @@
                     android:id="@+id/iv_dawn"
                     android:layout_width="@dimen/_35sdp"
                     android:layout_height="@dimen/_35sdp"
-                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingHorizontal="@dimen/_12sdp"
                     android:rotation="90"
                     android:src="@drawable/ic_arraw"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +66,7 @@
 
 
                     android:singleLine="false"
-                    android:text="هل انت متاكد انك تريد حذف الحساب الخاص بك "
+                    android:text="@string/sure_to_delete_account"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     app:layout_constraintEnd_toEndOf="parent"

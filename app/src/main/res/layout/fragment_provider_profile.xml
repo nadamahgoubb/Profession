@@ -57,7 +57,7 @@
                             android:id="@+id/iv_back"
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
-                            android:layout_gravity="start"
+                android:rotation="180"            android:layout_gravity="start"
                             android:padding="@dimen/_2sdp"
                             android:src="@drawable/ic_back_"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -127,14 +127,15 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:fillViewport="true"      android:layout_height="match_parent"
             android:background="@color/white"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                 android:id="@+id/lyt_all_screen" android:orientation="vertical"
+
 
                 >
 
@@ -142,7 +143,7 @@
                     android:id="@+id/lyt_data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
+               android:layout_marginHorizontal="@dimen/_10sdp"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -197,8 +198,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_5sdp"
-                            android:text="(8)"
-                            android:textColor="@color/black"
+                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/tv_rate"
@@ -222,8 +222,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5sdp"
-                        android:text="الرياض , السعوديه"
-                        android:textColor="@color/grey_400"
+                         android:textColor="@color/grey_400"
                         android:textSize="@dimen/_10sdp"
                         app:layout_constraintStart_toEndOf="@+id/iv_location"
                         app:layout_constraintTop_toTopOf="@id/iv_location" />
@@ -309,8 +308,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_8sdp"
                                 android:layout_marginTop="@dimen/_10sdp"
-                                android:text="سباك"
-                                android:textColor="@color/black"
+                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_10sdp"
                                 android:textStyle="bold"
                                 app:layout_constraintStart_toStartOf="parent"

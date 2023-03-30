@@ -76,7 +76,7 @@
                                 android:layout_gravity="start"
                                 android:contentDescription="@string/app_name"
                                 android:src="@drawable/ic_back_"
-
+android:rotation="180"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -181,8 +181,7 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginVertical="@dimen/_6sdp"
-                            android:animateLayoutChanges="true"
+                             android:animateLayoutChanges="true"
                             android:padding="@dimen/_10sdp">
 
 
@@ -207,33 +206,19 @@
                                 android:background="@color/grey_100"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@id/tv_2" />
-
-                            <TextView
-                                android:id="@+id/tv_cash"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:drawableStart="@drawable/money"
-                                android:drawablePadding="@dimen/_6sdp"
-                                android:paddingVertical="@dimen/_7sdp"
-                                android:text="@string/cash"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/v1" />
-
-                            <com.google.android.material.checkbox.MaterialCheckBox
-                                android:id="@+id/checkbox_cash"
-                                android:layout_width="@dimen/_25sdp"
-                                android:layout_height="@dimen/_25sdp"
-                                android:background="@drawable/check_box_selector"
-                                android:button="@null"
-                                android:checked="true"
-                                android:padding="@dimen/_10sdp"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp"
-                                app:layout_constraintBottom_toBottomOf="@id/tv_cash"
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rv_payment_methods"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:clipToPadding="false"
+                                android:orientation="vertical"
+                                tools:itemCount="2"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="@id/tv_cash" />
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/v1"
+                                 tools:listitem="@layout/item_checkout_payment_method" />
+
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -292,11 +277,22 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_8sdp"
                                 android:layout_marginTop="@dimen/_3sdp"
-                                android:text="8:00 ص 9:00 ص"
-                                android:textColor="@color/grey_600"
+                                 android:textColor="@color/grey_600"
                                 android:textSize="@dimen/_9sdp"
                                 android:textStyle="bold"
                                 app:layout_constraintStart_toEndOf="@+id/iv_clock"
+                                app:layout_constraintTop_toBottomOf="@+id/v6" />
+   <TextView
+
+                                android:id="@+id/tv_timein_service"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_8sdp"
+                                android:layout_marginTop="@dimen/_3sdp"
+                                 android:textColor="@color/gold"
+                                android:textSize="@dimen/_9sdp"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toEndOf="@+id/tv_time"
                                 app:layout_constraintTop_toBottomOf="@+id/v6" />
 
 
@@ -317,8 +313,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_4sdp"
-                                android:text="الاثنين 28 أغسطس"
-                                android:textColor="@color/black"
+                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_11sdp"
                                 app:layout_constraintStart_toStartOf="@+id/tv_time"
                                 app:layout_constraintTop_toBottomOf="@+id/tv_time" />
@@ -326,82 +321,6 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
 
-                    <androidx.cardview.widget.CardView
-
-                        android:id="@+id/card_personal_info"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_10sdp"
-                        android:layout_marginVertical="@dimen/_8sdp"
-                       
-                        app:cardCornerRadius="@dimen/_8sdp"
-                        app:strokeWidth="3dp">
-
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:animateLayoutChanges="true"
-                            android:padding="@dimen/_4sdp">
-
-                            <TextView
-
-                                android:id="@+id/tv_3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_8sdp"
-                                android:layout_marginTop="@dimen/_10sdp"
-                                android:paddingVertical="@dimen/_4sdp"
-                                android:text="@string/service_provider"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-
-                            <View
-                                android:id="@+id/v2"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_1sdp"
-                                android:layout_marginHorizontal="@dimen/_10sdp"
-                                android:layout_marginVertical="@dimen/_3sdp"
-                                android:background="@color/grey_100"
-                                app:layout_constraintTop_toBottomOf="@id/tv_3"
-
-                                />
-
-                            <TextView
-
-                                android:id="@+id/tv_name"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_8sdp"
-                                android:layout_marginTop="@dimen/_3sdp"
-                                android:text="احمد محمد "
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_10sdp"
-                                android:textStyle="bold"
-                                app:layout_constraintBottom_toBottomOf="@id/iv_user"
-                                app:layout_constraintStart_toEndOf="@+id/iv_user"
-                                app:layout_constraintTop_toTopOf="@+id/iv_user" />
-
-
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:id="@+id/iv_user"
-                                android:layout_width="@dimen/_40sdp"
-                                android:layout_height="@dimen/_40sdp"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="@dimen/_8sdp"
-                                android:padding="@dimen/_2sdp"
-                                android:src="@drawable/user1"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/v2" />
-
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/card_order_details"
@@ -447,45 +366,18 @@
                                 app:layout_constraintTop_toBottomOf="@id/tv_4"
 
                                 />
-
-                            <TextView
-
-                                android:id="@+id/tv_service"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_8sdp"
-                                android:layout_marginTop="@dimen/_3sdp"
-                                android:text="تركيب مروحه  شفاط "
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp"
-                                app:layout_constraintStart_toEndOf="@+id/iv_logo"
-                                app:layout_constraintTop_toTopOf="@+id/iv_logo" />
-
-
-                            <ImageView
-                                android:id="@+id/iv_logo"
-                                android:layout_width="@dimen/_40sdp"
-                                android:layout_height="@dimen/_40sdp"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="@dimen/_8sdp"
-                                android:padding="@dimen/_2sdp"
-                                android:src="@drawable/logo"
+                             <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rv_subservice"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:clipToPadding="false"
+                                android:orientation="vertical"
+                                tools:itemCount="2"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/v3" />
-
-
-                            <TextView
-
-                                android:id="@+id/tv_service_desc"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_6sdp"
-                                android:text="تركيب مروحه شفاط"
-                                android:textColor="@color/grey_400"
-                                android:textSize="@dimen/_8sdp"
-                                android:textStyle="bold"
-                                app:layout_constraintStart_toStartOf="@+id/tv_service"
-                                app:layout_constraintTop_toBottomOf="@+id/tv_service" />
+                                app:layout_constraintTop_toBottomOf="@id/v3"
+                                tools:listitem="@layout/item_checkout_subservice" />
 
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -555,141 +447,6 @@
 
                     </com.google.android.material.card.MaterialCardView>
 
-                    <androidx.cardview.widget.CardView
-
-                        android:id="@+id/card_bill"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_10sdp"
-                        android:layout_marginVertical="@dimen/_8sdp"
-                        app:cardCornerRadius="@dimen/_8sdp"
-                        app:strokeWidth="3dp">
-
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:animateLayoutChanges="true"
-                            android:padding="@dimen/_4sdp">
-
-                            <TextView
-
-                                android:id="@+id/tv_8"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_8sdp"
-                                android:layout_marginTop="@dimen/_10sdp"
-                                android:text="الفاتوره"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-
-                            <View
-                                android:id="@+id/v8"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_1sdp"
-                                android:layout_marginHorizontal="@dimen/_10sdp"
-                                android:layout_marginVertical="@dimen/_3sdp"
-                                android:background="@color/grey_100"
-                                app:layout_constraintTop_toBottomOf="@id/tv_8"
-
-                                />
-
-                            <TextView
-
-                                android:id="@+id/tv_9"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_3sdp"
-
-                                android:text="اجمالى التكلفه المبدئيه"
-                                android:textColor="@color/grey_400"
-                                android:textSize="@dimen/_10sdp"
-                                app:layout_constraintStart_toStartOf="@id/tv_8"
-                                app:layout_constraintTop_toBottomOf="@id/v8" />
-
-
-                            <TextView
-
-                                android:id="@+id/tv10"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_6sdp"
-                                android:text="ضريبه القيمه المضافه"
-                                android:textColor="@color/grey_400"
-                                android:textSize="@dimen/_10sdp"
-                                app:layout_constraintStart_toStartOf="@id/tv_8"
-                                app:layout_constraintTop_toBottomOf="@+id/tv_9" />
-
-                            <TextView
-
-                                android:id="@+id/tv_total"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/_10sdp"
-                                android:text="415 ر.س"
-                                android:textColor="@color/grey_400"
-                                android:textSize="@dimen/_10sdp"
-                                android:textStyle="bold"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="@+id/tv_9" />
-
-                            <TextView
-
-                                android:id="@+id/tv_tax"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="40 ر.س"
-                                android:textColor="@color/grey_400"
-                                android:textSize="@dimen/_10sdp"
-                                android:textStyle="bold"
-                                app:layout_constraintEnd_toEndOf="@id/tv_total"
-                                app:layout_constraintTop_toTopOf="@+id/tv10" />
-
-                            <View
-                                android:id="@+id/v9"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_1sdp"
-                                android:layout_marginHorizontal="@dimen/_10sdp"
-                                android:layout_marginVertical="@dimen/_3sdp"
-                                android:background="@color/grey_100"
-                                app:layout_constraintTop_toBottomOf="@id/tv10"
-
-                                />
-
-                            <TextView
-
-                                android:id="@+id/tv11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_6sdp"
-                                android:paddingHorizontal="@dimen/_6sdp"
-                                android:paddingVertical="@dimen/_10sdp"
-                                android:text="الاجمالي "
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_14sdp"
-                                android:textStyle="bold"
-                                app:layout_constraintStart_toStartOf="@id/tv_8"
-                                app:layout_constraintTop_toBottomOf="@+id/v9" />
-
-                            <TextView
-
-                                android:id="@+id/tv_total_price"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingVertical="@dimen/_10sdp"
-                                android:text="455 ر.س"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_14sdp"
-                                android:textStyle="bold"
-                                app:layout_constraintEnd_toEndOf="@id/tv_total"
-                                app:layout_constraintTop_toTopOf="@+id/tv11" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.cardview.widget.CardView>
 
 
                     <androidx.constraintlayout.widget.ConstraintLayout

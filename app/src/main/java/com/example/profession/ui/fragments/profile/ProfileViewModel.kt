@@ -89,7 +89,8 @@ class ProfileViewModel
         cityId:String,
          lat: Double?,
         lon: Double?,
-        photo: File?
+        photo: File?,
+        address: String,
 
         ): Boolean {
         return  if (name.isNullOrBlank()) {
@@ -118,13 +119,13 @@ class ProfileViewModel
             produce(ProfileAction.ShowFailureMsg(getString(R.string.empty_cityid)))
             false
         }
-         else if  (lat.isNull() || lon?.equals(0) == true) {
+         else if  (lat.isNull() || lon?.equals(0) == true||address.isNullOrEmpty()) {
             produce(ProfileAction.ShowFailureMsg(getString(R.string.enter_your_location)))
             false
         }  else {
 
 
-            updateProfile (EditProfileParams(name,phone,country_code,email,  countryId,cityId, lat.toString(), lon.toString(), "0", photo ))
+            updateProfile (EditProfileParams(name,phone,country_code,email,  countryId,cityId, lat.toString(), lon.toString(), "0", photo ,address))
             true
 
         }

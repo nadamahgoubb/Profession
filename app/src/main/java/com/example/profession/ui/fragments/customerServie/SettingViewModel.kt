@@ -6,6 +6,7 @@ import com.example.profession.data.dataSource.repoistry.PrefsHelper
 import com.example.profession.R
 import com.example.profession.base.BaseViewModel
 import com.example.profession.data.dataSource.Param.ComplainParams
+import com.example.profession.data.dataSource.Param.ContactUsParams
 import com.example.profession.data.dataSource.response.UserResponse
 
 import com.example.profession.domain.SettingUseCase
@@ -51,9 +52,30 @@ class SettingViewModel
                     is Resource.Failure -> produce(SettingAction.ShowFailureMsg(res.message.toString()))
                     is Resource.Progress -> produce(SettingAction.ShowLoading(res.loading))
                     is Resource.Success -> {
-                        PrefsHelper.saveToken((res.data.data as UserResponse).token)
-                        PrefsHelper.saveUserData(res.data.data as UserResponse)
-                        produce(SettingAction.CompalinSucessed(res.data.message as String))
+                          produce(SettingAction.CompalinSucessed(res.data.message as String))
+
+                    }
+                }
+            }
+        } else {
+            produce(SettingAction.ShowFailureMsg(getString(R.string.no_internet)))
+        }
+    }
+    fun contactUs(  content: String) {
+        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+
+
+            produce(SettingAction.ShowLoading(true))
+            usecase.invoke(
+                viewModelScope, ContactUsParams(
+                  0,  content //0 for user
+                )
+            ) { res ->
+                when (res) {
+                    is Resource.Failure -> produce(SettingAction.ShowFailureMsg(res.message.toString()))
+                    is Resource.Progress -> produce(SettingAction.ShowLoading(res.loading))
+                    is Resource.Success -> {
+                          produce(SettingAction.ContactSucessed(res.data.message as String))
 
                     }
                 }

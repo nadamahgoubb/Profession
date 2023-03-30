@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
 
         android:layout_height="wrap_content"
-        android:layoutDirection="rtl">
+       >
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
@@ -78,6 +78,7 @@
                                 android:layout_gravity="start"
                                 android:contentDescription="@string/app_name"
                                 android:padding="@dimen/_2sdp"
+                                android:rotation="180"
                                 android:src="@drawable/ic_back_"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"

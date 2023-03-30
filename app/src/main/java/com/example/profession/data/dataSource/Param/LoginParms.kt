@@ -8,6 +8,14 @@ data class LoginParms(
       var password: String = ""
 
 )
+data class ForgetPasswordParms(
+
+
+    var phone: String = "",
+    var country_code: String = "",
+      var password: String = ""
+
+)
 
 data class RegisterParams(
     var name: String,
@@ -19,6 +27,9 @@ data class RegisterParams(
     var password: String,
     var lat: String,
     var lon: String,
-    var mobile_id: String
-)
+    var mobile_id: String,
+    var address: String,
+
+
+    )
 

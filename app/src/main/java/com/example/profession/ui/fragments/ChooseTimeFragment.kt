@@ -36,55 +36,68 @@ class ChooseTimeFragment : BaseFragment<FragmentChooseTimeBinding>() {
             activity?.onBackPressed()
         }
         binding.btnOk.setOnClickListener {
-if(binding.etHour.text.toString().isNotBlank()){
+if(binding.etHour.text.toString().isBlank()){
     showToast(resources.getString(R.string.please_choose_time_to_Visit))
-}else{
-    mViewModel.mintueToVisit= binding.etMin.text.toString()
+}
+
+else{
+
+    if(!binding.etMin.text.toString().isBlank()){
+        mViewModel.mintueToVisit= binding.etMin.text.toString()
+    }
     mViewModel.hourToVisit= binding.etHour.text.toString()
     findNavController().navigate(R.id.providerTaxFragment)
 }
         }
-        binding.ivPlus.setOnClickListener {
+        binding.lytPlus.setOnClickListener {
             mViewModel.hoursCount=   mViewModel.hoursCount+1
-            binding.tvCount.setText(mViewModel.hoursCount)
+            binding.tvCount.setText(mViewModel.hoursCount.toString())
         }
 
-        binding.ivMinus.setOnClickListener {
-            mViewModel.hoursCount--
-            binding.tvCount.setText(mViewModel.hoursCount)
-
+        binding.lytMinus.setOnClickListener {
+            if(mViewModel.hoursCount != 1) {
+                mViewModel.hoursCount--
+                binding.tvCount.setText(mViewModel.hoursCount.toString())
+            }
         }
     }
+    var current = ""
 
     private fun getTime() {
         var i = 1
         val cal: Calendar = GregorianCalendar()
-        var current = SimpleDateFormat("MMM dd").format(cal.getTime())
+        //2023-01-31
+       current = SimpleDateFormat("MMM dd").format(cal.getTime())
+        mViewModel. current = SimpleDateFormat("YYYY-MM-dd").format(cal.getTime())
         binding.tvDay.setText(current)
 
-        binding.ivNext.setOnClickListener {
+        binding.lytNext.setOnClickListener {
             binding.ivPrevious.setTint(resources.getColor(R.color.black))
             cal.add(Calendar.DATE, 1)
             i++
-            binding.tvDay.setText(SimpleDateFormat("MMM dd").format(cal.getTime()))
+            current = SimpleDateFormat("MMM dd").format(cal.getTime())
+            mViewModel.   current= SimpleDateFormat("YYYY-MM-dd").format(cal.getTime())
+            binding.tvDay.setText(current)
 
         }
-        binding.ivPrevious.setOnClickListener {
+        binding.lytPrev.setOnClickListener {
             if (i > 1) {
                 i--
                 cal.add(Calendar.DATE, -1);
+                mViewModel.   current= SimpleDateFormat("YYYY-MM-dd").format(cal.getTime())
+                current = SimpleDateFormat("MMM dd").format(cal.getTime())
 
-                binding.tvDay.setText(SimpleDateFormat("MMM dd").format(cal.getTime()))
+                binding.tvDay.setText( mViewModel. current)
             }
             if (i == 1) binding.ivPrevious.setTint(resources.getColor(R.color.gray_800))
         }
         binding.tvAm.setOnClickListener {
             if (binding.tvAm.isChecked) {
                 binding.tvAm.setText(resources.getText(R.string.pm))
-                mViewModel.am = "pm"
+                mViewModel.am = "م"
             } else {
                 binding.tvAm.setText(resources.getText(R.string.am))
-                mViewModel.am = "am"
+                mViewModel.am = "ص"
             }
         }
 

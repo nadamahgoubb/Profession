@@ -5,23 +5,40 @@
 
     <data>
 
-    </data>
+        <import type="android.view.View" />
 
+
+        <variable
+            name="progress"
+            type="androidx.databinding.ObservableBoolean" />
+
+
+    </data>
     <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layoutDirection="ltr"
+        android:layoutDirection="locale"
         android:fitsSystemWindows="true"
     tools:openDrawer="left"
         android:id="@+id/drawerLayout">
 
-      <androidx.constraintlayout.widget.ConstraintLayout
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layoutDirection="rtl"
             android:layout_height="match_parent">
 
+            <!--   <com.github.ybq.android.spinkit.SpinKitView
+                   android:id="@+id/progress_bar"
+                   style="@style/SpinKitView.Small.ChasingDots"
+                   app:SpinKit_Color="@color/blue"
+                   android:visibility="@{progress?View.VISIBLE:View.GONE}"
+                   android:layout_width="@dimen/_50sdp"
+                   android:layout_height="@dimen/_50sdp"
+                   android:layout_centerInParent="true"
+                   app:indicatorName="BallSpinFadeLoaderIndicator" />-->
 
-            <androidx.fragment.app.FragmentContainerView
+          <androidx.fragment.app.FragmentContainerView
 
                 android:id="@+id/nav_host_fragment"
                 android:name="androidx.navigation.fragment.NavHostFragment"
@@ -33,6 +50,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:navGraph="@navigation/main_nav" />
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:layout_width="match_parent"
+                android:id="@+id/progress_bar"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                app:layout_constraintBottom_toTopOf="@id/nav_view_bottom"
+                 android:visibility="@{progress?View.VISIBLE:View.GONE}"
+                app:indicatorColor="@color/gold"
+
+                />
 
 
             <com.google.android.material.bottomnavigation.BottomNavigationView

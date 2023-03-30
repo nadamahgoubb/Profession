@@ -60,22 +60,17 @@ class WalkThrougthFragment() : BaseFragment<FragmentWalkThrougthBinding>(), OnCl
                 pos++
                 binding.viewPager.currentItem = binding.viewPager.currentItem + 1
             }
-           else
-                findNavController().navigate(R.id.loginFragment,null,
-                    NavOptions.Builder().setPopUpTo(R.id.loginFragment, true).build())
+           else {
 
-
+                findNavController().navigate(
+                    R.id.action_walkThrougthFragment_to_loginFragment)
+                    //, null,
+                 //   NavOptions.Builder().setPopUpTo(R.id.loginFragment, false).build()
+             //   )
+            }
         }
 
 
-    }
-
-
-    private fun goNext() {
-        if (pos == 0 ) {
-            pos++
-            binding.viewPager.currentItem = binding.viewPager.currentItem + 1
-        }
     }
 
     private fun gotoLMain() {
@@ -84,7 +79,8 @@ class WalkThrougthFragment() : BaseFragment<FragmentWalkThrougthBinding>(), OnCl
     }
 
     override fun onSkipClickListener() {
-        findNavController().navigate(R.id.loginFragment)
+        findNavController().navigate(R.id.action_walkThrougthFragment_to_loginFragment)
+           // ,null, NavOptions.Builder().setPopUpTo(R.id.loginFragment, false).build())
     }
 
 

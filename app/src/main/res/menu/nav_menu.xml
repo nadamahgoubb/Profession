@@ -12,10 +12,6 @@
         android:title="@string/contact_us"
         android:icon="@drawable/ic_call_"/>
 
-    <item
-        android:id="@+id/orderFragment"
-     android:visible="false"   android:title="@string/orders"
-        android:icon="@drawable/ic_orders"/>
 
     <item
         android:id="@+id/customerServiceFragment"
@@ -34,4 +30,10 @@
         android:title="@string/logout"
 
         android:icon="@drawable/ic_logout"/>
+    <item
+        android:id="@+id/login"
+        android:title="@string/sign"
+
+android:visible="false"
+        />
 </menu>

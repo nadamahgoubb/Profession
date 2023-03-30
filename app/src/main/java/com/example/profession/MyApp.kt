@@ -31,9 +31,9 @@ class MyApp : Application() {
 
     }
 
-    override fun attachBaseContext(newBase: Context) {
-        val locale = Locale(Constants.AR)
+    /*override fun attachBaseContext(newBase: Context) {
+        val locale = Locale(PrefsHelper.getLanguage())
         val localeUpdatedContext: ContextWrapper = ContextUtils.updateLocale(newBase, locale)
         super.attachBaseContext(localeUpdatedContext)
-    }
+    }*/
 }

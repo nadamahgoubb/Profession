@@ -55,10 +55,11 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_complain"
+                    android:id="@+id/et_amount"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
                     android:padding="@dimen/_5sdp"
+                    android:inputType="numberDecimal"
                     android:layout_marginTop="@dimen/_10sdp"
                      android:gravity="center_vertical"
                     android:paddingStart="@dimen/_15sdp"
@@ -83,7 +84,7 @@ android:hint="@string/amount"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginTop="@dimen/_35sdp"
-                        app:layout_constraintTop_toBottomOf="@id/et_complain"
+                        app:layout_constraintTop_toBottomOf="@id/et_amount"
                         android:layout_marginEnd="@dimen/_10sdp"    android:textColor="@color/white"
                         android:textSize="@dimen/_13sdp"
                         android:textStyle="bold"

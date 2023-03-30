@@ -1,6 +1,9 @@
 package com.example.profession.util
 
 object Constants {
+    const val CASH: Int = 1
+    const val VISA: Int = 0
+    const  val WALLET: Int = 2
     const  val ITEM_ID="item_id"
     const val Start="start"
     const val splash=0
@@ -10,6 +13,7 @@ object Constants {
     const val compeleted="compeleted"
     const val inprogress="inprogress"
     const val SERVICE="Service"
+    const val CANCEL="cancel"
 
     const val TOKEN = "token"
     const val LOGGED_IN = "LOGGED_IN"

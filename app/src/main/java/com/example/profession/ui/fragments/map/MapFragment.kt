@@ -7,6 +7,7 @@ import android.location.Location
 import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.laundrydelivery.util.ext.isNull
@@ -93,10 +94,9 @@ class MapFragment():BaseFragment<FragmentMapBinding>()
           mViewModelCreateOrder.address =it
           mViewModelCreateOrder.lat = latitude
            mViewModelCreateOrder.long= longitude
-          binding?.tvAddress?.text =
-              address?.address.toString()
-          binding?.tvCountry?.text =
-              address?.country.toString()+","+ address?.city.toString()
+          binding?.tvAddress?.setText( address?.address.toString())
+          binding?.tvCountry?.setText(
+              address?.country.toString()+","+ address?.city.toString())
         }
 
     }
@@ -126,6 +126,8 @@ class MapFragment():BaseFragment<FragmentMapBinding>()
         this.googleMap.uiSettings.isZoomControlsEnabled = true
         this.googleMap.animateCamera(location)
         getLocationNow()
+        this.googleMap.isMyLocationEnabled
+       // this.googleMap.
         this.googleMap.setOnCameraIdleListener {
             selectedLocation = LatLng(
                 this.googleMap.cameraPosition.target.latitude,

@@ -8,6 +8,7 @@ import com.example.profession.R
 import com.example.profession.base.BaseViewModel
 import com.example.profession.base.PagingParams
 import com.example.profession.data.dataSource.Param.CityParams
+import com.example.profession.data.dataSource.Param.ForgetPasswordParms
 import com.example.profession.data.dataSource.Param.LoginParms
 import com.example.profession.data.dataSource.Param.RegisterParams
 import com.example.profession.data.dataSource.response.CitesResponse
@@ -90,6 +91,7 @@ class AuthViewModel
         pass: String,
         lat: Double?,
         lon: Double?,
+        address: String?,
 
         ): Boolean {
         return if (name.isNullOrBlank()) {
@@ -116,7 +118,7 @@ class AuthViewModel
         } else if (pass.isNullOrBlank()) {
             produce(AuthAction.ShowFailureMsg(getString(R.string.msg_empty_password)))
             false
-        } else if (lat.isNull() || lon?.equals(0) == true) {
+        } else if (lat.isNull() || lon?.equals(0) == true || address.isNullOrEmpty()) {
             produce(AuthAction.ShowFailureMsg(getString(R.string.enter_your_location)))
             false
         } else {
@@ -130,41 +132,35 @@ class AuthViewModel
             this.password = pass
             this.lon = lon
             this.lat = lat
-            register(name, phone, email, country_code, countryId, cityId, pass, lat, lon, "0")
+            register(
+                RegisterParams(
+                    name,
+                    phone,
+                    email,
+                    country_code,
+                    countryId,
+                    cityId,
+                    pass,
+                    lat.toString(),
+                    lon.toString(),
+                    "0",
+                    address
+                )
+            )
             true
 
         }
     }
 
     fun register(
-        name: String,
-        phone: String,
-        email: String,
-        country_code: String,
-        countryId: String,
-        cityId: String,
-        pass: String,
-        lat: Double?,
-        lon: Double?,
-        mobile_id: String
+        params: RegisterParams
     ) {
         if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
             produce(AuthAction.ShowLoading(true))
 
             viewModelScope.launch {
                 var res = authUserCase.invoke(
-                    viewModelScope, RegisterParams(
-                        name,
-                        phone,
-                        email,
-                        country_code,
-                        countryId,
-                        cityId,
-                        pass,
-                        lat.toString(),
-                        lon.toString(),
-                        mobile_id
-                    )
+                    viewModelScope, params
                 )
 
                 { res ->
@@ -222,6 +218,30 @@ class AuthViewModel
                     is Resource.Progress -> produce(AuthAction.ShowLoading(res.loading))
                     is Resource.Success -> {
                         produce(AuthAction.ShowAllCountry(res.data.data as CountriesResponse))
+
+                    }
+                }
+            }
+        } else {
+            produce(AuthAction.ShowFailureMsg(getString(R.string.no_internet)))
+        }
+    }
+
+    fun forgetPassword(
+        phone: String, country_code: String, password: String
+    ) {
+        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+
+
+            produce(AuthAction.ShowLoading(true))
+            authUserCase.invoke(
+                viewModelScope, ForgetPasswordParms( phone , country_code  , password )
+            ) { res ->
+                when (res) {
+                    is Resource.Failure -> produce(AuthAction.ShowFailureMsg(res.message.toString()))
+                    is Resource.Progress -> produce(AuthAction.ShowLoading(res.loading))
+                    is Resource.Success -> {
+                        produce(AuthAction.ShowForgetPassword(res.data.message as String))
 
                     }
                 }

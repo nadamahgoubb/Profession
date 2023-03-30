@@ -5,12 +5,8 @@ import com.example.profession.base.BaseUseCase
 import com.example.profession.base.DevResponse
 import com.example.profession.base.ErrorResponse
 import com.example.profession.base.NetworkResponse
-import com.example.profession.data.dataSource.Param.CityParams
-import com.example.profession.data.dataSource.Param.GetOrderParam
-import com.example.profession.data.dataSource.Param.LoginParms
-import com.example.profession.data.dataSource.Param.RegisterParams
+import com.example.profession.data.dataSource.Param.*
 import com.example.profession.data.dataSource.repositoy.Repository
-import com.example.profession.util.Constants
 
 
 import dagger.hilt.android.scopes.ViewModelScoped
@@ -30,7 +26,24 @@ class OrdersUseCase @Inject constructor(private val repository: Repository) :
                 params?.let { repository.getOrders(params ) }?.let { emit(it) }
             } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
 
+        } else if  (params  is OrderDetailsParam) {
+            flow {
+                params?.let { repository.getOrderById(params ) }?.let { emit(it) }
+            } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
+
         }
+ else if  (params  is CancelOrderParam) {
+            flow {
+                params?.let { repository.cancelOrder(params ) }?.let { emit(it) }
+            } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
+
+        } else if  (params  is ComplainOrderParam) {
+            flow {
+                params?.let { repository.complainOrder(params ) }?.let { emit(it) }
+            } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
+
+        }
+
         else {
             flow {
                 emit( null)

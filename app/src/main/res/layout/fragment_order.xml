@@ -72,6 +72,7 @@
                                 android:layout_gravity="start"
                                 android:contentDescription="@string/app_name"
                                 android:padding="@dimen/_2sdp"
+                           android:rotation="180"
                                 android:src="@drawable/ic_back_"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />

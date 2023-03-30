@@ -1,7 +1,6 @@
 package com.example.profession.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+ import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import com.example.profession.R
 import com.example.profession.databinding.ActivityAuthBinding
@@ -13,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class AuthActivity : BaseActivity<ActivityAuthBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       // setContentView(R.layout.activity_auth)
+        // setContentView(R.layout.activity_auth)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_view)
                 as NavHostFragment
         val    navController = navHostFragment.navController
@@ -33,14 +32,11 @@ class AuthActivity : BaseActivity<ActivityAuthBinding>() {
 
                 val navController = navHostFragment.navController
                 navController.setGraph(graph, intent.extras)
-
             }
         }
     catch (e:Exception){
-
     }
-
-
+        binding.progress = baseShowProgress
 
 
 }}

@@ -8,7 +8,10 @@ import android.view.View
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.databinding.ObservableBoolean
 import androidx.databinding.ViewDataBinding
+import com.example.profession.data.dataSource.repoistry.PrefsHelper
+import com.example.profession.util.ContextUtils
 import com.example.profession.util.LanguageUtils
 import com.example.profession.util.ext.bindView
 import java.util.*
@@ -16,16 +19,17 @@ import java.util.*
 
 abstract class BaseActivity<B : ViewDataBinding> : AppCompatActivity() {
 
+    val baseShowProgress = ObservableBoolean()
+
 
     override fun attachBaseContext(newBase: Context) {
         // get chosen language from shread preference
-        val locale = Locale("ar")
-        val localeUpdatedContext: ContextWrapper = LanguageUtils.updateLocale(newBase, locale)
+        val locale = Locale(PrefsHelper.getLanguage())
+        val localeUpdatedContext: ContextWrapper = ContextUtils.updateLocale(newBase, locale)
         super.attachBaseContext(localeUpdatedContext)
 
 
     }
-
 
     fun showLoading(v:View) {
      v.visibility = View.VISIBLE

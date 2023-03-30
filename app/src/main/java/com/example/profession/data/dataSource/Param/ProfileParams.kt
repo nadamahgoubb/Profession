@@ -24,7 +24,9 @@ data class EditProfileParams (
   val lon: String,
   val mobile_id: String,
   val photo: File?,
-) : Parcelable
+    val   address: String? = null,
+
+    ) : Parcelable
 
 
 fun EditProfileParams.toMap(): Map<String, RequestBody>{
@@ -41,6 +43,7 @@ fun EditProfileParams.toMap(): Map<String, RequestBody>{
     itemMap["lat"] = lat.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull())
     itemMap["lon"] = lon.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull())
     itemMap["mobile_id"] = mobile_id.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull())
+    itemMap["address"] = address.toString().toRequestBody("multipart/form-data".toMediaTypeOrNull())
 
 
     return itemMap

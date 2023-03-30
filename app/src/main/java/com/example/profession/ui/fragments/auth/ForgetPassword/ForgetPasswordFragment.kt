@@ -3,15 +3,24 @@ package com.example.profession.ui.fragments.auth.ForgetPassword
 
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.profession.R
 import com.example.profession.databinding.FragmentForgetPasswordBinding
 import com.example.profession.base.BaseFragment
+import com.example.profession.ui.activity.MainActivity
+import com.example.profession.ui.fragments.auth.AuthAction
+import com.example.profession.ui.fragments.auth.AuthViewModel
+import com.example.profession.util.ext.hideKeyboard
+import com.example.profession.util.ext.showActivity
+import com.example.profession.util.observe
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ForgetPasswordFragment : BaseFragment<FragmentForgetPasswordBinding>() {
    var state= 1
+    private val mViewModel: AuthViewModel by viewModels()
     override fun onFragmentReady() {
     //    showProgress(true)
         state1()
@@ -27,10 +36,52 @@ class ForgetPasswordFragment : BaseFragment<FragmentForgetPasswordBinding>() {
         binding.btnSendOtp.setOnClickListener {
             state3()
         }
+binding.ivBack.setOnClickListener {
+    when(state) {
+        1 -> {
 
 
+            requireActivity().onBackPressed()
+        }
+
+        2 -> state1()
+        3 -> state2()
+
+    }
+}
+        mViewModel.apply {
+            observe(viewState) {
+                handleViewState(it)
+            }
+        }
         onBack()
 
+    }
+    private fun handleViewState(action: AuthAction) {
+        when (action) {
+            is AuthAction.ShowLoading -> {
+                showProgress(action.show)
+                if (action.show) {
+                    hideKeyboard()
+                }
+            }
+            is    AuthAction.ShowForgetPassword -> {
+                showProgress(false)
+                findNavController().navigate(R.id.loginFragment,null,
+                    NavOptions.Builder().setPopUpTo(R.id.loginFragment, true).build())
+         }
+
+            is AuthAction.ShowFailureMsg ->
+                action.message?.let {
+                    showToast(action.message)
+                    showProgress(false)
+
+                }
+
+            else -> {
+
+            }
+        }
     }
 
     private fun onBack() {

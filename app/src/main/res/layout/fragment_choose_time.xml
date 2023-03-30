@@ -59,7 +59,7 @@
                             android:layout_gravity="start"
                             android:contentDescription="@string/app_name"
                             android:src="@drawable/ic_back_"
-
+android:rotation="180"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -131,6 +131,7 @@
 
                         <ImageView
                             android:id="@+id/iv_previous"
+                            android:rotation="180"
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
                             android:src="@drawable/ic_prev" />
@@ -165,6 +166,7 @@
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
                             android:layout_centerInParent="true"
+                            android:rotation="180"
                             android:src="@drawable/ic_next" />
 
                     </RelativeLayout>
@@ -193,25 +195,26 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/tv_1"
     >
-  <RelativeLayout
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:background="@drawable/bg_rounded"
-      >
-          <androidx.appcompat.widget.AppCompatEditText
-          android:id="@+id/et_min"
-          android:inputType="number"
-          android:maxLength="2"
-          android:padding="@dimen/_12sdp"
-          android:textSize="@dimen/_12sdp"
-          android:textColor="@color/black"
-          android:gravity="center"
-              android:background="@drawable/bg_rounded"
-           android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:hint="00"
-          />
-  </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_rounded"
+        >
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_min"
+            android:inputType="number"
+            android:maxLength="2"
+            android:padding="@dimen/_12sdp"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:background="@drawable/bg_rounded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="00"
+            />
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/tv_2"
          android:padding="@dimen/_12sdp"
@@ -241,6 +244,7 @@
             android:hint="11"
             />
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -252,7 +256,7 @@
             android:inputType="number"
             android:maxLength="2"
             android:padding="@dimen/_12sdp"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="@dimen/_11sdp"
             android:textColor="@color/black"
             android:gravity="center"
             android:button="@null"

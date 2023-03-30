@@ -74,7 +74,7 @@
                                 android:layout_width="@dimen/_35sdp"
                                 android:layout_height="@dimen/_35sdp"
                                 android:layout_gravity="start"
-                                android:contentDescription="@string/app_name"
+                     android:rotation="180"           android:contentDescription="@string/app_name"
                                 android:padding="@dimen/_2sdp"
                                 android:src="@drawable/ic_back_"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -103,7 +103,7 @@
             <com.example.profession.base.OnlyVerticalSwipeRefreshLayout
                 android:id="@+id/swiperefresh_home"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                 android:layout_height="match_parent"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -112,9 +112,9 @@
                 <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:fillViewport="true"
                     android:background="@color/white"
-                    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -126,8 +126,9 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/lyt_data"
+
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
@@ -143,7 +144,7 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                tools:itemCount="6"
+                                tools:itemCount="1"
                                 tools:listitem="@layout/item_provider" />
 
 
@@ -225,7 +226,7 @@
                             <Button
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_45sdp"
-
+android:id="@+id/btn_gohome"
                                 android:layout_marginHorizontal="@dimen/_20sdp"
                                 android:layout_marginTop="@dimen/_10sdp"
                                 android:background="@drawable/bg_orange_rounded"

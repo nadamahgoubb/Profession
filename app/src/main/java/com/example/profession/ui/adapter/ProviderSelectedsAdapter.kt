@@ -26,8 +26,7 @@ class ProviderSelectedAdapter(
             notifyDataSetChanged()
         }
     lateinit var context :Context
-var selectedProviders :ArrayList<Providers> = arrayListOf()
-    override fun onBindViewHolder(holder: ProviderSelectedViewHolder, position: Int) {
+     override fun onBindViewHolder(holder: ProviderSelectedViewHolder, position: Int) {
         var currentItem = list.get(position)
         holder.binding.tvName.text =  currentItem?.name
 

@@ -5,6 +5,7 @@ import com.example.profession.databinding.FragmentCustomerServiceBinding
 import com.example.profession.ui.activity.MainActivity
 import com.example.profession.base.BaseFragment
 import com.example.profession.util.ext.hideKeyboard
+import com.example.profession.util.ext.showActivity
 import com.example.profession.util.observe
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -55,20 +56,20 @@ class CustomerServiceFragment : BaseFragment<FragmentCustomerServiceBinding>() {
     private fun onClick() {
         binding.btnDone.setOnClickListener {
             mviewmodel.isValidParamsComplain(
-                binding.etComplainTitle.toString(), binding.etComplainContent.toString()
+                binding.etComplainTitle.text.toString(), binding.etComplainContent.text.toString()
             )
         }
         binding.ivMenu.setOnClickListener {
             parent.openDrawer()
         }
         binding.ivBack.setOnClickListener {
-            activity?.onBackPressed()
+            showActivity(MainActivity::class.java, clearAllStack = true)
         }
     }
 
     private fun setupUi() {
         parent = requireActivity() as MainActivity
-        parent.showBottomNav(true)
+        parent.showBottomNav(false)
         parent.showSideNav(true)
 
     }

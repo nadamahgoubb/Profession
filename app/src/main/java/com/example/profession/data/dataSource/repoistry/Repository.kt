@@ -11,10 +11,6 @@ import com.example.profession.data.dataSource.remote.ApiInterface
 import com.example.profession.util.FileManager.toMultiPart
  import javax.inject.Inject
 import com.example.profession.data.dataSource.response.SliderResponse
-import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
 
 
 class Repository @Inject constructor(private val api: ApiInterface) {
@@ -37,15 +33,17 @@ class Repository @Inject constructor(private val api: ApiInterface) {
             param.password,
             param.lat,
             param.lon,
-            param.mobile_id
+            param.mobile_id,
+            param.address
         )
 
 
     }
 
-    suspend fun getCities(params: CityParams
-     ): NetworkResponse<DevResponse<CitesResponse>, ErrorResponse> {
+    suspend fun getCities(params: CityParams): NetworkResponse<DevResponse<CitesResponse>, ErrorResponse> {
         return api.getCities(params.countryId)
+    }suspend fun forgetPassword(params: ForgetPasswordParms): NetworkResponse<DevResponse<Any>, ErrorResponse> {
+        return api.forgetPassword(params.phone, params.country_code, params.password)
     }
 
     suspend fun getCountries( ): NetworkResponse<DevResponse<CountriesResponse>, ErrorResponse> {
@@ -84,6 +82,9 @@ class Repository @Inject constructor(private val api: ApiInterface) {
     suspend fun complain(params: ComplainParams): NetworkResponse<DevResponse<Any>, ErrorResponse> {
         return api.complain( params.user_id,params.title, params.content)
     }
+    suspend fun contactUs(params: ContactUsParams): NetworkResponse<DevResponse<Any>, ErrorResponse> {
+        return api.contactUs( params.app_type,  params.content)
+    }
     suspend fun getProviders(params: GetProvidersParam): NetworkResponse<DevResponse<ProvidersResponse>, ErrorResponse> {
         return api.getProviders( params.service_id,params.lat, params.lon)
     }
@@ -99,16 +100,22 @@ class Repository @Inject constructor(private val api: ApiInterface) {
  suspend fun cancelOrder(params: CancelOrderParam): NetworkResponse<DevResponse<Any>, ErrorResponse> {
         return api.cancelOrder( params.order_id, params.order_status)
     }
+ suspend fun complainOrder(params: ComplainOrderParam): NetworkResponse<DevResponse<Any>, ErrorResponse> {
+        return api.complainOrder( params.order_id, params.complaint)
+    }
  suspend fun addReview(params: AddReviewsParam): NetworkResponse<DevResponse<Any>, ErrorResponse> {
         return api.addReview( params.provider_id, params.user_id, params.order_id, params.rate, params.comment)
     }
     @JvmName("createOrder1")
-    suspend fun createOrder(params: OrderParams): NetworkResponse<DevResponse<OrderdResponse>, ErrorResponse> {
+    suspend fun createOrder(params: CreateOrderParams): NetworkResponse<DevResponse<OrdersItem>, ErrorResponse> {
         return api.createOrder( params  )
     }
 
     suspend fun updateFcm(params: FcmParams): NetworkResponse<DevResponse<Any>, ErrorResponse> {
         return api.updateFcm( params.fcmToken)
+    }
+    suspend fun getOrderById(params: OrderDetailsParam): NetworkResponse<DevResponse<OrdersItem>, ErrorResponse> {
+        return api.getOrderById( params.id)
     }
 
 

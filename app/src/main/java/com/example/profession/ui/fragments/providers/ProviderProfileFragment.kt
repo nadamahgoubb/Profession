@@ -1,6 +1,7 @@
 package com.example.profession.ui.fragments.providers
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -12,7 +13,6 @@ import com.example.profession.ui.activity.AuthActivity
 import com.example.profession.ui.activity.MainActivity
 import com.example.profession.base.BaseFragment
 import com.example.profession.data.dataSource.response.Providers
-import com.example.profession.ui.adapter.ProvidersAdapter
 import com.example.profession.ui.adapter.ProvidersSubServiceAdapter
 import com.example.profession.ui.dialog.LoginFirstBotomSheetFragment
 import com.example.profession.ui.dialog.OnClickLoginFirst
@@ -29,7 +29,7 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
     private lateinit var parent: MainActivity
     private val mViewModel: CreateOrdersViewModel by activityViewModels()
     lateinit var adapter: ProvidersSubServiceAdapter
-    var ProviderData: Providers? = null
+    var providerData: Providers? = null
     override fun onFragmentReady() {
         onClick()
         initAdapter()
@@ -40,10 +40,9 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
             }
         }
         arguments?.getParcelable<Providers>(Constants.PROVIDERS)?.let {
-            ProviderData = it
+            providerData = it
             showData()
         }
-
     }
 
     private fun initAdapter() {
@@ -52,10 +51,10 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
     }
 
     private fun showData() {
-        ProviderData?.let {
+        providerData?.let {
             binding.tvName.setText(it.name)
             binding.tvDesc.setText(it.previousExperience)
-            binding.ivProfile.loadImage(it.photo)
+            binding.ivProfile.loadImage(it.photo, isCircular = true)
             binding.tvRate.setText(it.totalRate.roundTo(2) .toString())
 
             binding.tvLocation.setText(it.address.toString())
@@ -63,6 +62,7 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
             binding.tvRateCounts.setText("(" + it.countReviews + ")")
 
             binding.itemDistance.tvTitle.setText(resources.getText(R.string.distance_between))
+            binding.tvJob .setText(it.service?.name)
             binding.itemDistance.tvData.setText(it.distance.toString())
             binding.itemDistance.ivImg.loadImage(resources.getDrawable(R.drawable.ic_location))
 
@@ -76,7 +76,7 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
             adapter.list = it.subServices
             adapter.notifyDataSetChanged()
             binding.ivCall.setOnClickListener {
-             //   call(it.ph)
+              call(providerData?.phone.toString())
             }
         }
 
@@ -92,11 +92,13 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
         }
 
         binding.btnOrder.setOnClickListener {
+            mViewModel.selectedProviders.clear()
+            providerData?.let { it1 -> mViewModel.selectedProviders.add(it1) }
             findNavController().navigate(R.id.chooseTimeFragment)
         }
         binding.lytRate.setOnClickListener {
             var bundle = Bundle()
-            bundle.putString(Constants.PROVIDER_ID, ProviderData?.id)
+            bundle.putString(Constants.PROVIDER_ID, providerData?.id)
             findNavController().navigate(R.id.reviewsFragment, bundle )
 
          }
@@ -146,7 +148,11 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
         })
     }
 
-
+    fun call(tel: String) {
+        val dialIntent = Intent(Intent.ACTION_DIAL)
+        dialIntent.data = Uri.parse("tel:" + tel)
+        startActivity(dialIntent)
+    }
     private fun showLoginFirstBotomSheetFragment() {
         LoginFirstBotomSheetFragment.newInstance(object : OnClickLoginFirst {
             override fun onClick(choice: String) {

@@ -10,12 +10,18 @@ import retrofit2.http.Field
 import java.io.File
 
 
-@Parcelize
-data class ComplainParams (
+ data class ComplainParams (
 
     var user_id: String? = null,
     var title: String? = null,
-    var content: String? = null,
+    var content: String? = null
+    )
+
+@Parcelize
+data class ContactUsParams (
+
+    var app_type: Int? = null,
+     var content: String? = null,
 
     ) : Parcelable
 

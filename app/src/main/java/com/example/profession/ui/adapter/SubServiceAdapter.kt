@@ -19,7 +19,7 @@ class SubServiceAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         var currentItem = getItem(position)
         holder.binding.tvTitle.text = currentItem?.name
-
+holder.binding.checkbox.isChecked = currentItem?.choosen == true
         holder.binding.root.setOnClickListener {
             if (holder.binding.checkbox.isChecked) {
                 holder.binding.checkbox.isChecked = false

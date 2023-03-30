@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 
 data class ServicesItemsResponse(
 
-    @SerializedName("id"         ) var id        : String?    = null,
+@SerializedName("id"         ) var id        : String?    = null,
     @SerializedName("service_id" ) var serviceId : String?    = null,
     @SerializedName("icon"       ) var icon      : String? = null,
     @SerializedName("active"     ) var active    : Int?    = null,
@@ -39,6 +39,7 @@ data class SubServiceItemsResponse(
     @SerializedName("name"              ) var name            : String? = null,
     @SerializedName("icon"       ) var icon      : String? = null,
     @SerializedName("active"     ) var active    : Int?    = null,
+    @SerializedName("pivot"      ) var pivot     : Pivot?  = Pivot(), // pivot returns in order info re`uest
 
     var choosen: Boolean= false
 

@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.paging.PagingData
 import com.example.laundrydelivery.util.ext.isNull
@@ -35,6 +36,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>()  ,    CountryCo
     var countryId: String = ""
     var lat: Double? = null
     var long: Double? = null
+    var address: String? = null
     @Inject
     lateinit var permissionManager: PermissionManager
 
@@ -85,6 +87,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>()  ,    CountryCo
     }
 
     private fun openCountriesDialog(data: ArrayList<CitesItemsResponse>) {
+        binding.etCity.setText("")
         CategoriesDialog.newInstance(object : CitesListener {
             override fun onOrderClicked(item: CitesItemsResponse?) {
                 binding.etCoutry.setText(item?.name)
@@ -115,28 +118,20 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>()  ,    CountryCo
     }
 
     private fun onClick() {
-/*        name: String,
-        phone: String,
-        email: String,
-        country_code: String?,
-        countryId:String,
-        cityId:String,
-        pass: String,
-        lat: Double?,
-        lon: Double?,*/
 
         binding.btnRegister.setOnClickListener {
             mViewModel.validateRegisteration(
                 binding.etUserName.text.toString(),  binding.etPhone.text.toString(), binding.etEmail.text.toString() , countryCode,
                 countryId.toString(),
                 cityID.toString(),
-                binding.etPassword.text.toString(), lat,long
+                binding.etPassword.text.toString(), lat,long, address
 
             )
 
         }
         binding.btnSignIn.setOnClickListener {
-            findNavController().navigate(R.id.loginFragment)
+            findNavController().navigate(R.id.loginFragment,null,
+                NavOptions.Builder().setPopUpTo(R.id.loginFragment, true).build())
 
         }
         binding.etCity.setOnClickListener {
@@ -158,10 +153,10 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>()  ,    CountryCo
             override fun onClick(lat:Double? ,long :Double? , address :AddressParams?) {
                 this@RegisterFragment.lat =lat
                 this@RegisterFragment.long=long
-             //   this@RegisterFragment.address=address
-                if(!address.isNull()){
+                 if(!address.isNull()){
                     binding.etLocation.visibility= View.VISIBLE
-                    binding.etLocation.setText( address.toString())
+                    this@RegisterFragment.address= address?.address.toString()
+                    binding.etLocation.setText( address?.address.toString() )
                 }else{
                     binding.etLocation.visibility= View.GONE
                 }
@@ -202,7 +197,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>()  ,    CountryCo
     }
 
     override fun onCountrySelected() {
-        countryCode = binding.countryCodePicker.selectedCountryCode
+        countryCode ="+"+ binding.countryCodePicker.selectedCountryCode
 
         Toast.makeText(activity, "Country Code " + countryCode, Toast.LENGTH_SHORT).show()
     }

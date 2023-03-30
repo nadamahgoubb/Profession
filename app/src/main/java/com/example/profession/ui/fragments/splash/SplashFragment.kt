@@ -25,9 +25,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
                 findNavController().navigate(R.id.loginFragment,null,
                     NavOptions.Builder().setPopUpTo(R.id.loginFragment, true).build())
             }else{
-                findNavController().navigate(R.id.walkThrougthFragment,null,
-                    NavOptions.Builder().setPopUpTo(R.id.walkThrougthFragment, true).build())
-            }
+                findNavController().navigate(R.id.action_splashFragment_to_walkThrougthFragment)
+                   // ,null, NavOptions.Builder().setPopUpTo(R.id.walkThrougthFragment, true).build())
+                   }
 
 
         } else{

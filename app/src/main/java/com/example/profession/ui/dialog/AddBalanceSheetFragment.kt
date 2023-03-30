@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.Toast
 import com.example.profession.R
 import com.example.profession.databinding.DialogBalanceBottomsheetBinding
   import com.example.profession.ui.activity.MainActivity
@@ -17,7 +18,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.util.*
 
 interface OnClickAddBalance {
-    fun onClick(choice: String)
+    fun onClick(balance: String)
 }
 
 class AddBalanceSheetFragment(var onClick: OnClickAddBalance) :
@@ -50,9 +51,14 @@ class AddBalanceSheetFragment(var onClick: OnClickAddBalance) :
     private fun onClick() {
 
         binding.btnOk.setOnClickListener {
-            onClick.onClick(Constants.YES)
+                 if(binding.etAmount.text.toString().isNullOrEmpty()) Toast.makeText(requireContext(), getText(R.string.empty_comment), Toast.LENGTH_SHORT).show()
+                else {
+                    onClick.onClick(binding.etAmount.text.toString() )
+                    dismiss()
+                }
+        }
+        binding.ivDawn.setOnClickListener {
             dismiss()
-
         }
     }
 

@@ -11,13 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="false"
-        android:layoutDirection="rtl">
+     >
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_130sdp"
             android:fitsSystemWindows="false"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:theme="@style/ThemeOverlay.MaterialComponents.Dark">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -75,7 +78,8 @@
 
                 <RelativeLayout
                     android:id="@+id/lyt_header_details"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="start"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="?attr/actionBarSize"
                     android:fitsSystemWindows="true"
@@ -87,10 +91,11 @@
                         android:id="@+id/tv1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_gravity="start"
                         android:layout_marginStart="@dimen/_30sdp"
                         android:layout_marginTop="@dimen/_20sdp"
-                        android:text="مرحبا "
+                        android:text="@string/hello"
+                        android:layout_alignParentStart="true"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_16sdp"
                         android:textStyle="bold" />
@@ -129,7 +134,7 @@
                         android:layout_gravity="center"
 
                         android:layout_marginTop="@dimen/_6sdp"
-                        android:text="ماذا تريد من خدمات اليوم  "
+                        android:text="@string/What_do_you_want_from_todays_services"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_14sdp"
                         android:textStyle="bold" />
@@ -147,6 +152,11 @@
             android:id="@+id/swiperefresh_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
 
@@ -284,5 +294,5 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.core.widget.NestedScrollView>
         </com.example.profession.base.OnlyVerticalSwipeRefreshLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

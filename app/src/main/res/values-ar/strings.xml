@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="please_choose_your_locaion">برجاء اختيار العنوان اولا</string>
-    <string name="please_choose_time_to_Visit">برجاء اختيار وقت الزياره اولا</string>
-    <string name="service_cost">اجمالى التكلفه المبدئية</string>
-</resources>

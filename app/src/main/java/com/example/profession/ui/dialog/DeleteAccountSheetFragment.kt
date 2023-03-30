@@ -57,6 +57,10 @@ class DeleteAccountSheetFragment(var onClick: OnClick) :
             dismiss()
 
         }
+        binding.ivDawn.setOnClickListener {
+            dismiss()
+
+        }
     }
 
     @SuppressLint("CutPasteId")

@@ -19,6 +19,8 @@ data class ProfileResponse(
     @SerializedName("created_at"        ) var createdAt       : String?  = null,
     @SerializedName("updated_at"        ) var updatedAt       : String?  = null,
     @SerializedName("country_name"      ) var countryName     : String?  = null,
+    @SerializedName("address"      ) var address     : String?  = null,
+    @SerializedName("balance"      ) var balance     : String?  = null,
     @SerializedName("city_name"         ) var cityName        : String?  = null,
     @SerializedName("country"           ) var country         : Country? = Country(),
     @SerializedName("city"              ) var city            : City?    = City()

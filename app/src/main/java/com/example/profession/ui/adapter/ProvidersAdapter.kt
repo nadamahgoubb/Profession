@@ -26,7 +26,7 @@ interface ProviderClickListener {
 }
 
 class ProvidersAdapter(
-  var listener: ProviderClickListener
+    var listener: ProviderClickListener
 ) : RecyclerView.Adapter<ProvidersAdapter.ProvidersViewHolder>() {
     var _binding: ItemProviderBinding? = null
     var list = mutableListOf<Providers>()
@@ -34,17 +34,17 @@ class ProvidersAdapter(
             field = value
             notifyDataSetChanged()
         }
-    lateinit var context :Context
-var selectedProviders :ArrayList<Providers> = arrayListOf()
+    lateinit var context: Context
+    var selectedProviders: ArrayList<Providers> = arrayListOf()
     override fun onBindViewHolder(holder: ProvidersViewHolder, position: Int) {
         var currentItem = list.get(position)
-        holder.binding.tvName.text =  currentItem?.name
-         holder.binding.tvDistance.text =
-            currentItem?.distance.toString()
+        holder.binding.tvName.text = currentItem?.name
+        holder.binding.tvDistance.text = currentItem?.distance.toString()
 
-        holder.binding.tvPrice.text=currentItem.hourPrice.toString()
-        holder.binding.tvDesc.text=currentItem.previousExperience.toString()
-
+        holder.binding.tvPrice.text = currentItem.hourPrice.toString()+context.resources.getString(R.string.sr)
+        holder.binding.tvDesc.text = currentItem.previousExperience.toString()
+        if (currentItem.choosen) holder.binding.checkbox.isChecked = true
+        else holder.binding.checkbox.isChecked = false
 
         holder.binding.root.setOnClickListener {
             listener.onProviderDetailsClicked(currentItem)
@@ -53,7 +53,7 @@ var selectedProviders :ArrayList<Providers> = arrayListOf()
             if (holder.binding.checkbox.isChecked) {
                 currentItem?.let { it1 -> selectedProviders.add(it1) }
                 currentItem?.choosen = true
-             } else {
+            } else {
                 selectedProviders.remove(currentItem)
                 currentItem?.choosen = false
 
@@ -64,12 +64,13 @@ var selectedProviders :ArrayList<Providers> = arrayListOf()
             if (holder.binding.checkbox.isChecked) {
                 selectedProviders.remove(currentItem)
                 currentItem?.choosen = false
+                holder.binding.checkbox.isChecked = false
 
-
-             } else {
+            } else {
 
                 currentItem?.let { it1 -> selectedProviders.add(it1) }
                 currentItem?.choosen = true
+                holder.binding.checkbox.isChecked = true
             }
             currentItem?.let { it1 -> listener.onProviderAddedClicked(selectedProviders) }
         }
@@ -82,7 +83,7 @@ var selectedProviders :ArrayList<Providers> = arrayListOf()
             LayoutInflater.from(parent.context), parent, false
         )
         context = parent.context
-      return ProvidersViewHolder(_binding!!)
+        return ProvidersViewHolder(_binding!!)
     }
 
 

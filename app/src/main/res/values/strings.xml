@@ -39,12 +39,10 @@
     </string>
 
 
-    <string name="save">
-<![CDATA[
-بالقيام بالتسجيل لدينا فأنت تقم بالموافقه على <font color=\'#dd9c40\'>الشروط والاحكام</font>]]>
-    </string>
 
     <string name="register">تسجيل</string>
+    <string name="edit">تعديل</string>
+    <string name="save">حفظ</string>
     <string name="signin_now">الدخول الان</string>
     <string name="forget_password">نسيت كلمة المرور؟</string>
     <string name="sign">دخول</string>
@@ -91,7 +89,7 @@
     <string name="delet_account"><u> حذف الحساب</u></string>
 
     <string name="repeat_new_password">تاكيد كلمه المرور الجديده</string>
-    <string name="old_password">كلمه المرور القديمة</string>
+    <string name="old_password">كلمه المرور الحالية</string>
     <string name="language">اللغه</string>
     <string name="english">English</string>
     <string name="delete">حذف</string>
@@ -102,6 +100,7 @@
     <string name="thanks_for_order">شكرا لطلب خدمتك</string>
     <string name="continuee_shopping">متابعه الخدمات</string>
     <string name="provider">مقدمى الخدمات</string>
+    <string name="providers">مقدمى الخدمات </string>
     <string name="service_details">تفاصيل الخدمه</string>
     <string name="order_servie">طلب الخدمة</string>
     <string name="are_you_sure_want_to_delete_this_account">هل انت متاكد انك تريد حذف الحساب الخاص بك</string>
@@ -189,5 +188,21 @@
     <string name="goto_main_screen">الذهاب للرئيسية</string>
     <string name="please_select_subServie">برجاء اختيار نوع الخدمة</string>
     <string name="no_service">لا توجد خدمات حتى الان</string>
-
+    <string name="hour">س</string>
+    <string name="visa">فيزا</string>
+    <string name="wallet">المحفظة</string>
+    <string name="pay"> دفع الان  </string>
+    <string name="choose_payment_method">برجاء إختيار طريقة الدفع اولا </string>
+    <string name="your_order_id">رقم الطلب الخاص بك</string>
+    <string name="sure_to_delete_account">هل انت متاكد انك تريد حذف \n الحساب الخاص بك</string>
+    <string name="arabic">اللغه العربية</string>
+    <string name="nationality">الجنسية</string>
+    <string name="hello">مرحبا</string>
+    <string name="What_do_you_want_from_todays_services">ماذا تريد من خدمات اليوم</string>
+    <string name="send_otp">ادخال رمز التاكيد</string>
+    <string name="view_order_details">عرض تفاصيل الطلب</string>
+    <string name="succssful_order">طلب ناجح</string>
+    <string name="confirm_location">تاكيد الموقع</string>
+    <string name="no_orders">لم تقم بأى طلبات حتى الان</string>
+    <string name="sr">ر.س</string>
 </resources>

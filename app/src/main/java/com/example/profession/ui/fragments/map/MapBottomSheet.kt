@@ -4,18 +4,24 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.location.Location
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.core.app.ActivityCompat
+import androidx.core.view.isVisible
+import androidx.fragment.app.DialogFragment
 
 import com.example.profession.R
 import com.example.profession.data.dataSource.Param.AddressParams
 import com.example.profession.databinding.FragmentMapBinding
 import com.example.profession.util.ExpandAnimation.collapse
+import com.example.profession.util.ExpandAnimation.expand
 import com.example.profession.util.MapUtil
 import com.example.profession.util.PermissionManager
 import com.example.profession.util.WWLocationManager
@@ -42,7 +48,7 @@ interface onLocationClick {
 }
 
 @AndroidEntryPoint
-class MapBottomSheet(var onClick: onLocationClick) :     BottomSheetDialogFragment()
+class MapBottomSheet(var onClick: onLocationClick) :  DialogFragment(R.layout.fragment_map)
    , OnMapReadyCallback {
 
     private var lat: Double?= null
@@ -79,9 +85,9 @@ class MapBottomSheet(var onClick: onLocationClick) :     BottomSheetDialogFragme
 
         }
     }
-    @SuppressLint("CutPasteId")
+ /*   @SuppressLint("CutPasteId")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
+        val bottomSheetDialog = super.onCreateDialog(savedInstanceState)
         bottomSheetDialog.setOnShowListener {
             val bottomSheet =
                 bottomSheetDialog.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
@@ -92,7 +98,7 @@ class MapBottomSheet(var onClick: onLocationClick) :     BottomSheetDialogFragme
         }
         return bottomSheetDialog
     }
-
+*/
     override fun getTheme() = R.style.CustomBottomSheetDialogTheme
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -111,11 +117,12 @@ class MapBottomSheet(var onClick: onLocationClick) :     BottomSheetDialogFragme
         address= locationManager.getAddress(latitude, longitude)
         address?.let {
 
-            binding?.tvAddress?.text =
-                address?.address.toString()
+            binding?.tvAddress?.setText( address?.address?.toString()  )
             binding?.tvCountry?.text =
                 address?.country.toString()+","+ address?.city.toString()
         }
+        if( binding?.locationCard?.isVisible == false) binding?.locationCard?.let { expand(it) }
+
     }
 
     private fun onMapReady(gm: GoogleMap, latitude:Double, longitude:Double) {
@@ -152,9 +159,12 @@ class MapBottomSheet(var onClick: onLocationClick) :     BottomSheetDialogFragme
 
     private fun onClick() {
         binding?.locationCard?.setOnClickListener {
-            collapse(binding?.locationCard!!)
+            binding?.locationCard?.let {
+                if( it.isVisible == true)  collapse(it)
+             }
         }
         binding?.btnDone?.setOnClickListener {
+
             onClick.onClick(lat, long, address)
 
 
@@ -193,6 +203,13 @@ class MapBottomSheet(var onClick: onLocationClick) :     BottomSheetDialogFragme
         super.onViewCreated(view, savedInstanceState)
         binding?.map?.onCreate(savedInstanceState)
         binding?.map?.onResume();
+        val width = ViewGroup.LayoutParams.MATCH_PARENT
+        val height = ViewGroup.LayoutParams.WRAP_CONTENT
+
+        dialog!!.window?.setLayout(width, height)
+        dialog!!.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog!!.window?.setGravity(Gravity.CENTER)
+
         //    binding.map.onCreate(savedInstanceState);
         try {
             MapsInitializer.initialize(activity!!.applicationContext)

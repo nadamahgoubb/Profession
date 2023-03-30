@@ -75,6 +75,7 @@
                                 android:layout_height="@dimen/_35sdp"
                                 android:layout_gravity="start"
                                 android:src="@drawable/ic_back_"
+                                android:rotation="180"
 
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />

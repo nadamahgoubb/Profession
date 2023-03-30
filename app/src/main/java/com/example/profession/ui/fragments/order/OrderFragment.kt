@@ -53,10 +53,10 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>() {
 
         override fun getItem(position: Int): Fragment {
             return if (position == 0) {
-                 OrderItemFragment(PREV_ORDER)
+                 PreviousOrderFragment( )
             }
-            else if (position == 1) OrderItemFragment(CURRENT_ORDER)
-            else OrderItemFragment(New_ORDER)
+            else if (position == 1) CurrentOrderFragment( )
+            else NewOrderFragment( )
 
         }
 

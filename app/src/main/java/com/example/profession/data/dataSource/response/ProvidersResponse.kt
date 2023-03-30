@@ -1,6 +1,7 @@
 package com.example.profession.data.dataSource.response
 
 import android.os.Parcelable
+import com.example.profession.ui.adapter.ServicesHomeAdapter
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
@@ -55,12 +56,12 @@ data class Providers (
     @SerializedName("remember_token"             ) var rememberToken            : String?                = null,
     @SerializedName("distance"                   ) var distance                 : String?                = null,
     @SerializedName("sub_services"               ) var subServices              :  @RawValue ArrayList<SubServiceItemsResponse> = arrayListOf(),
-  var serviceCostBeforeTax              :  Double? = null,
+    @SerializedName("service"  ) var service              :  ServicesItemsResponse? = null,
+   var serviceCostBeforeTax              :  Double? = null,
   var serviceTotalCost              :  Double? = null,
    var serviceTax              :       Double? = null ,
     var choosen : Boolean
-
-) : Parcelable
+ ) : Parcelable
 
 @Parcelize
 data class Reviews (
