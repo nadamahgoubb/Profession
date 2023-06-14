@@ -40,6 +40,16 @@ object Utils {
                 '٨' -> arabicNumber.add("8")
                 '٩' -> arabicNumber.add("9")
                 '-' -> arabicNumber.add("-")
+                '1' -> arabicNumber.add("1")
+                '2' -> arabicNumber.add("2")
+                '3' -> arabicNumber.add("3")
+                '4' -> arabicNumber.add("4")
+                '5' -> arabicNumber.add("5")
+                '6' -> arabicNumber.add("6")
+                '7' -> arabicNumber.add("7")
+                '8' -> arabicNumber.add("8")
+                '9' -> arabicNumber.add("9")
+                '0' -> arabicNumber.add("0")
                 else -> arabicNumber.add("0")
             }
         }
@@ -54,10 +64,10 @@ object Utils {
             Constants.CASH -> {
                 return PaymentModel(paymrnt,context.resources.getString(R.string.cash), (R.drawable.money))
             }Constants.VISA -> {
-            return PaymentModel(paymrnt,context.resources.getString(R.string.cash), (R.drawable.ic_visa))
+            return PaymentModel(paymrnt,context.resources.getString(R.string.visa), (R.drawable.ic_visa))
 
             }Constants.WALLET -> {
-            return PaymentModel(paymrnt,context.resources.getString(R.string.cash), (R.drawable.ic_wallet))
+            return PaymentModel(paymrnt,context.resources.getString(R.string.wallet), (R.drawable.ic_wallet))
 
             }else -> {
                 return  null

@@ -1,23 +1,25 @@
 package com.example.profession.util
 
-import android.app.Activity
+ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.util.Log
 import android.util.Patterns
+import android.view.Gravity
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.profession.R
 import com.google.android.material.snackbar.Snackbar
+import java.net.URLEncoder
 import java.util.*
 
 
@@ -47,8 +49,8 @@ object Extension {
     fun ImageView.loadImage(url: String) {
         Glide.with(this)
             .load(url)
-            .apply(RequestOptions().placeholder(R.drawable.image_gallery))
-            .error(R.drawable.error)
+            .apply(RequestOptions().placeholder(com.example.profession.R.drawable.image_gallery))
+            .error(com.example.profession.R.drawable.error)
             .into(this)
     }
 
@@ -56,11 +58,39 @@ object Extension {
     fun isEmailValid(email: String?): Boolean =
         !email.isNullOrEmpty() &&
                 Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    public  fun chat(context: Context, country_code :String,contact :String){
+
+
+    public  fun chat(context: Context, country_code :String,contact :String) {
         //contact = PrefsHelper.get // use country code with your phone number
-        var  contactt = country_code+contact
+        var contactt = country_code + contact
+
+        var  appPackage ="";
         val url = "https://api.whatsapp.com/send?phone=$contactt"
-        try {
+        if (isAppInstalled(context, "com.whatsapp.w4b")) {
+            appPackage = "com.whatsapp.w4b";
+
+            val pm: PackageManager = context.getPackageManager()
+            pm.getPackageInfo(appPackage, PackageManager.GET_ACTIVITIES)
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            context.startActivity(i)
+
+
+        } else if (isAppInstalled(context, "com.whatsapp")) {
+            appPackage = "com.whatsapp";
+            val pm: PackageManager = context.getPackageManager()
+            pm.getPackageInfo(appPackage, PackageManager.GET_ACTIVITIES)
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            context.startActivity(i)
+        } else {
+            Toast.makeText(context,   context.getString(com.example.profession.R.string.whatsup_not_installed),
+              Toast.LENGTH_LONG).show();
+        }
+
+
+
+         try {
             val pm: PackageManager = context.getPackageManager()
             pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES)
             val i = Intent(Intent.ACTION_VIEW)
@@ -69,12 +99,54 @@ object Extension {
         } catch (e: PackageManager.NameNotFoundException) {
             Toast.makeText(
                 context,
-                context.getString(R.string.whatsup_not_installed),
+                context.getString(com.example.profession.R.string.whatsup_not_installed),
                 Toast.LENGTH_SHORT
             ).show()
             e.printStackTrace()
         }
     }
 
+   fun isAppInstalled( ctx:Context,  packageName:String) :Boolean{
+        var  pm: PackageManager = ctx.getPackageManager();
+        var  app_installed= false;
+        try {
+            pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+            app_installed = true;
+        } catch (e: PackageManager.NameNotFoundException  ) {
+            app_installed = false;
+        }
+        return app_installed;
+    }
+      fun openWhatsApp(context: Context, country_code :String,contact :String){
+        try {
+            var  contactt = country_code+contact
+
+            val packageManager: PackageManager = context.getPackageManager()
+            val i = Intent(Intent.ACTION_VIEW)
+            val url =
+                "https://api.whatsapp.com/send?phone=" + contactt /*+ "&text=" + URLEncoder.encode(
+                    mensaje,
+                    "UTF-8"
+                )*/
+            i.setPackage("com.whatsapp")
+            i.data = Uri.parse(url)
+            if (i.resolveActivity(packageManager) != null) {
+               context. startActivity(i)
+            } else {
+                Toast.makeText(
+                    context,
+                    context.getString(com.example.profession.R.string.whatsup_not_installed),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        } catch (e: Exception) {
+            Log.e("ERROR WHATSAPP", e.toString())
+            Toast.makeText(
+                context,
+                context.getString(com.example.profession.R.string.whatsup_not_installed),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
 
 }

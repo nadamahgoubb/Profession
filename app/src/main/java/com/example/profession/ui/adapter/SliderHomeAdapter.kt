@@ -30,8 +30,8 @@ class SliderHomeAdapter(
 
         override fun onBindViewHolder(holder: SliderHomeViewHolder, position: Int) {
 var current = list.get(position)
-     //  holder.binding.ivOffers.loadImage(list[position].image)
-            holder.binding.ivOffers.setImageDrawable(context.getDrawable(R.drawable.slider1))
+       holder.binding.ivOffers.loadImage(list[position].image)
+     //       holder.binding.ivOffers.setImageDrawable(context.getDrawable(R.drawable.slider1))
 
         holder.binding.root.setOnClickListener {
             listener.onSliderClickListener(current) }

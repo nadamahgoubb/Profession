@@ -158,13 +158,9 @@ class MapBottomSheet(var onClick: onLocationClick) :  DialogFragment(R.layout.fr
     }
 
     private fun onClick() {
-        binding?.locationCard?.setOnClickListener {
-            binding?.locationCard?.let {
-                if( it.isVisible == true)  collapse(it)
-             }
-        }
-        binding?.btnDone?.setOnClickListener {
 
+        binding?.btnDone?.setOnClickListener {
+address?.address= binding.tvAddress.text.toString()
             onClick.onClick(lat, long, address)
 
 

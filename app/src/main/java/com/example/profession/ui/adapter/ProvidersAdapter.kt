@@ -16,6 +16,7 @@ import com.example.profession.databinding.ItemFilterMultiChoiceBinding
 import com.example.profession.databinding.ItemOrdersBinding
 import com.example.profession.databinding.ItemProviderBinding
 import com.example.profession.util.Constants
+import com.example.profession.util.ext.loadImage
 
 
 interface ProviderClickListener {
@@ -39,11 +40,12 @@ class ProvidersAdapter(
     override fun onBindViewHolder(holder: ProvidersViewHolder, position: Int) {
         var currentItem = list.get(position)
         holder.binding.tvName.text = currentItem?.name
-        holder.binding.tvDistance.text = currentItem?.distance.toString()
-
+        holder.binding.tvDistance.text = currentItem?.distance.toString() + context.resources.getString(R.string.km)
+holder.binding.ivUser.loadImage(currentItem.photo)
         holder.binding.tvPrice.text = currentItem.hourPrice.toString()+context.resources.getString(R.string.sr)
         holder.binding.tvDesc.text = currentItem.previousExperience.toString()
-        if (currentItem.choosen) holder.binding.checkbox.isChecked = true
+        holder.binding.tvRate.text = currentItem.totalRate.toString()
+         if (currentItem.choosen) holder.binding.checkbox.isChecked = true
         else holder.binding.checkbox.isChecked = false
 
         holder.binding.root.setOnClickListener {

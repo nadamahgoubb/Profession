@@ -46,8 +46,7 @@
                         android:contentInsetStart="0dp"
                         android:contentInsetStartWithNavigation="0dp"
                         android:paddingTop="@dimen/_5sdp"
-                        android:paddingBottom="@dimen/_5sdp"
-                        android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+                         android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
                         app:layout_collapseMode="pin">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -94,8 +93,16 @@ android:rotation="180"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lyt_all_screen" android:orientation="vertical"
+
+
+                    >
 
                 <LinearLayout
+                    android:id="@+id/lyt_data"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
@@ -208,7 +215,7 @@ android:rotation="180"
                                 app:layout_constraintTop_toBottomOf="@id/tv_2" />
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rv_payment_methods"
-                                android:layout_width="match_parent"
+                          android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:clipToPadding="false"
                                 android:orientation="vertical"
@@ -230,8 +237,10 @@ android:rotation="180"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_10sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/card_payment"
                         android:layout_marginVertical="@dimen/_8sdp"
-                       
+
                         app:cardCornerRadius="@dimen/_8sdp"
                         app:strokeWidth="3dp">
 
@@ -314,6 +323,7 @@ android:rotation="180"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_4sdp"
                                  android:textColor="@color/black"
+                                android:textDirection="inherit"
                                 android:textSize="@dimen/_11sdp"
                                 app:layout_constraintStart_toStartOf="@+id/tv_time"
                                 app:layout_constraintTop_toBottomOf="@+id/tv_time" />
@@ -324,12 +334,12 @@ android:rotation="180"
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/card_order_details"
-
-                        android:layout_width="match_parent"
+                         android:layout_width="match_parent"
+                        app:layout_constraintTop_toBottomOf="@id/card_time"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
-                       
+
                         app:cardCornerRadius="@dimen/_8sdp"
                         app:strokeWidth="3dp">
 
@@ -337,7 +347,7 @@ android:rotation="180"
                         <androidx.constraintlayout.widget.ConstraintLayout
 
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                  android:layout_height="match_parent"
                             android:animateLayoutChanges="true"
                             android:padding="@dimen/_4sdp">
 
@@ -386,9 +396,10 @@ android:rotation="180"
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_add_comment"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                          android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/card_order_details"
                         android:layout_marginHorizontal="@dimen/_10sdp"
-                        android:layout_marginVertical="@dimen/_8sdp"
+                         android:layout_marginVertical="@dimen/_8sdp"
                         android:elevation="@dimen/_8sdp"
                         app:cardCornerRadius="@dimen/_8sdp"
                         app:strokeWidth="1dp">
@@ -449,82 +460,98 @@ android:rotation="180"
 
 
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_40sdp"
-                         android:background="@drawable/bg_rounded_top"
-                         android:orientation="vertical"
-                        tools:ignore="UseCompoundDrawables">
-
-
-                        <ImageView
-                            android:id="@+id/iv_dawn"
-                            android:layout_width="@dimen/_35sdp"
-                            android:layout_height="@dimen/_35sdp"
-                            android:paddingHorizontal="@dimen/_10sdp"
-                            android:rotation="270"
-                            android:src="@drawable/ic_arraw"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-
-                        <TextView
-                            android:id="@+id/tv2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="ملاحظات الخدمة"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14sdp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/iv_dawn"
-
-                            />
-
-
-                        <LinearLayout
-                            android:id="@+id/lyt_customer_service"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv2">
-
-                            <include
-                                android:id="@+id/item1"
-                                layout="@layout/item_subservice_customer_service" />
-
-                            <include
-                                android:id="@+id/item2"
-                                layout="@layout/item_subservice_customer_service" />
-
-
-                        </LinearLayout>
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btn_done"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_45sdp"
-                            android:layout_marginHorizontal="@dimen/_10sdp"
-                            android:backgroundTint="@color/gold"
-                            android:text="@string/order"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_13sdp"
-                            android:textStyle="bold"
-                            app:cornerRadius="@dimen/_8sdp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/lyt_customer_service" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
                 </LinearLayout>
+                  <androidx.constraintlayout.widget.ConstraintLayout
+                    android:background="@drawable/bg_rounded_top"
+                      android:elevation="@dimen/_30sdp"
+                      android:paddingTop="@dimen/_30sdp"
+                    android:layout_width="match_parent"
+                      android:layout_gravity="bottom"
+                      android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        app:cardCornerRadius="@dimen/_30sdp"
+android:layout_below="@id/lyt_data"
+                        android:layout_alignParentBottom="true"
+                       app:cardElevation="@dimen/_55sdp"
+                        android:orientation="vertical"
+                        tools:ignore="UseCompoundDrawables">
+                    <!--    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_40sdp"
+                            android:orientation="vertical"
+                            tools:ignore="UseCompoundDrawables">
+
+-->
+                            <ImageView
+                                android:id="@+id/iv_dawn"
+                                android:layout_width="@dimen/_35sdp"
+                                android:layout_height="@dimen/_35sdp"
+                                android:paddingHorizontal="@dimen/_10sdp"
+                                android:rotation="270"
+                                android:visibility="gone"
+                                android:src="@drawable/ic_arraw"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                            <TextView
+                                android:id="@+id/tv2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/service_notes"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_14sdp"
+                                android:textStyle="bold"
+                                android:paddingTop="@dimen/_20sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/iv_dawn"
+
+                                />
+
+
+                            <LinearLayout
+                                android:id="@+id/lyt_customer_service"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv2">
+
+                                <include
+                                    android:id="@+id/item1"
+                                    layout="@layout/item_subservice_customer_service" />
+
+                                <include
+                                    android:id="@+id/item2"
+                                    layout="@layout/item_subservice_customer_service" />
+
+
+                            </LinearLayout>
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_done"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_45sdp"
+                                android:layout_marginHorizontal="@dimen/_10sdp"
+                                android:backgroundTint="@color/gold"
+                                android:text="@string/order"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_13sdp"
+                                android:textStyle="bold"
+                                app:cornerRadius="@dimen/_8sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/lyt_customer_service" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </RelativeLayout>
             </androidx.core.widget.NestedScrollView>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

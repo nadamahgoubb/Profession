@@ -27,7 +27,7 @@ data class SliderResponse(
 data class SliderItemsResponse(
 
     @SerializedName("id"                ) var id              : String?    = null,
-    @SerializedName("imge"              ) var image            : String? = null,
+    @SerializedName("image"              ) var image            : String? = null,
 
     var choosen: Boolean= false
 

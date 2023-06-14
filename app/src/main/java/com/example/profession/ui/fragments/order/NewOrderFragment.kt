@@ -16,6 +16,7 @@ import com.example.profession.ui.adapter.OrdersAdapter
 import com.example.profession.ui.adapter.OrdersClickListener
 import com.example.profession.util.Constants
 import com.example.profession.util.Extension.chat
+import com.example.profession.util.Extension.openWhatsApp
 import com.example.profession.util.ext.hideKeyboard
 import com.example.profession.util.ext.init
 import com.example.profession.util.ext.showActivity

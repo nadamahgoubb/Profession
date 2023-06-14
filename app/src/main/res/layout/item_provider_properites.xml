@@ -13,7 +13,7 @@
         android:layout_height="@dimen/_100sdp"
         app:cardCornerRadius="@dimen/_8sdp"
         android:layout_marginHorizontal="@dimen/_10sdp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="@dimen/_100sdp"     app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/grey_200"
@@ -57,8 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:text="173.25كم  "
-                android:textColor="@color/gold"
+                 android:textColor="@color/gold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/iv_img" />
         </androidx.constraintlayout.widget.ConstraintLayout>

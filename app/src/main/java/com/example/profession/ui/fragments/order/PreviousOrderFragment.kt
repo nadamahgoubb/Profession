@@ -14,8 +14,8 @@ import com.example.profession.ui.activity.MainActivity
 import com.example.profession.ui.adapter.OrdersAdapter
 import com.example.profession.ui.adapter.OrdersClickListener
 import com.example.profession.util.Constants
-import com.example.profession.util.Extension.chat
-import com.example.profession.util.ext.hideKeyboard
+import com.example.profession.util.Extension
+ import com.example.profession.util.ext.hideKeyboard
 import com.example.profession.util.ext.init
 import com.example.profession.util.ext.showActivity
 import com.example.profession.util.observe
@@ -104,8 +104,7 @@ class PreviousOrderFragment( ) : BaseFragment<FragmentOrderItemBinding>(),
     override fun onOrderChatClicked(item: OrdersItem?) {
         item?.providerPhone?.let {
             item.countryCode?.let { it1 ->
-                chat(
-                    requireContext(),
+                Extension.chat(  requireContext(),
                     it1,
                     it
                 )

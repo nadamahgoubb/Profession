@@ -140,9 +140,9 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:layout_weight="4.75"
-                        android:gravity="center"
+                     android:gravity="center"
                         android:hint=""
-                        app:hintAnimationEnabled="false"
+                         app:hintAnimationEnabled="false"
                         app:hintEnabled="false"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -152,12 +152,12 @@
                             android:id="@+id/et_phone"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/bg_rounded"
+                      android:background="@drawable/bg_rounded"
                             android:hint="@string/phone_number"
                             android:textAlignment="viewStart"
                             android:inputType="phone"
                             android:paddingStart="@dimen/_5sdp"
-                            android:text="" />
+                       />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
@@ -218,7 +218,8 @@
 
                 android:id="@+id/et_location"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
+                    android:minHeight="@dimen/_40sdp"
+                  android:layout_height="wrap_content"
                   android:gravity="center_vertical"
                   android:layout_marginTop="@dimen/_20sdp"
                     android:background="@drawable/bg_rounded"
@@ -242,7 +243,7 @@
            app:hintEnabled="false"
                         app:hintAnimationEnabled="false" android:textColor="@color/black"
                         android:textSize="@dimen/_12ssp"
-                        app:endIconDrawable="@drawable/ic_eye_closed"
+                        app:endIconDrawable="@drawable/selector_eye"
                         app:endIconMode="password_toggle"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -255,7 +256,7 @@
                             android:layout_width="match_parent"
                             android:hint="@string/password"
                             android:layout_height="@dimen/_40sdp"
-                            android:autofillHints="password"
+                           android:autofillHints="password"
                             android:background="@drawable/bg_rounded"
                             android:inputType="textPassword" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -332,7 +333,18 @@ android:text="@string/some_text"
                         />
 
                 </LinearLayout>
-
+                <TextView
+                    android:id="@+id/btn_visitor_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/_5sdp"
+              android:paddingVertical="@dimen/_10sdp"
+                    android:layout_marginVertical="@dimen/_10sdp" android:text="@string/login_visitor"
+                    android:textColor="@color/gold"
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

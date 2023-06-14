@@ -2,12 +2,10 @@ package com.example.profession.ui.fragments.auth
 
 import android.app.Application
 import androidx.lifecycle.viewModelScope
-import com.example.laundrydelivery.util.ext.isNull
-import com.example.profession.data.dataSource.repoistry.PrefsHelper
+ import com.example.profession.data.dataSource.repoistry.PrefsHelper
 import com.example.profession.R
 import com.example.profession.base.BaseViewModel
-import com.example.profession.base.PagingParams
-import com.example.profession.data.dataSource.Param.CityParams
+ import com.example.profession.data.dataSource.Param.CityParams
 import com.example.profession.data.dataSource.Param.ForgetPasswordParms
 import com.example.profession.data.dataSource.Param.LoginParms
 import com.example.profession.data.dataSource.Param.RegisterParams
@@ -19,6 +17,7 @@ import com.example.profession.domain.AuthUseCase
 import com.example.profession.util.Extension
 import com.example.profession.util.NetworkConnectivity
 import com.example.profession.util.Resource
+import com.example.profession.util.ext.isNull
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

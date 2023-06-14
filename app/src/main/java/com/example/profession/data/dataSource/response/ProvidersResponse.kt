@@ -17,6 +17,21 @@ data class ProvidersResponse(
 data class ReviewsResponse(
     @SerializedName("reviews" ) var Reviews : ArrayList<Reviews> = arrayListOf()
 ) : Parcelable
+@Parcelize
+data class Reviews (
+    @SerializedName("id"             ) var id            : Int?    = null,
+    @SerializedName("provider_id"    ) var providerId    : Int?    = null,
+    @SerializedName("provider_name"  ) var providerName  : String? = null,
+    @SerializedName("provider_photo" ) var providerPhoto : String? = null,
+    @SerializedName("user_id"        ) var userId        : Int?    = null,
+    @SerializedName("user_name"      ) var userName      : String? = null,
+    @SerializedName("user_photo"     ) var userPhoto     : String? = null,
+    @SerializedName("order_id"       ) var orderId       : Int?    = null,
+    @SerializedName("rate"           ) var rate          : Double? = null,
+    @SerializedName("comment"        ) var comment       : String? = null,
+    @SerializedName("created_at"     ) var createdAt     : String? = null
+
+) : Parcelable
 
 @Parcelize
 
@@ -41,7 +56,7 @@ data class Providers (
     @SerializedName("photo"                      ) var photo                    : String?                = null,
     @SerializedName("personal_id_photo"          ) var personalIdPhoto          : String?                = null,
     @SerializedName("balance"                    ) var balance                  : Int?                   = null,
-    @SerializedName("total_rate"                 ) var totalRate                : Double?                   = null,
+    @SerializedName("total_rate"                 ) var totalRate                : Double?                   = 0.0,
     @SerializedName("count_reviews"              ) var countReviews             : Int?                   = null,
     @SerializedName("account_number"             ) var accountNumber            : String?                = null,
     @SerializedName("account_name"               ) var accountName              : String?                = null,
@@ -63,18 +78,3 @@ data class Providers (
     var choosen : Boolean
  ) : Parcelable
 
-@Parcelize
-data class Reviews (
-@SerializedName("id"             ) var id            : Int?    = null,
-@SerializedName("provider_id"    ) var providerId    : Int?    = null,
-@SerializedName("provider_name"  ) var providerName  : String? = null,
-@SerializedName("provider_photo" ) var providerPhoto : String? = null,
-@SerializedName("user_id"        ) var userId        : Int?    = null,
-@SerializedName("user_name"      ) var userName      : String? = null,
-@SerializedName("user_photo"     ) var userPhoto     : String? = null,
-@SerializedName("order_id"       ) var orderId       : Int?    = null,
-@SerializedName("rate"           ) var rate          : Double? = null,
-@SerializedName("comment"        ) var comment       : String? = null,
-@SerializedName("created_at"     ) var createdAt     : String? = null
-
-) : Parcelable

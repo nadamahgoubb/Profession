@@ -31,10 +31,10 @@
 
                 <ImageView
                     android:id="@+id/iv_alert"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_55sdp"
+                    android:layout_height="@dimen/_55sdp"
                      android:gravity="center"
-                    android:src="@drawable/ic_alert"
+                     android:src="@drawable/ic_alert"
                       app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/iv_dawn" />
@@ -43,7 +43,7 @@
                     android:id="@+id/iv_dawn"
                     android:layout_width="@dimen/_35sdp"
                     android:layout_height="@dimen/_35sdp"
-                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingHorizontal="@dimen/_15sdp"
                     android:rotation="90"
                     android:src="@drawable/ic_arraw"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
 
                     android:singleLine="false"
 android:text="@string/sorry_youcant_order_login_first"                    android:textColor="@color/black"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_11sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/iv_alert" />

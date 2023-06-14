@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">مهن</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="ok">تم</string>
+     <string name="ok">تم</string>
     <string name="error">خطأ</string>
     <string name="no">لا </string>
     <string name="yes">نعم</string>
@@ -38,6 +36,7 @@
 بالقيام بالتسجيل لدينا فأنت تقم بالموافقه على <font color=\'#dd9c40\'>الشروط والاحكام</font> الخاصه بنا ]]>
     </string>
 
+    <string name="enter_your_emailto_get_code"> قم يادخال بريد الكترونى الخاص بك لكى تتمكن من تغيير كلمة المرور  </string>
 
 
     <string name="register">تسجيل</string>
@@ -101,7 +100,7 @@
     <string name="continuee_shopping">متابعه الخدمات</string>
     <string name="provider">مقدمى الخدمات</string>
     <string name="providers">مقدمى الخدمات </string>
-    <string name="service_details">تفاصيل الخدمه</string>
+    <string name="service_details">تفاصيل الخدمة</string>
     <string name="order_servie">طلب الخدمة</string>
     <string name="are_you_sure_want_to_delete_this_account">هل انت متاكد انك تريد حذف الحساب الخاص بك</string>
     <string name="sorry_youcant_order_login_first">عفوا لا يمكنك طلب الخدمه يجب عليك تسجيل الدخول اولا</string>
@@ -161,7 +160,7 @@
     <string name="hours_count">عدد الساعات</string>
     <string name="hours_cost">تكلفة الساعة </string>
     <string name="add_money">اضافه رصيد</string>
-    <string name="balance">الرصيد :</string>
+    <string name="balance">الرصيد </string>
     <string name="add_balance">اضافه رصيد</string>
     <string name="amount">المبلغ</string>
     <string name="add">اضافه</string>
@@ -170,7 +169,7 @@
     <string name="orderid">طلب رقم</string>
     <string name="whatsup_not_installed">تطبيق الواتساب غير مثبت على الهاتف</string>
     <string name="please_choose_your_locaion">برجاء اختيار العنوان اولا</string>
-    <string name="distance_between">المسافه بينكم</string>
+    <string name="distance_between">المسافة بينكم</string>
     <string name="ecperience">سنين الخبرة</string>
     <string name="selected_provider">مقدمى الخدمة المختارين</string>
     <string name="please_choose_providers_first">برجاء اختيار مزود خدمة اولا</string>
@@ -205,4 +204,16 @@
     <string name="confirm_location">تاكيد الموقع</string>
     <string name="no_orders">لم تقم بأى طلبات حتى الان</string>
     <string name="sr">ر.س</string>
+    <string name="km">كم</string>
+    <string name="choose">اختار</string>
+    <string name="n_provider">لا يوجد مزود خدمة بهذه المواصفات ,حاول مرة أخرى </string>
+    <string name="service_notes">ملاحظات الخدمة</string>
+    <string name="spare_parts">قطع الغيار</string>
+    <string name="worker_price_include">تسعيرة العامل تشمل عمل اليد فقط</string>
+    <string name="unusal_workes">الاعمال غير الاعتياديه</string>
+    <string name="unusal_workes_msg">التسعيره لا تشمل الاعمال غير الاعتياديه</string>
+    <string name="login">دخول</string>
+    <string name="login_visitor">الدخول كزائر</string>
+    <string name="sub_total">اجمالى التكلفه المبدئيه</string>
+    <string name="tax">ضريبه القيمه المضافه</string>
 </resources>

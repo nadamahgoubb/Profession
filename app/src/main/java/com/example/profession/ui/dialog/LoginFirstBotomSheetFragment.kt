@@ -2,6 +2,7 @@ package com.example.profession.ui.dialog
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.example.profession.R
 import com.example.profession.databinding.FragmentDeleteAccountSheetBinding
 import com.example.profession.databinding.FragmentLoginBinding
 import com.example.profession.databinding.FragmentLoginFirstSheetBinding
+import com.example.profession.ui.activity.AuthActivity
 import com.example.profession.ui.activity.MainActivity
 import com.example.profession.util.Constants
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -22,20 +24,11 @@ interface OnClickLoginFirst{
     fun onClick(choice: String)
 }
 
-class LoginFirstBotomSheetFragment(var onClick: OnClickLoginFirst) :
+class LoginFirstBotomSheetFragment( ) :
     BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentLoginFirstSheetBinding
     private lateinit var parent: MainActivity
-
-    companion object {
-        fun newInstance(onClick:OnClickLoginFirst): LoginFirstBotomSheetFragment {
-            val args = Bundle()
-            val f = LoginFirstBotomSheetFragment(onClick)
-            f.arguments = args
-            return f
-        }
-    }
 
 
     override fun onCreateView(
@@ -51,11 +44,16 @@ class LoginFirstBotomSheetFragment(var onClick: OnClickLoginFirst) :
 
     private fun onClick() {
         binding.btnNo.setOnClickListener {
-            onClick.onClick(Constants.NO)
-            dismiss()
+             dismiss()
+        }
+        binding.ivDawn.setOnClickListener {
+             dismiss()
         }
         binding.btnOk.setOnClickListener {
-            onClick.onClick(Constants.YES)
+             var intent = Intent(activity, AuthActivity::class.java)
+            intent.putExtra(Constants.Start, Constants.login)
+            startActivity(intent)
+            activity?.finish()
             dismiss()
         }
     }

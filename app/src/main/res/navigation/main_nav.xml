@@ -87,4 +87,8 @@
         android:id="@+id/providerTaxFragment"
         android:name="com.example.profession.ui.fragments.providers.ProviderTaxFragment"
         android:label="ProviderTaxFragment" />
+    <dialog
+        android:id="@+id/loginFirstBotomSheetFragment"
+        android:name="com.example.profession.ui.dialog.LoginFirstBotomSheetFragment"
+        android:label="LoginFirstBotomSheetFragment" />
 </navigation>

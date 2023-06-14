@@ -19,8 +19,7 @@
         android:layout_height="match_parent"
         android:layoutDirection="locale"
         android:fitsSystemWindows="true"
-    tools:openDrawer="end"
-        android:id="@+id/drawerLayout">
+         android:id="@+id/drawerLayout">
 
 
 
@@ -28,15 +27,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!--   <com.github.ybq.android.spinkit.SpinKitView
-                   android:id="@+id/progress_bar"
-                   style="@style/SpinKitView.Small.ChasingDots"
-                   app:SpinKit_Color="@color/blue"
-                   android:visibility="@{progress?View.VISIBLE:View.GONE}"
-                   android:layout_width="@dimen/_50sdp"
-                   android:layout_height="@dimen/_50sdp"
-                   android:layout_centerInParent="true"
-                   app:indicatorName="BallSpinFadeLoaderIndicator" />-->
 
           <androidx.fragment.app.FragmentContainerView
 
@@ -84,6 +74,32 @@
             app:menu="@menu/nav_menu"
             app:headerLayout="@layout/nav_header"
             android:layout_gravity="end"
-            />
-    </androidx.drawerlayout.widget.DrawerLayout>
+
+
+             android:fitsSystemWindows="true"
+          >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tv_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                     android:textColor="@color/gold"
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text="@string/logout" />
+            </LinearLayout>
+
+        </com.google.android.material.navigation.NavigationView>    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

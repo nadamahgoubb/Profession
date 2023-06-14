@@ -7,9 +7,11 @@ import com.example.profession.R
 import com.example.profession.base.BaseViewModel
 import com.example.profession.data.dataSource.Param.ComplainParams
 import com.example.profession.data.dataSource.Param.ContactUsParams
+import com.example.profession.data.dataSource.response.GoalResponse
 import com.example.profession.data.dataSource.response.UserResponse
 
 import com.example.profession.domain.SettingUseCase
+import com.example.profession.domain.SettingUseCase.Support.GET_GOAL
 import com.example.profession.util.NetworkConnectivity
 import com.example.profession.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -76,6 +78,46 @@ class SettingViewModel
                     is Resource.Progress -> produce(SettingAction.ShowLoading(res.loading))
                     is Resource.Success -> {
                           produce(SettingAction.ContactSucessed(res.data.message as String))
+
+                    }
+                }
+            }
+        } else {
+            produce(SettingAction.ShowFailureMsg(getString(R.string.no_internet)))
+        }
+    }
+    fun get_goal(  ) {
+        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+
+
+            produce(SettingAction.ShowLoading(true))
+            usecase.invoke(
+                viewModelScope,GET_GOAL  ) { res ->
+                when (res) {
+                    is Resource.Failure -> produce(SettingAction.ShowFailureMsg(res.message.toString()))
+                    is Resource.Progress -> produce(SettingAction.ShowLoading(res.loading))
+                    is Resource.Success -> {
+                          produce(SettingAction.ShowGoal(res.data.data as GoalResponse))
+
+                    }
+                }
+            }
+        } else {
+            produce(SettingAction.ShowFailureMsg(getString(R.string.no_internet)))
+        }
+    }
+    fun getTermsAndCondition( ) {
+        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+
+
+            produce(SettingAction.ShowLoading(true))
+            usecase.invoke(
+                viewModelScope   ) { res ->
+                when (res) {
+                    is Resource.Failure -> produce(SettingAction.ShowFailureMsg(res.message.toString()))
+                    is Resource.Progress -> produce(SettingAction.ShowLoading(res.loading))
+                    is Resource.Success -> {
+                          produce(SettingAction.ShowTermsAndConditions(res.data.data as GoalResponse))
 
                     }
                 }

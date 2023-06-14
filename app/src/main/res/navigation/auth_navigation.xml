@@ -15,6 +15,12 @@
             app:destination="@id/walkThrougthFragment"
              app:popUpTo="@+id/auth_navigation.xml"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+             app:destination="@id/loginFragment"
+            app:popUpTo="@+id/auth_navigation.xml"
+            app:popUpToInclusive="true" />
+
     </fragment>
 
     <fragment
@@ -41,4 +47,8 @@
         android:id="@+id/forgetPasswordFragment"
         android:name="com.example.profession.ui.fragments.auth.ForgetPassword.ForgetPasswordFragment"
         android:label="ForgetPasswordFragment" />
+    <fragment
+        android:id="@+id/rightsAndTermsFragment2"
+        android:name="com.example.profession.ui.fragments.terms.RightsAndTermsFragment"
+        android:label="RightsAndTermsFragment" />
 </navigation>

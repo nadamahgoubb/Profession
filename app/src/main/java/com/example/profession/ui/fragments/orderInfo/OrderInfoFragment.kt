@@ -7,8 +7,7 @@ import android.widget.RatingBar
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
-import com.example.laundrydelivery.util.ext.roundTo
-import com.example.profession.R
+ import com.example.profession.R
 import com.example.profession.databinding.FragmentOrderInfoBinding
 import com.example.profession.ui.activity.MainActivity
 import com.example.profession.base.BaseFragment
@@ -26,6 +25,7 @@ import com.example.profession.util.Constants
 import com.example.profession.util.Utils.getPaymentMethod
 import com.example.profession.util.ext.hideKeyboard
 import com.example.profession.util.ext.init
+import com.example.profession.util.ext.roundTo
 import com.example.profession.util.observe
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -64,11 +64,11 @@ class OrderInfoFragment : BaseFragment<FragmentOrderInfoBinding>() {
                     binding.cardPersonalInfo.isVisible = true
                 }
                 Constants.PREV_ORDER -> {
-                    binding.cardAddReview.isVisible = true
+              //      binding.cardAddReview.isVisible = true
                     binding.cardCompelted.isVisible = true
                     binding.cardBill.isVisible = true
                     binding.cardPersonalInfo.isVisible = true
-                    binding.tvComplainAboutService.isVisible = true
+              //      binding.tvComplainAboutService.isVisible = true
                 }
 
 
@@ -101,21 +101,19 @@ class OrderInfoFragment : BaseFragment<FragmentOrderInfoBinding>() {
             }
             is OrdersAction.ShowReviewAdded ->{
                 action.message?.let {
-                    showToast(action.message)
-                    showProgress(false)
+                     showProgress(false)
                     binding.cardPrice.isVisible = false
                 }
             }
 
             is OrdersAction.ShowCanceledOrder ->{
-                     showToast(action.message)
-                    showProgress(false)
+                     showProgress(false)
                 binding.cardPrice.isVisible = false
+                activity?.onBackPressed()
             }
 
             is OrdersAction.ShowComplainedOrder ->{
-                showToast(action.message)
-                binding.tvComplainAboutService.isVisible = false
+                 binding.tvComplainAboutService.isVisible = false
                 showProgress(false)
             }
             else -> {
@@ -149,13 +147,22 @@ class OrderInfoFragment : BaseFragment<FragmentOrderInfoBinding>() {
         binding.tvDate.setText(data.orderDate)
         binding.tvPrice.setText(data.providerHourPrice.toString())
         binding.tvTimeinService.setText(data.countHours.toString() + resources.getText(R.string.hour))
-        binding.tvTotalBeforetax.setText(data.total?.toString())
+        binding.tvTotalBeforetax.setText(data.total?.toString()+ " "+resources.getString(R.string.sr))
+        binding.tvTotalPriceBottomSheet.setText(data.total?.toString()+ " "+resources.getString(R.string.sr))
         binding.tvTax.setText(data.tax?.roundTo(3).toString())
         binding.tvTotalPrice.setText(data.finalTotal)
 
         adapter_subservice.itemsList = data.subServices
         adapter_subservice.notifyDataSetChanged()
-
+if (status== Constants.PREV_ORDER){
+ if(data.user_complaint==0) {
+     binding.tvComplainAboutService.isVisible = true
+ }
+ if(data.user_evaluation==0)   binding.cardAddReview.isVisible = true
+ else{
+     binding.cardPrice.isVisible= false
+ }
+}
 
     }
 

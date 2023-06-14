@@ -1,6 +1,5 @@
 package com.example.profession.ui.fragments.providers
 
-
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.profession.R
@@ -15,7 +14,9 @@ import com.example.profession.ui.fragments.subService.CreateOrdersViewModel
 import com.example.profession.util.ext.hideKeyboard
 import com.example.profession.util.ext.init
 import com.example.profession.util.observe
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProviderTaxFragment : BaseFragment<FragmentProviderTaxBinding>(),
     ProviderSelectedsClickListener {
 
@@ -31,6 +32,10 @@ class ProviderTaxFragment : BaseFragment<FragmentProviderTaxBinding>(),
                 handleViewState(it)
             }
         }
+        binding.swiperefreshHome.setOnRefreshListener {
+            mViewModel.getTaxes()
+            if (binding.swiperefreshHome != null) binding.swiperefreshHome.isRefreshing = false
+        }
     }
 
     private fun onclick() {
@@ -39,7 +44,8 @@ class ProviderTaxFragment : BaseFragment<FragmentProviderTaxBinding>(),
             activity?.onBackPressed()
         }
         binding.btnOrder.setOnClickListener {
-            findNavController().navigate(R.id.checkOutFragment)
+            if(mViewModel.selectedProviders.isEmpty()) showToast(resources.getString(R.string.please_choose_providers_first))
+          else   findNavController().navigate(R.id.checkOutFragment)
         }
 
     }
@@ -73,11 +79,10 @@ class ProviderTaxFragment : BaseFragment<FragmentProviderTaxBinding>(),
     }
 
     fun getCostAndTax(tax: Double) {
-        adapter.list.clear()
-        adapter.notifyDataSetChanged()
-        for (i in mViewModel.selectedProviders) {
+         adapter.notifyDataSetChanged()
+         for (i in mViewModel.selectedProviders) {
             i.serviceCostBeforeTax = i.hourPrice?.let { mViewModel.hoursCount.times(it) }
-            i.serviceTax = i.serviceCostBeforeTax?.let { tax.times(it) }
+            i.serviceTax = i.serviceCostBeforeTax?.let { tax.times(it).div(100) }
             i.serviceTotalCost = i.serviceTax?.let { i.serviceCostBeforeTax?.plus(it) }
         }
         adapter.list = mViewModel.selectedProviders

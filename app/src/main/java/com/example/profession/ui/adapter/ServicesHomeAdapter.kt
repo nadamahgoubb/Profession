@@ -1,18 +1,15 @@
 package com.example.profession.ui.adapter
 
-import android.app.Service
-import android.content.Context
+ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.profession.R
-import com.example.profession.data.dataSource.response.ServicesItemsResponse
+ import com.example.profession.data.dataSource.response.ServicesItemsResponse
  import com.example.profession.databinding.ItemHomeServiceBinding
 import com.example.profession.ui.listener.ServiceOnClickListener
-import com.example.profession.util.Constants
-import com.example.profession.util.ext.loadImage
+ import com.example.profession.util.ext.loadImage
 
 
 class ServicesHomeAdapter(

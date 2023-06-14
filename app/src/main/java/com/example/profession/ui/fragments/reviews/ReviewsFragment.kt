@@ -87,7 +87,6 @@ class ReviewsFragment : BaseFragment<FragmentReviewsBinding>() {
             activity?.onBackPressed()
         }
 
-/*      */
     }
 
     private fun setupUi() {

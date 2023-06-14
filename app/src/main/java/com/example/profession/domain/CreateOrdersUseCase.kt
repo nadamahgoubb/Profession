@@ -17,7 +17,9 @@ import javax.inject.Inject
 @ViewModelScoped
 class CreateOrdersUseCase @Inject constructor(private val repository: Repository) :
     BaseUseCase<DevResponse<Any>, Any>() {
-
+companion object{
+    val nationalities =1
+}
     override fun executeRemote(params: Any?): Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>> {
         return if (params  is GetProvidersParam) {
             flow {
@@ -27,6 +29,11 @@ class CreateOrdersUseCase @Inject constructor(private val repository: Repository
         } else if (params  is CreateOrderParams) {
             flow {
                 params?.let { repository.createOrder(params ) }?.let { emit(it) }
+            } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
+
+        }else if (params  ?.equals(nationalities) == true) {
+            flow {
+                emit( repository.getNationalities( ) )
             } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
 
         }

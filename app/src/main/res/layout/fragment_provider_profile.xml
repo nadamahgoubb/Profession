@@ -11,15 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="false"
-        android:layoutDirection="rtl">
+        >
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="false"
-            android:layoutDirection="rtl"
-            android:theme="@style/ThemeOverlay.MaterialComponents.Dark">
+             android:theme="@style/ThemeOverlay.MaterialComponents.Dark">
 
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -28,8 +27,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/white"
                 android:fitsSystemWindows="false"
-                android:layoutDirection="rtl"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <Toolbar
                     android:id="@+id/toolBarLayout"
@@ -40,7 +38,6 @@
                     android:contentInsetStartWithNavigation="0dp"
                     android:fitsSystemWindows="false"
                     android:paddingTop="@dimen/_5sdp"
-                    android:paddingBottom="@dimen/_5sdp"
 
                     android:popupTheme="@style/ThemeOverlay.MaterialComponents.Dark"
                     app:layout_collapseMode="pin"
@@ -66,6 +63,7 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </Toolbar>
 
+
                 <RelativeLayout
                     android:id="@+id/relative"
                     android:layout_width="match_parent"
@@ -90,7 +88,6 @@
 
 
                 </RelativeLayout>
-
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/iv_profile"
@@ -127,9 +124,9 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:fillViewport="true"      android:layout_height="match_parent"
             android:background="@color/white"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+            android:fillViewport="true"      android:layout_height="match_parent"
+             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -286,8 +283,9 @@
                         android:id="@+id/card_personal_info"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_2sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
-                        app:cardCornerRadius="@dimen/_8sdp"
+                     android:elevation="@dimen/_55sdp"   app:cardCornerRadius="@dimen/_8sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/lyt_rv_provider_data"
@@ -299,7 +297,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:animateLayoutChanges="true"
-                            android:padding="@dimen/_4sdp">
+                             android:padding="@dimen/_4sdp">
 
                             <TextView
 
@@ -337,7 +335,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
                         android:text="@string/service_details"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_10sdp"
@@ -352,7 +350,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_serive_details"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_110sdp"
+                        android:layout_height="@dimen/_100sdp"
                         android:layout_marginTop="@dimen/_12sdp"
                         android:clipToPadding="false"
                         android:orientation="horizontal"
@@ -365,48 +363,22 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_order"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/lyt_data"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="@dimen/_40sdp"
-                    android:background="@drawable/bg_rounded_top"
-                    android:orientation="vertical"
-                    tools:ignore="UseCompoundDrawables">
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginHorizontal="@dimen/_30sdp"
+                    android:backgroundTint="@color/gold"
+                    android:text="@string/order_servie"
+                     android:layout_below="@id/lyt_data"
+                      android:layout_marginTop="@dimen/_40sdp"
+                     android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold"
+                    app:cornerRadius="@dimen/_8sdp"
 
-                    <ImageView
-                        android:id="@+id/iv_dawn"
-                        android:layout_width="@dimen/_35sdp"
-                        android:layout_height="@dimen/_35sdp"
-                        android:paddingHorizontal="@dimen/_10sdp"
-                        android:rotation="90"
-                        android:src="@drawable/ic_arraw"
-                        android:visibility="invisible"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_order"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_50sdp"
-                        android:layout_marginHorizontal="@dimen/_30sdp"
-                        android:backgroundTint="@color/gold"
-                        android:text="@string/order_servie"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_15sdp"
-                        android:textStyle="bold"
-                        app:cornerRadius="@dimen/_8sdp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/iv_dawn" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
+                  />
 
             </RelativeLayout>
         </androidx.core.widget.NestedScrollView>

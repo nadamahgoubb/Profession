@@ -2,8 +2,7 @@ package com.example.profession.ui.fragments.profile
 
 import android.app.Application
 import androidx.lifecycle.viewModelScope
-import com.example.laundrydelivery.util.ext.isNull
-import com.example.profession.data.dataSource.repoistry.PrefsHelper
+ import com.example.profession.data.dataSource.repoistry.PrefsHelper
 import com.example.profession.base.BaseViewModel
 import com.example.profession.data.dataSource.Param.ChangePasswordParam
 import com.example.profession.data.dataSource.Param.EditProfileParams

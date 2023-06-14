@@ -125,12 +125,13 @@ fun ImageView.loadImage(
     disablePlaceholder: Boolean = false,
     isCircular: Boolean = false,
     progressBar: ProgressBar? = null,
-    placeHolderImage: Int? = null
+    placeHolderImage: Int? = null,
+    error_img: Int = R.drawable.error,
 ) {
     progressBar?.visible()
-    val options = RequestOptions().error(R.drawable.error).apply {
+    val options = RequestOptions().error(error_img).apply {
         if (!disablePlaceholder)
-            placeholder(placeHolderImage ?: R.drawable.image_gallery)
+            placeholder(placeHolderImage ?: R.drawable.loading_image)
         if (isCircular)
             circleCrop()
         diskCacheStrategy(if (disableCache) DiskCacheStrategy.NONE else DiskCacheStrategy.AUTOMATIC)

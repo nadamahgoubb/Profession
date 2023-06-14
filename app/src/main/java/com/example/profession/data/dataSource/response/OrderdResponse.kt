@@ -25,6 +25,8 @@ data class OrdersItem(
     @SerializedName("provider_photo"               ) var providerPhoto              : String?                = null,
     @SerializedName("provider_total_rate"          ) var providerTotalRate          : Double?                = null,
     @SerializedName("provider_phone"               ) var providerPhone              : String?                = null,
+    @SerializedName("user_evaluation"               ) var user_evaluation              : Int?                = null,
+    @SerializedName("user_complaint"               ) var user_complaint              : Int?                = null,
     @SerializedName("provider_previous_experience" ) var providerPreviousExperience : String?                = null,
     @SerializedName("provider_hour_price"          ) var providerHourPrice          : Double?                = null,
     @SerializedName("total"                        ) var total                      : String?                   = null,

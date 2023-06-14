@@ -1,6 +1,7 @@
 package com.example.profession.ui.fragments.setting
 
 
+import androidx.activity.OnBackPressedCallback
 import com.example.profession.R
 import com.example.profession.databinding.FragmentSettingsBinding
 import com.example.profession.ui.activity.MainActivity
@@ -15,6 +16,22 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
     override fun onFragmentReady() {
         setupUi()
 
+        onBack()
+    }
+    private fun onBack() {
+        activity?.let {
+            requireActivity().onBackPressedDispatcher.addCallback(it,
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+
+                        if (isEnabled) {
+                            isEnabled = false
+                            showActivity(MainActivity::class.java, clearAllStack = true)
+                        }
+
+                    }
+                })
+        }
     }
     private fun setupUi() {
         parent = requireActivity() as MainActivity

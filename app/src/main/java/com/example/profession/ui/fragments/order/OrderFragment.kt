@@ -1,5 +1,6 @@
 package com.example.profession.ui.fragments.order
 
+import android.util.LayoutDirection
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -33,6 +34,7 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>() {
          mSectionAdapter = SectionsPagerAdapterTabs(getChildFragmentManager())
         binding.viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(binding.tabs))
         binding.tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(binding.viewPager))
+        binding.tabs.layoutDirection = LayoutDirection.LTR
         binding.viewPager.setAdapter(mSectionAdapter)
 
     }

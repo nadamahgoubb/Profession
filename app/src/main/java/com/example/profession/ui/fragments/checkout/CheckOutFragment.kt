@@ -18,6 +18,7 @@ import com.example.profession.ui.fragments.subService.CreateOrdersViewModel
 import com.example.profession.util.Constants
 import com.example.profession.util.ext.hideKeyboard
 import com.example.profession.util.ext.init
+import com.example.profession.util.ext.loadImage
 import com.example.profession.util.observe
 
 
@@ -43,11 +44,11 @@ class CheckOutFragment : BaseFragment<FragmentCheckOutBinding>(), PaymentCheckou
     var providers =  arrayListOf<ProvidersCreateOrderParams>()
     private fun onClick() {
 
-            binding.btnDone.setOnClickListener {
-                if(mViewModel.paymentType==-1){
-                    showToast(context?.resources?.getString(R.string.choose_payment_method))
-                }else {
-                    for (i in mViewModel.selectedSubservice) {
+        binding.btnDone.setOnClickListener {
+            if (mViewModel.paymentType == -1) {
+                showToast(context?.resources?.getString(R.string.choose_payment_method))
+            } else {
+                for (i in mViewModel.selectedSubservice) {
                     i.id?.let { selectedServiceIds.add(it) }
                 }
                 for (i in mViewModel.selectedProviders) {
@@ -70,9 +71,27 @@ class CheckOutFragment : BaseFragment<FragmentCheckOutBinding>(), PaymentCheckou
     }
 
     private fun loadData() {
-        list_payment.add(PaymentModel(Constants.CASH, resources.getString(R.string.cash), R.drawable.money))
-        list_payment.add(PaymentModel(Constants.VISA, resources.getString(R.string.visa), R.drawable.ic_visa))
-        list_payment.add(PaymentModel(Constants.WALLET, resources.getString(R.string.wallet),R.drawable.ic_wallet))
+        list_payment.add(
+            PaymentModel(
+                Constants.CASH,
+                resources.getString(R.string.cash),
+                R.drawable.money
+            )
+        )
+        list_payment.add(
+            PaymentModel(
+                Constants.VISA,
+                resources.getString(R.string.visa),
+                R.drawable.ic_visa
+            )
+        )
+        list_payment.add(
+            PaymentModel(
+                Constants.WALLET,
+                resources.getString(R.string.wallet),
+                R.drawable.ic_wallet
+            )
+        )
 
         binding.tvTime.setText(mViewModel.hourToVisit + ":" + mViewModel.mintueToVisit + mViewModel.am)
         binding.tvDate.setText(mViewModel.current)
@@ -103,15 +122,15 @@ class CheckOutFragment : BaseFragment<FragmentCheckOutBinding>(), PaymentCheckou
                 showProgress(false)
 
             }
-      is CreateOrdersAction.ShowOrderSucess ->  {
-                 showProgress(false)
-          var bundle=Bundle()
-          bundle.putString(Constants.ORDERID, action.data.id)
-           findNavController().navigate(
-              R.id.orderSucessFragment,
-               bundle,
-              NavOptions.Builder().setPopUpTo(R.id.homeFragment, false).build()
-          )
+            is CreateOrdersAction.ShowOrderSucess -> {
+                showProgress(false)
+                var bundle = Bundle()
+                bundle.putString(Constants.ORDERID, action.data.id)
+                findNavController().navigate(
+                    R.id.orderSucessFragment,
+                    bundle,
+                    NavOptions.Builder().setPopUpTo(R.id.homeFragment, false).build()
+                )
             }
 
             else -> {
@@ -132,7 +151,12 @@ class CheckOutFragment : BaseFragment<FragmentCheckOutBinding>(), PaymentCheckou
             adapter_subservice = CheckoutSubserviceAdapter(it)
             binding.rvSubservice.init(context, adapter_subservice, 2)
         }
-
+        binding.item1.tvTitle.setText(getString(R.string.spare_parts))
+        binding.item1.tvDesc.setText(getString(R.string.worker_price_include))
+        binding.item1.iv.loadImage(R.drawable.ic_voiln)
+        binding.item2.iv.loadImage(R.drawable.ic_settings_selected)
+        binding.item2.tvTitle.setText(getString(R.string.unusal_workes))
+        binding.item2.tvDesc.setText(getString(R.string.unusal_workes_msg))
     }
 
     override fun onPaymentClicked(item: PaymentModel?) {

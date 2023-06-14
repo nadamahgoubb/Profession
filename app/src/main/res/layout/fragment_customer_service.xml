@@ -47,8 +47,7 @@
                         android:contentInsetStart="0dp"
                         android:contentInsetStartWithNavigation="0dp"
                         android:paddingTop="@dimen/_5sdp"
-                        android:paddingBottom="@dimen/_5sdp"
-                        android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+                         android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
                         app:layout_collapseMode="pin">
 
                         <androidx.constraintlayout.widget.ConstraintLayout

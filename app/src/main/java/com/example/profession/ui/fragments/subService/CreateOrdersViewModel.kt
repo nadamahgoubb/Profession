@@ -64,8 +64,8 @@ class CreateOrdersViewModel
 
             produce(CreateOrdersAction.ShowLoading(true))
             useCaseReview.invoke(
-                viewModelScope, GetProvidersReviewsParam(provider_id)
-            ) { res ->
+                viewModelScope, GetProvidersReviewsParam(provider_id))
+            { res ->
                 when (res) {
                     is Resource.Failure -> produce(CreateOrdersAction.ShowFailureMsg(res.message.toString()))
                     is Resource.Progress -> produce(CreateOrdersAction.ShowLoading(res.loading))
@@ -92,6 +92,25 @@ class CreateOrdersViewModel
                     is Resource.Progress -> produce(CreateOrdersAction.ShowLoading(res.loading))
                     is Resource.Success -> {
                         produce(CreateOrdersAction.ShowTaxResponse(res.data.data as TaxResponse))
+                    }
+                }
+            }
+        } else {
+            produce(CreateOrdersAction.ShowFailureMsg(getString(R.string.no_internet)))
+        }
+    }
+    fun getNationalities() {
+        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+
+            produce(CreateOrdersAction.ShowLoading(true))
+            useCase.invoke(
+                viewModelScope, CreateOrdersUseCase.nationalities
+            ) { res ->
+                when (res) {
+                    is Resource.Failure -> produce(CreateOrdersAction.ShowFailureMsg(res.message.toString()))
+                    is Resource.Progress -> produce(CreateOrdersAction.ShowLoading(res.loading))
+                    is Resource.Success -> {
+                        produce(CreateOrdersAction.ShowNationalitesResponse(res.data.data as NationalitiesResponse))
                     }
                 }
             }

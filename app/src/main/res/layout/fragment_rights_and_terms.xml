@@ -47,8 +47,7 @@
                         android:contentInsetStart="0dp"
                         android:contentInsetStartWithNavigation="0dp"
                         android:paddingTop="@dimen/_5sdp"
-                        android:paddingBottom="@dimen/_5sdp"
-                        android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+                         android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
                         app:layout_collapseMode="pin">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -114,10 +113,10 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
+                        android:id="@+id/tv_terms"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginHorizontal="@dimen/_10sdp"
-                        android:text="@string/terms_txt"
+                         android:text="@string/terms_txt"
                         android:textColor="@color/grey_800"
                         android:textSize="@dimen/_12sdp" />
 

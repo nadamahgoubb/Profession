@@ -1,12 +1,11 @@
 <resources>
 <string name="app_name">Profession</string>
 
-         <string name="hello_blank_fragment">Hello blank fragment</string>
-        <string name="ok">Ok</string>
+         <string name="ok">Ok</string>
         <string name="error">Error</string>
         <string name="no">No </string>
         <string name="yes">Yes</string>
-        <string name="next">next</string>
+        <string name="next">Next</string>
         <string name="skip">Skip</string>
         <string name="services">Services</string>
         <string name="with_simple_steps">with simple steps</string>
@@ -25,7 +24,7 @@
         <string name="city">City</string>
         <string name="location">Location</string>
         <string name="by_signing_in_you_agreed_to">By Signing in you agreed to</string>
-        <string name="terms">Terms &amp; Condition</string>
+        <string name="terms">Terms &amp; Conditions</string>
         <string name="by_signing_in_you_agreed_to_terms"><![CDATA[<font color=#FF000000> By Signing in you agreed to  </font>
      <font color=#dd9c40>   Terms &amp; Condition</font>
      <font color=#FF000000>    our </font>
@@ -59,7 +58,7 @@ By signingup you aggreed to  <font color=\'#dd9c40\'>Terms &Rights</font>  ]]>
         <string name="orders">Orders</string>
         <string name="complains">Complains</string>
         <string name="notifactions">Notifactions</string>
-        <string name="rights_and_terms">Rights and Terms</string>
+        <string name="rights_and_terms">Terms &amp; Conditions</string>
         <string name="settings">Settings</string>
         <string name="all_services">All Services</string>
         <string name="mainpage">Home</string>
@@ -167,7 +166,7 @@ By signingup you aggreed to  <font color=\'#dd9c40\'>Terms &Rights</font>  ]]>
         <string name="hours_count">Hours Count</string>
         <string name="hours_cost">Hour Cost</string>
         <string name="add_money">Add Balance</string>
-        <string name="balance">Balance :</string>
+        <string name="balance">Balance  </string>
         <string name="add_balance">Add Balance</string>
         <string name="amount">Amount</string>
         <string name="add">Add</string>
@@ -188,8 +187,8 @@ By signingup you aggreed to  <font color=\'#dd9c40\'>Terms &Rights</font>  ]]>
         <string name="service_cost">Service Cost</string>
         <string name="service_tax">Service Tax</string>
         <string name="empty_rate">Please enter rate</string>
-        <string name="empty_comment">Olease enter your message</string>
-        <string name="goto_selected_provider">Goto selected providers</string>
+        <string name="empty_comment">Please enter your message</string>
+        <string name="goto_selected_provider">Go to selected providers</string>
         <string name="no_providers">Sorry, No providers available now</string>
         <string name="goto_main_screen">Goto Home</string>
         <string name="please_select_subServie">Please select subservice</string>
@@ -211,5 +210,17 @@ By signingup you aggreed to  <font color=\'#dd9c40\'>Terms &Rights</font>  ]]>
     <string name="confirm_location">Confirm Location</string>
     <string name="no_orders">No Orders until now</string>
     <string name="sr">SR</string>
+    <string name="km">Km</string>
+    <string name="choose">Choose</string>
+    <string name="service_notes">Service notes</string>
+    <string name="spare_parts">Spare parts</string>
+    <string name="worker_price_include">The worker\'s pricing includes hand work only</string>
+    <string name="unusal_workes">Unususal Works</string>
+    <string name="unusal_workes_msg">The pricing does not include unusual works</string>
+    <string name="login">Login</string>
+    <string name="login_visitor">Login As a Visitor</string>
+    <string name="enter_your_emailto_get_code">Enter your email to change your password</string>
+    <string name="sub_total">Sub Total</string>
+    <string name="tax">Tax</string>
 
 </resources>

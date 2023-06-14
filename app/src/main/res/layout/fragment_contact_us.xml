@@ -47,8 +47,7 @@
                         android:contentInsetStart="0dp"
                         android:contentInsetStartWithNavigation="0dp"
                         android:paddingTop="@dimen/_5sdp"
-                        android:paddingBottom="@dimen/_5sdp"
-                        android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+                         android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
                         app:layout_collapseMode="pin">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -150,11 +149,10 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
-                                android:id="@+id/tv_order_id"
+                                android:id="@+id/tv_goals"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/goal_msg"
-                                 android:textColor="@color/grey_500"
+                                  android:textColor="@color/grey_500"
                                 android:paddingVertical="@dimen/_10sdp"
                                 android:textSize="@dimen/_12sdp"
                                 app:layout_constraintStart_toStartOf="parent"

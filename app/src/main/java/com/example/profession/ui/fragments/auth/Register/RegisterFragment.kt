@@ -7,13 +7,12 @@ import androidx.core.text.HtmlCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import androidx.paging.PagingData
-import com.example.laundrydelivery.util.ext.isNull
-import com.example.profession.R
+  import com.example.profession.R
 import com.example.profession.databinding.FragmentRegisterBinding
 import com.example.profession.ui.activity.MainActivity
 import com.example.profession.base.BaseFragment
 import com.example.profession.data.dataSource.Param.AddressParams
+import com.example.profession.data.dataSource.repoistry.PrefsHelper
 import com.example.profession.data.dataSource.response.CitesItemsResponse
 import com.example.profession.ui.adapter.CitesListener
 import com.example.profession.ui.dialog.CategoriesDialog
@@ -23,6 +22,7 @@ import com.example.profession.ui.fragments.map.MapBottomSheet
 import com.example.profession.ui.fragments.map.onLocationClick
 import com.example.profession.util.*
 import com.example.profession.util.ext.hideKeyboard
+import com.example.profession.util.ext.isNull
 import com.example.profession.util.ext.showActivity
 import com.hbb20.CountryCodePicker
 import dagger.hilt.android.AndroidEntryPoint
@@ -113,12 +113,13 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>()  ,    CountryCo
 
     private fun setupUi() {
         binding.btnSignIn.setPaintFlags(binding.btnSignIn.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
+        binding.btnVisitorLogin.setPaintFlags(binding.btnVisitorLogin.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
         binding.terms.text =
             HtmlCompat.fromHtml(getString(R.string.some_text), HtmlCompat.FROM_HTML_MODE_LEGACY)
     }
 
     private fun onClick() {
-
+binding.countryCodePicker.setOnCountryChangeListener(this)
         binding.btnRegister.setOnClickListener {
             mViewModel.validateRegisteration(
                 binding.etUserName.text.toString(),  binding.etPhone.text.toString(), binding.etEmail.text.toString() , countryCode,
@@ -129,10 +130,14 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>()  ,    CountryCo
             )
 
         }
-        binding.btnSignIn.setOnClickListener {
-            findNavController().navigate(R.id.loginFragment,null,
-                NavOptions.Builder().setPopUpTo(R.id.loginFragment, true).build())
 
+            binding.btnSignIn.setOnClickListener {
+                findNavController().navigate(R.id.loginFragment,null,
+                    NavOptions.Builder().setPopUpTo(R.id.loginFragment, true).build())
+        }
+        binding.btnVisitorLogin.setOnClickListener {
+         PrefsHelper.saveUserData(null)
+            showActivity(MainActivity::class.java, clearAllStack = true)
         }
         binding.etCity.setOnClickListener {
             if (countryId == "")  showToast(resources.getString(R.string.choose_country_first))
@@ -147,6 +152,9 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>()  ,    CountryCo
         binding.ivBack.setOnClickListener {
             activity?.onBackPressed()
         }
+        binding.terms.setOnClickListener {
+            findNavController().navigate(R.id.rightsAndTermsFragment2)
+         }
     }
     private fun openMaps() {
         MapBottomSheet.newInstance(object : onLocationClick {
@@ -199,7 +207,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>()  ,    CountryCo
     override fun onCountrySelected() {
         countryCode ="+"+ binding.countryCodePicker.selectedCountryCode
 
-        Toast.makeText(activity, "Country Code " + countryCode, Toast.LENGTH_SHORT).show()
-    }
+     }
 
 }

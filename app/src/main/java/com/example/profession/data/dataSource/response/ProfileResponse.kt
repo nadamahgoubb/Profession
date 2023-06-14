@@ -6,7 +6,7 @@ data class ProfileResponse(
     @SerializedName("id"                ) var id              : String?     = null,
     @SerializedName("name"              ) var name            : String?  = null,
     @SerializedName("phone"             ) var phone           : String?  = null,
-    @SerializedName("country_code"      ) var countryCode     : String?  = null,
+    @SerializedName("country_code"      ) var countryCode     : String  = "",
     @SerializedName("email"             ) var email           : String?  = null,
     @SerializedName("country_id"        ) var countryId       : String?     = null,
     @SerializedName("city_id"           ) var cityId          : String?     = null,

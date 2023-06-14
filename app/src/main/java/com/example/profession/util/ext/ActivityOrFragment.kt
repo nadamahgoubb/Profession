@@ -28,8 +28,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
-import com.example.laundrydelivery.util.ext.getTClass
-import com.example.profession.R
+ import com.example.profession.R
 import java.io.File
 import java.util.*
 

@@ -1,4 +1,4 @@
-package com.example.laundrydelivery.util.ext
+package com.example.profession.util.ext
 
 import android.content.res.TypedArray
 import android.os.Build

@@ -9,6 +9,7 @@ import com.example.profession.databinding.FragmentProvidersBinding
 import com.example.profession.ui.activity.MainActivity
 import com.example.profession.base.BaseFragment
 import com.example.profession.data.dataSource.response.Providers
+import com.example.profession.data.dataSource.response.NationalitiesItem
 import com.example.profession.ui.adapter.ProviderClickListener
 import com.example.profession.ui.adapter.ProvidersAdapter
 import com.example.profession.ui.dialog.FilterBottomSheet
@@ -35,13 +36,17 @@ class ProvidersFragment : BaseFragment<FragmentProvidersBinding>(), ProviderClic
             if (mViewModel.allProviders.size == 0) getProviders()
             else showProviders()
 
-
             observe(mViewModel.viewState) {
                 handleViewState(it)
             }
         }
         binding.swiperefreshHome.setOnRefreshListener {
-            mViewModel.getProviders()
+           mViewModel.getProviders()
+            mViewModel.selectedProviders= arrayListOf()
+            nationalitiesId  = null
+            sort  = null
+            rate  = null
+            distance = null
             if (binding.swiperefreshHome != null) binding.swiperefreshHome.isRefreshing = false
         }
     }
@@ -60,7 +65,13 @@ class ProvidersFragment : BaseFragment<FragmentProvidersBinding>(), ProviderClic
                 mViewModel.allProviders = action.data.providers
                 showProviders()
 
-            }
+            }  is CreateOrdersAction.ShowNationalitesResponse -> {
+                showProgress(false)
+
+            showFilterBottomSheet(action.data.nationalities)
+
+
+        }
 
             is CreateOrdersAction.ShowFailureMsg -> action.message?.let {
                 showToast(action.message)
@@ -102,7 +113,7 @@ class ProvidersFragment : BaseFragment<FragmentProvidersBinding>(), ProviderClic
             activity?.onBackPressed()
         }
         binding.ivFilter.setOnClickListener {
-            showFilterBottomSheet()
+            mViewModel.getNationalities()
         }
         binding.btnOrder.setOnClickListener {
             if (mViewModel.selectedProviders.isNullOrEmpty()) showToast(resources.getString(R.string.please_choose_providers_first))
@@ -112,17 +123,81 @@ class ProvidersFragment : BaseFragment<FragmentProvidersBinding>(), ProviderClic
             showActivity(MainActivity::class.java, clearAllStack = true)
         }
     }
+    var nationalitiesId : Int? = null
+    var sort: Int? = null
+    var rate: Double? = null
+    var distance: Double? = null
 
-    fun showFilterBottomSheet() {
+    fun showFilterBottomSheet(nationalities: ArrayList<NationalitiesItem>?) =
         FilterBottomSheet.newInstance(object : OnFilterClick {
-            override fun onFilterSubmitted(brandId: ArrayList<Int>?, sortId: String?) {
+            override fun onFilterSubmitted(
+                sort: Int?,
+                nationality: Int?,
+                rates: Double?,
+                distance: Double?
+            ) {
+                try{
+                var    allproviders :ArrayList<Providers> = mViewModel.allProviders
 
+                nationality?.let{
+                    allproviders = mViewModel.allProviders.filter {
+                        it.nationalityId == nationality
+                    } as ArrayList<Providers>
+                }
+                rates?.let {
+                    var c=    allproviders .intersect((mViewModel.allProviders.filter {
+                        it.totalRate!! >  rates
+                    } as ArrayList<Providers>))
+                    if(c.size>0)allproviders = c.toList() as ArrayList<Providers>
+                    else allproviders = arrayListOf()
+
+                 }
+                distance?.let {
+
+                    var c=       allproviders .intersect((mViewModel.allProviders.filter {
+                        it.distance?.toDoubleOrNull()?.compareTo(distance)!! < 1
+                    } as ArrayList<Providers>))
+                    if(c.size>0)allproviders = c.toList() as ArrayList<Providers>
+                    else allproviders = arrayListOf()
+
+
+
+                }
+                sort?.let {
+
+                    if (sort.equals(Constants.HighToLaw)) {
+                        allproviders.sortByDescending {
+                            it.hourPrice
+                        }
+                    } else {
+                        allproviders.sortBy {
+                            it.hourPrice
+                        }
+                    }
+                }
+                if(allproviders.size>0) {
+                    adapter.list = allproviders
+                    adapter.notifyDataSetChanged()
+                     this@ProvidersFragment.distance= distance
+                    this@ProvidersFragment.sort= sort
+                    this@ProvidersFragment.rate= rate
+                    this@ProvidersFragment.nationalitiesId= nationality
+
+                }else{
+                    showToast(getString(R.string.n_provider))
+
+                }
+                }catch (e:Exception){
+                    showToast(getString(R.string.n_provider))
+
+                }
             }
 
 
-        }).show(childFragmentManager, FilterBottomSheet::class.java.canonicalName)
-
-    }
+        },nationalities, nationalitiesId ,
+      sort,
+      rate,
+     distance ).show(childFragmentManager, FilterBottomSheet::class.java.canonicalName)
 
     override fun onProviderDetailsClicked(item: Providers?) {
         var bundle = Bundle()
@@ -132,5 +207,6 @@ class ProvidersFragment : BaseFragment<FragmentProvidersBinding>(), ProviderClic
 
     override fun onProviderAddedClicked(items: ArrayList<Providers>) {
         mViewModel.selectedProviders = items
-    }
+        (  mViewModel.selectedProviders ) .distinct()
+     }
 }

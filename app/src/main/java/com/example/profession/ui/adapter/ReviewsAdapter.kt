@@ -7,15 +7,14 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.laundrydelivery.util.ext.roundTo
-import com.example.profession.R
-import com.example.profession.data.dataSource.response.*
+ import com.example.profession.data.dataSource.response.*
 import com.example.profession.databinding.ItemFilterMultiChoiceBinding
 import com.example.profession.databinding.ItemOrdersBinding
 import com.example.profession.databinding.ItemProviderBinding
 import com.example.profession.databinding.ItemReviewsBinding
 import com.example.profession.util.Constants
 import com.example.profession.util.ext.loadImage
+import com.example.profession.util.ext.roundTo
 
 
 class ReviewsAdapter(

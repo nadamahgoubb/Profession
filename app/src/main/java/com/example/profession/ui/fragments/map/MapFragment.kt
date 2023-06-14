@@ -10,8 +10,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.laundrydelivery.util.ext.isNull
-import com.example.profession.R
+ import com.example.profession.R
 import com.example.profession.databinding.FragmentMapBinding
 import com.example.profession.base.BaseFragment
 import com.example.profession.data.dataSource.Param.AddressParams
@@ -21,6 +20,7 @@ import com.example.profession.util.ExpandAnimation.expand
 import com.example.profession.util.MapUtil
 import com.example.profession.util.PermissionManager
 import com.example.profession.util.WWLocationManager
+import com.example.profession.util.ext.isNull
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback

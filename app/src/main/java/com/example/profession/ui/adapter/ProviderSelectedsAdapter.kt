@@ -5,9 +5,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.laundrydelivery.util.ext.roundTo
+import com.example.profession.R
 import com.example.profession.data.dataSource.response.Providers
 import com.example.profession.databinding.ItemProviderTaxBinding
+import com.example.profession.util.ext.loadImage
+import com.example.profession.util.ext.roundTo
 
 
 interface ProviderSelectedsClickListener {
@@ -30,11 +32,12 @@ class ProviderSelectedAdapter(
         var currentItem = list.get(position)
         holder.binding.tvName.text =  currentItem?.name
 
+         holder.binding.ivUser.loadImage(currentItem.photo)
 
         holder.binding.tvRate.text=currentItem.totalRate.roundTo(2).toString()
-        holder.binding.tvCost.text=currentItem.serviceCostBeforeTax.toString()
-        holder.binding.tvTax.text=currentItem.serviceTax.toString()
-        holder.binding.tvTotal.text=currentItem.serviceTotalCost.toString()
+        holder.binding.tvCost.text=(currentItem.serviceCostBeforeTax.toString() +context.resources.getString(R.string.sr))
+        holder.binding.tvTax.text=(currentItem.serviceTax.toString()+context.resources.getString(R.string.sr))
+        holder.binding.tvTotal.text=(currentItem.serviceTotalCost.toString()+context.resources.getString(R.string.sr))
 
 
         holder.binding.ivCancel.setOnClickListener {

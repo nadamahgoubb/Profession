@@ -47,12 +47,12 @@
                         android:contentInsetStart="0dp"
                         android:contentInsetStartWithNavigation="0dp"
                         android:paddingTop="@dimen/_5sdp"
-                        android:paddingBottom="@dimen/_5sdp"
-                        android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+                         android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
                         app:layout_collapseMode="pin">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
+                            android:textSize="@dimen/_13sdp"
                             android:layout_height="match_parent"
                             >
 
@@ -89,6 +89,13 @@
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
             </com.google.android.material.appbar.AppBarLayout>
 
+            <com.example.profession.base.OnlyVerticalSwipeRefreshLayout
+                android:id="@+id/swiperefresh_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
@@ -119,7 +126,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_providers"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="0dp"
                         android:clipToPadding="false"
                         android:orientation="vertical"
                         tools:itemCount="2"
@@ -127,58 +134,30 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_title"
-                        app:layout_constraintBottom_toTopOf="@id/card_bottom"
-                        tools:listitem="@layout/item_provider_tax" />
+                         tools:listitem="@layout/item_provider_tax" />
 
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:id="@+id/card_bottom"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/rv_providers"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginTop="@dimen/_40sdp"
-                        android:background="@drawable/bg_rounded_top"
-                        android:orientation="vertical"
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_order"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_marginHorizontal="@dimen/_30sdp"
+                        android:backgroundTint="@color/gold"
+                        android:text="@string/order_servie"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold"
+                        app:cornerRadius="@dimen/_8sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rv_providers" />
 
-                        tools:ignore="UseCompoundDrawables">
-
-                        <ImageView
-                            android:id="@+id/iv_dawn"
-                            android:layout_width="@dimen/_35sdp"
-                            android:layout_height="@dimen/_35sdp"
-                            android:paddingHorizontal="@dimen/_10sdp"
-                            android:rotation="90"
-                            android:src="@drawable/ic_arraw"
-                            android:visibility="invisible"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btn_order"
-                            android:layout_width="0dp"
-                            android:layout_height="@dimen/_50sdp"
-                            android:layout_marginHorizontal="@dimen/_30sdp"
-                            android:backgroundTint="@color/gold"
-                            android:text="@string/order_servie"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_15sdp"
-                            android:textStyle="bold"
-                            app:cornerRadius="@dimen/_8sdp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/iv_dawn" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.core.widget.NestedScrollView>
+            </com.example.profession.base.OnlyVerticalSwipeRefreshLayout>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

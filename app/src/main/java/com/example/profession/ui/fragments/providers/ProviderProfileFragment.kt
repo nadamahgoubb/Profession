@@ -6,8 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.laundrydelivery.util.ext.roundTo
-import com.example.profession.R
+ import com.example.profession.R
 import com.example.profession.databinding.FragmentProviderProfileBinding
 import com.example.profession.ui.activity.AuthActivity
 import com.example.profession.ui.activity.MainActivity
@@ -22,6 +21,7 @@ import com.example.profession.util.Constants
 import com.example.profession.util.ext.hideKeyboard
 import com.example.profession.util.ext.init
 import com.example.profession.util.ext.loadImage
+import com.example.profession.util.ext.roundTo
 import com.example.profession.util.observe
 import com.google.android.material.appbar.AppBarLayout
 
@@ -58,12 +58,11 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
             binding.tvRate.setText(it.totalRate.roundTo(2) .toString())
 
             binding.tvLocation.setText(it.address.toString())
-            binding.tvServiceDetails.setText(it.address.toString())
-            binding.tvRateCounts.setText("(" + it.countReviews + ")")
+             binding.tvRateCounts.setText("(" + it.countReviews + ")")
 
             binding.itemDistance.tvTitle.setText(resources.getText(R.string.distance_between))
             binding.tvJob .setText(it.service?.name)
-            binding.itemDistance.tvData.setText(it.distance.toString())
+            binding.itemDistance.tvData.setText(it.distance.toString().toString()+ resources.getString(R.string.km))
             binding.itemDistance.ivImg.loadImage(resources.getDrawable(R.drawable.ic_location))
 
             binding.itemExperience.tvTitle.setText(resources.getText(R.string.ecperience))
@@ -71,7 +70,7 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
             binding.itemExperience.ivImg.loadImage(resources.getDrawable(R.drawable.ic_experience))
 
             binding.itemCost.tvTitle.setText(resources.getText(R.string.hours_cost))
-            binding.itemCost.tvData.setText(it.hourPrice.toString())
+            binding.itemCost.tvData.setText(it.hourPrice.toString()+resources.getString(R.string.sr))
             binding.itemCost.ivImg.loadImage(resources.getDrawable(R.drawable.ic_cost))
             adapter.list = it.subServices
             adapter.notifyDataSetChanged()
@@ -86,10 +85,7 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
         binding.ivBack.setOnClickListener {
             activity?.onBackPressed()
         }
-        binding.ivDawn.setOnClickListener {
-            // ExpandAnimation.expand(binding.cardUp)
-            //  ExpandAnimation.collapse(binding.cardDawn)
-        }
+
 
         binding.btnOrder.setOnClickListener {
             mViewModel.selectedProviders.clear()
@@ -153,20 +149,5 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
         dialIntent.data = Uri.parse("tel:" + tel)
         startActivity(dialIntent)
     }
-    private fun showLoginFirstBotomSheetFragment() {
-        LoginFirstBotomSheetFragment.newInstance(object : OnClickLoginFirst {
-            override fun onClick(choice: String) {
-                if (choice.equals(Constants.YES)) {
-                    var intent = Intent(activity, AuthActivity::class.java)
-                    intent.putExtra(Constants.Start, Constants.login)
-                    startActivity(intent)
-                    activity?.finish()
-                } else {
-                    findNavController().navigate(R.id.chooseTimeFragment)
-                }
-            }
 
-
-        }).show(childFragmentManager, LoginFirstBotomSheetFragment::class.java.canonicalName)
-    }
 }

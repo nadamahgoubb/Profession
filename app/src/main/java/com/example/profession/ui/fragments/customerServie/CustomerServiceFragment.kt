@@ -1,5 +1,6 @@
 package com.example.profession.ui.fragments.customerServie
 
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import com.example.profession.databinding.FragmentCustomerServiceBinding
 import com.example.profession.ui.activity.MainActivity
@@ -23,6 +24,22 @@ class CustomerServiceFragment : BaseFragment<FragmentCustomerServiceBinding>() {
             }
 
         }
+        onBack()
+    }
+    private fun onBack() {
+        activity?.let {
+            requireActivity().onBackPressedDispatcher.addCallback(it,
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+
+                        if (isEnabled) {
+                            isEnabled = false
+                            showActivity(MainActivity::class.java, clearAllStack = true)
+                        }
+
+                    }
+                })
+        }
     }
 
     private fun handleViewState(action: SettingAction) {
@@ -43,7 +60,7 @@ class CustomerServiceFragment : BaseFragment<FragmentCustomerServiceBinding>() {
             is SettingAction.CompalinSucessed -> {
                 showProgress(false)
                 showToast(action.message)
-                activity?.onBackPressed()
+                showActivity(MainActivity::class.java, clearAllStack = true)
             }
 
 

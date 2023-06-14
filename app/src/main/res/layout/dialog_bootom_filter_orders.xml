@@ -9,18 +9,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
          android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/_10sdp"
         android:background="@drawable/bg_rounded"
-        android:animateLayoutChanges="true"
-         >
+        android:paddingBottom="@dimen/_10sdp">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 app:layout_constraintTop_toTopOf="parent"
+        android:fillViewport="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-         android:background="@drawable/bg_rounded"
-        android:paddingBottom="@dimen/_10sdp">
+         android:paddingBottom="@dimen/_10sdp">
         >
 
 
@@ -28,10 +28,8 @@ app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/lyt_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_rounded"
-            android:animateLayoutChanges="true"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:paddingBottom="@dimen/_10sdp">
+            android:layout_marginTop="@dimen/_10sdp"
+             android:paddingBottom="@dimen/_10sdp">
 
             <ImageView
                 android:id="@+id/iv_dawn"
@@ -49,6 +47,7 @@ app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/filter"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="bold"
@@ -78,7 +77,7 @@ app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/item_filter_multi_choice">
 
                 <include
-                    android:id="@+id/lyt_low_tohight"
+                    android:id="@+id/lyt_low_tohigh"
                     layout="@layout/item_filter_multi_choice" />
 
                 <include
@@ -111,7 +110,31 @@ app:layout_constraintTop_toTopOf="parent"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/lyt_rec" />
+            <LinearLayout
+                android:id="@+id/lyt_nation"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:background="@drawable/bg_rounded"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toBottomOf="@id/tv4" >
 
+                <Spinner
+                    android:id="@+id/spinner_district"
+                    android:layout_width="match_parent"
+ style="@style/SpinnerTheme"
+                    android:layout_height="@dimen/_45sdp"
+                    android:backgroundTint="@color/grey_700"
+                     android:dropDownSelector="@drawable/spinner_drop_dawn"
+                    android:pointerIcon="none"
+                    android:spinnerMode="dialog"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            </LinearLayout>
             <androidx.appcompat.widget.AppCompatTextView
 
                 android:id="@+id/et_nationality"
@@ -123,13 +146,13 @@ app:layout_constraintTop_toTopOf="parent"
                 android:drawableEnd="@drawable/spinner_drop_dawn"
                 android:gravity="center_vertical"
                 android:hint="سعودى"
-                android:paddingHorizontal="@dimen/_5sdp"
+     android:visibility="gone"           android:paddingHorizontal="@dimen/_5sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey_800"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv4" />
+                app:layout_constraintTop_toBottomOf="@id/lyt_nation" />
             <TextView
                 android:id="@+id/tv5"
                 android:layout_width="wrap_content"
@@ -153,7 +176,7 @@ app:layout_constraintTop_toTopOf="parent"
                 android:isIndicator="false"
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:numStars="5"
-                android:rating="3"
+                android:rating="0"
 android:layout_marginTop="@dimen/_15sdp"
                  android:stepSize=".5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -171,53 +194,33 @@ android:layout_marginTop="@dimen/_15sdp"
                  android:layout_marginTop="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rating"/>
-            <ProgressBar
-                android:id="@+id/pb2"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            <SeekBar
+                android:id="@+id/pb_destantion"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_3sdp"
+                android:layout_height="wrap_content"
+                android:maxHeight="@dimen/_2sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:max="120"
-                android:progress="50"
-                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:max="100"
+                  android:thumb="@drawable/humber"
+                  android:layout_marginHorizontal="@dimen/_10sdp"
                 android:minHeight="@dimen/_3sdp"
+
+                style="@style/seekpar"
                 android:progressDrawable="@drawable/progress_limit"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv6" />
+
             <TextView
-                android:id="@+id/tv_start_distance"
+                android:id="@+id/tv_pos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1 كم"
-                android:textColor="@color/grey_500"
+                 android:textColor="@color/grey_500"
                 android:textSize="@dimen/_9sdp"
                 android:textStyle="bold"
                 android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintStart_toStartOf="@id/pb2"
-                app:layout_constraintTop_toBottomOf="@id/pb2"/>
-            <TextView
-                android:id="@+id/tv_mid_distance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="25 كم"
-                android:textColor="@color/grey_500"
-                android:textSize="@dimen/_9sdp"
-                android:textStyle="bold"
-                android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintStart_toStartOf="@id/pb2"
-                app:layout_constraintEnd_toEndOf="@id/pb2"
-                app:layout_constraintTop_toBottomOf="@id/pb2"/>
-            <TextView
-                android:id="@+id/tv_max_distance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="50 كم"
-                android:textColor="@color/grey_500"
-                android:textSize="@dimen/_9sdp"
-                android:textStyle="bold"
-                android:layout_marginTop="@dimen/_10sdp"
-                 app:layout_constraintEnd_toEndOf="@id/pb2"
-                app:layout_constraintTop_toBottomOf="@id/pb2"/>
+                app:layout_constraintStart_toStartOf="@id/pb_destantion"
+                 app:layout_constraintTop_toBottomOf="@id/pb_destantion"/>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_done"
                 android:layout_width="match_parent"
@@ -233,7 +236,7 @@ android:layout_marginTop="@dimen/_15sdp"
                 app:layout_constraintStart_toStartOf="parent"
 app:backgroundTint="@color/grey_800"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_max_distance"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_pos"/>
             <TextView
                 android:id="@+id/tv_delete"
                 android:layout_width="wrap_content"

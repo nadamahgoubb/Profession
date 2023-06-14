@@ -11,5 +11,6 @@ sealed class CreateOrdersAction() : Action {
     data class ShowFailureMsg(val message: String?) : CreateOrdersAction()
      data class ShowTaxResponse(val data: TaxResponse?) : CreateOrdersAction()
     data class ShowProviderReview(val data: ReviewsResponse) : CreateOrdersAction()
+    data class ShowNationalitesResponse(val data: NationalitiesResponse) : CreateOrdersAction()
  data    class ShowOrderSucess(val data: OrdersItem) : CreateOrdersAction()
 }

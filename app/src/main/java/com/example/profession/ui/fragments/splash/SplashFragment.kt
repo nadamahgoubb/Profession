@@ -22,9 +22,10 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
           delay(2000)
         if(PrefsHelper.getToken().isNullOrBlank()){
             if(PrefsHelper.getIsloggedInBefore()) {
-                findNavController().navigate(R.id.loginFragment,null,
-                    NavOptions.Builder().setPopUpTo(R.id.loginFragment, true).build())
+                findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                  //  ,null, NavOptions.Builder().setPopUpTo(R.id.loginFragment, true).build())
             }else{
+                PrefsHelper.setloggedInBefore(true)
                 findNavController().navigate(R.id.action_splashFragment_to_walkThrougthFragment)
                    // ,null, NavOptions.Builder().setPopUpTo(R.id.walkThrougthFragment, true).build())
                    }

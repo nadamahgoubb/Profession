@@ -2,8 +2,7 @@ package com.example.profession.ui.fragments.subService
 
 
  import android.util.Log
- import android.util.Log.d
-import android.view.View
+ import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
@@ -17,18 +16,16 @@ import com.example.profession.R
 import com.example.profession.databinding.FragmentSubServiceBinding
 import com.example.profession.ui.activity.MainActivity
 import com.example.profession.base.BaseFragment
-import com.example.profession.data.dataSource.response.ServicesItemsResponse
+ import com.example.profession.data.dataSource.repoistry.PrefsHelper
+ import com.example.profession.data.dataSource.response.ServicesItemsResponse
 import com.example.profession.data.dataSource.response.SubServiceItemsResponse
 import com.example.profession.ui.adapter.SubServiceAdapter
 import com.example.profession.ui.fragments.home.HomeAction
 import com.example.profession.ui.fragments.home.HomeViewModel
 import com.example.profession.ui.listener.SubServiceListener
 import com.example.profession.util.*
-import com.example.profession.util.ext.hideKeyboard
-import com.example.profession.util.ext.init
-import com.example.profession.util.ext.loadImage
-import com.example.profession.util.ext.showActivity
-import com.google.android.material.appbar.AppBarLayout
+ import com.example.profession.util.ext.*
+ import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -153,7 +150,7 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
         parent = requireActivity() as MainActivity
         parent.showBottomNav(false)
         parent.showSideNav(false)
-        binding.ivProfile.loadImage(item?.icon)
+        binding.ivProfile.loadImage(item?.icon , isCircular = true)
 
         binding.tvTitle.setText(item?.name.toString())
 
@@ -178,8 +175,15 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
     private fun onClick() {
 
         binding.btnDone.setOnClickListener {
-            if (mViewModelCreateOrder.selectedSubservice.size<1) showToast(resources.getString(R.string.please_select_subServie))
-         else   checkLocation()
+            if (PrefsHelper.getUserData().isNull()) {
+
+                findNavController().navigate(R.id.loginFirstBotomSheetFragment)
+
+        }else{
+                if (mViewModelCreateOrder.selectedSubservice.size<1) showToast(resources.getString(R.string.please_select_subServie))
+                else   checkLocation()
+            }
+
         }
         binding.ivBack.setOnClickListener {
             activity?.onBackPressed()

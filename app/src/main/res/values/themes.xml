@@ -8,6 +8,7 @@
         <!-- Secondary brand color. -->
         <item name="android:fontFamily">@font/almarai_regular</item>
         <item name="fontFamily">@font/almarai_regular</item>
+        <item name="android:forceDarkAllowed">false</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/header</item>
     <!--    <item name="android:windowTranslucentStatus">true</item>
@@ -18,10 +19,19 @@
         <item name="android:fitsSystemWindows">false</item>-->
     </style>
 
-        <style name="SpinnerTheme">
-            <item name="android:background">@drawable/spinner_drop_dawn</item>
+        <style name="SpinnerTheme" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
+            <item name="android:drawableEnd">@drawable/spinner_drop_dawn</item>
+            <item name="android:hint">"nation"</item>
 
         </style>
+    <style name="seekpar" parent="Widget.AppCompat.SeekBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@android:drawable/progress_horizontal</item>
+        <item name="android:indeterminateDrawable">@android:drawable/progress_horizontal</item>
+        <item name="android:minHeight">20dip</item>
+        <item name="android:maxHeight">20dip</item>
+         <item name="android:focusable">true</item>
+    </style>
     <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
     </style>

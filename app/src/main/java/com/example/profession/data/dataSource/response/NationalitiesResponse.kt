@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 
 data class NationalitiesResponse(
-    @SerializedName("nationalities") var nationalities: ArrayList<nationalitiesItem>? = arrayListOf(),
+    @SerializedName("nationalities") var nationalities: ArrayList<NationalitiesItem>? = arrayListOf(),
 )
 
 
-data class nationalitiesItem(
-    @SerializedName("id") var id: String? = null,
+data class NationalitiesItem(
+    @SerializedName("id") var id: Int? = null,
     @SerializedName("name") var name: String? = null,
 )

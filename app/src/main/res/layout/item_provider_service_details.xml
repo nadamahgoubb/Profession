@@ -9,8 +9,8 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_10sdp"
         app:cardCornerRadius="@dimen/_8sdp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
             <RelativeLayout
                 android:id="@+id/lyt_img"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_70sdp"
+                android:layout_height="@dimen/_60sdp"
                 android:background="@color/grey_800"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -46,11 +46,11 @@
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_location"
-                android:text="تركيب مروحه  "
-                android:textColor="@color/black"
+                 android:layout_height="wrap_content"
+               android:paddingVertical="@dimen/_5sdp" android:src="@drawable/ic_location"
+                 android:textColor="@color/black"
                 android:textSize="@dimen/_9sdp"
+                android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

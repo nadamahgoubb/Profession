@@ -6,12 +6,14 @@ import com.example.profession.base.DevResponse
 import com.example.profession.base.ErrorResponse
 import com.example.profession.base.NetworkResponse
 import com.example.profession.data.dataSource.Param.CreateOrderParams
+import com.example.profession.data.dataSource.Param.GetProvidersReviewsParam
 import com.example.profession.data.dataSource.response.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
 import javax.inject.Singleton
 import com.example.profession.data.dataSource.response.SliderResponse
+import com.example.profession.util.FileManager.toMultiPart
 
 @Singleton
 
@@ -63,11 +65,6 @@ interface ApiInterface {
 
         ): NetworkResponse<BasePagingResponse<ServicesItemsResponse>, ErrorResponse>
 
-    @GET("user/slider")
-    suspend fun getSlider(
-
-    ): NetworkResponse<DevResponse<SliderResponse>, ErrorResponse>
-
     @FormUrlEncoded
     @POST("user/services/sub_service")
     suspend fun getSubServiceItemsResponse(
@@ -75,6 +72,11 @@ interface ApiInterface {
         @Field("service_id") service_id: String? = null,
 
         ): NetworkResponse<BasePagingResponse<SubServiceItemsResponse>, ErrorResponse>
+
+    @GET("user/slider")
+    suspend fun getSlider(
+
+    ): NetworkResponse<DevResponse<SliderResponse>, ErrorResponse>
 
     @GET("user/profile")
     suspend fun getProfile(
@@ -87,10 +89,7 @@ interface ApiInterface {
     @POST("user/profile/update")
     suspend fun updateProfile(
         @PartMap updateMap: Map<String, RequestBody>,
-        @Part image: MultipartBody.Part?,
-
-
-        ): NetworkResponse<DevResponse<UserResponse>, ErrorResponse>
+        @Part image: MultipartBody.Part?     ): NetworkResponse<DevResponse<UserResponse>, ErrorResponse>
 
 
     @FormUrlEncoded
@@ -119,6 +118,14 @@ interface ApiInterface {
         @Field("app_type") app_type: Int? = null,
          @Field("content") content: String? = null,
     ): NetworkResponse<DevResponse<Any>, ErrorResponse>
+
+    @GET("user/goal")
+    suspend fun getGoal(
+    ): NetworkResponse<DevResponse<GoalResponse>, ErrorResponse>
+
+    @GET("user/terms_user")
+    suspend fun getTermsProvider(
+    ): NetworkResponse<DevResponse<GoalResponse>, ErrorResponse>
 
     @FormUrlEncoded
     @POST("user/get_providers")
