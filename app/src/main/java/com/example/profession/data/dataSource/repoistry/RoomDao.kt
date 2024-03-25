@@ -8,7 +8,4 @@ import androidx.room.*
 @Keep
 
 @Dao
-interface RoomDao {
-
-
-}
+interface RoomDao

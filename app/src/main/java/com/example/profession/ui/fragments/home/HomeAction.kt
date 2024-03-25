@@ -8,7 +8,7 @@ import com.example.profession.data.dataSource.response.SliderResponse
 import com.example.profession.data.dataSource.response.SubServiceItemsResponse
 
 
-sealed class HomeAction() : Action {
+sealed class HomeAction : Action {
 
     data class ShowLoading(val show: Boolean) : HomeAction()
     data class ShowFailureMsg(val message: String?) : HomeAction()

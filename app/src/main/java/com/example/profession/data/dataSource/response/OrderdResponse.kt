@@ -33,6 +33,7 @@ data class OrdersItem(
     @SerializedName("tax"                          ) var tax                        : Double?                   = null,
     @SerializedName("final_total"                  ) var finalTotal                 : String?                   = null,
     @SerializedName("payment_method"               ) var paymentMethod              : Int?                   = null,
+    @SerializedName("confirm_payment_visa"               ) var confirm_payment_visa              : Int?                   = null,
     @SerializedName("order_date"                   ) var orderDate                  : String?                = null,
     @SerializedName("order_time"                   ) var orderTime                  : String?                = null,
     @SerializedName("count_hours"                  ) var countHours                 : String?                   = null,

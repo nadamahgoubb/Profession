@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.profession.data.dataSource.response.CitesItemsResponse
-import com.example.profession.data.dataSource.response.OrdersItem
-import com.example.profession.databinding.ItemFilterMultiChoiceBinding
-import com.example.profession.databinding.ItemOrdersBinding
+ import com.example.profession.data.dataSource.response.OrdersItem
+ import com.example.profession.databinding.ItemOrdersBinding
 import com.example.profession.util.Constants
+ import com.example.profession.util.ext.toTwelevePattern
 
 
 interface OrdersClickListener {
@@ -35,9 +34,13 @@ class OrdersAdapter(
 
     override fun onBindViewHolder(holder: OrdersViewHolder, position: Int) {
         var currentItem = list.get(position)
-        holder.binding.tvOrderId.text = "# " + currentItem?.orderId
-         holder.binding.tvTime.text =
-            currentItem?.orderTime.toString() + " " + currentItem?.orderDate.toString()
+        holder.binding.tvOrderId.text = "# " + currentItem.orderId
+      //   holder.binding.tvTime.text =
+        //     getDateTime(    )+ " "
+    //   SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(  currentItem.orderTime.toString().toDateTime("HH:mm:ss"))+ currentItem.orderDate.toString()
+
+            holder.binding.tvTime.text = toTwelevePattern(currentItem.orderTime.toString()).toString()+ " "+currentItem.orderDate.toString()
+
 
         holder.binding.lytCall.setOnClickListener {
             listener.onOrderCallClicked(currentItem)
@@ -65,7 +68,7 @@ class OrdersAdapter(
 
 
     class OrdersViewHolder(var binding: ItemOrdersBinding) :
-        RecyclerView.ViewHolder(binding.root) {}
+        RecyclerView.ViewHolder(binding.root)
 
 
     override fun getItemCount(): Int = list.size

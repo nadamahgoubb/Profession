@@ -2,18 +2,21 @@ package com.example.profession.ui.fragments.auth
 
 import android.app.Application
 import androidx.lifecycle.viewModelScope
- import com.example.profession.data.dataSource.repoistry.PrefsHelper
+import com.example.profession.data.dataSource.repoistry.PrefsHelper
 import com.example.profession.R
 import com.example.profession.base.BaseViewModel
- import com.example.profession.data.dataSource.Param.CityParams
+import com.example.profession.data.dataSource.Param.CityParams
 import com.example.profession.data.dataSource.Param.ForgetPasswordParms
 import com.example.profession.data.dataSource.Param.LoginParms
 import com.example.profession.data.dataSource.Param.RegisterParams
+import com.example.profession.data.dataSource.Param.confirmPhoneParms
 import com.example.profession.data.dataSource.response.CitesResponse
+import com.example.profession.data.dataSource.response.ConfrmPhoneResponse
 import com.example.profession.data.dataSource.response.CountriesResponse
 import com.example.profession.data.dataSource.response.UserResponse
 
 import com.example.profession.domain.AuthUseCase
+import com.example.profession.domain.ForgetPassUseCase
 import com.example.profession.util.Extension
 import com.example.profession.util.NetworkConnectivity
 import com.example.profession.util.Resource
@@ -25,8 +28,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel
-@Inject constructor(app: Application, val authUserCase: AuthUseCase) :
-    BaseViewModel<AuthAction>(app) {
+@Inject constructor(
+    app: Application, val authUserCase: AuthUseCase, val userCaseForgetPass: ForgetPassUseCase
+) : BaseViewModel<AuthAction>(app) {
     var name: String? = null
     var email: String? = null
     var country_code: String? = null
@@ -36,6 +40,7 @@ class AuthViewModel
     var lon: Double? = null
     var countryId: String? = null
     var cityId: String? = null
+    var param: RegisterParams? = null
 
 
     fun isValidParams(phone: String?, pass: String?): Boolean {
@@ -55,7 +60,7 @@ class AuthViewModel
 
 
     fun login(phone: String, pass: String) {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
 
             produce(AuthAction.ShowLoading(true))
@@ -131,21 +136,22 @@ class AuthViewModel
             this.password = pass
             this.lon = lon
             this.lat = lat
-            register(
-                RegisterParams(
-                    name,
-                    phone,
-                    email,
-                    country_code,
-                    countryId,
-                    cityId,
-                    pass,
-                    lat.toString(),
-                    lon.toString(),
-                    "0",
-                    address
-                )
+            this.param = RegisterParams(
+                name,
+                phone,
+                email,
+                country_code,
+                countryId,
+                cityId,
+                pass,
+                lat.toString(),
+                lon.toString(),
+                "0",
+                address
             )
+            param?.let {
+                produce(AuthAction.ShowRegisterVaildationSucess(it))
+            }
             true
 
         }
@@ -154,7 +160,7 @@ class AuthViewModel
     fun register(
         params: RegisterParams
     ) {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
             produce(AuthAction.ShowLoading(true))
 
             viewModelScope.launch {
@@ -183,7 +189,7 @@ class AuthViewModel
     fun getAllCitiesByCountryId(country_id: String) {
 
 
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
 
             produce(AuthAction.ShowLoading(true))
@@ -205,7 +211,7 @@ class AuthViewModel
     }
 
     fun getAllCountry() {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
 
             produce(AuthAction.ShowLoading(true))
@@ -226,21 +232,67 @@ class AuthViewModel
         }
     }
 
+    fun isValidParamsChangePass(countryCode: String, newpass: String, confirmpass: String) {
+        if (newpass.isNullOrBlank()) {
+            produce(AuthAction.ShowFailureMsg(getString(R.string.msg_empty_new_password)))
+            false
+
+        } else if (confirmpass.isNullOrBlank()) {
+            produce(AuthAction.ShowFailureMsg(getString(R.string.msg_empty_confirm_new_password)))
+            false
+
+        }/* else if (confirmpass.length<8 ||newpass.length<8 ) {
+        produce(AuthAction.ShowFailureMsg(getString(R.string.passmust_be_at_least_8_characters)))
+        false
+
+    }*/ else if (!confirmpass.equals(newpass)) {
+            produce(AuthAction.ShowFailureMsg(getString(R.string.password_not_matching)))
+            false
+
+        } else phone?.let { forgetPassword(it, countryCode, confirmpass) }
+
+    }
+
     fun forgetPassword(
         phone: String, country_code: String, password: String
     ) {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
 
             produce(AuthAction.ShowLoading(true))
-            authUserCase.invoke(
-                viewModelScope, ForgetPasswordParms( phone , country_code  , password )
+            userCaseForgetPass.invoke(
+                viewModelScope, ForgetPasswordParms(phone, country_code, password)
             ) { res ->
                 when (res) {
                     is Resource.Failure -> produce(AuthAction.ShowFailureMsg(res.message.toString()))
                     is Resource.Progress -> produce(AuthAction.ShowLoading(res.loading))
                     is Resource.Success -> {
-                        produce(AuthAction.ShowForgetPassword(res.data.message as String))
+                        produce(AuthAction.ShowForgetPassword(res.data.message))
+
+                    }
+                }
+            }
+        } else {
+            produce(AuthAction.ShowFailureMsg(getString(R.string.no_internet)))
+        }
+    }
+
+    fun checkPhone(
+        country_code: String, phone: String
+    ) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+
+
+            produce(AuthAction.ShowLoading(true))
+            userCaseForgetPass.invoke(
+                viewModelScope, confirmPhoneParms(phone, country_code)
+            ) { res ->
+                when (res) {
+                    is Resource.Failure -> produce(AuthAction.ShowFailureMsg(res.message.toString()))
+                    is Resource.Progress -> produce(AuthAction.ShowLoading(res.loading))
+                    is Resource.Success -> {
+                        this.phone = phone
+                        produce(AuthAction.ShowPhoneConfirmed(res.data.data as ConfrmPhoneResponse))
 
                     }
                 }

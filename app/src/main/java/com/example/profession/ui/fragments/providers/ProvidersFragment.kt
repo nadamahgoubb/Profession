@@ -146,7 +146,7 @@ class ProvidersFragment : BaseFragment<FragmentProvidersBinding>(), ProviderClic
                 }
                 rates?.let {
                     var c=    allproviders .intersect((mViewModel.allProviders.filter {
-                        it.totalRate!! >  rates
+                        it.totalRate!! > rates.toString()
                     } as ArrayList<Providers>))
                     if(c.size>0)allproviders = c.toList() as ArrayList<Providers>
                     else allproviders = arrayListOf()
@@ -180,7 +180,6 @@ class ProvidersFragment : BaseFragment<FragmentProvidersBinding>(), ProviderClic
                     adapter.notifyDataSetChanged()
                      this@ProvidersFragment.distance= distance
                     this@ProvidersFragment.sort= sort
-                    this@ProvidersFragment.rate= rate
                     this@ProvidersFragment.nationalitiesId= nationality
 
                 }else{

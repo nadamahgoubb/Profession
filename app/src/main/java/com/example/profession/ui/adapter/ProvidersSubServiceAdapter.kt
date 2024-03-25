@@ -11,8 +11,7 @@ import com.example.profession.databinding.ItemProviderServiceDetailsBinding
 import com.example.profession.util.ext.loadImage
 
 
-class ProvidersSubServiceAdapter(
-) : RecyclerView.Adapter<ProvidersSubServiceAdapter.ProvidersSubServiceViewHolder>() {
+class ProvidersSubServiceAdapter : RecyclerView.Adapter<ProvidersSubServiceAdapter.ProvidersSubServiceViewHolder>() {
 
     var _binding: ItemProviderServiceDetailsBinding? = null
     var list = mutableListOf<SubServiceItemsResponse>()
@@ -23,8 +22,8 @@ class ProvidersSubServiceAdapter(
 
     override fun onBindViewHolder(holder: ProvidersSubServiceViewHolder, position: Int) {
         var currentItem = list.get(position)
-        holder.binding.tvTitle.text = currentItem?.name
-        holder.binding.ivImg.loadImage( currentItem?.icon)
+        holder.binding.tvTitle.text = currentItem.name
+        holder.binding.ivImg.loadImage(currentItem.icon)
     }
 
     override fun onCreateViewHolder(
@@ -37,7 +36,7 @@ class ProvidersSubServiceAdapter(
 
 
     class ProvidersSubServiceViewHolder(var binding: ItemProviderServiceDetailsBinding) :
-        RecyclerView.ViewHolder(binding.root) {}
+        RecyclerView.ViewHolder(binding.root)
 
 
     override fun getItemCount(): Int = list.size

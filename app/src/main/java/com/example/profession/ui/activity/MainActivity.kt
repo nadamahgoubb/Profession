@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -20,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.nav_header.view.*
 import  com.example.profession.R
 import com.example.profession.data.dataSource.repoistry.PrefsHelper
+import com.example.profession.util.FileManager.getBitmapFromRes
 import com.example.profession.util.ext.isNull
 import com.example.profession.util.ext.loadImage
 import com.example.profession.util.ext.showActivity
@@ -33,13 +35,30 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
     lateinit var appBarConfiguration: AppBarConfiguration
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+            override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupNavController()
         binding.progress = baseShowProgress
 
     }
+fun reloadImage() {
+    var headerview = binding.navViewSideNav.getHeaderView(0);
+    if (PrefsHelper.getUserData().isNull()) {
+        headerview.iv_user.isVisible = true
+        headerview.tv_name.isVisible = false
+        binding.tvLogout.text = resources.getString(R.string.login)
+    } else {
+        headerview.tv_name.text = PrefsHelper.getUserData()?.name
+        headerview.iv_user.loadImage(
+            PrefsHelper.getUserData()?.photo,
+            placeHolderImage = R.drawable.empty_user,
+            error_img = R.drawable.empty_user,
+            isCircular = true
+        )
+        binding.tvLogout.text = resources.getString(R.string.logout)
 
+    }
+}
 
     private fun setupNavController() {
         val navHostFragment =
@@ -48,7 +67,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         //bottom nav
         binding.navViewBottom.setupWithNavController(navController)
 
-        binding.navViewSideNav.setupWithNavController(navController)
 
         //actionBarDrawerToggle =
         ActionBarDrawerToggle(this, binding.drawerLayout, R.string.nav_open, R.string.nav_close)
@@ -61,21 +79,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         toggle.syncState()
         var menu = binding.navViewSideNav.menu
         var headerview = binding.navViewSideNav.getHeaderView(0);
-        if (PrefsHelper.getUserData().isNull()) {
-            headerview.iv_user.isVisible = true
-            headerview.tv_name.isVisible = false
-            binding.tvLogout.setText(resources.getString(R.string.login))
-        } else {
-            headerview.tv_name.setText(PrefsHelper.getUserData()?.name)
-            headerview.iv_user.loadImage(
-                PrefsHelper.getUserData()?.photo,
-                placeHolderImage = R.drawable.empty_user,
-                error_img = R.drawable.empty_user,
-                isCircular = true
-            )
+        reloadImage()
 
-            binding.tvLogout.setText(resources.getString(R.string.logout))
-        }
         headerview.iv_cancel.setOnClickListener {
             closeDrawer()
 
@@ -87,7 +92,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
             var intent = Intent(this, AuthActivity::class.java)
             intent.putExtra(Constants.Start, Constants.login)
             startActivity(intent)
-            this?.finish()
+            this.finish()
         }
 
         binding.navViewBottom.setOnItemSelectedListener {
@@ -182,7 +187,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
     fun openDrawer() {
         //    if(!binding.drawerLayout.isVisible)
         //    binding.drawerLayout.openDrawer(GravityCompat.END)
-        binding.drawerLayout.openDrawer(Gravity.END);
+        binding.drawerLayout.openDrawer(Gravity.END)
 
     }
 

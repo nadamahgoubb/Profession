@@ -11,7 +11,7 @@ import com.example.profession.data.dataSource.response.*
 import com.example.profession.util.FileManager.toMultiPart
 import javax.inject.Inject
 import com.example.profession.data.dataSource.response.SliderResponse
-import retrofit2.http.GET
+import com.example.profession.util.fcm.FcmParam
 
 
 class Repository @Inject constructor(private val api: ApiInterface) {
@@ -20,6 +20,7 @@ class Repository @Inject constructor(private val api: ApiInterface) {
     suspend fun login(param: LoginParms): NetworkResponse<DevResponse<UserResponse>, ErrorResponse> {
         return api.login(param.phone, param.password)
     }
+    suspend fun confirmPhone( params: confirmPhoneParms)=   api.confirmPhone( params.phone, params.country_code)
 
     suspend fun register(
         param: RegisterParams,
@@ -76,7 +77,7 @@ class Repository @Inject constructor(private val api: ApiInterface) {
 
     suspend fun updateProfile(param: EditProfileParams): NetworkResponse<DevResponse<UserResponse>, ErrorResponse> {
         return api.updateProfile(
-            param.toMap(), param.photo?.let { param.photo?.toMultiPart("photo") },
+            param.toMap(), param.photo?.let { param.photo.toMultiPart("photo") },
         )
     }
 
@@ -93,12 +94,15 @@ class Repository @Inject constructor(private val api: ApiInterface) {
     }
 
     suspend fun contactUs(params: ContactUsParams): NetworkResponse<DevResponse<Any>, ErrorResponse> {
-        return api.contactUs(params.app_type, params.content)
+        return api.contactUs(params.app_type, params.content,params.phone, params.countryCode)
     }
 
     suspend fun getGoal(): NetworkResponse<DevResponse<GoalResponse>, ErrorResponse> {
         return api.getGoal()
     }
+    suspend fun getNotifications()
+     =api.getNotifications()
+
     suspend fun getTermsProvider(): NetworkResponse<DevResponse<GoalResponse>, ErrorResponse> {
         return api.getTermsProvider()
     }
@@ -141,13 +145,16 @@ class Repository @Inject constructor(private val api: ApiInterface) {
         return api.getNationalities( )
     }
 
-    suspend fun updateFcm(params: FcmParams): NetworkResponse<DevResponse<Any>, ErrorResponse> {
-        return api.updateFcm(params.fcmToken)
+    suspend fun updateFcm(params: FcmParam): NetworkResponse<DevResponse<Any>, ErrorResponse> {
+        return api.updateFcm(params.token,0)
     }
 
     suspend fun getOrderById(params: OrderDetailsParam): NetworkResponse<DevResponse<OrdersItem>, ErrorResponse> {
         return api.getOrderById(params.id)
     }
+    suspend fun payOrderWithVisa(params: PayOrderParam)= api.payOrderWithVisa(params.id, params.trans_ref, params.pay_token)
+    suspend fun updateBalance(params: UpdateBalanceParam)= api.updateBalance(params.amount, params.trans_ref, params.pay_token)
+
 
 
 }

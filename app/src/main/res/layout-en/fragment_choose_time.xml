@@ -199,19 +199,15 @@ android:rotation="180"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_rounded"
         >
-        <EditText
-            android:id="@+id/et_hour"
-            android:inputType="number"
-            android:maxLength="2"
-            android:padding="@dimen/_12sdp"
-            android:textSize="@dimen/_12sdp"
-            android:textColor="@color/black"
-            android:gravity="center"
-            android:background="@drawable/bg_rounded"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="wrap_content"
-            android:hint="11"
-            />
+        <Spinner
+            android:id="@+id/spinner_hour"
+            style="@style/SpinnerTheme"
+            android:gravity="center"    android:textAlignment="center"                android:layout_width="@dimen/_50sdp"
+            android:background="@android:color/transparent"
+            android:layout_height="@dimen/_45sdp"
+            android:backgroundTint="@color/grey_700"
+            android:pointerIcon="all_scroll"
+            android:spinnerMode="dialog"  />
     </RelativeLayout>
 
     <TextView
@@ -229,19 +225,16 @@ android:rotation="180"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_rounded"
         >
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_min"
-            android:inputType="number"
-            android:maxLength="2"
-            android:padding="@dimen/_12sdp"
-            android:textSize="@dimen/_12sdp"
-            android:textColor="@color/black"
-            android:gravity="center"
-            android:background="@drawable/bg_rounded"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="wrap_content"
-            android:hint="00"
-            />
+
+        <Spinner
+            android:id="@+id/spinner_min"
+            style="@style/SpinnerTheme"
+            android:textAlignment="center"      android:background="@android:color/transparent"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:backgroundTint="@color/grey_700"
+            android:pointerIcon="none"
+            android:spinnerMode="dialog"  />
     </RelativeLayout>
 
     <RelativeLayout

@@ -65,7 +65,7 @@
         android:label="MapBottomSheet" />
     <fragment
         android:id="@+id/chooseTimeFragment"
-        android:name="com.example.profession.ui.fragments.ChooseTimeFragment"
+        android:name="com.example.profession.ui.fragments.checkout.ChooseTimeFragment"
         android:label="ChooseTimeFragment" />
     <fragment
         android:id="@+id/checkOutFragment"

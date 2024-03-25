@@ -1,5 +1,6 @@
 package com.example.profession.ui.fragments.terms
 
+import android.text.Html
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -66,7 +67,7 @@ class RightsAndTermsFragment : BaseFragment<FragmentRightsAndTermsBinding>() {
 
             is SettingAction.ShowTermsAndConditions -> {
                 showProgress(false)
-                binding.tvTerms.setText(action.data?.content.toString())
+                 binding.tvTerms.setText(Html.fromHtml((action.data?.content)))
             }
 
 

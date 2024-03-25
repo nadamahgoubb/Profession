@@ -21,7 +21,7 @@ import java.io.File
 data class ContactUsParams (
 
     var app_type: Int? = null,
-     var content: String? = null,
+    var   countryCode:String, var phone:String , var content: String? = null,
 
     ) : Parcelable
 

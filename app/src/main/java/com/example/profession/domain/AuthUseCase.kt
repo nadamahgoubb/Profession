@@ -6,12 +6,9 @@ import com.example.profession.base.DevResponse
 import com.example.profession.base.ErrorResponse
 import com.example.profession.base.NetworkResponse
 import com.example.profession.data.dataSource.Param.CityParams
-import com.example.profession.data.dataSource.Param.ForgetPasswordParms
-import com.example.profession.data.dataSource.Param.LoginParms
+ import com.example.profession.data.dataSource.Param.LoginParms
 import com.example.profession.data.dataSource.Param.RegisterParams
 import com.example.profession.data.dataSource.repositoy.Repository
-
-
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -26,22 +23,17 @@ class AuthUseCase @Inject constructor(private val repository: Repository) :
     override fun executeRemote(params: Any?): Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>> {
         return if (params is LoginParms) {
             flow {
-                params?.let { repository.login(it) }?.let { emit(it) }
+                params.let { repository.login(it) }?.let { emit(it) }
             } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
 
         }else if (params is RegisterParams) {
             flow {
-                params?.let { repository.register(it) }?.let { emit(it) }
+                params.let { repository.register(it) }?.let { emit(it) }
             } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
 
         }else if (params is CityParams) {
             flow {
-                params?.let { repository.getCities(it) }?.let { emit(it) }
-            } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
-
-        }else if (params is ForgetPasswordParms) {
-            flow {
-                params?.let { repository.forgetPassword(it) }?.let { emit(it) }
+                params.let { repository.getCities(it) }?.let { emit(it) }
             } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
 
         }

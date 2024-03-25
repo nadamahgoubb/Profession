@@ -70,7 +70,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), ServiceOnClickListener
             }
             is    HomeAction.ShowSlider -> {
                 showProgress(false)
-                action.data?.sliders?.let {
+                action.data.sliders?.let {
                     adapter_slider.list =it
                         adapter_slider.notifyDataSetChanged()
                 }
@@ -95,13 +95,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), ServiceOnClickListener
         binding.ivMenu.setOnClickListener {
             parent.openDrawer()
         }
-binding.tvName.setText(PrefsHelper.getUserData()?.name)
+        binding.tvName.text = PrefsHelper.getUserData()?.name
         binding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-            if (Math.abs(verticalOffset) ==   binding.appBarLayout.getTotalScrollRange()) {
+            if (Math.abs(verticalOffset) ==   binding.appBarLayout.totalScrollRange) {
                 // If collapsed, then do this
-                binding.lytHeaderDetails.setVisibility(View.GONE);
+                binding.lytHeaderDetails.visibility = View.GONE
             } else if (verticalOffset == 0) {
-                binding.lytHeaderDetails.setVisibility(View.VISIBLE);
+                binding.lytHeaderDetails.visibility = View.VISIBLE
             } else {
                 // Somewhere in between
                 // Do according to your requirement

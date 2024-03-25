@@ -1,6 +1,8 @@
 package com.example.profession.ui.fragments.checkout
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
@@ -19,7 +21,21 @@ import com.example.profession.util.Constants
 import com.example.profession.util.ext.hideKeyboard
 import com.example.profession.util.ext.init
 import com.example.profession.util.ext.loadImage
+import com.example.profession.util.ext.toTwelevePattern
 import com.example.profession.util.observe
+import com.payment.paymentsdk.PaymentSdkActivity
+import com.payment.paymentsdk.PaymentSdkConfigBuilder
+import com.payment.paymentsdk.integrationmodels.PaymentSdkApms
+import com.payment.paymentsdk.integrationmodels.PaymentSdkBillingDetails
+import com.payment.paymentsdk.integrationmodels.PaymentSdkConfigurationDetails
+import com.payment.paymentsdk.integrationmodels.PaymentSdkError
+import com.payment.paymentsdk.integrationmodels.PaymentSdkLanguageCode
+import com.payment.paymentsdk.integrationmodels.PaymentSdkShippingDetails
+import com.payment.paymentsdk.integrationmodels.PaymentSdkTokenise
+import com.payment.paymentsdk.integrationmodels.PaymentSdkTransactionClass
+import com.payment.paymentsdk.integrationmodels.PaymentSdkTransactionDetails
+import com.payment.paymentsdk.integrationmodels.PaymentSdkTransactionType
+import com.payment.paymentsdk.sharedclasses.interfaces.CallbackPaymentInterface
 
 
 class CheckOutFragment : BaseFragment<FragmentCheckOutBinding>(), PaymentCheckoutListener {
@@ -40,8 +56,9 @@ class CheckOutFragment : BaseFragment<FragmentCheckOutBinding>(), PaymentCheckou
             }
         }
     }
-    var selectedServiceIds =  arrayListOf<String>()
-    var providers =  arrayListOf<ProvidersCreateOrderParams>()
+
+    var selectedServiceIds = arrayListOf<String>()
+    var providers = arrayListOf<ProvidersCreateOrderParams>()
     private fun onClick() {
 
         binding.btnDone.setOnClickListener {
@@ -62,7 +79,6 @@ class CheckOutFragment : BaseFragment<FragmentCheckOutBinding>(), PaymentCheckou
                     )
                 }
                 mViewModel.submitOrder(selectedServiceIds, providers, binding.etMsg.text.toString())
-
             }
         }
         binding.ivBack.setOnClickListener {
@@ -73,29 +89,32 @@ class CheckOutFragment : BaseFragment<FragmentCheckOutBinding>(), PaymentCheckou
     private fun loadData() {
         list_payment.add(
             PaymentModel(
-                Constants.CASH,
-                resources.getString(R.string.cash),
-                R.drawable.money
+                Constants.CASH, resources.getString(R.string.cash), R.drawable.money
             )
         )
         list_payment.add(
             PaymentModel(
-                Constants.VISA,
-                resources.getString(R.string.visa),
-                R.drawable.ic_visa
+                Constants.VISA, resources.getString(R.string.visa), R.drawable.ic_visa
             )
         )
         list_payment.add(
             PaymentModel(
-                Constants.WALLET,
-                resources.getString(R.string.wallet),
-                R.drawable.ic_wallet
+                Constants.WALLET, resources.getString(R.string.wallet), R.drawable.ic_wallet
             )
         )
 
-        binding.tvTime.setText(mViewModel.hourToVisit + ":" + mViewModel.mintueToVisit + mViewModel.am)
-        binding.tvDate.setText(mViewModel.current)
-        binding.tvTimeinService.setText(mViewModel.hoursCount.toString() + resources.getText(R.string.hour))
+        var am = ""
+        if (mViewModel.am == "ص") {
+            am = resources.getString(R.string.am)
+        } else {
+            mViewModel.hourToVisit= mViewModel.hourToVisit.toInt().plus(12).toString()
+            am = resources.getString(R.string.pm)
+        }
+
+        binding.tvTime.text = toTwelevePattern(mViewModel.hourToVisit + ":" + mViewModel.mintueToVisit + ":" + "00")
+        binding.tvDate.text = mViewModel.current
+        binding.tvTimeinService.text =
+            mViewModel.hoursCount.toString() + resources.getText(R.string.hour)
         adapter_payment.itemsList = list_payment
         adapter_payment.notifyDataSetChanged()
 
@@ -122,10 +141,11 @@ class CheckOutFragment : BaseFragment<FragmentCheckOutBinding>(), PaymentCheckou
                 showProgress(false)
 
             }
+
             is CreateOrdersAction.ShowOrderSucess -> {
                 showProgress(false)
                 var bundle = Bundle()
-                bundle.putString(Constants.ORDERID, action.data.id)
+                bundle.putString(Constants.STATUS, action.data.id)
                 findNavController().navigate(
                     R.id.orderSucessFragment,
                     bundle,
@@ -151,15 +171,17 @@ class CheckOutFragment : BaseFragment<FragmentCheckOutBinding>(), PaymentCheckou
             adapter_subservice = CheckoutSubserviceAdapter(it)
             binding.rvSubservice.init(context, adapter_subservice, 2)
         }
-        binding.item1.tvTitle.setText(getString(R.string.spare_parts))
-        binding.item1.tvDesc.setText(getString(R.string.worker_price_include))
+        binding.item1.tvTitle.text = getString(R.string.spare_parts)
+        binding.item1.tvDesc.text = getString(R.string.worker_price_include)
         binding.item1.iv.loadImage(R.drawable.ic_voiln)
         binding.item2.iv.loadImage(R.drawable.ic_settings_selected)
-        binding.item2.tvTitle.setText(getString(R.string.unusal_workes))
-        binding.item2.tvDesc.setText(getString(R.string.unusal_workes_msg))
+        binding.item2.tvTitle.text = getString(R.string.unusal_workes)
+        binding.item2.tvDesc.text = getString(R.string.unusal_workes_msg)
     }
 
     override fun onPaymentClicked(item: PaymentModel?) {
         mViewModel.paymentType = item?.id
     }
+
+
 }

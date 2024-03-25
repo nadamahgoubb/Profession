@@ -67,7 +67,7 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
         adapterSubServices = SubServiceAdapter(this, requireContext())
 
         binding.recServices.init(requireContext(), adapterSubServices, 2)
-        binding.recServices.addItemDecoration(SimpleDividerItemDecoration(requireContext()));
+        binding.recServices.addItemDecoration(SimpleDividerItemDecoration(requireContext()))
 
 
         lifecycleScope.launch {
@@ -152,16 +152,16 @@ class SubServiceFragment : BaseFragment<FragmentSubServiceBinding>(), SubService
         parent.showSideNav(false)
         binding.ivProfile.loadImage(item?.icon , isCircular = true)
 
-        binding.tvTitle.setText(item?.name.toString())
+        binding.tvTitle.text = item?.name.toString()
 
         binding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-            if (Math.abs(verticalOffset) == binding.appBarLayout.getTotalScrollRange()) {
+            if (Math.abs(verticalOffset) == binding.appBarLayout.totalScrollRange) {
                 // If collapsed, then do this
-                binding.ivProfile.setVisibility(View.GONE);
-                binding.lytImg.setVisibility(View.GONE);
+                binding.ivProfile.visibility = View.GONE
+                binding.lytImg.visibility = View.GONE
             } else if (verticalOffset == 0) {
-                binding.lytImg.setVisibility(View.VISIBLE);
-                binding.ivProfile.setVisibility(View.VISIBLE);
+                binding.lytImg.visibility = View.VISIBLE
+                binding.ivProfile.visibility = View.VISIBLE
             } else {
                 // Somewhere in between
                 // Do according to your requirement

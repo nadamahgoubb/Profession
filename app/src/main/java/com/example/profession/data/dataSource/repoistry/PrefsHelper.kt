@@ -41,26 +41,31 @@ object PrefsHelper {
     }
 
 
-    fun saveUserData(user:UserResponse?){
- //set variables of 'myObject', etc.
+        fun saveUserData(user:UserResponse?){
+            //set variables of 'myObject', etc.
 
-       var prefsEditor = preferences.edit()
-        var gson =  Gson()
-      //  String
-       var  json = gson.toJson(user);
-        prefsEditor.putString(Constants.USER, json);
-        prefsEditor.commit();
-    }
-    fun getUserData():UserResponse?{
-        //set variables of 'myObject', etc.
+            var prefsEditor = preferences.edit()
+            var gson =  Gson()
+            //  String
+            var  json = gson.toJson(user)
+            prefsEditor.putString(Constants.USER, json)
+            prefsEditor.commit()
+        }
+        fun getUserData():UserResponse?{
+            //set variables of 'myObject', etc.
 
-        val gson = Gson()
-        val json: String? = preferences.getString(Constants.USER, "")
-       return gson.fromJson(json, UserResponse::class.java)
+            val gson = Gson()
+            val json: String? = preferences.getString(Constants.USER, "")
+            return gson.fromJson(json, UserResponse::class.java)
     }
     fun clear() {
 preferences.edit().clear()
     saveUserData(null)
-saveToken(null)    }
-
+saveToken("")    }
+    fun setFCMToken(token: String) {
+        preferences.edit().putString(Constants.FCM_TOKEN, token).apply()
+    }
+    fun getFcmToken(): String {
+        return preferences.getString(Constants.FCM_TOKEN,"").toString()
+    }
 }

@@ -13,11 +13,8 @@
             android:id="@+id/lyt_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_30sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:animateLayoutChanges="true"
-            android:padding="@dimen/_10sdp"
-            android:paddingBottom="@dimen/_10sdp">
+             android:animateLayoutChanges="true"
+      android:paddingVertical="@dimen/_8sdp"   >
 
             <ImageView
                 android:id="@+id/iv_noti"
@@ -27,19 +24,23 @@
                 android:src="@drawable/ic_noti"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:tint="@color/grey_300" />
 
             <TextView
                 android:id="@+id/tv_noti_txt"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:textAlignment="viewStart"
                 android:layout_height="wrap_content"
                 android:text="تم طلبك بنجاح"
                 android:textColor="@color/black"
-                android:textDirection="ltr"
-                android:layout_marginStart="@dimen/_3sdp"
+                 android:layout_marginStart="@dimen/_3sdp"
                 android:textSize="@dimen/_14ssp"
+             app:layout_constraintEnd_toStartOf="@id/tv_time"
                 app:layout_constraintStart_toEndOf="@id/iv_noti"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
 
 
             <TextView
@@ -51,13 +52,14 @@
                 android:textColor="@color/grey_400"
                 android:textSize="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
             <View
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_time"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+         android:visibility="gone"       android:layout_width="match_parent"
                 android:layout_height="@dimen/_1sdp"
                 android:layout_marginHorizontal="@dimen/_10sdp"
 android:background="@color/grey_800"/>

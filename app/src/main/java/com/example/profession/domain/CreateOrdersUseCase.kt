@@ -23,12 +23,12 @@ companion object{
     override fun executeRemote(params: Any?): Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>> {
         return if (params  is GetProvidersParam) {
             flow {
-                params?.let { repository.getProviders(params ) }?.let { emit(it) }
+                params.let { repository.getProviders(params ) }?.let { emit(it) }
             } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
 
         } else if (params  is CreateOrderParams) {
             flow {
-                params?.let { repository.createOrder(params ) }?.let { emit(it) }
+                params.let { repository.createOrder(params ) }?.let { emit(it) }
             } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
 
         }else if (params  ?.equals(nationalities) == true) {

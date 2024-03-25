@@ -47,7 +47,7 @@
                         android:contentInsetStart="0dp"
                         android:contentInsetStartWithNavigation="0dp"
                         android:paddingTop="@dimen/_5sdp"
-                         android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+                        android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
                         app:layout_collapseMode="pin">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -108,8 +108,9 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/lyt_data"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+          android:visibility="gone"          android:layout_height="match_parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -152,8 +153,8 @@
                                 android:id="@+id/tv_goals"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                  android:textColor="@color/grey_500"
                                 android:paddingVertical="@dimen/_10sdp"
+                                android:textColor="@color/grey_500"
                                 android:textSize="@dimen/_12sdp"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@id/tv_1" />
@@ -186,26 +187,95 @@
                             android:animateLayoutChanges="true"
                             android:padding="@dimen/_10sdp">
 
-
                             <TextView
-                                android:id="@+id/tv_2"
+                                android:id="@+id/tv_"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_4sdp"
-                                android:text="@string/msg_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:text="@string/phone_number"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp"
                                 android:textStyle="bold"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
+                            <LinearLayout
+                                android:id="@+id/lyt_phone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:weightSum="6"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_">
+
+
+                                <com.hbb20.CountryCodePicker
+                                    android:id="@+id/country_code_picker"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1.5"
+                                    android:background="@drawable/bg_rounded_grey"
+                                    android:clickable="true"
+                                    android:gravity="center"
+                                    app:ccp_defaultNameCode="SA"
+                                    app:ccp_showFlag="true"
+                                    app:ccp_showNameCode="false"
+                                    app:ccp_showPhoneCode="true"
+                                    app:ccp_textSize="@dimen/_10sdp" />
+
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_weight="4.5"
+                                    android:gravity="center"
+                                    android:hint=""
+                                    app:hintAnimationEnabled="false"
+                                    app:hintEnabled="false"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/et_phone"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/bg_rounded"
+                                        android:hint="@string/phone_number"
+                                        android:inputType="phone"
+                                        android:paddingHorizontal="@dimen/_6sdp"
+                                        android:text=""
+                                        android:textAlignment="viewStart"
+                                        android:textColor="@color/grey_800" />
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tv_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_20sdp"
+                                android:text="@string/msg_content"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_12sdp"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/lyt_phone" />
+
                             <View
                                 android:id="@+id/v1"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_1sdp"
                                 android:layout_marginHorizontal="@dimen/_10sdp"
-                                android:layout_marginVertical="@dimen/_3sdp"
+                                android:layout_marginVertical="@dimen/_6sdp"
                                 android:background="@color/grey_100"
+                                android:visibility="gone"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@id/tv_2" />
 
@@ -214,11 +284,12 @@
                                 android:id="@+id/et_msg"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_20sdp"
-                                android:backgroundTint="@color/grey_400"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:background="@drawable/bg_rounded"
                                 android:hint="@string/wite_contact_msg"
                                 android:minHeight="@dimen/_40sdp"
-                                android:paddingVertical="@dimen/_6sdp"
+                                android:paddingHorizontal="@dimen/_10sdp"
+                                android:paddingVertical="@dimen/_30sdp"
                                 android:textSize="@dimen/_12sdp"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@id/v1" />

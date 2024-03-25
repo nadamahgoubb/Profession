@@ -37,7 +37,7 @@ import java.lang.Exception
 
 
 @AndroidEntryPoint
-class MapFragment():BaseFragment<FragmentMapBinding>()
+class MapFragment :BaseFragment<FragmentMapBinding>()
    , OnMapReadyCallback {
 
     private lateinit var icon: BitmapDescriptor
@@ -94,8 +94,8 @@ class MapFragment():BaseFragment<FragmentMapBinding>()
           mViewModelCreateOrder.address =it
           mViewModelCreateOrder.lat = latitude
            mViewModelCreateOrder.long= longitude
-          binding?.tvAddress?.setText( address?.address.toString())
-          binding?.tvCountry?.setText(
+          binding.tvAddress?.setText( address?.address.toString())
+          binding.tvCountry?.setText(
               address?.country.toString()+","+ address?.city.toString())
         }
 
@@ -137,11 +137,11 @@ class MapFragment():BaseFragment<FragmentMapBinding>()
     }
 
     private fun onClick() {
-        binding?.ivDawn?.setOnClickListener {
+        binding.ivDawn?.setOnClickListener {
             collapse(binding.locationCard)
             expand(binding.cardUp)
         }
-        binding?.btnDone?.setOnClickListener {
+        binding.btnDone?.setOnClickListener {
 if(mViewModelCreateOrder.address.isNull()) showToast(resources.getString(R.string.please_choose_your_locaion))
  else findNavController().navigate(R.id.providersFragment)        }
         binding.ivUp.setOnClickListener {
@@ -153,33 +153,33 @@ if(mViewModelCreateOrder.address.isNull()) showToast(resources.getString(R.strin
 
     override fun onResume() {
         super.onResume()
-        binding?.map?.onResume()
+        binding.map?.onResume()
     }
 
     override fun onStop() {
         super.onStop()
-        binding?.map?.onStop()
+        binding.map?.onStop()
     }
 
     override fun onPause() {
         super.onPause()
-        binding?.map?.onPause()
+        binding.map?.onPause()
     }
 
     override fun onLowMemory() {
         super.onLowMemory()
-        binding?.map?.onLowMemory()
+        binding.map?.onLowMemory()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        binding?.map?.onSaveInstanceState(outState)
+        binding.map?.onSaveInstanceState(outState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.map?.onCreate(savedInstanceState)
-        binding?.map?.onResume();
+        binding.map?.onCreate(savedInstanceState)
+        binding.map?.onResume()
         //    binding.map.onCreate(savedInstanceState);
         try {
             MapsInitializer.initialize(activity!!.applicationContext)
@@ -187,7 +187,7 @@ if(mViewModelCreateOrder.address.isNull()) showToast(resources.getString(R.strin
             e.printStackTrace()
         }
 
-        binding?.map?.getMapAsync(OnMapReadyCallback { mMap ->
+        binding.map?.getMapAsync(OnMapReadyCallback { mMap ->
             googleMap = mMap
 
             // For showing a move to my location button
@@ -203,8 +203,8 @@ if(mViewModelCreateOrder.address.isNull()) showToast(resources.getString(R.strin
                     )
                 } != PackageManager.PERMISSION_GRANTED) {
             }
-            mMap.setMyLocationEnabled(true)
-            googleMap?.isMyLocationEnabled = true
+            mMap.isMyLocationEnabled = true
+            googleMap.isMyLocationEnabled = true
             getLocationNow()
             googleMap.setOnMapClickListener {
                 showlocation(it.latitude, it.longitude)

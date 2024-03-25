@@ -14,10 +14,16 @@ import com.example.profession.util.NetworkConnectivity
 import com.example.profession.util.Resource
 import com.example.profession.R
 import com.example.profession.data.dataSource.Param.CityParams
+import com.example.profession.data.dataSource.Param.UpdateBalanceParam
+import com.example.profession.data.dataSource.Param.confirmPhoneParms
 import com.example.profession.data.dataSource.response.CitesResponse
+import com.example.profession.data.dataSource.response.ConfrmPhoneResponse
 import com.example.profession.data.dataSource.response.CountriesResponse
+import com.example.profession.data.dataSource.response.NotificationResponse
 import com.example.profession.domain.AuthUseCase
+import com.example.profession.domain.ForgetPassUseCase
 import com.example.profession.util.Extension
+import com.example.profession.util.ext.isNull
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.File
@@ -26,9 +32,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel
-@Inject constructor(app: Application, var usecase: ProfileUseCase, var usecaseAuth: AuthUseCase ) :
+@Inject constructor(app: Application, var usecase: ProfileUseCase, var usecaseAuth: AuthUseCase , var usecaseCheckPhone: ForgetPassUseCase) :
     BaseViewModel<ProfileAction>(app) {
-
+var phone:String?= null
+var country_code:String?= null
+var data:EditProfileParams?= null
     companion object{
         val getCurrentCountryName =1
         val getAllCountries =2
@@ -42,7 +50,7 @@ class ProfileViewModel
                     is Resource.Failure -> produce(ProfileAction.ShowFailureMsg(res.message))
                     is Resource.Progress -> produce(ProfileAction.ShowLoading(res.loading))
                     is Resource.Success -> {
-                        ((res?.data?.data) as ProfileResponse).let {
+                        ((res.data?.data) as ProfileResponse).let {
                             produce(
                                 ProfileAction.ShowProfile(
                                     it,
@@ -56,6 +64,22 @@ class ProfileViewModel
 
         }
     }
+    fun updateBalance (param: UpdateBalanceParam) {
+        produce(ProfileAction.ShowLoading(true))
+
+        viewModelScope.launch {
+            var res = usecase.invoke(viewModelScope, param) { res ->
+                when (res) {
+                    is Resource.Failure -> produce(ProfileAction.ShowFailureMsg(res.message))
+                    is Resource.Progress -> produce(ProfileAction.ShowLoading(res.loading))
+                    is Resource.Success -> { produce(ProfileAction.ShowBalance(res.data?.message.toString()))
+                        }
+                    }
+                }
+
+            }
+
+        }
 
     fun deleteAccount() {
 
@@ -122,21 +146,51 @@ class ProfileViewModel
             produce(ProfileAction.ShowFailureMsg(getString(R.string.enter_your_location)))
             false
         }  else {
-
-
-            updateProfile (EditProfileParams(name,phone,country_code,email,  countryId,cityId, lat.toString(), lon.toString(), "0", photo ,address))
-            true
+this.data = EditProfileParams(name,phone,country_code,email,  countryId,cityId, lat.toString(), lon.toString(), "0", photo ,address)
+            produce(
+                ProfileAction.ProfileUPdatedVaild (this.data!!))
+           true
 
         }
     }
-        fun updateProfile (param: EditProfileParams) {
+
+
+    fun checkPhone(
+        country_code: String, phone: String
+    ) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+
+
+            produce(ProfileAction.ShowLoading(true))
+            usecaseCheckPhone.invoke(
+                viewModelScope, confirmPhoneParms(phone, country_code)
+            ) { res ->
+                when (res) {
+                    is Resource.Failure -> produce(ProfileAction.ShowFailureMsg(res.message.toString()))
+                    is Resource.Progress -> produce(ProfileAction.ShowLoading(res.loading))
+                    is Resource.Success -> {
+                        this.phone = phone
+                        this.country_code = country_code
+                        produce(ProfileAction.ShowPhoneConfirmed(res.data.data as ConfrmPhoneResponse))
+
+                    }
+                }
+            }
+        } else {
+            produce(ProfileAction.ShowFailureMsg(getString(R.string.no_internet)))
+        }
+    }
+ 
+
+
+fun updateProfile (param: EditProfileParams) {
             viewModelScope.launch {
                 var res = usecase.invoke(viewModelScope, param) { res ->
                     when (res) {
                         is Resource.Failure -> produce(ProfileAction.ShowFailureMsg(res.message))
                         is Resource.Progress -> produce(ProfileAction.ShowLoading(res.loading))
                         is Resource.Success -> {
-                            produce(ProfileAction.ShowUpdatesProfile(res.data.message as String))
+                            produce(ProfileAction.ShowUpdatesProfile(res.data.message))
                             PrefsHelper.saveUserData(res.data.data as UserResponse)
 
                         }
@@ -170,7 +224,7 @@ class ProfileViewModel
 
     }
     fun changePass(param: ChangePasswordParam) {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
 
             produce(ProfileAction.ShowLoading(true))
@@ -183,7 +237,7 @@ class ProfileViewModel
                     is Resource.Success -> {
                         produce(
                             ProfileAction.ChangedPassword(
-                                res.data.message  as String
+                                res.data.message
                             )) }
                 }
             }
@@ -194,7 +248,7 @@ class ProfileViewModel
     fun getAllCitiesByCountryId(country_id: String, type :Int) {
 
 
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
 
             produce(ProfileAction.ShowLoading(true))
@@ -216,7 +270,7 @@ class ProfileViewModel
     }
 
     fun getAllCountry(type :Int) {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
 
             produce(ProfileAction.ShowLoading(true))
@@ -228,6 +282,27 @@ class ProfileViewModel
                     is Resource.Progress -> produce(ProfileAction.ShowLoading(res.loading))
                     is Resource.Success -> {
                         produce(ProfileAction.ShowAllCountry(res.data.data as CountriesResponse, type))
+
+                    }
+                }
+            }
+        } else {
+            produce(ProfileAction.ShowFailureMsg(getString(R.string.no_internet)))
+        }
+    }
+    fun getNotifaction(   ) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+
+
+            produce(ProfileAction.ShowLoading(true))
+            usecase.invoke(
+                viewModelScope
+            ) { res ->
+                when (res) {
+                    is Resource.Failure -> produce(ProfileAction.ShowFailureMsg(res.message.toString()))
+                    is Resource.Progress -> produce(ProfileAction.ShowLoading(res.loading))
+                    is Resource.Success -> {
+                        produce(ProfileAction.ShowNotifactions(res.data.data as NotificationResponse))
 
                     }
                 }

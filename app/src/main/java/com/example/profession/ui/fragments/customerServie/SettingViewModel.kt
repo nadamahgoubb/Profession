@@ -41,7 +41,7 @@ class SettingViewModel
 
 
     fun complain(title: String, content: String) {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
 
             produce(SettingAction.ShowLoading(true))
@@ -54,7 +54,7 @@ class SettingViewModel
                     is Resource.Failure -> produce(SettingAction.ShowFailureMsg(res.message.toString()))
                     is Resource.Progress -> produce(SettingAction.ShowLoading(res.loading))
                     is Resource.Success -> {
-                          produce(SettingAction.CompalinSucessed(res.data.message as String))
+                          produce(SettingAction.CompalinSucessed(res.data.message))
 
                     }
                 }
@@ -63,21 +63,21 @@ class SettingViewModel
             produce(SettingAction.ShowFailureMsg(getString(R.string.no_internet)))
         }
     }
-    fun contactUs(  content: String) {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+    fun contactUs(  countryCode:String, phone:String, content: String) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
 
             produce(SettingAction.ShowLoading(true))
             usecase.invoke(
                 viewModelScope, ContactUsParams(
-                  0,  content //0 for user
+                  0,  countryCode,phone, content //0 for user
                 )
             ) { res ->
                 when (res) {
                     is Resource.Failure -> produce(SettingAction.ShowFailureMsg(res.message.toString()))
                     is Resource.Progress -> produce(SettingAction.ShowLoading(res.loading))
                     is Resource.Success -> {
-                          produce(SettingAction.ContactSucessed(res.data.message as String))
+                          produce(SettingAction.ContactSucessed(res.data.message))
 
                     }
                 }
@@ -87,7 +87,7 @@ class SettingViewModel
         }
     }
     fun get_goal(  ) {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
 
             produce(SettingAction.ShowLoading(true))
@@ -107,7 +107,7 @@ class SettingViewModel
         }
     }
     fun getTermsAndCondition( ) {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
 
             produce(SettingAction.ShowLoading(true))

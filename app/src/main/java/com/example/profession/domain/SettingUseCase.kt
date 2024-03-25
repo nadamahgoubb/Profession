@@ -25,19 +25,15 @@ class SettingUseCase @Inject constructor(private val repo: Repository  ) :
     override fun executeRemote(params: Any?): Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>> {
         return if ((params is ComplainParams)) {
             flow {
-                params?.let { repo.complain(params) }?.let { emit(it) }
-            } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
+                params.let { repo.complain(params) }?.let { emit(it) }
+            }
         } else if ((params is ContactUsParams)) {
             flow {
-                params?.let { repo.contactUs(params) }?.let { emit(it) }
-            } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
+                params.let { repo.contactUs(params) }?.let { emit(it) }
+            }
         }  else if ((params ?.equals(GET_GOAL) == true)) {
             flow {
-                params?.let { repo.getGoal() }?.let { emit(it) }
-            } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
-        }   else if ((params is ContactUsParams)) {
-            flow {
-                params?.let { repo.contactUs(params) }?.let { emit(it) }
+                params.let { repo.getGoal() }?.let { emit(it) }
             } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
         }
         else {

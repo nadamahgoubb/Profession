@@ -104,8 +104,8 @@
 
                     <RelativeLayout
                         android:id="@+id/lyt_data"
-                        android:layout_width="match_parent"
-                             android:layout_height="match_parent"
+              android:visibility="gone"          android:layout_width="match_parent"
+              android:layout_height="match_parent"
                         android:background="@color/white"
                         android:orientation="vertical"
                         >
@@ -281,7 +281,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/_4sdp"
-                                        android:text="رقم الطلب"
+                                        android:text="@string/order_id"
                                         android:textColor="@color/black"
                                         android:textSize="@dimen/_12sdp"
                                         android:textStyle="bold"
@@ -438,7 +438,7 @@
                                     <de.hdodenhof.circleimageview.CircleImageView
                                         android:id="@+id/iv_user"
                                         android:layout_width="@dimen/_40sdp"
-                                        android:layout_height="@dimen/_40sdp"
+              android:src="@drawable/empty_user"                          android:layout_height="@dimen/_40sdp"
                                         android:layout_gravity="center"
                                         android:layout_marginTop="@dimen/_8sdp"
                                         android:padding="@dimen/_2sdp"
@@ -463,13 +463,15 @@
                                     <TextView
 
                                         android:id="@+id/tv_desc"
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="0dp"
                                         android:layout_height="wrap_content"
+                                        android:textAlignment="viewStart"
                                         android:layout_marginTop="@dimen/_13sdp"
                                         android:textColor="@color/grey_600"
                                         android:textSize="@dimen/_10sdp"
                                         android:textStyle="bold"
-                                        app:layout_constraintStart_toStartOf="@+id/tv_name"
+                                        app:layout_constraintEnd_toStartOf="@id/lyt_price"
+                         android:text=" "               app:layout_constraintStart_toStartOf="@+id/tv_name"
                                         app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
                                     <ImageView
@@ -709,7 +711,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="@dimen/_8sdp"
                                         android:layout_marginTop="@dimen/_10sdp"
-                                        android:text="الفاتوره"
+                                        android:text="@string/invoice"
                                         android:textColor="@color/black"
                                         android:textSize="@dimen/_12sdp"
                                         android:textStyle="bold"
@@ -796,7 +798,7 @@
                                         android:layout_marginTop="@dimen/_6sdp"
                                         android:paddingHorizontal="@dimen/_6sdp"
                                         android:paddingVertical="@dimen/_10sdp"
-                                        android:text="الاجمالي "
+                                        android:text="@string/total"
                                         android:textColor="@color/black"
                                         android:textSize="@dimen/_14sdp"
                                         android:textStyle="bold"
@@ -843,7 +845,7 @@
                             android:layout_below="@id/lyt_information"
                             android:layout_alignParentBottom="true"
                             android:layout_gravity="bottom"
-                            android:layout_marginTop="@dimen/_30sdp"
+                          android:layout_marginTop="@dimen/_30sdp"
                             android:background="@drawable/bg_rounded_top"
                             android:elevation="@dimen/_30sdp"
                             android:paddingVertical="@dimen/_20sdp"
@@ -867,7 +869,8 @@
                                 android:id="@+id/card_pay_order"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                          android:visibility="gone"      android:layout_marginHorizontal="@dimen/_16sdp"
+                                android:visibility="gone"
+                                android:layout_marginHorizontal="@dimen/_16sdp"
                                 android:orientation="vertical"
                                  app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -1053,9 +1056,6 @@ android:paddingStart="@dimen/_5sdp"
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
-                        <!--
-                                                </androidx.cardview.widget.CardView>
-                        -->
 
                     </RelativeLayout>
 

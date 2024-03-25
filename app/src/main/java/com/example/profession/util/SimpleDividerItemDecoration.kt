@@ -11,7 +11,7 @@ import com.example.profession.R
 
 class SimpleDividerItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
 
-    private val mDivider: Drawable = ContextCompat.getDrawable(context, R.drawable.line_divider)!!;
+    private val mDivider: Drawable = ContextCompat.getDrawable(context, R.drawable.line_divider)!!
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView) {
         val left = parent.paddingLeft

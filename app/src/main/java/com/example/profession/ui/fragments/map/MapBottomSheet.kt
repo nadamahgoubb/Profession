@@ -117,11 +117,11 @@ class MapBottomSheet(var onClick: onLocationClick) :  DialogFragment(R.layout.fr
         address= locationManager.getAddress(latitude, longitude)
         address?.let {
 
-            binding?.tvAddress?.setText( address?.address?.toString()  )
-            binding?.tvCountry?.text =
+            binding.tvAddress?.setText( address?.address?.toString()  )
+            binding.tvCountry?.text =
                 address?.country.toString()+","+ address?.city.toString()
         }
-        if( binding?.locationCard?.isVisible == false) binding?.locationCard?.let { expand(it) }
+        if( binding.locationCard?.isVisible == false) binding.locationCard?.let { expand(it) }
 
     }
 
@@ -159,7 +159,7 @@ class MapBottomSheet(var onClick: onLocationClick) :  DialogFragment(R.layout.fr
 
     private fun onClick() {
 
-        binding?.btnDone?.setOnClickListener {
+        binding.btnDone?.setOnClickListener {
 address?.address= binding.tvAddress.text.toString()
             onClick.onClick(lat, long, address)
 
@@ -172,33 +172,33 @@ address?.address= binding.tvAddress.text.toString()
 
     override fun onResume() {
         super.onResume()
-        binding?.map?.onResume()
+        binding.map?.onResume()
     }
 
     override fun onStop() {
         super.onStop()
-        binding?.map?.onStop()
+        binding.map?.onStop()
     }
 
     override fun onPause() {
         super.onPause()
-        binding?.map?.onPause()
+        binding.map?.onPause()
     }
 
     override fun onLowMemory() {
         super.onLowMemory()
-        binding?.map?.onLowMemory()
+        binding.map?.onLowMemory()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        binding?.map?.onSaveInstanceState(outState)
+        binding.map?.onSaveInstanceState(outState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.map?.onCreate(savedInstanceState)
-        binding?.map?.onResume();
+        binding.map?.onCreate(savedInstanceState)
+        binding.map?.onResume()
         val width = ViewGroup.LayoutParams.MATCH_PARENT
         val height = ViewGroup.LayoutParams.WRAP_CONTENT
 
@@ -213,7 +213,7 @@ address?.address= binding.tvAddress.text.toString()
             e.printStackTrace()
         }
 
-        binding?.map?.getMapAsync(OnMapReadyCallback { mMap ->
+        binding.map?.getMapAsync(OnMapReadyCallback { mMap ->
             googleMap = mMap
 
             // For showing a move to my location button
@@ -229,8 +229,8 @@ address?.address= binding.tvAddress.text.toString()
                     )
                 } != PackageManager.PERMISSION_GRANTED) {
             }
-            mMap.setMyLocationEnabled(true)
-            googleMap?.isMyLocationEnabled = true
+            mMap.isMyLocationEnabled = true
+            googleMap.isMyLocationEnabled = true
             getLocationNow()
             googleMap.setOnMapClickListener {
                 showlocation(it.latitude, it.longitude)

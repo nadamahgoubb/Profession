@@ -35,7 +35,7 @@ class SessionManager @Inject constructor(val context: Context) {
 
     }
 
-     fun getlang(): String? {
+     fun getlang(): String {
         var lang:String =""
         GlobalScope.launch {
             val dataStoreKey = preferencesKey<String>(Constants.LANG)

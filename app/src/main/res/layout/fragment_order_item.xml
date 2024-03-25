@@ -74,7 +74,7 @@
                         android:layout_height="@dimen/_38sdp"
                         android:layout_marginHorizontal="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@drawable/bg_orange_rounded"
+                   android:textAllCaps="false"     android:background="@drawable/bg_orange_rounded"
                         android:backgroundTint="@color/gold"
                         android:text="@string/goto_main_screen"
                         android:textColor="@color/white"

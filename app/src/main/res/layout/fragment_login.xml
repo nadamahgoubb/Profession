@@ -31,7 +31,7 @@ android:paddingBottom="@dimen/_20sdp"
 
                     android:id="@+id/lyt_img"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_140sdp"
+                    android:layout_height="@dimen/_170sdp"
                     android:background="@color/white"
                     android:paddingBottom="@dimen/_30sdp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +42,7 @@ android:paddingBottom="@dimen/_20sdp"
 
                         android:id="@+id/img"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_140sdp"
+                        android:layout_height="@dimen/_170sdp"
                         android:scaleType="centerCrop"
                  android:src="@drawable/header"
                         app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +85,7 @@ android:paddingBottom="@dimen/_20sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:paddingTop="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_50sdp"
                     android:text="@string/signin_now"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13sdp"
@@ -94,35 +94,76 @@ android:paddingBottom="@dimen/_20sdp"
                     />
 
 
-                <EditText
-                    android:id="@+id/et_user_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:text="01226497712"              android:layout_marginTop="@dimen/_20sdp"
-                    android:background="@drawable/bg_rounded"
-                    android:hint="@string/user_name"
-                    android:paddingStart="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_12sdp" />
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+
+                    <com.hbb20.CountryCodePicker
+                        android:id="@+id/country_code_picker"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1.25"
+                        android:background="@drawable/bg_rounded_grey"
+                        android:clickable="true"
+                        android:gravity="center"
+                        app:ccp_defaultNameCode="SA"
+                        app:ccp_showFlag="true"
+                        app:ccp_showNameCode="false"
+                        app:ccp_showPhoneCode="true"
+                        app:ccp_textSize="@dimen/_10sdp" />
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_weight="4.75"
+                        android:gravity="center"
+                        android:hint=""
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_rounded"
+                            android:hint="@string/phone_number"
+                            android:inputType="phone"
+                            android:paddingHorizontal="@dimen/_6sdp"
+                            android:text=""
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/grey_800" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:minHeight="@dimen/_43sdp"
+                    android:layout_height="wrap_content"                    android:layout_marginTop="@dimen/_10sdp"
                     android:gravity="center">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+
                         android:id="@+id/lyt_pass"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="start"
-                        android:text="@string/password"
-                        android:foregroundGravity="right"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_12ssp"
-                        app:endIconDrawable="@drawable/selector_eye"
+
+                           app:endIconDrawable="@drawable/selector_eye"
                          app:endIconMode="password_toggle"
                         app:hintAnimationEnabled="false"
                         app:hintEnabled="false"
@@ -133,12 +174,13 @@ android:paddingBottom="@dimen/_20sdp"
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/et_password"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                 android:autofillHints="password"
-                            android:paddingStart="@dimen/_5sdp"
-                            android:background="@drawable/bg_rounded"
-                            android:text="123456789"              android:gravity="start"
-                            android:textAlignment="viewStart"
+                            android:layout_height="match_parent"
+                            android:textColorHint="@color/gray_800"
+                            android:text="123456789"          android:autofillHints="password"
+                            android:padding="@dimen/_8sdp"
+                     android:background="@drawable/bg_rounded"
+                          android:textSize="@dimen/_12sdp"        android:gravity="start|center_vertical"
+                      android:textAlignment="viewStart"
                             android:hint="@string/password"
                             android:inputType="textPassword" />
                     </com.google.android.material.textfield.TextInputLayout>

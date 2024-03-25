@@ -22,7 +22,7 @@ class OrdersViewModel
 
   var   orderId :String =""
     fun getOrders(state: String) {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
             produce(OrdersAction.ShowLoading(true))
             useCase.invoke(
@@ -44,7 +44,7 @@ class OrdersViewModel
         }
     }
     fun getOrderDetails(orderId: String) {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
 
             produce(OrdersAction.ShowLoading(true))
@@ -84,7 +84,7 @@ class OrdersViewModel
     fun addReview(
         params: AddReviewsParam
     ) {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
             produce(OrdersAction.ShowLoading(true))
             useCaseReview.invoke(
@@ -94,7 +94,7 @@ class OrdersViewModel
                     is Resource.Failure -> produce(OrdersAction.ShowFailureMsg(res.message.toString()))
                     is Resource.Progress -> produce(OrdersAction.ShowLoading(res.loading))
                     is Resource.Success -> {
-                        produce(OrdersAction.ShowReviewAdded(res.data.message as String))
+                        produce(OrdersAction.ShowReviewAdded(res.data.message))
                     }
                 }
             }
@@ -105,7 +105,7 @@ class OrdersViewModel
  fun cancelOrder(
         params: CancelOrderParam
     ) {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
             produce(OrdersAction.ShowLoading(true))
             useCase.invoke(
@@ -115,17 +115,17 @@ class OrdersViewModel
                     is Resource.Failure -> produce(OrdersAction.ShowFailureMsg(res.message.toString()))
                     is Resource.Progress -> produce(OrdersAction.ShowLoading(res.loading))
                     is Resource.Success -> {
-                        produce(OrdersAction.ShowCanceledOrder(res.data.message as String))
+                        produce(OrdersAction.ShowCanceledOrder(res.data.message))
                     }
                 }
             }
         } else {
             produce(OrdersAction.ShowFailureMsg(getString(R.string.no_internet)))
         }
-    }fun complainOrder(
-        params: ComplainOrderParam
-    ) {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+    }
+    fun complainOrder(params: ComplainOrderParam) {
+
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
             produce(OrdersAction.ShowLoading(true))
             useCase.invoke(
@@ -135,7 +135,28 @@ class OrdersViewModel
                     is Resource.Failure -> produce(OrdersAction.ShowFailureMsg(res.message.toString()))
                     is Resource.Progress -> produce(OrdersAction.ShowLoading(res.loading))
                     is Resource.Success -> {
-                        produce(OrdersAction.ShowComplainedOrder(res.data.message as String))
+                        produce(OrdersAction.ShowComplainedOrder(res.data.message))
+                    }
+                }
+            }
+        } else {
+            produce(OrdersAction.ShowFailureMsg(getString(R.string.no_internet)))
+        }
+    }
+
+fun PayOrder( params: PayOrderParam) {
+
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+
+            produce(OrdersAction.ShowLoading(true))
+            useCase.invoke(
+                viewModelScope, params
+            ) { res ->
+                when (res) {
+                    is Resource.Failure -> produce(OrdersAction.ShowFailureMsg(res.message.toString()))
+                    is Resource.Progress -> produce(OrdersAction.ShowLoading(res.loading))
+                    is Resource.Success -> {
+                        produce(OrdersAction.ShowOrderPaid(res.data.message))
                     }
                 }
             }

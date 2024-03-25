@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.NonCancellable.start
 
 @AndroidEntryPoint
-class WalkThrougthFragment() : BaseFragment<FragmentWalkThrougthBinding>(), OnClickSkipListener {
+class WalkThrougthFragment : BaseFragment<FragmentWalkThrougthBinding>(), OnClickSkipListener {
 
     private var pos = 0
     override fun onFragmentReady() {

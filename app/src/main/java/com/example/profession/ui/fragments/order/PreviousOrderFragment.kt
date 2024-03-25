@@ -23,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 
-class PreviousOrderFragment( ) : BaseFragment<FragmentOrderItemBinding>(),
+class PreviousOrderFragment : BaseFragment<FragmentOrderItemBinding>(),
     OrdersClickListener {
     private val mViewModel: OrdersViewModel by activityViewModels()
     lateinit var adapter: OrdersAdapter
@@ -65,7 +65,10 @@ class PreviousOrderFragment( ) : BaseFragment<FragmentOrderItemBinding>(),
                         adapter.notifyDataSetChanged()
                     } else{
                         binding.lytEmptyState.isVisible= true
-                    }    }
+                        adapter.list = arrayListOf()
+                        adapter.notifyDataSetChanged()
+                    }
+                }
 
             }
             is OrdersAction.ShowFailureMsg ->
@@ -91,7 +94,7 @@ class PreviousOrderFragment( ) : BaseFragment<FragmentOrderItemBinding>(),
     }
 
     override fun onOrderDetailsClicked(item: OrdersItem?) {
-        bundle.putString(Constants.ORDERID, Constants.PREV_ORDER)
+        bundle.putString(Constants.STATUS, Constants.PREV_ORDER)
         mViewModel.orderId= item?.orderId.toString()
         findNavController().navigate(R.id.orderInfoFragment, bundle)
     }

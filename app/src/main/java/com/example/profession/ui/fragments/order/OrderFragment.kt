@@ -7,9 +7,6 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.example.profession.databinding.FragmentOrderBinding
 import com.example.profession.ui.activity.MainActivity
 import com.example.profession.base.BaseFragment
-import com.example.profession.util.Constants.CURRENT_ORDER
-import com.example.profession.util.Constants.New_ORDER
-import com.example.profession.util.Constants.PREV_ORDER
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,11 +28,10 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>() {
 
 
     private fun initViews() {
-         mSectionAdapter = SectionsPagerAdapterTabs(getChildFragmentManager())
+         mSectionAdapter = SectionsPagerAdapterTabs(childFragmentManager)
         binding.viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(binding.tabs))
         binding.tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(binding.viewPager))
-        binding.tabs.layoutDirection = LayoutDirection.LTR
-        binding.viewPager.setAdapter(mSectionAdapter)
+        binding.viewPager.adapter = mSectionAdapter
 
     }
 
@@ -55,10 +51,10 @@ class OrderFragment : BaseFragment<FragmentOrderBinding>() {
 
         override fun getItem(position: Int): Fragment {
             return if (position == 0) {
-                 PreviousOrderFragment( )
+                NewOrderFragment( )
             }
             else if (position == 1) CurrentOrderFragment( )
-            else NewOrderFragment( )
+            else   PreviousOrderFragment( )
 
         }
 

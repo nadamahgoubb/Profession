@@ -29,3 +29,22 @@ data class CountriesResponse(
 
 )
 
+
+
+data class NotificationResponse(
+
+    @SerializedName("notifications"                ) var notifications              : ArrayList<NotificationsItem>?    = arrayListOf(),
+
+
+)
+
+data class NotificationsItem(
+
+    @SerializedName("id"                ) var id              : String?    = null,
+    @SerializedName("body"              ) var body            : String? = null,
+    @SerializedName("created_at"        ) var created_at       : String?    = null,
+
+    var choosen: Boolean= false
+
+)
+

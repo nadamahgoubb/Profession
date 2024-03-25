@@ -49,8 +49,8 @@ object Extension {
     fun ImageView.loadImage(url: String) {
         Glide.with(this)
             .load(url)
-            .apply(RequestOptions().placeholder(com.example.profession.R.drawable.image_gallery))
-            .error(com.example.profession.R.drawable.error)
+            .apply(RequestOptions().placeholder(R.drawable.image_gallery))
+            .error(R.drawable.error)
             .into(this)
     }
 
@@ -60,16 +60,16 @@ object Extension {
                 Patterns.EMAIL_ADDRESS.matcher(email).matches()
 
 
-    public  fun chat(context: Context, country_code :String,contact :String) {
+    fun chat(context: Context, country_code :String,contact :String) {
         //contact = PrefsHelper.get // use country code with your phone number
         var contactt = country_code + contact
 
-        var  appPackage ="";
+        var  appPackage =""
         val url = "https://api.whatsapp.com/send?phone=$contactt"
         if (isAppInstalled(context, "com.whatsapp.w4b")) {
-            appPackage = "com.whatsapp.w4b";
+            appPackage = "com.whatsapp.w4b"
 
-            val pm: PackageManager = context.getPackageManager()
+            val pm: PackageManager = context.packageManager
             pm.getPackageInfo(appPackage, PackageManager.GET_ACTIVITIES)
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse(url)
@@ -77,21 +77,21 @@ object Extension {
 
 
         } else if (isAppInstalled(context, "com.whatsapp")) {
-            appPackage = "com.whatsapp";
-            val pm: PackageManager = context.getPackageManager()
+            appPackage = "com.whatsapp"
+            val pm: PackageManager = context.packageManager
             pm.getPackageInfo(appPackage, PackageManager.GET_ACTIVITIES)
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse(url)
             context.startActivity(i)
         } else {
-            Toast.makeText(context,   context.getString(com.example.profession.R.string.whatsup_not_installed),
-              Toast.LENGTH_LONG).show();
+            Toast.makeText(context,   context.getString(R.string.whatsup_not_installed),
+              Toast.LENGTH_LONG).show()
         }
 
 
 
          try {
-            val pm: PackageManager = context.getPackageManager()
+            val pm: PackageManager = context.packageManager
             pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES)
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse(url)
@@ -99,7 +99,7 @@ object Extension {
         } catch (e: PackageManager.NameNotFoundException) {
             Toast.makeText(
                 context,
-                context.getString(com.example.profession.R.string.whatsup_not_installed),
+                context.getString(R.string.whatsup_not_installed),
                 Toast.LENGTH_SHORT
             ).show()
             e.printStackTrace()
@@ -107,46 +107,15 @@ object Extension {
     }
 
    fun isAppInstalled( ctx:Context,  packageName:String) :Boolean{
-        var  pm: PackageManager = ctx.getPackageManager();
-        var  app_installed= false;
-        try {
-            pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
-            app_installed = true;
+        var  pm: PackageManager = ctx.packageManager
+       var  app_installed= false
+       try {
+            pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
+            app_installed = true
         } catch (e: PackageManager.NameNotFoundException  ) {
-            app_installed = false;
+            app_installed = false
         }
-        return app_installed;
-    }
-      fun openWhatsApp(context: Context, country_code :String,contact :String){
-        try {
-            var  contactt = country_code+contact
-
-            val packageManager: PackageManager = context.getPackageManager()
-            val i = Intent(Intent.ACTION_VIEW)
-            val url =
-                "https://api.whatsapp.com/send?phone=" + contactt /*+ "&text=" + URLEncoder.encode(
-                    mensaje,
-                    "UTF-8"
-                )*/
-            i.setPackage("com.whatsapp")
-            i.data = Uri.parse(url)
-            if (i.resolveActivity(packageManager) != null) {
-               context. startActivity(i)
-            } else {
-                Toast.makeText(
-                    context,
-                    context.getString(com.example.profession.R.string.whatsup_not_installed),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        } catch (e: Exception) {
-            Log.e("ERROR WHATSAPP", e.toString())
-            Toast.makeText(
-                context,
-                context.getString(com.example.profession.R.string.whatsup_not_installed),
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-    }
+        return app_installed
+   }
 
 }

@@ -39,7 +39,7 @@ class CheckoutSubserviceAdapter( var service:String
          var currentItem = itemsList[position]
        holder.binding.tvService.text =service
        holder.binding.tvServiceDesc.text =currentItem.name
-        holder.binding.ivLogo.loadImage( currentItem?.icon)
+        holder.binding.ivLogo.loadImage(currentItem.icon)
 
     }
 

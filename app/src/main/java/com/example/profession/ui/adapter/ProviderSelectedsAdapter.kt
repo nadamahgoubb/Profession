@@ -30,14 +30,14 @@ class ProviderSelectedAdapter(
     lateinit var context :Context
      override fun onBindViewHolder(holder: ProviderSelectedViewHolder, position: Int) {
         var currentItem = list.get(position)
-        holder.binding.tvName.text =  currentItem?.name
+        holder.binding.tvName.text = currentItem.name
 
          holder.binding.ivUser.loadImage(currentItem.photo)
 
-        holder.binding.tvRate.text=currentItem.totalRate.roundTo(2).toString()
+        holder.binding.tvRate.text=currentItem.totalRate?.toDoubleOrNull()?.roundTo(2).toString()
         holder.binding.tvCost.text=(currentItem.serviceCostBeforeTax.toString() +context.resources.getString(R.string.sr))
         holder.binding.tvTax.text=(currentItem.serviceTax.toString()+context.resources.getString(R.string.sr))
-        holder.binding.tvTotal.text=(currentItem.serviceTotalCost.toString()+context.resources.getString(R.string.sr))
+        holder.binding.tvTotal.text=(currentItem.serviceTotalCost.roundTo(2).toString()+context.resources.getString(R.string.sr))
 
 
         holder.binding.ivCancel.setOnClickListener {
@@ -63,7 +63,7 @@ class ProviderSelectedAdapter(
     }
 
     class ProviderSelectedViewHolder(var binding: ItemProviderTaxBinding) :
-        RecyclerView.ViewHolder(binding.root) {}
+        RecyclerView.ViewHolder(binding.root)
 
 
     override fun getItemCount(): Int = list.size

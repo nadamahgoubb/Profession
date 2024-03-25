@@ -1,8 +1,8 @@
 package com.example.profession.ui.fragments.orderInfo
 
-
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.widget.RatingBar
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -13,6 +13,7 @@ import com.example.profession.ui.activity.MainActivity
 import com.example.profession.base.BaseFragment
 import com.example.profession.data.dataSource.Param.CancelOrderParam
 import com.example.profession.data.dataSource.Param.ComplainOrderParam
+import com.example.profession.data.dataSource.Param.PayOrderParam
 import com.example.profession.data.dataSource.repoistry.PrefsHelper
 import com.example.profession.data.dataSource.response.OrdersItem
 import com.example.profession.ui.adapter.CheckoutSubserviceAdapter
@@ -25,12 +26,27 @@ import com.example.profession.util.Constants
 import com.example.profession.util.Utils.getPaymentMethod
 import com.example.profession.util.ext.hideKeyboard
 import com.example.profession.util.ext.init
+import com.example.profession.util.ext.loadImage
 import com.example.profession.util.ext.roundTo
+import com.example.profession.util.ext.toTwelevePattern
 import com.example.profession.util.observe
+import com.payment.paymentsdk.PaymentSdkActivity
+import com.payment.paymentsdk.PaymentSdkConfigBuilder
+import com.payment.paymentsdk.integrationmodels.PaymentSdkApms
+import com.payment.paymentsdk.integrationmodels.PaymentSdkBillingDetails
+import com.payment.paymentsdk.integrationmodels.PaymentSdkConfigurationDetails
+import com.payment.paymentsdk.integrationmodels.PaymentSdkError
+import com.payment.paymentsdk.integrationmodels.PaymentSdkLanguageCode
+import com.payment.paymentsdk.integrationmodels.PaymentSdkShippingDetails
+import com.payment.paymentsdk.integrationmodels.PaymentSdkTokenise
+import com.payment.paymentsdk.integrationmodels.PaymentSdkTransactionClass
+import com.payment.paymentsdk.integrationmodels.PaymentSdkTransactionDetails
+import com.payment.paymentsdk.integrationmodels.PaymentSdkTransactionType
+import com.payment.paymentsdk.sharedclasses.interfaces.CallbackPaymentInterface
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class OrderInfoFragment : BaseFragment<FragmentOrderInfoBinding>() {
+class OrderInfoFragment : BaseFragment<FragmentOrderInfoBinding>(), CallbackPaymentInterface {
     private lateinit var parent: MainActivity
     private val mViewModel: OrdersViewModel by activityViewModels()
     lateinit var adapter: OrdersAdapter
@@ -42,45 +58,51 @@ class OrderInfoFragment : BaseFragment<FragmentOrderInfoBinding>() {
         setupUi()
         onClick()
         mViewModel.apply {
-            getOrderDetails(mViewModel.orderId)
+     //       getOrderDetails(mViewModel.orderId)
             observe(viewState) {
                 handleViewState(it)
             }
         }
-        (arguments?.getString("ORDERID"))?.let {
-            status = it
 
-            when (it) {
-                Constants.New_ORDER -> {
-                    binding.cardWaitingApproval.isVisible = true
-                    binding.cardBill.isVisible = false
-                    binding.cardPersonalInfo.isVisible = false
-                    binding.cardCancelOrder.isVisible = true
-                }
-                Constants.CURRENT_ORDER -> {
-                    binding.cardInProgress.isVisible = true
-                    binding.cardPayOrder.isVisible = true
-                    binding.cardBill.isVisible = true
-                    binding.cardPersonalInfo.isVisible = true
-                }
-                Constants.PREV_ORDER -> {
-              //      binding.cardAddReview.isVisible = true
-                    binding.cardCompelted.isVisible = true
-                    binding.cardBill.isVisible = true
-                    binding.cardPersonalInfo.isVisible = true
-              //      binding.tvComplainAboutService.isVisible = true
-                }
-
-
-            }
-        }
         binding.swiperefreshHome.setOnRefreshListener {
             mViewModel.getOrderDetails(mViewModel.orderId)
             if (binding.swiperefreshHome != null) binding.swiperefreshHome.isRefreshing = false
         }
 
     }
+fun handleState(status:String){
 
+        when (status) {
+            Constants.New_ORDER -> {
+                binding.cardWaitingApproval.isVisible = true
+                binding.cardBill.isVisible = false
+                binding.cardPersonalInfo.isVisible = false
+                //     binding.cardCancelOrder.isVisible = true
+            }
+            Constants.CURRENT_ORDER -> {
+                binding.cardWaitingApproval.isVisible = false
+                binding.cardInProgress.isVisible = true
+                binding.cardBill.isVisible = true
+                binding.cardPersonalInfo.isVisible = true
+            }
+            Constants.PREV_ORDER -> {
+                binding.cardInProgress.isVisible = false
+                      binding.cardAddReview.isVisible = true
+                  //    binding.cap.isVisible = true
+                binding.cardCompelted.isVisible = true
+                binding.cardCancelOrder.isVisible = false
+                binding.cardBill.isVisible = true
+                binding.cardPersonalInfo.isVisible = true
+                //      binding.tvComplainAboutService.isVisible = true
+            }
+        }
+
+}
+    override fun onResume() {
+        super.onResume()
+        mViewModel.            getOrderDetails(mViewModel.orderId)
+
+    }
     private fun handleViewState(action: OrdersAction) {
         when (action) {
             is OrdersAction.ShowLoading -> {
@@ -105,6 +127,12 @@ class OrderInfoFragment : BaseFragment<FragmentOrderInfoBinding>() {
                     binding.cardPrice.isVisible = false
                 }
             }
+    is OrdersAction.ShowOrderPaid ->{
+        action.message.let {
+            showProgress(false)
+            mViewModel.orderId.let { it1 -> mViewModel.getOrderDetails(it1) }
+        }
+            }
 
             is OrdersAction.ShowCanceledOrder ->{
                      showProgress(false)
@@ -113,6 +141,7 @@ class OrderInfoFragment : BaseFragment<FragmentOrderInfoBinding>() {
             }
 
             is OrdersAction.ShowComplainedOrder ->{
+
                  binding.tvComplainAboutService.isVisible = false
                 showProgress(false)
             }
@@ -127,35 +156,64 @@ class OrderInfoFragment : BaseFragment<FragmentOrderInfoBinding>() {
     private fun showData(data: OrdersItem) {
         binding.lytData.isVisible = true
         this.data = data
-        binding.tvOrderId.setText(data.orderId)
+        binding.tvOrderId.text = data.orderId
         this.orderId = data.orderId
+        data.orderStatus?.let {status=it
+            handleState(it) }
         data.paymentMethod?.let {
             var paymentData = getPaymentMethod(it, requireContext())
-            binding.tvCash.setText(paymentData?.title)
-            binding.ivLogoPayment.setImageDrawable(
-                resources.getDrawable(paymentData?.logo!!)
-            )
+            binding.tvCash.text = paymentData?.title
+            binding.ivLogoPayment.setImageDrawable(resources.getDrawable(paymentData?.logo!!))
+            if(it==Constants.VISA){
+                if(data.confirm_payment_visa==0&&data.finalTotal!=null) {
+                    binding.cardPayOrder.isVisible = true
+                    binding.cardCancelOrder.isVisible = false
+                }
+                else {
+                    if(status==Constants.New_ORDER) {
+
+                        binding.cardPrice.isVisible=true
+                        binding.cardCancelOrder.isVisible = true
+                        binding.cardPayOrder.isVisible = false
+                    }
+                    else {
+                        binding.cardCancelOrder.isVisible = false
+                        binding.cardPayOrder.isVisible = false
+                        binding.cardPrice.isVisible=false
+                    }
+
+                }
+            }else{
+                if(status==Constants.New_ORDER||status==Constants.CURRENT_ORDER) binding.cardCancelOrder.isVisible = true
+                else {
+                    binding.cardPayOrder.isVisible = false
+                    binding.cardCancelOrder.isVisible = false
+                }
+
+            }
         }
 
-        binding.tvName.setText(data?.providerName)
-        binding.tvRate.setText(data?.providerTotalRate.toString())
-        binding.tvDesc.setText(data?.providerPreviousExperience)
+        binding.tvName.text = data.providerName
+        binding.ivUser.loadImage(data.providerPhoto, placeHolderImage = R.drawable.empty_user, error_img =  R.drawable.empty_user)
+        binding.tvRate.text = data.providerTotalRate.toString()
+        binding.tvDesc.text = data.providerPreviousExperience
         binding.ivCall.setOnClickListener {
             data.providerPhone?.let { it1 -> call(it1) }
         }
-        binding.tvTime.setText(data.orderTime)
-        binding.tvDate.setText(data.orderDate)
-        binding.tvPrice.setText(data.providerHourPrice.toString())
-        binding.tvTimeinService.setText(data.countHours.toString() + resources.getText(R.string.hour))
-        binding.tvTotalBeforetax.setText(data.total?.toString()+ " "+resources.getString(R.string.sr))
-        binding.tvTotalPriceBottomSheet.setText(data.total?.toString()+ " "+resources.getString(R.string.sr))
-        binding.tvTax.setText(data.tax?.roundTo(3).toString())
-        binding.tvTotalPrice.setText(data.finalTotal)
+        binding.tvTime.text = toTwelevePattern(data.orderTime)
+        binding.tvDate.text = data.orderDate
+        binding.tvPrice.text = data.providerHourPrice.toString()+ resources.getText(R.string.sr)
+        binding.tvTimeinService.text = data.countHours.toString() + resources.getText(R.string.hour)
+        binding.tvTotalBeforetax.text = data.total?.toDouble()?.roundTo(2)?.toString()+ " "+resources.getString(R.string.sr)
+        binding.tvTotalPriceBottomSheet.text = data.total?.toDouble()?.roundTo(2)?.toString()+ " "+resources.getString(R.string.sr)
+        binding.tvTax.text = data.tax?.roundTo(3).toString()
+        binding.tvTotalPrice.text = data.finalTotal?.toDouble()?.roundTo(2)?.toString()+ " "+resources.getString(R.string.sr)
 
         adapter_subservice.itemsList = data.subServices
         adapter_subservice.notifyDataSetChanged()
 if (status== Constants.PREV_ORDER){
- if(data.user_complaint==0) {
+    binding.cardPayOrder.isVisible = false
+    if(data.user_complaint==0) {
      binding.tvComplainAboutService.isVisible = true
  }
  if(data.user_evaluation==0)   binding.cardAddReview.isVisible = true
@@ -180,7 +238,7 @@ if (status== Constants.PREV_ORDER){
         binding.ivBack.setOnClickListener {
             activity?.onBackPressed()
         }
-        binding.btnReject.setOnClickListener {
+          binding.btnReject.setOnClickListener {
             orderId?.let { it1 -> mViewModel.cancelOrder(CancelOrderParam(it1, Constants.CANCEL)) }
         }
         binding.tvCancelOrder.setOnClickListener {
@@ -188,14 +246,23 @@ if (status== Constants.PREV_ORDER){
         }
         binding.btnDone.setOnClickListener {
             mViewModel.validateAddReview(
-                data?.providerId, PrefsHelper.getUserData()?.id, rate, binding.etMsg.text.toString()
+                data.providerId, PrefsHelper.getUserData()?.id, rate, binding.etMsg.text.toString()
             )
+         }
+        binding.btnPayOrder.setOnClickListener {
+            val configData = generatePaytabsConfigurationDetails()
+            configData?.let { it1 ->
+                PaymentSdkActivity.startCardPayment(
+                    requireActivity(),
+                    it1,
+                    this
+                )
+            }
          }
         binding.rating.onRatingBarChangeListener =
             RatingBar.OnRatingBarChangeListener { ratingBar, rating, fromUser ->
                 rate = rating
-                Toast.makeText(requireContext(), rating.toString(), Toast.LENGTH_SHORT).show()
-            }
+             }
     }
 
     private fun setupUi() {
@@ -203,7 +270,7 @@ if (status== Constants.PREV_ORDER){
         parent.showBottomNav(false)
         parent.showSideNav(false)
         var servicetitle = ""
-        servicetitle?.let {
+        servicetitle.let {
             adapter_subservice = CheckoutSubserviceAdapter(it)
             binding.rvSubservice.init(context, adapter_subservice, 2)
         }
@@ -217,6 +284,82 @@ if (status== Constants.PREV_ORDER){
             }
 
         }).show(childFragmentManager, ComplainSheetFragment::class.java.canonicalName)
+    }
+    override fun onError(error: PaymentSdkError) {
+        Log.i("TAG onError", error.msg.toString())
+    }
+
+    override fun onPaymentCancel() {
+        Log.i("TAG", "onPaymentCancel")
+    }
+
+    override fun onPaymentFinish(paymentSdkTransactionDetails: PaymentSdkTransactionDetails) {
+
+        Log.i("TAG", "Did payment success?: ${paymentSdkTransactionDetails.isSuccess}")
+        var token = paymentSdkTransactionDetails.token
+        var transRef = paymentSdkTransactionDetails.transactionReference
+      /*  Toast.makeText(
+            requireContext(),
+            paymentSdkTransactionDetails.paymentResult?.responseMessage ?: "PaymentFinish",
+            Toast.LENGTH_SHORT
+        ).show()*/
+        binding.cardPrice.isVisible=false
+       transRef?.let {  mViewModel.PayOrder(PayOrderParam(mViewModel.orderId, token.toString(), it)) }
+    }
+    private fun generatePaytabsConfigurationDetails(selectedApm: PaymentSdkApms? = null): PaymentSdkConfigurationDetails? {
+        val clientKey = "CGKMDK-VMKR6H-PT7NRM-GMPB7G"
+        val serverKey = "SDJNLWHD6L-JH9GTMR2KT-ZDHLDDW9DN"
+        val profileId  = "44353"
+        val locale = PaymentSdkLanguageCode.EN /*Or PaymentSdkLanguageCode.AR*/
+        val transactionTitle = "Test Pay"
+        val orderId = mViewModel.orderId
+        val cartDesc = "Cart description"
+        val currency = "EGP"
+        val amount = data.finalTotal
+        val merchantCountryCode = "SA"
+        val billingData = PaymentSdkBillingDetails(
+            "City",
+            "SA",
+            "email1@domain.com",
+            "name name",
+            "+966568595106", "121321",
+            "address street", ""
+        )
+        val shippingData = PaymentSdkShippingDetails(
+            "City",
+            "SA",
+            "test@test.com",
+            "name1 last1",
+            "+966568595106", "3510",
+            "street2", ""
+        )
+       amount?.toDoubleOrNull()?.let {
+           val configData =      PaymentSdkConfigBuilder(
+                profileId,
+                serverKey,
+                clientKey, it, currency
+            )
+                .setCartDescription(cartDesc)
+                .setLanguageCode(locale)
+                .setBillingData(billingData)
+                .setMerchantCountryCode(merchantCountryCode)
+                .setTransactionType(PaymentSdkTransactionType.SALE)
+                .setTransactionClass(PaymentSdkTransactionClass.ECOM)
+                //   .setShippingData(shippingData)
+                .setTokenise(PaymentSdkTokenise.NONE) //Check other tokenizing types in PaymentSdkTokenise
+                .setCartId(orderId)
+                .showBillingInfo(false)
+                .showShippingInfo(false)
+                .forceShippingInfo(false)
+                .setScreenTitle(transactionTitle)
+
+
+        if (selectedApm != null)
+            configData.setAlternativePaymentMethods(listOf(selectedApm))
+        /*Check PaymentSdkApms for more payment options*/
+           return configData.build()
+       }
+        return null
     }
 
 }

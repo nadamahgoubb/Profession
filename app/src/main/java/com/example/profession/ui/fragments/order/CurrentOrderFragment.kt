@@ -15,7 +15,6 @@ import com.example.profession.ui.adapter.OrdersAdapter
 import com.example.profession.ui.adapter.OrdersClickListener
 import com.example.profession.util.Constants
 import com.example.profession.util.Extension
-import com.example.profession.util.Extension.chat
 import com.example.profession.util.ext.hideKeyboard
 import com.example.profession.util.ext.init
 import com.example.profession.util.ext.showActivity
@@ -24,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 
-class CurrentOrderFragment() : BaseFragment<FragmentOrderItemBinding>(), OrdersClickListener {
+class CurrentOrderFragment : BaseFragment<FragmentOrderItemBinding>(), OrdersClickListener {
     private val mViewModel: OrdersViewModel by activityViewModels()
     lateinit var adapter: OrdersAdapter
     override fun onFragmentReady() {
@@ -45,7 +44,7 @@ class CurrentOrderFragment() : BaseFragment<FragmentOrderItemBinding>(), OrdersC
 
     private fun onClick() {
         binding.btnGohome.setOnClickListener {
-showActivity(MainActivity::class.java, clearAllStack = true)
+            showActivity(MainActivity::class.java, clearAllStack = true)
         }
     }
 
@@ -57,6 +56,7 @@ showActivity(MainActivity::class.java, clearAllStack = true)
                     hideKeyboard()
                 }
             }
+
             is OrdersAction.ShowOrders -> {
                 showProgress(false)
                 if (action.state == Constants.CURRENT_ORDER) {
@@ -66,9 +66,11 @@ showActivity(MainActivity::class.java, clearAllStack = true)
                         adapter.notifyDataSetChanged()
                     } else {
                         binding.lytEmptyState.isVisible = true
-                    }
+                        adapter.list = arrayListOf()
+                        adapter.notifyDataSetChanged()  }
                 }
             }
+
             is OrdersAction.ShowFailureMsg -> action.message?.let {
                 showToast(action.message)
                 showProgress(false)
@@ -91,7 +93,7 @@ showActivity(MainActivity::class.java, clearAllStack = true)
     }
 
     override fun onOrderDetailsClicked(item: OrdersItem?) {
-        bundle.putString(Constants.ORDERID, Constants.CURRENT_ORDER)
+        bundle.putString(Constants.STATUS, Constants.CURRENT_ORDER)
         mViewModel.orderId = item?.orderId.toString()
         findNavController().navigate(R.id.orderInfoFragment, bundle)
     }
@@ -106,7 +108,7 @@ showActivity(MainActivity::class.java, clearAllStack = true)
             item.countryCode?.let { it1 ->
                 Extension.chat(
 
-                            requireContext() , it1, it
+                    requireContext(), it1, it
                 )
             }
         }

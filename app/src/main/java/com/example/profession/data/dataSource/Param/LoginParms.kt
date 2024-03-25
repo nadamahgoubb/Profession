@@ -3,17 +3,18 @@ package com.example.profession.data.dataSource.Param
 
 data class LoginParms(
 
-
     var phone: String = "",
       var password: String = ""
 
 )
 data class ForgetPasswordParms(
-
-
     var phone: String = "",
     var country_code: String = "",
       var password: String = ""
+)
+data class confirmPhoneParms(
+    var phone: String = "",
+    var country_code: String = "",
 
 )
 

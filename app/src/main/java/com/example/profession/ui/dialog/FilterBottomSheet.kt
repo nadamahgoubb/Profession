@@ -59,7 +59,7 @@ class FilterBottomSheet(
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DialogBootomFilterOrdersBinding.inflate(inflater)
         setupUi()
         setupPreData()
@@ -106,7 +106,7 @@ binding.tvPos.isVisible= true
                   //  binding.tvPos.x = (  value!!).toFloat() + 10
                 }
               //  binding.tvPos.y = seekBar?.pivotY!! + 10
-                Log.d("Pos", binding.tvPos.x.toString() + ": " + seekBar!!.width + ":" + seekBar.x)
+                Log.d("Pos", binding.tvPos.x.toString() + ": " + seekBar.width + ":" + seekBar.x)
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {

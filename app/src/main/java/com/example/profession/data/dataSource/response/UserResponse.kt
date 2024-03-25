@@ -23,3 +23,9 @@ data class UserResponse(
     @SerializedName("token_type"        ) var tokenType       : String? = null
 
 )
+
+data class ConfrmPhoneResponse(
+
+    @SerializedName("exists"                ) var exists              : Int?    = null,
+
+)

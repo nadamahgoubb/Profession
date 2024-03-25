@@ -81,7 +81,7 @@ class ProviderTaxFragment : BaseFragment<FragmentProviderTaxBinding>(),
     fun getCostAndTax(tax: Double) {
          adapter.notifyDataSetChanged()
          for (i in mViewModel.selectedProviders) {
-            i.serviceCostBeforeTax = i.hourPrice?.let { mViewModel.hoursCount.times(it) }
+            i.serviceCostBeforeTax = i.hourPrice?.toDoubleOrNull()?.let { mViewModel.hoursCount.times(it) }
             i.serviceTax = i.serviceCostBeforeTax?.let { tax.times(it).div(100) }
             i.serviceTotalCost = i.serviceTax?.let { i.serviceCostBeforeTax?.plus(it) }
         }

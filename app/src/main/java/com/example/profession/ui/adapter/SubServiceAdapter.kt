@@ -61,7 +61,7 @@ holder.binding.checkbox.isChecked = currentItem?.choosen == true
     }
 
     class MyViewHolder(var binding: ItemSubServiceBinding) :
-        RecyclerView.ViewHolder(binding.root) {}
+        RecyclerView.ViewHolder(binding.root)
 
     companion object {
         private val ORDER_DIFF_CALLBACK =

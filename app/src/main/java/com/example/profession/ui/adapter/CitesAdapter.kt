@@ -33,18 +33,17 @@ class CitesAdapter(
 
     override fun onBindViewHolder(holder: CitesViewHolder, position: Int) {
         var currentItem = list.get(position)
-        holder.binding.tvName.text = currentItem?.name
+        holder.binding.tvName.text = currentItem.name
 
-        if (currentItem.choosen) holder.binding.checkbox.isChecked = true
-        else holder.binding.checkbox.isChecked = false
+        holder.binding.checkbox.isChecked = currentItem.choosen
 
         holder.binding.checkbox.setOnClickListener {
             if (holder.binding.checkbox.isChecked == true) {
-                currentItem?.choosen = true
+                currentItem.choosen = true
                 //  currentItem?.let { it1 -> selectOneItemOnly(it1, position) }
-                currentItem?.let { it1 -> listener.onOrderClicked(it1) }
+                currentItem.let { it1 -> listener.onOrderClicked(it1) }
             } else {
-                currentItem?.choosen = false
+                currentItem.choosen = false
                 // listener.onOrderClicked(null)
 
             }
@@ -52,12 +51,12 @@ class CitesAdapter(
         holder.binding.root.setOnClickListener {
             if (holder.binding.checkbox.isChecked == true) {
                 holder.binding.checkbox.isChecked = false
-                currentItem?.choosen = false
+                currentItem.choosen = false
             } else {
                 holder.binding.checkbox.isChecked = true
 
-                currentItem?.let { it1 -> listener.onOrderClicked(it1) }
-                currentItem?.choosen = true
+                currentItem.let { it1 -> listener.onOrderClicked(it1) }
+                currentItem.choosen = true
                 // listener.onOrderClicked(null)
 
             }
@@ -82,10 +81,10 @@ class CitesAdapter(
         //    ca.indexOfFirst { item.id == it.id }
         //       .takeIf { it > -1 }?.let { pos ->
         //           list[pos] = item
-        list.get(pos)?.name = item.name
-        list.get(pos)?.id = item.id
+        list.get(pos).name = item.name
+        list.get(pos).id = item.id
         //   getItem(pos)?.countryId=item.countryId
-        list.get(pos)?.choosen = item.choosen
+        list.get(pos).choosen = item.choosen
 
         notifyItemChanged(pos)
     }
@@ -97,8 +96,8 @@ class CitesAdapter(
 
             updateItem(
                 item = CitesItemsResponse(
-                    lastChoosen?.id,
-                    lastChoosen?.name,
+                    lastChoosen.id,
+                    lastChoosen.name,
                     //     lastChoosen?.countryId,
                     false
                 ), position
@@ -111,8 +110,7 @@ class CitesAdapter(
     }
 
     class CitesViewHolder(var binding: ItemFilterMultiChoiceBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-    }
+        RecyclerView.ViewHolder(binding.root)
 
     companion object {
         private val Cities_DIFF_CALLBACK = object : DiffUtil.ItemCallback<CitesItemsResponse>() {

@@ -1,7 +1,6 @@
 package com.example.profession.ui.fragments.auth.login
 
-import android.content.Intent
-import android.graphics.Paint
+ import android.graphics.Paint
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.profession.R
@@ -13,13 +12,14 @@ import com.example.profession.ui.fragments.auth.AuthViewModel
 import com.example.profession.util.ext.hideKeyboard
 import com.example.profession.util.ext.showActivity
 import com.example.profession.util.observe
-import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.qualifiers.ApplicationContext
+ import com.hbb20.CountryCodePicker
+ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : BaseFragment<FragmentLoginBinding>() {
-    private val mViewModel: AuthViewModel by viewModels()
+class LoginFragment : BaseFragment<FragmentLoginBinding>(),CountryCodePicker.OnCountryChangeListener {
 
+    private val mViewModel: AuthViewModel by viewModels()
+        private var countryCode: String = "+966"
     override fun onFragmentReady() {
         onClick()
         setupUi()
@@ -58,8 +58,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     private fun setupUi() {
-        binding.tvForgetPass.setPaintFlags( binding.tvForgetPass.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
-        binding.tvCreate.setPaintFlags( binding.tvCreate.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)    }
+        binding.tvForgetPass.paintFlags = binding.tvForgetPass.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        binding.tvCreate.paintFlags = binding.tvCreate.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+    }
 
     private fun onClick() {
 
@@ -68,7 +69,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         }
         binding.btnSignIn.setOnClickListener {
 
-         mViewModel.isValidParams(binding.etUserName.text.toString(), binding.etPassword.text.toString())
+         mViewModel.isValidParams(binding.etPhone.text.toString(), binding.etPassword.text.toString())
            // startActivity(Intent(activity, MainActivity::class.java))
        //     activity?.finish()
 
@@ -77,4 +78,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             findNavController().navigate(R.id.forgetPasswordFragment)
 
         }    }
+
+    override fun onCountrySelected() {
+        countryCode = "+" + binding.countryCodePicker.selectedCountryCode
+    }
+
 }

@@ -1,6 +1,9 @@
 package com.example.profession.util
 
 object Constants {
+    const val Notifaction: String ="Notifaction"
+    const val CHANNEL_ID = "LocationServiceChannel"
+    const val FCM_TOKEN = "FCM_TOKEN"
     const val CASH: Int = 1
     const val VISA: Int = 0
     const  val WALLET: Int = 2
@@ -32,7 +35,7 @@ object Constants {
     const val ORDER="order"
     const val PROVIDERS="providers"
     const val PROVIDER_ID="provider_id"
-    const   val ORDERID: String ="ORDERID"
+    const   val STATUS: String ="status"
     const val PREV_ORDER="previous"
     const val New_ORDER="new"
     const val CURRENT_ORDER="underway"

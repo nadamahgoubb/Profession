@@ -16,9 +16,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:paddingBottom="@dimen/_20sdp"
+            android:layout_height="match_parent"
             android:background="@color/white"
-            android:layout_height="match_parent">
+            android:paddingBottom="@dimen/_20sdp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/lyt_header"
@@ -32,7 +32,7 @@
 
                     android:id="@+id/lyt_img"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_140sdp"
+                    android:layout_height="@dimen/_170sdp"
                     android:background="@color/white"
                     android:paddingBottom="@dimen/_30sdp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
 
                         android:id="@+id/img"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_140sdp"
+                        android:layout_height="@dimen/_170sdp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/header"
                         app:layout_constraintStart_toStartOf="parent"
@@ -62,11 +62,12 @@
 
                 <ImageView
                     android:id="@+id/iv_back"
-                    android:rotation="180"
+                    android:layout_width="@dimen/_40sdp"
 
-                android:layout_marginStart="@dimen/_10sdp"    android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
+                    android:rotation="180"
                     android:src="@drawable/ic_back"
                     app:layout_constraintBottom_toBottomOf="@id/lyt_img"
                     app:layout_constraintStart_toStartOf="parent"
@@ -100,11 +101,12 @@
                 <EditText
                     android:id="@+id/et_user_name"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:background="@drawable/bg_rounded"
                     android:hint="@string/user_name"
-                    android:paddingStart="@dimen/_5sdp"
+                    android:minHeight="@dimen/_43sdp"
+                    android:paddingStart="@dimen/_10sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp" />
 
@@ -113,6 +115,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:gravity="center"
+                    android:minHeight="@dimen/_40sdp"
                     android:orientation="horizontal"
                     android:weightSum="6">
 
@@ -122,7 +125,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_weight="1.25"
+                        android:layout_weight="1.5"
                         android:background="@drawable/bg_rounded_grey"
                         android:clickable="true"
                         android:gravity="center"
@@ -139,10 +142,10 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_weight="4.75"
-                     android:gravity="center"
+                        android:layout_weight="4.5"
+                        android:gravity="center"
                         android:hint=""
-                         app:hintAnimationEnabled="false"
+                        app:hintAnimationEnabled="false"
                         app:hintEnabled="false"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -152,12 +155,11 @@
                             android:id="@+id/et_phone"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                      android:background="@drawable/bg_rounded"
+                            android:background="@drawable/bg_rounded"
                             android:hint="@string/phone_number"
-                            android:textAlignment="viewStart"
                             android:inputType="phone"
-                            android:paddingStart="@dimen/_5sdp"
-                       />
+                            android:paddingStart="@dimen/_10sdp"
+                            android:textAlignment="viewStart" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
@@ -166,12 +168,13 @@
                 <EditText
                     android:id="@+id/et_email"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:background="@drawable/bg_rounded"
                     android:hint="@string/email"
                     android:inputType="textEmailAddress"
-                    android:paddingStart="@dimen/_5sdp"
+                    android:minHeight="@dimen/_43sdp"
+                    android:paddingStart="@dimen/_10sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp" />
 
@@ -187,45 +190,50 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />-->
 
-           <androidx.appcompat.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
 
-                android:id="@+id/et_coutry"
+                    android:id="@+id/et_coutry"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp"
-           android:gravity="center_vertical"         android:background="@drawable/bg_rounded"
+                    android:background="@drawable/bg_rounded"
                     android:drawableEnd="@drawable/spinner_drop_dawn"
-                     android:hint="@string/country"
 
-                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:gravity="center_vertical"
+                    android:hint="@string/country"
+                    android:minHeight="@dimen/_43sdp"
+
+                    android:paddingHorizontal="@dimen/_10sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp" />
+
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/et_city"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:background="@drawable/bg_rounded"
                     android:drawableEnd="@drawable/spinner_drop_dawn"
-                     android:hint="@string/city"
                     android:gravity="center_vertical"
-                     android:paddingHorizontal="@dimen/_5sdp"
+                    android:hint="@string/city"
+                    android:minHeight="@dimen/_43sdp"
+                    android:paddingHorizontal="@dimen/_10sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp" />
 
-              <androidx.appcompat.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
 
-                android:id="@+id/et_location"
+                    android:id="@+id/et_location"
                     android:layout_width="match_parent"
-                    android:minHeight="@dimen/_40sdp"
-                  android:layout_height="wrap_content"
-                  android:gravity="center_vertical"
-                  android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:background="@drawable/bg_rounded"
                     android:drawableEnd="@drawable/location"
-                     android:hint="@string/location"
-                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:gravity="center_vertical"
+                    android:hint="@string/location"
+                    android:minHeight="@dimen/_43sdp"
+                    android:paddingHorizontal="@dimen/_10sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp" />
 
@@ -233,18 +241,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:minHeight="@dimen/_40sdp">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/lyt_pass"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-           app:hintEnabled="false"
-                        app:hintAnimationEnabled="false" android:textColor="@color/black"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_12ssp"
                         app:endIconDrawable="@drawable/selector_eye"
                         app:endIconMode="password_toggle"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
 
@@ -254,29 +264,28 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/et_password"
                             android:layout_width="match_parent"
-                            android:hint="@string/password"
-                            android:layout_height="@dimen/_40sdp"
-                           android:autofillHints="password"
+                            android:layout_height="match_parent"
+                            android:autofillHints="password"
                             android:background="@drawable/bg_rounded"
+                            android:hint="@string/password"
                             android:inputType="textPassword" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
                 <LinearLayout
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:orientation="horizontal"
-                   >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/terms"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@string/some_text"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_13sdp"
-android:text="@string/some_text"
-                        />
+                        android:textSize="@dimen/_13sdp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -318,35 +327,34 @@ android:text="@string/some_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/_have_account"
-                        android:textColor="@color/black"
-                     />
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:id="@+id/btn_sign_in"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingStart="@dimen/_5sdp"
+                        android:paddingStart="@dimen/_10sdp"
                         android:text="@string/signin_now"
                         android:textColor="@color/gold"
                         android:textSize="@dimen/_14sdp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/btn_visitor_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/_5sdp"
-              android:paddingVertical="@dimen/_10sdp"
-                    android:layout_marginVertical="@dimen/_10sdp" android:text="@string/login_visitor"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="@string/login_visitor"
                     android:textColor="@color/gold"
                     android:textSize="@dimen/_13sdp"
-                    android:layout_gravity="center"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
- </layout>
+</layout>

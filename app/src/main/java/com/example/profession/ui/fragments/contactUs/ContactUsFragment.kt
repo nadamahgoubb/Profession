@@ -1,7 +1,9 @@
 package com.example.profession.ui.fragments.contactUs
 
 
+import android.text.Html
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.example.profession.R
 import com.example.profession.databinding.FragmentContactUsBinding
@@ -12,25 +14,26 @@ import com.example.profession.ui.fragments.customerServie.SettingViewModel
 import com.example.profession.util.ext.hideKeyboard
 import com.example.profession.util.ext.showActivity
 import com.example.profession.util.observe
+import com.hbb20.CountryCodePicker
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ContactUsFragment : BaseFragment<FragmentContactUsBinding>() {
+class ContactUsFragment : BaseFragment<FragmentContactUsBinding>(), CountryCodePicker.OnCountryChangeListener {
 
     private lateinit var parent: MainActivity
     val mviewmodel: SettingViewModel by viewModels()
 
+    private var countryCode: String = "+966"
     override fun onFragmentReady() {
 
         setupUi()
         onClick()
 
     mviewmodel.apply {
-mviewmodel.get_goal()
+     mviewmodel.get_goal()
         observe(viewState) {
             handleViewState(it)
         }
-
     }
         onBack()
     }
@@ -50,7 +53,7 @@ mviewmodel.get_goal()
         }
     }
 
-private fun handleViewState(action: SettingAction) {
+    private fun handleViewState(action: SettingAction) {
     when (action) {
         is SettingAction.ShowLoading -> {
             showProgress(action.show)
@@ -72,8 +75,9 @@ private fun handleViewState(action: SettingAction) {
         }
         is SettingAction.ShowGoal -> {
             showProgress(false)
-           binding.tvGoals.setText(action.data?.content)
-        }
+            binding.lytData.isVisible=true
+            binding.tvGoals.setText(Html.fromHtml((action.data?.content)))
+         }
 
 
         else -> {}
@@ -84,8 +88,9 @@ private fun handleViewState(action: SettingAction) {
             showActivity(MainActivity::class.java, clearAllStack = true)
         }
         binding.btnDone.setOnClickListener {
+            if(binding.etPhone.text.toString().isEmpty()) showToast(resources.getString(R.string.please_enter_your_phone))
             if(binding.etMsg.text.toString().isEmpty()) showToast(resources.getString(R.string.msg_empty_content))
-            else mviewmodel.contactUs(binding.etMsg.text.toString())
+            else mviewmodel.contactUs(countryCode, binding.etPhone.text.toString(),binding.etMsg.text.toString())
         }
     }
 
@@ -96,5 +101,8 @@ private fun handleViewState(action: SettingAction) {
         binding.ivMenu.setOnClickListener {
             parent.openDrawer()
         }
-
-    }}
+    }
+    override fun onCountrySelected() {
+        countryCode = "+" + binding.countryCodePicker.selectedCountryCode
+    }
+}

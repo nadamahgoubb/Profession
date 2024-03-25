@@ -63,14 +63,12 @@ class SpinnerHelper(private val context: Context, list: List<NationalitiesItem>,
            (adapter as ArrayAdapter<String?>).add(s.name)
          }
         spinner.adapter = adapter
-        adapter?.getCount()?.let { spinner.setSelection(it) }
+        adapter?.count?.let { spinner.setSelection(it) }
         spinner.onItemSelectedListener = onItemSelected()
     }
 
     inner class onItemSelected : AdapterView.OnItemSelectedListener {
-        constructor() {
-
-        }
+        constructor()
 
         constructor(adapterView: AdapterView<*>?, view: View?, i: Int, l: Long) {
 
@@ -88,7 +86,7 @@ class SpinnerHelper(private val context: Context, list: List<NationalitiesItem>,
 
      fun getIndexOf( value: Int): Int {
         var index = 0
-        val count: Int? = adapter?.getCount()
+        val count: Int? = adapter?.count
         if(count!= null ){
         while (index < count) {
             var s: NationalitiesItem = list[index]

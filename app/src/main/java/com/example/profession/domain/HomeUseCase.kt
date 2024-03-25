@@ -27,18 +27,12 @@ class HomeUseCase @Inject constructor(private val repository: Repository) :
     BaseUseCase<DevResponse<Any>, Any>() {
 
     override fun executeRemote(params: Any?): Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>> {
-        return if (params is FcmParams) {
-            flow {
-                emit(repository.updateFcm(params))
-            } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
-        }
-        else  {
-            flow {
+        return flow {
                 emit(repository.getSlider())
             } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
 
         }
-    }
+
     }
 
 

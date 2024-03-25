@@ -17,8 +17,7 @@ import com.example.profession.util.ext.loadImage
 import com.example.profession.util.ext.roundTo
 
 
-class ReviewsAdapter(
-) : RecyclerView.Adapter<ReviewsAdapter.ReviewsViewHolder>() {
+class ReviewsAdapter : RecyclerView.Adapter<ReviewsAdapter.ReviewsViewHolder>() {
     var _binding: ItemReviewsBinding? = null
     var list = mutableListOf<Reviews>()
         @SuppressLint("NotifyDataSetChanged") set(value) {
@@ -28,10 +27,10 @@ class ReviewsAdapter(
 
     override fun onBindViewHolder(holder: ReviewsViewHolder, position: Int) {
         var currentItem = list.get(position)
-        holder.binding.tvName.text = currentItem?.userName
-        holder.binding.tvRate.text = currentItem?.rate?.roundTo(2).toString()
-        holder.binding.tvDesc.text = currentItem?.comment
-        holder.binding.ivUser.loadImage(currentItem?.providerPhoto)
+        holder.binding.tvName.text = currentItem.userName
+        holder.binding.tvRate.text = currentItem.rate?.roundTo(2).toString()
+        holder.binding.tvDesc.text = currentItem.comment
+        holder.binding.ivUser.loadImage(currentItem.providerPhoto)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewsViewHolder {
@@ -43,7 +42,7 @@ class ReviewsAdapter(
 
 
     class ReviewsViewHolder(var binding: ItemReviewsBinding) :
-        RecyclerView.ViewHolder(binding.root) {}
+        RecyclerView.ViewHolder(binding.root)
 
 
     override fun getItemCount(): Int = list.size

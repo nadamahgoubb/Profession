@@ -80,8 +80,7 @@ interface ApiInterface {
 
     @GET("user/profile")
     suspend fun getProfile(
-        //  @Header("Authorization") auth: String,
-    ): NetworkResponse<DevResponse<ProfileResponse>, ErrorResponse>
+     ): NetworkResponse<DevResponse<ProfileResponse>, ErrorResponse>
 
 
     @Multipart
@@ -100,8 +99,7 @@ interface ApiInterface {
 
         ): NetworkResponse<DevResponse<Any>, ErrorResponse>
 
-    @FormUrlEncoded
-    @POST("user/profile/delete")
+     @POST("user/profile/delete")
     suspend fun deleteAccount(
     ): NetworkResponse<DevResponse<Any>, ErrorResponse>
 
@@ -117,11 +115,17 @@ interface ApiInterface {
     suspend fun contactUs(
         @Field("app_type") app_type: Int? = null,
          @Field("content") content: String? = null,
+         @Field("phone") phone: String? = null,
+         @Field("country_code") country_code: String? = null,
     ): NetworkResponse<DevResponse<Any>, ErrorResponse>
 
     @GET("user/goal")
     suspend fun getGoal(
     ): NetworkResponse<DevResponse<GoalResponse>, ErrorResponse>
+
+      @GET("user/profile/notifications")
+    suspend fun getNotifications(
+    ): NetworkResponse<DevResponse<NotificationResponse>, ErrorResponse>
 
     @GET("user/terms_user")
     suspend fun getTermsProvider(
@@ -178,6 +182,12 @@ interface ApiInterface {
     suspend fun createOrder(
         @Body param: CreateOrderParams? = null,
     ): NetworkResponse<DevResponse<OrdersItem>, ErrorResponse>
+    @FormUrlEncoded
+    @POST("user/confirm-phone")
+    suspend fun confirmPhone(
+        @Field("phone") phone: String? = null,
+        @Field("country_code") country_code: String? = null
+    ): NetworkResponse<DevResponse<ConfrmPhoneResponse>, ErrorResponse>
 
     @GET("nationalities")
     suspend fun getNationalities(
@@ -195,5 +205,20 @@ interface ApiInterface {
     suspend fun getOrderById(
          @Field("order_id") order_id: String
         ): NetworkResponse<DevResponse<OrdersItem>, ErrorResponse>
+    @FormUrlEncoded
+    @POST("user/pay_order_by_visa")
+    suspend fun payOrderWithVisa(
+         @Field("order_id") order_id: String,
+         @Field("trans_ref") trans_ref: String,
+         @Field("pay_token") pay_token: String,
+        ): NetworkResponse<DevResponse<Any>, ErrorResponse>
+
+   @FormUrlEncoded
+    @POST("user/profile/update_balance")
+    suspend fun updateBalance(
+         @Field("balance") balance: String,
+         @Field("trans_ref") trans_ref: String,
+         @Field("pay_token") pay_token: String,
+        ): NetworkResponse<DevResponse<Any>, ErrorResponse>
 
 }

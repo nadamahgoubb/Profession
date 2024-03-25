@@ -23,22 +23,26 @@ abstract class BaseUseCase<RequestType : BaseResponse, params : Any> :
                     is NetworkResponse.Success -> {
                         if (it.code == 200
                         ) {
-                            if(it.body.status==false){
-                                showFailureMessage(onResult, it.body.message)
-
-                            }else{
-
                                 onResult.invoke(Resource.success(it.body))
-                            }
+
                         } else {
                             showFailureMessage(onResult, it.body.message)
                         }
                     }
 
-                    is NetworkResponse.NetworkError -> showFailureMessage(
-                        onResult,
-                        it.error.message
-                    )
+             is NetworkResponse.NetworkError -> {
+                 if(it.error.message?.contains("professions.")== true) {
+                     showFailureMessage(
+                         onResult,
+                         "Connection Error"
+                     )
+                 }
+                 else showFailureMessage(
+                     onResult,
+                     it.error.message
+                 )
+
+             }
                     is NetworkResponse.UnknownError -> showFailureMessage(
                         onResult,
                         it.error.toString()

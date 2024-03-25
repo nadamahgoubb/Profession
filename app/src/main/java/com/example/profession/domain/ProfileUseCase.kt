@@ -6,7 +6,8 @@ import com.example.profession.base.ErrorResponse
 import com.example.profession.base.NetworkResponse
 import com.example.profession.data.dataSource.Param.ChangePasswordParam
 import com.example.profession.data.dataSource.Param.EditProfileParams
-import com.example.profession.data.dataSource.repositoy.Repository
+ import com.example.profession.data.dataSource.Param.UpdateBalanceParam
+ import com.example.profession.data.dataSource.repositoy.Repository
 import com.example.profession.domain.GetProfileData.DELETE_ACCOUNT
 import com.example.profession.domain.GetProfileData.GET_DATA
 import dagger.hilt.android.scopes.ViewModelScoped
@@ -30,23 +31,27 @@ class ProfileUseCase @Inject constructor(private val repo: Repository  ) :
     override fun executeRemote(params: Any?): Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>> {
         return if ((params is EditProfileParams)) {
             flow {
-                params?.let { repo.updateProfile(params) }?.let { emit(it) }
+                params.let { repo.updateProfile(params) }?.let { emit(it) }
             } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
         } else if (params is ChangePasswordParam) {
             flow {
-                params?.let { repo.changePassword(params) }?.let { emit(it) }
-            } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
+                params.let { repo.changePassword(params) }?.let { emit(it) }
+            }
         } else if (params?.equals(GET_DATA) == true) {
             flow {
-                params?.let { repo.getProfile() }?.let { emit(it) }
+                params.let { repo.getProfile() }?.let { emit(it) }
             } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
         } else if (params?.equals(DELETE_ACCOUNT) == true) {
             flow {
-                params?.let { repo.deleteAccount() }?.let { emit(it) }
-            } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
+                params.let { repo.deleteAccount() }?.let { emit(it) }
+            }
+        }  else if (params is UpdateBalanceParam) {
+            flow {
+                params.let { repo.updateBalance(it) }?.let { emit(it) }
+            }
         } else {
             flow {
-                emit(null)
+                emit(repo.getNotifications())
             } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
         }
     }

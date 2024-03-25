@@ -24,7 +24,7 @@ interface OnClickLoginFirst{
     fun onClick(choice: String)
 }
 
-class LoginFirstBotomSheetFragment( ) :
+class LoginFirstBotomSheetFragment :
     BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentLoginFirstSheetBinding

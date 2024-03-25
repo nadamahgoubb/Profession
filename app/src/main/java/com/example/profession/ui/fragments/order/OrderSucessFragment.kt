@@ -4,7 +4,6 @@ package com.example.profession.ui.fragments.order
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.profession.R
@@ -26,14 +25,14 @@ binding.btnContinue.setOnClickListener {
 
 }
 
-        arguments?.getString(Constants.ORDERID)?.let {
+        arguments?.getString(Constants.STATUS)?.let {
             mViewModel.orderId=it
-            binding.tvOrderId.setText(it)
+            binding.tvOrderId.text = it
         }
         binding.btnShowDetails.setOnClickListener {
 
             var bundle = Bundle()
-            bundle.putString(Constants.ORDERID, Constants.New_ORDER)
+            bundle.putString(Constants.STATUS, Constants.New_ORDER)
              findNavController().navigate(
                 R.id.orderInfoFragment,
                 bundle,
@@ -52,12 +51,12 @@ binding.btnContinue.setOnClickListener {
         parent.showSideNav(false)
 
         binding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-            if (Math.abs(verticalOffset) ==   binding.appBarLayout.getTotalScrollRange()) {
+            if (Math.abs(verticalOffset) ==   binding.appBarLayout.totalScrollRange) {
                 // If collapsed, then do this
-                binding.tvTitle.setVisibility(View.GONE);
-             } else if (verticalOffset == 0) {
-                binding.tvTitle.setVisibility(View.VISIBLE);
-             } else {
+                binding.tvTitle.visibility = View.GONE
+            } else if (verticalOffset == 0) {
+                binding.tvTitle.visibility = View.VISIBLE
+            } else {
                 // Somewhere in between
                 // Do according to your requirement
             }

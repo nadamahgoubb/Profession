@@ -42,12 +42,11 @@ lateinit var context :Context
     override fun onBindViewHolder(holder: CheckoutPaymentViewHolder, position: Int) {
         var currentItem = itemsList[position]
 
-        holder.binding.tvTitle.setText(currentItem.title)
+        holder.binding.tvTitle.text = currentItem.title
         holder.binding.ivLogo.setImageDrawable(currentItem.logo?.let {
             context.resources.getDrawable(it)
         })
-        if (currentItem.selected == true) holder.binding.checkbox.isChecked = true
-        else  holder.binding.checkbox.isChecked = false
+        holder.binding.checkbox.isChecked = currentItem.selected == true
 
         holder.binding.checkbox.setOnClickListener {
             currentItem.id?.let {

@@ -45,3 +45,17 @@ data class ProvidersCreateOrderParams (
 
     var id : String    = ""
 )
+
+ data class PayOrderParam (
+
+    var id : String    = "",
+    var  trans_ref: String   = "",
+    var  pay_token: String   = ""
+)
+
+ data class UpdateBalanceParam (
+
+    var amount : String    = "",
+    var  trans_ref: String   = "",
+    var  pay_token: String   = ""
+)

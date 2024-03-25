@@ -3,6 +3,8 @@ package com.example.profession.util
 import android.content.Context
 import com.example.profession.R
 import com.example.profession.data.dataSource.Param.PaymentModel
+import java.text.SimpleDateFormat
+import java.util.Date
 
 object Utils {
     fun ArabicToEnglish(str: String):String {
@@ -58,6 +60,17 @@ object Utils {
         return java.lang.String.join(separator, arabicNumber)
 
 
+    }
+
+     fun getDateTime(s: String): String? {
+        try {
+            val dateFormat = SimpleDateFormat("HH:mm:ss")
+            val string = dateFormat.format(Date(s))
+
+            return (string)
+        } catch (e: Exception) {
+            return s
+        }
     }
     fun getPaymentMethod(paymrnt:Int, context:Context):PaymentModel?{
         when(paymrnt){

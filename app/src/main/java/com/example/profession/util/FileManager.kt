@@ -71,7 +71,7 @@ object FileManager {
         return result
     }
 
-    private fun rename(file: File, newName: String): File? {
+    private fun rename(file: File, newName: String): File {
         val newFile = File(file.parent, newName)
         if (!newFile.equals(file)) {
             if (newFile.exists() && newFile.delete()) {

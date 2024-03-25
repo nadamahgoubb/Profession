@@ -44,8 +44,8 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
             showActivity(MainActivity::class.java, clearAllStack = true)
         }
         current =PrefsHelper.getLanguage()
-        if(current.equals(Constants.EN)) binding.btnLang.setText(resources.getString(R.string.arabic))
-        else  binding.btnLang.setText(resources.getString(R.string.english))
+        if(current.equals(Constants.EN)) binding.btnLang.text = resources.getString(R.string.arabic)
+        else binding.btnLang.text = resources.getString(R.string.english)
 
         binding.btnLang.setOnClickListener {
             if(current.equals(Constants.EN))

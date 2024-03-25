@@ -19,12 +19,6 @@ object AppModul {
 
     @Singleton
     @Provides
-    fun provideSessionManager(
-        @ApplicationContext context: Context,
-    ) = SessionManager(context)
-
-    @Singleton
-    @Provides
     fun provideRepository(
         api: ApiInterface
     ): Repository = Repository(api)

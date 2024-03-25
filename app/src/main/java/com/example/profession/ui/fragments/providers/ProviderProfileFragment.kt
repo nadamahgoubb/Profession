@@ -6,15 +6,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
- import com.example.profession.R
+import com.example.profession.R
 import com.example.profession.databinding.FragmentProviderProfileBinding
-import com.example.profession.ui.activity.AuthActivity
 import com.example.profession.ui.activity.MainActivity
 import com.example.profession.base.BaseFragment
 import com.example.profession.data.dataSource.response.Providers
 import com.example.profession.ui.adapter.ProvidersSubServiceAdapter
-import com.example.profession.ui.dialog.LoginFirstBotomSheetFragment
-import com.example.profession.ui.dialog.OnClickLoginFirst
 import com.example.profession.ui.fragments.subService.CreateOrdersAction
 import com.example.profession.ui.fragments.subService.CreateOrdersViewModel
 import com.example.profession.util.Constants
@@ -52,25 +49,25 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
 
     private fun showData() {
         providerData?.let {
-            binding.tvName.setText(it.name)
-            binding.tvDesc.setText(it.previousExperience)
+            binding.tvName.text = it.name
+            binding.tvDesc.text = it.previousExperience
             binding.ivProfile.loadImage(it.photo, isCircular = true)
-            binding.tvRate.setText(it.totalRate.roundTo(2) .toString())
+            binding.tvRate.text = it.totalRate?.toDoubleOrNull()?.roundTo(2) .toString()
 
-            binding.tvLocation.setText(it.address.toString())
-             binding.tvRateCounts.setText("(" + it.countReviews + ")")
+            binding.tvLocation.text = it.address.toString()
+            binding.tvRateCounts.text = "(" + it.countReviews + ")"
 
-            binding.itemDistance.tvTitle.setText(resources.getText(R.string.distance_between))
-            binding.tvJob .setText(it.service?.name)
-            binding.itemDistance.tvData.setText(it.distance.toString().toString()+ resources.getString(R.string.km))
+            binding.itemDistance.tvTitle.text = resources.getText(R.string.distance_between)
+            binding.tvJob.text = it.service?.name
+            binding.itemDistance.tvData.text = it.distance.toString().toString()+ resources.getString(R.string.km)
             binding.itemDistance.ivImg.loadImage(resources.getDrawable(R.drawable.ic_location))
 
-            binding.itemExperience.tvTitle.setText(resources.getText(R.string.ecperience))
-            binding.itemExperience.tvData.setText(it.yearsExperience.toString())
+            binding.itemExperience.tvTitle.text = resources.getText(R.string.ecperience)
+            binding.itemExperience.tvData.text = it.yearsExperience.toString()
             binding.itemExperience.ivImg.loadImage(resources.getDrawable(R.drawable.ic_experience))
 
-            binding.itemCost.tvTitle.setText(resources.getText(R.string.hours_cost))
-            binding.itemCost.tvData.setText(it.hourPrice.toString()+resources.getString(R.string.sr))
+            binding.itemCost.tvTitle.text = resources.getText(R.string.hours_cost)
+            binding.itemCost.tvData.text = it.hourPrice.toString()+resources.getString(R.string.sr)
             binding.itemCost.ivImg.loadImage(resources.getDrawable(R.drawable.ic_cost))
             adapter.list = it.subServices
             adapter.notifyDataSetChanged()
@@ -127,15 +124,15 @@ class ProviderProfileFragment : BaseFragment<FragmentProviderProfileBinding>() {
         parent.showBottomNav(false)
         parent.showSideNav(false)
         binding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-            if (Math.abs(verticalOffset) == binding.appBarLayout.getTotalScrollRange()) {
+            if (Math.abs(verticalOffset) == binding.appBarLayout.totalScrollRange) {
                 // If collapsed, then do this
-                binding.lytImg.setVisibility(View.GONE);
-                binding.ivProfile.setVisibility(View.GONE);
-                binding.ivCall.setVisibility(View.GONE);
+                binding.lytImg.visibility = View.GONE
+                binding.ivProfile.visibility = View.GONE
+                binding.ivCall.visibility = View.GONE
             } else if (verticalOffset == 0) {
-                binding.lytImg.setVisibility(View.VISIBLE);
-                binding.ivProfile.setVisibility(View.VISIBLE);
-                binding.ivCall.setVisibility(View.VISIBLE);
+                binding.lytImg.visibility = View.VISIBLE
+                binding.ivProfile.visibility = View.VISIBLE
+                binding.ivCall.visibility = View.VISIBLE
             } else {
                 // Somewhere in between
                 // Do according to your requirement

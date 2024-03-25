@@ -16,6 +16,8 @@ import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -123,7 +125,19 @@ fun String.toDate(pattern: String): LocalDate {
     val formatter = DateTimeFormatter.ofPattern(pattern)
     return LocalDate.parse(this, formatter)
 }
+@RequiresApi(Build.VERSION_CODES.O)
 
+
+fun toTwelevePattern(time:String? ):String? {
+    try {
+        val sdf = SimpleDateFormat("HH:mm:ss")
+        val dateObj: Date = sdf.parse(time)
+        return( SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(dateObj))
+    } catch (e: ParseException) {
+        e.printStackTrace()
+        return time
+    }
+}
 @RequiresApi(Build.VERSION_CODES.O)
 fun Instant.toLocalDate(): LocalDate {
     return toLocalDateTime().toLocalDate()

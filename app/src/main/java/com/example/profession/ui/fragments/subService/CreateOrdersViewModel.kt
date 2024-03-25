@@ -36,11 +36,11 @@ class CreateOrdersViewModel
     var hoursCount = 1
     var hourToVisit = ""
     var mintueToVisit = "00"
-    var current = ""
+    var current :String? =null
     var am = "ص"
 
     fun getProviders() {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
             produce(CreateOrdersAction.ShowLoading(true))
             useCase.invoke(
@@ -60,7 +60,7 @@ class CreateOrdersViewModel
     }
 
     fun getProviderReview(provider_id: String) {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
             produce(CreateOrdersAction.ShowLoading(true))
             useCaseReview.invoke(
@@ -81,7 +81,7 @@ class CreateOrdersViewModel
 
 
     fun getTaxes() {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
             produce(CreateOrdersAction.ShowLoading(true))
             useCase.invoke(
@@ -100,7 +100,7 @@ class CreateOrdersViewModel
         }
     }
     fun getNationalities() {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
             produce(CreateOrdersAction.ShowLoading(true))
             useCase.invoke(
@@ -124,7 +124,7 @@ class CreateOrdersViewModel
         providers: ArrayList<ProvidersCreateOrderParams>,
         notes: String
     ) {
-        if (app?.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
+        if (app.let { it1 -> NetworkConnectivity.hasInternetConnection(it1) } == true) {
 
             produce(CreateOrdersAction.ShowLoading(true))
             useCase.invoke(
@@ -134,8 +134,8 @@ class CreateOrdersViewModel
                     lat.toString(),
                     long.toString(),
                     address?.address.toString(),
-                    englishNumberToArabicNumber( current),
-                    hourToVisit + ":" + mintueToVisit + " " + am,
+                    englishNumberToArabicNumber(current.toString()),
+                    hourToVisit + ":" + mintueToVisit + ":" + "00",
                     hoursCount,
                     notes,
                     PrefsHelper.getUserData()?.phone,

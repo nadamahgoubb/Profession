@@ -21,12 +21,12 @@ class ReviewsUseCase @Inject constructor(private val repository: Repository) :
     override fun executeRemote(params: Any?): Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>> {
         return if (params  is AddReviewsParam) {
             flow {
-                params?.let { repository.addReview(params ) }?.let { emit(it) }
-            } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
+                params.let { repository.addReview(params ) }?.let { emit(it) }
+            }
 
         }else if (params  is GetProvidersReviewsParam) {
             flow {
-                params?.let { repository.getReviews(params ) }?.let { emit(it) }
+                params.let { repository.getReviews(params ) }?.let { emit(it) }
             } as Flow<NetworkResponse<DevResponse<Any>, ErrorResponse>>
 
         }

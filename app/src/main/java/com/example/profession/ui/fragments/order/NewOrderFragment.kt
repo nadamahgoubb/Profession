@@ -5,8 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
- import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.profession.R
 import com.example.profession.base.BaseFragment
 import com.example.profession.data.dataSource.response.OrdersItem
@@ -16,7 +15,6 @@ import com.example.profession.ui.adapter.OrdersAdapter
 import com.example.profession.ui.adapter.OrdersClickListener
 import com.example.profession.util.Constants
 import com.example.profession.util.Extension.chat
-import com.example.profession.util.Extension.openWhatsApp
 import com.example.profession.util.ext.hideKeyboard
 import com.example.profession.util.ext.init
 import com.example.profession.util.ext.showActivity
@@ -25,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 
-class NewOrderFragment( ) : BaseFragment<FragmentOrderItemBinding>(),
+class NewOrderFragment : BaseFragment<FragmentOrderItemBinding>(),
     OrdersClickListener {
     private val mViewModel: OrdersViewModel by activityViewModels()
     lateinit var adapter: OrdersAdapter
@@ -66,7 +64,8 @@ class NewOrderFragment( ) : BaseFragment<FragmentOrderItemBinding>(),
                         adapter.notifyDataSetChanged()
                     } else{
                         binding.lytEmptyState.isVisible= true
-                    }  }
+                        adapter.list = arrayListOf()
+                        adapter.notifyDataSetChanged() }  }
             }
             is OrdersAction.ShowFailureMsg ->
                 action.message?.let {
@@ -91,7 +90,7 @@ class NewOrderFragment( ) : BaseFragment<FragmentOrderItemBinding>(),
     }
 
     override fun onOrderDetailsClicked(item: OrdersItem?) {
-        bundle.putString(Constants.ORDERID,  Constants.New_ORDER)
+        bundle.putString(Constants.STATUS,  Constants.New_ORDER)
         mViewModel.orderId= item?.orderId.toString()
         findNavController().navigate(R.id.orderInfoFragment, bundle)
     }
