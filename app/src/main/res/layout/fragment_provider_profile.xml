@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="false"
-             android:theme="@style/ThemeOverlay.MaterialComponents.Dark">
+            android:theme="@style/ThemeOverlay.MaterialComponents.Dark">
 
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -54,8 +54,9 @@
                             android:id="@+id/iv_back"
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
-                android:rotation="180"            android:layout_gravity="start"
+                            android:layout_gravity="start"
                             android:padding="@dimen/_2sdp"
+                            android:rotation="180"
                             android:src="@drawable/ic_back_"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -113,10 +114,11 @@
                     android:padding="@dimen/_3sdp">
 
                     <ImageView
-                        android:layout_width="@dimen/_25sdp"
-                        android:layout_height="@dimen/_25sdp"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
                         android:layout_centerInParent="true"
-                        android:background="@drawable/ic_call" />
+                        android:background="@drawable/ic_call"
+                     />
                 </RelativeLayout>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -124,14 +126,16 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@color/white"
-            android:fillViewport="true"      android:layout_height="match_parent"
-             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+            android:fillViewport="true"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <RelativeLayout
+                android:id="@+id/lyt_all_screen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                 android:id="@+id/lyt_all_screen" android:orientation="vertical"
+                android:orientation="vertical"
 
 
                 >
@@ -140,7 +144,7 @@
                     android:id="@+id/lyt_data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-               android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -153,7 +157,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_3sdp"
-                         android:textColor="@color/black"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_13sdp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
@@ -184,18 +188,19 @@
                             android:id="@+id/tv_rate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
                              android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@id/iv_star"
                             app:layout_constraintStart_toEndOf="@+id/iv_star"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="@id/iv_star" />
 
                         <TextView
                             android:id="@+id/tv_rate_counts"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_5sdp"
-                             android:textColor="@color/black"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/tv_rate"
@@ -219,7 +224,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5sdp"
-                         android:textColor="@color/grey_400"
+                        android:textColor="@color/grey_400"
                         android:textSize="@dimen/_10sdp"
                         app:layout_constraintStart_toEndOf="@+id/iv_location"
                         app:layout_constraintTop_toTopOf="@id/iv_location" />
@@ -240,42 +245,42 @@
                         tools:listitem="@layout/item_provider_properites" />
 
 
-                        <LinearLayout
-                            android:id="@+id/lyt_rv_provider_data"
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/_12sdp"
+                    <LinearLayout
+                        android:id="@+id/lyt_rv_provider_data"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:orientation="horizontal"
+                        android:weightSum="3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_location">
+
+                        <include
+                            android:id="@+id/item_experience"
+                            layout="@layout/item_provider_properites"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:weightSum="3"
-                            android:orientation="horizontal"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/iv_location">
+                            android:layout_marginHorizontal="@dimen/_2sdp"
+                            android:layout_weight="1" />
 
-                            <include
-                                android:id="@+id/item_experience"
-                                android:layout_weight="1"
-                                layout="@layout/item_provider_properites"
-                                android:layout_width="0dp"
-                                android:layout_marginHorizontal="@dimen/_2sdp"
-                                android:layout_height="match_parent" />
+                        <include
+                            android:id="@+id/item_cost"
+                            layout="@layout/item_provider_properites"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="@dimen/_2sdp"
+                            android:layout_weight="1" />
 
-                            <include
-                                android:id="@+id/item_cost"
-                                android:layout_weight="1"
-                                layout="@layout/item_provider_properites"
-                                android:layout_marginHorizontal="@dimen/_2sdp"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent" />
+                        <include
+                            android:id="@+id/item_distance"
+                            layout="@layout/item_provider_properites"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="@dimen/_2sdp"
+                            android:layout_weight="1" />
 
-                            <include
-                                android:id="@+id/item_distance"
-                                android:layout_weight="1"
-                                android:layout_marginHorizontal="@dimen/_2sdp"
-                                layout="@layout/item_provider_properites"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent" />
-
-                        </LinearLayout>
+                    </LinearLayout>
 
 
                     <androidx.cardview.widget.CardView
@@ -285,7 +290,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_2sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
-                     android:elevation="@dimen/_55sdp"   app:cardCornerRadius="@dimen/_8sdp"
+                        android:elevation="@dimen/_55sdp"
+                        app:cardCornerRadius="@dimen/_8sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/lyt_rv_provider_data"
@@ -297,7 +303,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:animateLayoutChanges="true"
-                             android:padding="@dimen/_4sdp">
+                            android:padding="@dimen/_4sdp">
 
                             <TextView
 
@@ -306,7 +312,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_8sdp"
                                 android:layout_marginTop="@dimen/_10sdp"
-                                 android:textColor="@color/black"
+                                android:textColor="@color/black"
                                 android:textSize="@dimen/_10sdp"
                                 android:textStyle="bold"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -315,12 +321,14 @@
                             <TextView
 
                                 android:id="@+id/tv_desc"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_8sdp"
-                                 android:textColor="@color/grey_600"
-                                android:textSize="@dimen/_10sdp"
+                                android:textColor="@color/grey_600"
+                     android:textSize="@dimen/_10sdp"
                                 android:textStyle="bold"
+                                android:layout_marginEnd="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="@+id/tv_job"
                                 app:layout_constraintTop_toBottomOf="@+id/tv_job" />
 
@@ -346,7 +354,6 @@
                         />
 
 
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_serive_details"
                         android:layout_width="match_parent"
@@ -354,7 +361,7 @@
                         android:layout_marginTop="@dimen/_12sdp"
                         android:clipToPadding="false"
                         android:orientation="horizontal"
-                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintStart_toStartOf="@+id/tv_service_details"
                         app:layout_constraintTop_toBottomOf="@+id/tv_service_details"
 
@@ -363,116 +370,116 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                 <com.google.android.material.button.MaterialButton
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_order"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
+                    android:layout_below="@id/lyt_data"
                     android:layout_marginHorizontal="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_40sdp"
                     android:backgroundTint="@color/gold"
                     android:text="@string/order_servie"
-                     android:layout_below="@id/lyt_data"
-                      android:layout_marginTop="@dimen/_40sdp"
-                     android:textAllCaps="false"
+                    android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold"
                     app:cornerRadius="@dimen/_8sdp"
 
-                  />
+                    />
 
             </RelativeLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-     <!-- <ScrollView
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:fillViewport="true">
+    <!-- <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
 
-         <androidx.constraintlayout.widget.ConstraintLayout
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:background="@color/white"
-             android:paddingBottom="@dimen/_20sdp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/_20sdp">
 
-             <androidx.constraintlayout.widget.ConstraintLayout
-                 android:id="@+id/lyt_header"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 app:layout_constraintEnd_toEndOf="parent"
-                 app:layout_constraintStart_toStartOf="parent"
-                 app:layout_constraintTop_toTopOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/lyt_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                 <RelativeLayout
+                <RelativeLayout
 
-                     android:id="@+id/lyt_img"
-                     android:layout_width="match_parent"
-                     android:layout_height="@dimen/_160sdp"
-                     android:background="@color/white"
-                     android:paddingBottom="@dimen/_50sdp"
-                     app:layout_constraintEnd_toEndOf="parent"
-                     app:layout_constraintStart_toStartOf="parent"
-                     app:layout_constraintTop_toTopOf="parent">
+                    android:id="@+id/lyt_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_160sdp"
+                    android:background="@color/white"
+                    android:paddingBottom="@dimen/_50sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                     <ImageView
+                    <ImageView
 
-                         android:id="@+id/img"
-                         android:layout_width="match_parent"
-                         android:layout_height="@dimen/_140sdp"
-                         android:scaleType="centerCrop"
-                         android:src="@drawable/header_black_profile"
-                         app:layout_constraintStart_toStartOf="parent"
-                         app:layout_constraintTop_toTopOf="parent"
-                         tools:background="@color/white" />
+                        android:id="@+id/img"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_140sdp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/header_black_profile"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:background="@color/white" />
 
-                 </RelativeLayout>
-
-
-                 <ImageView
-                     android:id="@+id/iv_back"
-                     android:layout_width="@dimen/_40sdp"
-                     android:layout_height="@dimen/_40sdp"
-                     android:padding="@dimen/_6sdp"
-                     android:src="@drawable/ic_back_"
-                     app:layout_constraintStart_toStartOf="parent"
-                     app:layout_constraintTop_toTopOf="parent" />
+                </RelativeLayout>
 
 
-                 <RelativeLayout
-
-                     android:layout_width="@dimen/_40sdp"
-                     android:layout_height="@dimen/_40sdp"
-                     android:layout_marginHorizontal="@dimen/_20sdp"
-                     android:padding="@dimen/_3sdp"
-                     android:background="@drawable/bg_white_rounded"
-                  app:layout_constraintBottom_toBottomOf="@id/iv_profile"
-                     app:layout_constraintEnd_toEndOf="parent"
-                     app:layout_constraintTop_toTopOf="@id/iv_profile">
-
-                     <ImageView
-                         android:id="@+id/iv_play"
-                         android:layout_width="@dimen/_25sdp"
-           android:layout_height="@dimen/_25sdp"
-                         android:background="@drawable/ic_call"
-                   android:layout_centerInParent="true"
-                         />
-                 </RelativeLayout>
-
-                 <com.makeramen.roundedimageview.RoundedImageView
-                     android:id="@+id/iv_profile"
-                     android:layout_width="@dimen/_90sdp"
-                     android:layout_height="@dimen/_90sdp"
-                     android:layout_marginStart="@dimen/_10sdp"
-                     android:layout_marginBottom="@dimen/_10sdp"
-                     android:src="@drawable/user1"
-                     app:layout_constraintBottom_toBottomOf="@id/lyt_img"
-                     app:layout_constraintStart_toStartOf="parent"
-
-                     />
-             </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:padding="@dimen/_6sdp"
+                    android:src="@drawable/ic_back_"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-             </androidx.cardview.widget.CardView>
-         </androidx.constraintlayout.widget.ConstraintLayout>
-     </ScrollView>-->
+                <RelativeLayout
+
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:padding="@dimen/_3sdp"
+                    android:background="@drawable/bg_white_rounded"
+                 app:layout_constraintBottom_toBottomOf="@id/iv_profile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_profile">
+
+                    <ImageView
+                        android:id="@+id/iv_play"
+                        android:layout_width="@dimen/_25sdp"
+          android:layout_height="@dimen/_25sdp"
+                        android:background="@drawable/ic_call"
+                  android:layout_centerInParent="true"
+                        />
+                </RelativeLayout>
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/iv_profile"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:src="@drawable/user1"
+                    app:layout_constraintBottom_toBottomOf="@id/lyt_img"
+                    app:layout_constraintStart_toStartOf="parent"
+
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>-->
 </layout>

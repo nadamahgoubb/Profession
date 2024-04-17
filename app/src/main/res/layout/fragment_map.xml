@@ -29,10 +29,10 @@
                 android:id="@+id/img_location"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_25sdp"
-                android:layout_centerInParent="true"
+        android:visibility="gone"      android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:padding="@dimen/_4sdp"
-                 android:src="@drawable/marker"
+                android:src="@drawable/marker"
                 app:tint="@null"
                 tools:ignore="ContentDescription" />
 

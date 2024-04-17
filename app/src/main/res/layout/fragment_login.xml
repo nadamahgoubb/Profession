@@ -15,9 +15,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-android:paddingBottom="@dimen/_20sdp"
+            android:layout_height="match_parent"
             android:background="@color/white"
-            android:layout_height="match_parent">
+            android:paddingBottom="@dimen/_20sdp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/lyt_header"
@@ -44,7 +44,7 @@ android:paddingBottom="@dimen/_20sdp"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_170sdp"
                         android:scaleType="centerCrop"
-                 android:src="@drawable/header"
+                        android:src="@drawable/header"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:background="@color/white" />
@@ -62,9 +62,12 @@ android:paddingBottom="@dimen/_20sdp"
                 <ImageView
                     android:id="@+id/iv_back"
                     android:layout_width="@dimen/_40sdp"
-                    android:rotation="180"             android:layout_height="@dimen/_40sdp"
-              android:layout_marginStart="@dimen/_10sdp"      android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:rotation="180"
                     android:src="@drawable/ic_back"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@id/lyt_img"
                     app:layout_constraintStart_toStartOf="parent"
 
@@ -94,7 +97,6 @@ android:paddingBottom="@dimen/_20sdp"
                     />
 
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -109,7 +111,7 @@ android:paddingBottom="@dimen/_20sdp"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_weight="1.25"
+                        android:layout_weight="1.5"
                         android:background="@drawable/bg_rounded_grey"
                         android:clickable="true"
                         android:gravity="center"
@@ -126,7 +128,7 @@ android:paddingBottom="@dimen/_20sdp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_weight="4.75"
+                        android:layout_weight="4.5"
                         android:gravity="center"
                         android:hint=""
                         app:hintAnimationEnabled="false"
@@ -152,19 +154,20 @@ android:paddingBottom="@dimen/_20sdp"
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:minHeight="@dimen/_43sdp"
-                    android:layout_height="wrap_content"                    android:layout_marginTop="@dimen/_10sdp"
-                    android:gravity="center">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:minHeight="@dimen/_43sdp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                         android:layout_height="match_parent"
-
                         android:id="@+id/lyt_pass"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
-                           app:endIconDrawable="@drawable/selector_eye"
-                         app:endIconMode="password_toggle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        app:endIconDrawable="@drawable/selector_eye"
+                        app:endIconMode="password_toggle"
                         app:hintAnimationEnabled="false"
                         app:hintEnabled="false"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -175,14 +178,16 @@ android:paddingBottom="@dimen/_20sdp"
                             android:id="@+id/et_password"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:textColorHint="@color/gray_800"
-                            android:text="123456789"          android:autofillHints="password"
-                            android:padding="@dimen/_8sdp"
-                     android:background="@drawable/bg_rounded"
-                          android:textSize="@dimen/_12sdp"        android:gravity="start|center_vertical"
-                      android:textAlignment="viewStart"
+                            android:autofillHints="password"
+                            android:background="@drawable/bg_rounded"
+                            android:gravity="start|center_vertical"
                             android:hint="@string/password"
-                            android:inputType="textPassword" />
+                            android:inputType="textPassword"
+                            android:padding="@dimen/_8sdp"
+                            android:text="123456789"
+                            android:textAlignment="viewStart"
+                            android:textColorHint="@color/gray_800"
+                            android:textSize="@dimen/_12sdp" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
@@ -190,15 +195,14 @@ android:paddingBottom="@dimen/_20sdp"
                     android:id="@+id/tv_forget_pass"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="end"
                     android:paddingStart="@dimen/_5sdp"
                     android:paddingTop="@dimen/_10sdp"
                     android:paddingBottom="@dimen/_10sdp"
                     android:text="@string/forget_password"
                     android:textColor="@color/gold"
                     android:textSize="@dimen/_10sdp"
-                    android:textStyle="bold"
-                    android:layout_gravity="end"
-                />
+                    android:textStyle="bold" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_sign_in"
@@ -216,9 +220,9 @@ android:paddingBottom="@dimen/_20sdp"
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:gravity="center"
-                    android:layout_gravity="bottom"
                     android:orientation="horizontal">
 
                     <TextView
