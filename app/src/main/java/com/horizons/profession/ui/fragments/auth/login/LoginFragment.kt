@@ -59,6 +59,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(),
     }
 
     private fun setupUi() {
+        binding.countryCodePicker.setOnCountryChangeListener (this)
         binding.tvForgetPass.paintFlags =
             binding.tvForgetPass.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         binding.tvCreate.paintFlags = binding.tvCreate.paintFlags or Paint.UNDERLINE_TEXT_FLAG
