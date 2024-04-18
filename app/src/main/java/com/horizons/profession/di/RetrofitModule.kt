@@ -1,7 +1,5 @@
 package com.horizons.profession.di
 
-
-
 import com.horizons.profession.data.dataSource.repoistry.PrefsHelper
 import com.horizons.profession.base.NetworkResponseAdapterFactory
 import com.horizons.profession.data.dataSource.remote.ApiBase
@@ -17,7 +15,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
-
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -35,8 +32,7 @@ object RetrofitModule {
                 val original = chain.request()
                 val requestBuilder = original.newBuilder()
                     .method(original.method, original.body)
-                    //  .addHeader(Constants.Token_HEADER ,DataStoreManger()?.read(Constants.Token_KEY))
-                    .addHeader("Content-Type", "application/json")
+                     .addHeader("Content-Type", "application/json")
                     .addHeader("Accept", "application/json")
                .addHeader("lang", PrefsHelper.getLanguage()   )
 
